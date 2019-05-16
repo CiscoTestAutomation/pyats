@@ -6,9 +6,9 @@ Use the issue tab above to create issues for pyATS.
 
 ## General Information
 
-- Website: https://developer.cisco.com/site/pyats/
-- Documentation: https://developer.cisco.com/site/pyats/docs/
-- Community: https://communities.cisco.com/community/developer/pyats
+- Website: https://developer.cisco.com/pyats/
+- Documentation: https://developer.cisco.com/docs/pyats/
+- Support: pyats-support-ext@cisco.com
 
 ## Common Questions
 
@@ -20,7 +20,9 @@ $ pip install pyats
 ```
 
 ##### Where do I get support?
-You can post questions to the [community forum](https://communities.cisco.com/community/developer/pyats) - the support team patrols these forums daily. Otherwise, you can also send an email to pyats-support-ext@cisco.com directly.
+You can send an email to pyats-support-ext@cisco.com directly, or post a question in the issues page in this repo. The team will get back to you as soon as possible.
+
+You can also tweet @simingy and @jeaubin5 on twitter, hash-tag #pyATS.
 
 Note that if you received pyATS/scripts as part of a collaborated effort with a Cisco development/test/engineering team, you should be approaching that team instead for script support.
 
