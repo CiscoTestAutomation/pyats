@@ -16,7 +16,7 @@ Use the issue tab above to create issues for pyATS.
 Yes, pyATS is 100% free to use for anyone and everyone, and available through Python Package Index.
 
 ```
-$ pip install pyats
+$ pip install pyats[full]
 ```
 
 ##### Where do I get support?
