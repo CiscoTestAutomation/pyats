@@ -2,7 +2,7 @@ import subprocess
 import argparse
 import pkg_resources
 from distutils.version import StrictVersion
-LATEST = '20.1'
+LATEST = '19.12'
 
 VERSION_MAPPING = {
     '20.1': {
@@ -10,7 +10,8 @@ VERSION_MAPPING = {
         'uninstall': ['pyats[full]']
     }
 }
-
+# todo find a way to automatically find pkg deps+extras
+# pkg_resource.require doesnt work b/c it raise exception if the dep is not installed
 PYATS_PKG_DEPENDENCIES = {
     'pyats',
     'pyats.aereport',
@@ -64,6 +65,10 @@ ROBOT = {
     'genie.libs.robot'
 }
 
+UNICON = {
+    'unicon', 'unicon.plugins'
+}
+
 
 class PyatsInstaller:
 
@@ -71,64 +76,87 @@ class PyatsInstaller:
         self.uninstall = uninstall
         self.extra = extra
         self.version = version or LATEST
-        self.GENIE_PKG_DEPENDENCIES = NEW_GENIE_PKG_DEPENDENCIES if StrictVersion(self.version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
+        self.GENIE_PKG_DEPENDENCIES = NEW_GENIE_PKG_DEPENDENCIES if StrictVersion(
+            self.version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
+        self.downgrade = StrictVersion(self.version) < StrictVersion(LATEST)
 
     def run(self):
+
         try:
-            import pyats
+            import pyats.aetest
 
             installed = True
         except ImportError:
 
             installed = False
 
+        # install if not installed
         if not installed:
             if self.uninstall:
                 print("Pyats is not installed.")
                 return
 
-            if self.extra:
-                cmd = 'pip install pyats[{}]'.format(self.extra)
-            else:
-                cmd = 'pip install pyats'
-            print(cmd)
-            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-            for line in p.stdout:
-                print(line.decode(), end='')
+            cmd = 'pip install pyats{}'.format(
+                ''.join(['[', self.extra, ']']) if self.extra else '')
 
+        # uninsall then re-install to perform upgrade/downgrade
         else:
 
             uninstall_pkgs = set()
 
+            # uninstall only
             if self.uninstall:
                 sad = input(
-                    "Pyats is the greatest automation framework, are you really sure you want to uninstall such maginficant piece of engineering art? (y/N)").lower()
+                    "Pyats is the greatest automation framework, are you really sure you want to uninstall such a magnificent engineering masterpiece? (y/N)").lower()
                 while sad not in {'y', 'n', 'yes', 'no'}:
                     print('Could not understand your input, Please say no')
                     sad = input(
-                        "Pyats is the greatest automation framework, are you really sure you want to uninstall such maginficant piece of engineering art? (y/N)")
+                        "Pyats is the greatest automation framework, are you really sure you want to uninstall such a magnificent engineering masterpiece? (y/N)").lower()
                 if sad in {'no', 'n'}:
                     return
                 uninstall_pkgs.update(self._get_uninstall_pkgs('pyats[full]'))
+                cmd = 'pip uninstall {} -y'.format(' '.join(uninstall_pkgs))
 
+            elif self.version not in VERSION_MAPPING and not self.downgrade:
+            # this version upgrade does not require special care, simply upgrade the pkgs 
+                cmd = 'pip install pyats{} --upgrade'.format(
+                    ''.join(['[', self.extra, ']']) if self.extra else '')
+            # upgrade
             else:
+                # if downgrade then uninstall everything and re-install everything
+                if self.downgrade:
+                    uninstall_pkgs.update(
+                        self._get_uninstall_pkgs('pyats[full]'))
+                    install_cmd = 'pip install pyats{}=={}'.format(
+                        ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
 
-                for pkg in VERSION_MAPPING[self.version]['uninstall']:
-                    if 'pyats[' in pkg or pkg in {'pyats', 'genie'}:
-                        uninstall_pkgs.update(self._get_uninstall_pkgs(pkg))
-                    else:
-                        uninstall_pkgs.add(pkg)
+                # if upgrade we only uninstall what's provided in the mapping and install latest version
+                else: 
+                    # uninstall and reinstall in the from the version mapping
+                    for pkg in VERSION_MAPPING[self.version]['uninstall']:
+                        if 'pyats[' in pkg or pkg in {'pyats', 'genie'}:
+                            uninstall_pkgs.update(
+                                self._get_uninstall_pkgs(pkg))
+                        else:
+                            uninstall_pkgs.add(pkg)
 
-            cmd = 'pip uninstall {} -y'.format(' '.join(uninstall_pkgs))
+                    install_pkg = ' '.join(
+                        VERSION_MAPPING[self.version]['install'])
+                    install_cmd = 'pip install {} -y; pip install pyats{} --upgrade'.format(
+                        install_pkg, ''.join(['[', self.extra, ']']) if self.extra else '')
 
-            print(cmd)
-            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-            for line in p.stdout:
-                print(line.decode(), end='')
+                cmd = ';'.join(
+                    ['pip uninstall {} -y'.format(' '.join(uninstall_pkgs)), install_cmd])
+
+
+        print(cmd)
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+        for line in p.stdout:
+            print(line.decode(), end='')
 
     def _get_uninstall_pkgs(self, package):
-        mapping = {'pyats[full]': PYATS_PKG_DEPENDENCIES +
-                   self.GENIE_PKG_DEPENDENCIES + ROBOT,
+        mapping = {'pyats[full]': PYATS_PKG_DEPENDENCIES |
+                   self.GENIE_PKG_DEPENDENCIES | ROBOT | UNICON,
                    'pyats': PYATS_PKG_DEPENDENCIES,
                    'genie': self.GENIE_PKG_DEPENDENCIES}
 
