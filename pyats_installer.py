@@ -92,6 +92,7 @@ class PyatsInstaller:
             self.installed = False
             self.current_version = None
             self.downgrade = False
+            self.latest = True
             
             
         else:
@@ -148,7 +149,7 @@ class PyatsInstaller:
                 else:
                     install_pkg = ' '.join(
                         VERSION_MAPPING[self.version]['install'])
-                    install_cmd = 'pip install {}; {}'.format(
+                    install_cmd = 'pip3 install {}; {}'.format(
                         install_pkg, self._get_install_cmd(True))
 
                 cmd = ';'.join([self._get_uninstall_cmd(), install_cmd])
@@ -157,17 +158,18 @@ class PyatsInstaller:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
         for line in p.stdout:
             print(line.decode(), end='')
+        p.wait()
 
     def _get_install_cmd(self, upgrade=False):
         if upgrade:
-            cmd = 'pip install pyats{} --upgrade'.format(
+            cmd = 'pip3 install pyats{} --upgrade'.format(
                     ''.join(['[', self.extra, ']']) if self.extra else '')
 
         elif not self.latest:
-            cmd = 'pip install pyats{}=={}'.format(
+            cmd = 'pip3 install pyats{}=={}'.format(
                 ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
         else:
-            cmd = 'pip install pyats{}'.format(
+            cmd = 'pip3 install pyats{}'.format(
                 ''.join(['[', self.extra, ']']) if self.extra else '')
         
         return cmd
@@ -190,7 +192,7 @@ class PyatsInstaller:
                         else:
                             uninstall_pkgs.add(pkg)
 
-        cmd = 'pip uninstall {} -y'.format(' '.join(uninstall_pkgs))
+        cmd = 'pip3 uninstall {} -y'.format(' '.join(uninstall_pkgs))
 
         return cmd
 
