@@ -36,8 +36,7 @@ PYATS_PKG_DEPENDENCIES = {
     'pyats.tcl',
     'pyats.topology',
     'pyats.utils',
-    'pyats.templates',
-    'pyats.examples'}
+    'pyats.templates'}
 
 # pre 20.1
 OLD_GENIE_PKG_DEPENDENCIES = {
@@ -57,8 +56,7 @@ OLD_GENIE_PKG_DEPENDENCIES = {
     'genie.libs.ops',
     'genie.libs.sdk',
     'genie.libs.filetransferutils',
-    'genie.trafficgen',
-    'genie.example'}
+    'genie.trafficgen'}
 
 # after 20.1
 NEW_GENIE_PKG_DEPENDENCIES = {
@@ -131,9 +129,12 @@ class PyatsInstaller:
                 
                 cmd = self._get_uninstall_cmd()
 
-            elif self.version not in VERSION_MAPPING and not self.downgrade and self.latest:
-            # this version upgrade does not require special care, simply upgrade the pkgs 
-                cmd = self._get_install_cmd(True)
+            elif self.version not in VERSION_MAPPING and not self.downgrade:
+                # this version upgrade does not require special care, simply upgrade the pkgs
+                if self.latest:
+                    cmd = self._get_install_cmd(True)
+                else:
+                    cmd = self._get_install_cmd()
             # upgrade
             else:
                 # if downgrade then uninstall everything and re-install everything
@@ -167,8 +168,11 @@ class PyatsInstaller:
         
         elif not self.latest:
             if StrictVersion(self.version) < StrictVersion('19.10'):
-                if self.extra== 'full' or self.extra=='library':
+                if (self.extra== 'full' or self.extra=='library') and StrictVersion(self.version) >= StrictVersion('19.7'):
                     cmd = 'pip3 install pyats=={} genie=={}'.format(self.version, self.version)
+                elif self.extra== 'full' or self.extra=='library':
+                    cmd = 'pip3 install pyats=={} {}'.format(self.version, ''.join(''.join([pkg, '==', self.version, ' ']) for pkg in OLD_GENIE_PKG_DEPENDENCIES))
+
                 else:
                     cmd = 'pip3 install pyats=={}'.format(self.version)
             else:
