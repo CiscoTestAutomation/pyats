@@ -166,8 +166,14 @@ class PyatsInstaller:
                     ''.join(['[', self.extra, ']']) if self.extra else '')
         
         elif not self.latest:
-            cmd = 'pip3 install pyats{}=={}'.format(
-                ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
+            if StrictVersion(self.version) < StrictVersion('19.10'):
+                if self.extra== 'full' or self.extra=='library':
+                    cmd = 'pip3 install pyats=={} genie=={}'.format(self.version, self.version)
+                else:
+                    cmd = 'pip3 install pyats=={}'.format(self.version)
+            else:
+                cmd = 'pip3 install pyats{}=={}'.format(
+                    ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
         else:
             cmd = 'pip3 install pyats{}'.format(
                 ''.join(['[', self.extra, ']']) if self.extra else '')
