@@ -13,6 +13,13 @@ VERSION_MAPPING = {
     '19.11':{
         'install': ['unicon', 'unicon.plugins'],
         'uninstall': ['unicon']
+        
+    },
+    '19.9' : {
+        'install':['pyats.reporter']
+    },
+    '19.7':{
+        'uninstall':['genie.example','pyats.templates', 'pyats.examples']
     }
 }
 # todo find a way to automatically find pkg deps+extras
@@ -32,7 +39,9 @@ PYATS_PKG_DEPENDENCIES = {
     'pyats.reporter',
     'pyats.tcl',
     'pyats.topology',
-    'pyats.utils'}
+    'pyats.utils',
+    'pyats.templates',
+    'pyats.examples'}
 
 # pre 20.1
 OLD_GENIE_PKG_DEPENDENCIES = {
@@ -52,7 +61,8 @@ OLD_GENIE_PKG_DEPENDENCIES = {
     'genie.libs.ops',
     'genie.libs.sdk',
     'genie.libs.filetransferutils',
-    'genie.trafficgen'}
+    'genie.trafficgen',
+    'genie.example'}
 
 # after 20.1
 NEW_GENIE_PKG_DEPENDENCIES = {
