@@ -4,6 +4,30 @@ This is a place-holder repository used only so there's a bug tracking/forum/wiki
 
 Use the issue tab above to create issues for pyATS.
 
+This repository also contains a pyats_installer.py script to help install/uninstall/upgrade/downgrade pyats versions. 
+Please consult below section on how to use this script.
+
+#### Using the pyATS installer script
+First make sure you have python installed, and either clone this repository or curl the script file:
+
+```
+curl -OL https://raw.githubusercontent.com/nyu058/pyats/master/pyats_installer.py
+```
+
+To install latest pyATS or upgrading your existing packages:
+
+```
+python pyats_installer.py full
+```
+
+To upgrade or downgrade to a specfic version:
+
+```
+python pyats_installer.py full --version 19.11
+```
+
+Please run `python pyats_installer.py -h` for more info on how to use the script.
+
 ## General Information
 
 - Website: https://developer.cisco.com/pyats/
