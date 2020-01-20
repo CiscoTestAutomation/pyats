@@ -1,23 +1,19 @@
 #!/usr/bin/python
 import subprocess
 import argparse
-import pkg_resources
 from distutils.version import StrictVersion
-LATEST = '19.12'
+LATEST = '20.1'
 
 VERSION_MAPPING = {
     '20.1': {
-        'install': ['pyats[full]'],
         'uninstall': ['pyats[full]']
     },
     '19.11':{
-        'install': ['unicon', 'unicon.plugins'],
+        
         'uninstall': ['unicon']
         
     },
-    '19.9' : {
-        'install':['pyats.reporter']
-    },
+    
     '19.7':{
         'uninstall':['genie.example','pyats.templates', 'pyats.examples']
     }
@@ -91,10 +87,7 @@ class PyatsInstaller:
         self.uninstall = uninstall
         self.extra = extra
         self.version = version or LATEST
-        # genie deps changed after 20.1
-        self.GENIE_PKG_DEPENDENCIES = NEW_GENIE_PKG_DEPENDENCIES if StrictVersion(
-            self.version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
-        
+        self.latest = StrictVersion(self.version) == StrictVersion(LATEST)
         try:
             import pyats.aetest
             
@@ -102,14 +95,14 @@ class PyatsInstaller:
             self.installed = False
             self.current_version = None
             self.downgrade = False
-            self.latest = True
-            
             
         else:
             self.installed = True
             self.current_version = pyats.aetest.__version__
+            # genie deps changed after 20.1
+            self.GENIE_PKG_DEPENDENCIES = NEW_GENIE_PKG_DEPENDENCIES if StrictVersion(
+                    self.current_version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
             self.downgrade = StrictVersion(self.version) < StrictVersion(self.current_version)
-            self.latest = StrictVersion(self.version) == StrictVersion(LATEST)
 
     def run(self):
 
@@ -157,10 +150,7 @@ class PyatsInstaller:
                 if self.downgrade or not self.latest:
                     install_cmd = self._get_install_cmd()
                 else:
-                    install_pkg = ' '.join(
-                        VERSION_MAPPING[self.version]['install'])
-                    install_cmd = 'pip3 install {}; {}'.format(
-                        install_pkg, self._get_install_cmd(True))
+                    install_cmd = self._get_install_cmd(True)
 
                 cmd = ';'.join([self._get_uninstall_cmd(), install_cmd])
 
@@ -174,7 +164,7 @@ class PyatsInstaller:
         if upgrade:
             cmd = 'pip3 install pyats{} --upgrade'.format(
                     ''.join(['[', self.extra, ']']) if self.extra else '')
-
+        
         elif not self.latest:
             cmd = 'pip3 install pyats{}=={}'.format(
                 ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
