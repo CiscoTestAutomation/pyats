@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import subprocess
 import argparse
+import json
 from distutils.version import StrictVersion
 LATEST = '20.1'
 
@@ -8,14 +9,14 @@ VERSION_MAPPING = {
     '20.1': {
         'uninstall': ['pyats[full]']
     },
-    '19.11':{
-        
+    '19.11': {
+
         'uninstall': ['unicon']
-        
+
     },
-    
-    '19.7':{
-        'uninstall':['genie.example','pyats.templates', 'pyats.examples']
+
+    '19.7': {
+        'uninstall': ['genie.example', 'pyats.templates', 'pyats.examples']
     }
 }
 # todo find a way to automatically find pkg deps+extras
@@ -36,7 +37,28 @@ PYATS_PKG_DEPENDENCIES = {
     'pyats.tcl',
     'pyats.topology',
     'pyats.utils',
-    'pyats.templates'}
+    'pyats.templates',
+    'pyats.examples'}
+
+# internal version
+ATS_PKG_DEPENDENCIES = {
+    'ats',
+    'ats.aereport',
+    'ats.aetest',
+    'ats.async',
+    'ats.cisco',
+    'ats.log',
+    'ats.kleenex',
+    'ats.connections',
+    'ats.datastructures',
+    'ats.easypy',
+    'ats.results',
+    'ats.reporter',
+    'ats.tcl',
+    'ats.topology',
+    'ats.utils',
+    'ats.templates',
+    'ats.examples'}
 
 # pre 20.1
 OLD_GENIE_PKG_DEPENDENCIES = {
@@ -56,7 +78,8 @@ OLD_GENIE_PKG_DEPENDENCIES = {
     'genie.libs.ops',
     'genie.libs.sdk',
     'genie.libs.filetransferutils',
-    'genie.trafficgen'}
+    'genie.trafficgen',
+    'genie.examples'}
 
 # after 20.1
 NEW_GENIE_PKG_DEPENDENCIES = {
@@ -86,24 +109,35 @@ class PyatsInstaller:
         self.extra = extra
         self.version = version or LATEST
         self.latest = StrictVersion(self.version) == StrictVersion(LATEST)
-        try:
-            import pyats.aetest
-            
-        except ImportError:
+        
+        print("Checking your current environment for existing pyATS installations")
+        pkg_list = json.loads(subprocess.check_output("pip list --format json", shell=True, universal_newlines=True))
+        self.installed = True
+        for pkg in pkg_list:
+            if pkg['name'] == 'pyats':
+                self.current_version = pkg['version']
+                self.ats = False
+                break
+            elif pkg['name'] == 'ats':
+                self.current_version = pkg['version']
+                self.ats = True
+                break
+        else:
+            # pyats or ats not in pip list, it's not installed
             self.installed = False
             self.current_version = None
             self.downgrade = False
-            
-        else:
-            self.installed = True
-            self.current_version = pyats.aetest.__version__
+
+        if self.installed:
+            print("You have {} version {} installed".format('ats (internal)' if self.ats else 'pyats (external)', self.current_version))
             # genie deps changed after 20.1
             self.GENIE_PKG_DEPENDENCIES = NEW_GENIE_PKG_DEPENDENCIES if StrictVersion(
-                    self.current_version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
-            self.downgrade = StrictVersion(self.version) < StrictVersion(self.current_version)
+                self.current_version) >= StrictVersion('20.1') else OLD_GENIE_PKG_DEPENDENCIES
+            self.downgrade = StrictVersion(
+                self.version) < StrictVersion(self.current_version)
 
     def run(self):
-
+        cmds = []
         # install if not installed
         if not self.installed:
             if self.uninstall:
@@ -111,7 +145,7 @@ class PyatsInstaller:
                 return
             # if dont want to install latest
             else:
-                cmd = self._get_install_cmd()
+                cmds.append(('Installing pyATS', self._get_install_cmd()))
 
         # uninsall then re-install to perform upgrade/downgrade
         else:
@@ -126,81 +160,101 @@ class PyatsInstaller:
                         "Are you sure you want to uninstall pyats and it's libraries? (y/n)").lower()
                 if sad in {'no', 'n'}:
                     return
-                
-                cmd = self._get_uninstall_cmd()
+
+                cmds.append(('Uninstalling pyATS and its libraries',
+                             self._get_uninstall_cmd()))
 
             elif self.version not in VERSION_MAPPING and not self.downgrade:
                 # this version upgrade does not require special care, simply upgrade the pkgs
+                msg = "Upgrading pyats to version {}".format(self.version)
                 if self.latest:
-                    cmd = self._get_install_cmd(True)
+                    cmds.append((msg,self._get_install_cmd(True)))
                 else:
-                    cmd = self._get_install_cmd()
+                    cmds.append((msg,self._get_install_cmd()))
             # upgrade
             else:
-                # if downgrade then uninstall everything and re-install everything
-                if self.downgrade:
-                    print("Downgrading pyats to version {}".format(self.version))
-
-                # if upgrade we first uninstall/install what's provided in the mapping
-                # then upgrade the rest of the pkgs
-                else: 
-                    print("Upgrading pyats to version {}".format(self.version))
-                    # uninstall and reinstall in the from the version mapping
-                    
-
+                cmds.append(
+                    ("Uninstalling existing pyats and its libraries", self._get_uninstall_cmd()))
                 if self.downgrade or not self.latest:
                     install_cmd = self._get_install_cmd()
                 else:
                     install_cmd = self._get_install_cmd(True)
 
-                cmd = ';'.join([self._get_uninstall_cmd(), install_cmd])
+                # if downgrade then uninstall everything and re-install everything
+                if self.downgrade:
+                    msg = "Downgrading pyats to version {}".format(
+                        self.version)
 
-        print(cmd)
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-        for line in p.stdout:
-            print(line.decode(), end='')
-        p.wait()
+                # if upgrade we first uninstall/install what's provided in the mapping
+                # then upgrade the rest of the pkgs
+                else:
+                    msg = "Upgrading pyats to version {}".format(self.version)
+                    # uninstall and reinstall in the from the version mapping
+
+                cmds.append((msg, install_cmd))
+
+        for cmd in cmds:
+            print('==================================================')
+            print(cmd[0])
+            print('==================================================')
+            print(cmd[1])
+            p = subprocess.Popen(cmd[1], stdout=subprocess.PIPE,
+                                 universal_newlines=True, shell=True)
+            for line in p.stdout:
+                print(line, end='')
+            p.wait()
+            if p.returncode != 0:
+                raise subprocess.CalledProcessError(p.returncode, cmd[1])
 
     def _get_install_cmd(self, upgrade=False):
         if upgrade:
-            cmd = 'pip3 install pyats{} --upgrade'.format(
-                    ''.join(['[', self.extra, ']']) if self.extra else '')
-        
+            cmd = 'pip3 install {}{} --upgrade'.format(self._get_pkg_type(), self._get_extra())
+
         elif not self.latest:
             if StrictVersion(self.version) < StrictVersion('19.10'):
-                if (self.extra== 'full' or self.extra=='library') and StrictVersion(self.version) >= StrictVersion('19.7'):
-                    cmd = 'pip3 install pyats=={} genie=={}'.format(self.version, self.version)
-                elif self.extra== 'full' or self.extra=='library':
-                    cmd = 'pip3 install pyats=={} {}'.format(self.version, ''.join(''.join([pkg, '==', self.version, ' ']) for pkg in OLD_GENIE_PKG_DEPENDENCIES))
+                if (self.extra == 'full' or self.extra == 'library') and StrictVersion(self.version) >= StrictVersion('19.7'):
+                    cmd = 'pip3 install {}=={} genie=={} unicon=={}'.format(self._get_pkg_type(),
+                        self.version, self.version, self.version)
+                elif self.extra == 'full' or self.extra == 'library':
+                    cmd = 'pip3 install {}=={} {}'.format(self._get_pkg_type(), self.version, ''.join(''.join(
+                        [pkg, '==', self.version, ' ']) for pkg in OLD_GENIE_PKG_DEPENDENCIES | {'unicon'}))
 
                 else:
-                    cmd = 'pip3 install pyats=={}'.format(self.version)
+                    cmd = 'pip3 install {}=={}'.format(self._get_pkg_type(),self.version)
             else:
-                cmd = 'pip3 install pyats{}=={}'.format(
-                    ''.join(['[', self.extra, ']']) if self.extra else '', self.version)
+                cmd = 'pip3 install {}{}=={}'.format(self._get_pkg_type(), self._get_extra(), self.version)
         else:
-            cmd = 'pip3 install pyats{}'.format(
-                ''.join(['[', self.extra, ']']) if self.extra else '')
-        
+            cmd = 'pip3 install {}{}'.format(self._get_pkg_type(), self._get_extra())
+
         return cmd
+    
+    def _get_pkg_type(self):
+    # return ats or pyats based on pkg type
+        return 'ats' if self.ats else 'pyats'
+
+    def _get_extra(self):
+        return ''.join(['[', self.extra, ']']) if self.extra else ''
 
     def _get_uninstall_cmd(self):
         mapping = {'pyats[full]': PYATS_PKG_DEPENDENCIES |
                    self.GENIE_PKG_DEPENDENCIES | ROBOT | UNICON,
+                   'ats[full]': ATS_PKG_DEPENDENCIES |
+                   self.GENIE_PKG_DEPENDENCIES | ROBOT | UNICON,
                    'pyats': PYATS_PKG_DEPENDENCIES,
+                   'ats': ATS_PKG_DEPENDENCIES,
                    'genie': self.GENIE_PKG_DEPENDENCIES}
-                   
-        uninstall_pkgs = set()
 
-        if self.uninstall or self.downgrade:
+        uninstall_pkgs = set()
+        # pytas[full] does not exist before 19.10, so if user wannts to uninstall the full suite we need to manually uninstall all pkgs
+        if self.uninstall or self.downgrade or StrictVersion(self.current_version) < StrictVersion('19.10'):
             uninstall_pkgs.update(mapping['pyats[full]'])
 
         else:
             for pkg in VERSION_MAPPING[self.version]['uninstall']:
-                        if 'pyats[' in pkg or pkg in {'pyats', 'genie'}:
-                            uninstall_pkgs.update(mapping[pkg])
-                        else:
-                            uninstall_pkgs.add(pkg)
+                if 'ats[' in pkg or pkg in {'ats','pyats', 'genie'}:
+                    uninstall_pkgs.update(mapping[pkg])
+                else:
+                    uninstall_pkgs.add(pkg)
 
         cmd = 'pip3 uninstall {} -y'.format(' '.join(uninstall_pkgs))
 
