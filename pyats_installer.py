@@ -110,7 +110,7 @@ class PyatsInstaller:
         self.version = version or LATEST
         self.latest = StrictVersion(self.version) == StrictVersion(LATEST)
         
-        print("Checking your current environment for existing pyATS installations")
+        print("Checking your current environment for existing pyATS installations...")
         pkg_list = json.loads(subprocess.check_output("pip list --format json", shell=True, universal_newlines=True))
         self.installed = True
         for pkg in pkg_list:
@@ -247,14 +247,23 @@ class PyatsInstaller:
         uninstall_pkgs = set()
         # pytas[full] does not exist before 19.10, so if user wannts to uninstall the full suite we need to manually uninstall all pkgs
         if self.uninstall or self.downgrade or StrictVersion(self.current_version) < StrictVersion('19.10'):
-            uninstall_pkgs.update(mapping['pyats[full]'])
+            if self.ats:
+                uninstall_pkgs.update(mapping['ats[full]'])
+            else:
+                uninstall_pkgs.update(mapping['pyats[full]'])
 
         else:
             for pkg in VERSION_MAPPING[self.version]['uninstall']:
                 if 'ats[' in pkg or pkg in {'ats','pyats', 'genie'}:
-                    uninstall_pkgs.update(mapping[pkg])
+                    if self.ats:
+                        uninstall_pkgs.update(mapping[pkg.replace('pyats.', 'ats.')])
+                    else:
+                        uninstall_pkgs.update(mapping[pkg])
                 else:
-                    uninstall_pkgs.add(pkg)
+                    if self.ats:
+                        uninstall_pkgs.add(pkg.replace('pyats.', 'ats.'))
+                    else:
+                        uninstall_pkgs.add(pkg)
 
         cmd = 'pip3 uninstall {} -y'.format(' '.join(uninstall_pkgs))
 
