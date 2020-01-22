@@ -93,6 +93,7 @@ NEW_GENIE_PKG_DEPENDENCIES = {
     'genie.trafficgen'}
 
 ROBOT = {
+    'ats.robot',
     'pyats.robot',
     'genie.libs.robot'
 }
