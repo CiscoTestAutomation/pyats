@@ -30,6 +30,13 @@ To contribute, you need to fork the repository, do your modifications and create
 
   - Please create a PR after you have made your changes (see [commit your changes](https://pubhub.devnetcloud.com/media/pyats-development-guide/docs/contribute/contribute.html#commit-your-changes) & [open a PR](https://pubhub.devnetcloud.com/media/pyats-development-guide/docs/contribute/contribute.html#open-a-pull-request))
 
+Here are a few examples that could be great pull request:
+
+- Fix Typos
+- Better wording, easier explanation
+- More details, examples
+- Anything else to enhance the documentation
+
 
 #### How to contribute to the pyATS community
 
