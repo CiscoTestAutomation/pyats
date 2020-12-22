@@ -153,6 +153,16 @@ The following fields are currently open for user to customize.
     # This can be inf, for no timeout, otherwise specify a number of seconds.
     timeout.time = <value>
 
+    # configuration related to file transfer server
+    [filetransfer]
+
+    # Subnet for devices in testbed to identify correct IP address on execution
+    # host to use as the file transfer server address
+    subnet = <subnet_string>
+
+    # Default server protocol, defaults to ftp
+    protocol = <ftp/tftp/scp>
+
     # configuration related to secrets
     [secrets]
 

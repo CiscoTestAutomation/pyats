@@ -1,3 +1,4 @@
+.. _pyats_logs_cli:
 pyats logs
 ==========
 
@@ -22,9 +23,9 @@ Execution command for viewing logs of previous or current runs with pyATS.
 pyats logs view
 ---------------
 
-This subcommand will host a local webpage with a graphical view of the 
-pass/fail summary,results table, logs, and excuted commands of a job run. 
-It not only supports previous finished runs, but also gives a live dashboard 
+This subcommand will host a local webpage with a graphical view of the
+pass/fail summary,results table, logs, and excuted commands of a job run.
+It not only supports previous finished runs, but also gives a live dashboard
 for current runs.
 
 .. code-block:: text
@@ -66,17 +67,17 @@ By default ``pyats logs view`` will open results from the most recent archive it
 can find. A specific archive can be chosen by also passing the location of that
 archive.
 
-If --liveview is appended, ``pyats logs view --liveview`` will open results from 
+If --liveview is appended, ``pyats logs view --liveview`` will open results from
 the latest runinfo directory it can find. A runinfo directory can also be passed
  to specify the run to view.
 
 The logs will be served from ``localhost`` on a random port. If you want to make
- it accessible by everyone (eg, remote users over network), pass in 
+ it accessible by everyone (eg, remote users over network), pass in
  ``--host 0.0.0.0`` to serve on all interfaces.
 
-When started, the logs webpage will be opened automatically in your  
+When started, the logs webpage will be opened automatically in your
 default system browser. You can customize the browser to use by setting
-environment variable ``BROWSER`` to the path of your favorite browser 
+environment variable ``BROWSER`` to the path of your favorite browser
 executable, or by setting the corresponding pyATS configuration.
 
 The following is an example of what the webpage looks like:
