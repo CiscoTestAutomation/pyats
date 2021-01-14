@@ -254,7 +254,7 @@ folder, where their :ref:`easypy_runinfo` and :ref:`easypy_archive` is located.
 
 ``users/`` folder is always created with ``0o777`` permission in order to allow
 sharing of a single pyATS instance by multiple users. Each user's own directory
-is created with ``0o755`` to avoid other users from accidentally writting to it.
+is created with ``0o755`` to avoid other users from accidentally writing to it.
 
 .. _easypy_runinfo:
 
@@ -301,7 +301,7 @@ are running simultaneously, only one of them gets the symlink, depending on
 whichever one ran last.
 
 If a filename to be written to taskresults is too long, it is truncated and rather
-than being blank the resulting file is made to contain the original filename and
+than being blank, the resulting file is made to contain the original filename and
 test result for tracking purposes.
 
 .. _easypy_archive:
@@ -315,7 +315,7 @@ behavior can be averted by using ``--no-archive`` option.
 
 Archives are stored under each user's ``./users/<userid>/archive/YY-MM/``
 directory, where ``YY-MM`` represents the current year and month in double
-digits, providing some level of division/classification betwen jobs.
+digits, providing some level of division/classification between jobs.
 
 
 Files
