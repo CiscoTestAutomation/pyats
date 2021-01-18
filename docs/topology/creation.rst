@@ -244,6 +244,51 @@ Any syntax outside of the above is neither recognized nor processed.
         dynamic_device: "%INCLUDE{/path/to/dynamic/generated/device/interfaces/file}"
 
 
+Testbed file can be broken down in multiple yaml files with the extend key.
+Each file can represent a subset of the main testbed file.
+
+
+Let's say this file is named tb1.yaml
+
+.. code-block:: yaml
+
+    devices:
+      xr-1:
+        connections:
+          cli:
+            ip: 10.1.1.1
+            protocol: ssh
+        credentials:
+          default:
+            password: cisco
+            username: cisco
+          enable:
+            password: cisco
+        os: iosxr
+        type: iosxr
+
+
+And this file is named tb2.yaml
+
+.. code-block:: yaml
+
+  extend: tb1.yaml
+  xr-2:
+    connections:
+      cli:
+        ip: 10.2.2.2
+        protocol: ssh
+    credentials:
+      default:
+        password: cisco
+        username: cisco
+      enable:
+        password: cisco
+    os: iosxr
+    type: iosxr
+
+Now at run time, you can provide the tb2.yaml, which will merge tb1.yaml and
+tb2.yaml together to create a merged testbed.
 
 Manual Creation
 ---------------
