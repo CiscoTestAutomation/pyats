@@ -42,7 +42,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinxcontrib_robotframework',
 ]
-if os.environ.get('DEVNET', None) == 'true':
+if not os.environ.get('DEVNET', None) == 'false':
     # do NOT show code in devnet
     extensions.remove('sphinx.ext.viewcode')
 
@@ -51,11 +51,11 @@ intersphinx_mapping = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-if os.environ.get('DEVNET', None) == 'true':
+if os.environ.get('DEVNET', None) == 'false':
+    templates_path = ['_templates',]
+else:
     # do not use template for devnet builds
     templates_path = []
-else:
-    templates_path = ['_templates',]
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -96,11 +96,11 @@ version = release = subprocess.check_output(['python',
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # skip all the tests folder
-if os.environ.get('DEVNET', None) == 'true':
+if os.environ.get('DEVNET', None) == 'false':
+    exclude_patterns = ['_build', 'tests', '_static/*.dev.js']
+else:
     # modify exclude_patterns for devnet builds
     exclude_patterns = ['_build', 'tests']
-else:
-    exclude_patterns = ['_build', 'tests', '_static/*.dev.js']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -162,11 +162,11 @@ html_favicon = 'favicon.ico'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-if os.environ.get('DEVNET', None) == 'true':
+if os.environ.get('DEVNET', None) == 'false':
+    html_static_path = ['_static',]
+else:
     # do not use statics for devnet builds
     html_static_path = []
-else:
-    html_static_path = ['_static',]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
