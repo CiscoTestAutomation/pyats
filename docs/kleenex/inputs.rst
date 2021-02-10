@@ -489,9 +489,10 @@ the board, whilst maintaining enough *flexibility* in order to accomodate
 various different user implementations.
 
 ``clean_devices``
-    optional key containing a list of devices to clean.  If not specified here
-    or via the ``clean_devices`` CLI parameter, defaults to cleaning all devices
-    specified in the clean file that are also present in the testbed file.
+    optional key containing a list of devices to clean sequentially. If not
+    specified here or via the ``clean_devices`` CLI parameter, defaults to
+    cleaning all devices specified in the clean file that are also present
+    in the testbed file.
 
 ``extends:``
     section allowing the ability for one clean file to include/extend other
@@ -553,6 +554,9 @@ various different user implementations.
     #
     # This optional key specifies the devices to be cleaned.
     # Devices may be specified by their actual name or their alias.
+    #
+    # This key may be used to clean devices sequentially.
+    #
     # In the following example, device_a, device_b and device_c are
     # cleaned in parallel, and only once complete are device_d and device_e
     # cleaned in parallel.
