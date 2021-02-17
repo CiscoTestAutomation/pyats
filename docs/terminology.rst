@@ -4,7 +4,7 @@ Terminologies
 
 py
     Short-hand for Python. The current Python version used in pyATS is Python
-    3.5.3+/3.6/3.7/3.8
+    3.6/3.7/3.8
 
 CONFIG file
     Tcl-ATS legacy file, used to describe testbed hardware information such as
