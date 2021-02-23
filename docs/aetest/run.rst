@@ -321,6 +321,22 @@ provide it the right arguments.
     ... execution output ...
     >>>
 
+.. tip::
+
+    If you want the test script's bash exit code to reflect the outcome of the
+    tests in your test scrip, then save the result of ``aetest.main()`` and pass
+    it into ``aetest.exit_cli_code()`` like this:
+
+    .. code-block:: python
+
+        result = aetest.main()
+        aetest.exit_cli_code(result)
+
+    ``aetest.exit_cli_code`` will cause the script to exit and returns 0 or 1 to
+    the environment as the exit code. 0 is returned if all tests in the script
+    pass and 1 is returned if one or more tests fail (or if all tests are
+    skipped).
+
 
 .. _aetest_jobfile_execution:
 
