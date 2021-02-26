@@ -1,7 +1,7 @@
 January 2021
 ============
 
-January 27, 2020
+January 27, 2021
 ----------------
 
 .. csv-table:: New Module Versions
