@@ -43,7 +43,6 @@ studies and more.
     utilities/index
     robot/index
     manifest/index
-    manifest/schema
 
 .. toctree::
     :maxdepth: 1

@@ -1,5 +1,5 @@
 Introduction
-------------
+============
 
 The pyATS Manifest is a file with YAML syntax describing how and where to execute a script.
 It is intended to formally describe the execution of a single script, the runtime environment,
@@ -91,3 +91,52 @@ The arguments defined in the profile override the arguments specified for the sc
 a runtime to be used to execute the script and any additional settings relevant for that specific
 environment and runtime combination.
 
+
+Examples
+========
+
+Minimal manifest to run a easypy job script using the 'system' runtime.
+
+.. code:: yaml
+
+    version: 1
+
+    type: easypy
+
+    arguments:
+        configuration: easypy_config.yaml
+        mail-html: True
+
+
+Manifest with runtime and profile.
+
+.. code:: yaml
+
+    version: 1
+
+    type: easypy
+
+    runtimes:
+        venv:
+            type: virtualenv
+            source:
+                - /var/pyenv/venv/bin/activate
+            environment:
+                PYTHONPATH: /var/pyenv/libs
+                TEST: "%ENV{VARNAME}"
+
+    arguments:
+        configuration: easypy_config.yaml
+        mail-html: True
+        devices:
+        - rtr1
+        - rtr2
+
+    profiles:
+        local:
+            description: |
+                Local run using virtual environment, send plain text email
+            runtime: venv
+            arguments:
+                mail-html: False
+                testbed-file: testbed.yaml
