@@ -272,7 +272,7 @@ And this file is named tb2.yaml
 
 .. code-block:: yaml
 
-  extend: tb1.yaml
+  extends: tb1.yaml
   xr-2:
     connections:
       cli:
