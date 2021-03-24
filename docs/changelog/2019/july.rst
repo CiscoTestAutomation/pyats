@@ -55,7 +55,7 @@ Changes
   - ``pip install pyats[robot]``
   - ``pip install pyats[full]``
 
-- fixed a bug in ``utils.yaml.Loader()`` where ``extend:`` key did not properly
+- fixed a bug in ``utils.yaml.Loader()`` where ``extends:`` key did not properly
   resolve markup syntax before loading the extension YAML file.
 
 - YAML loading (including topology yaml loader) now supports loading using
