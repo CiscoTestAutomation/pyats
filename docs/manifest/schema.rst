@@ -12,38 +12,29 @@ Manifest Schema
 
     arguments:  # arguments for the script (optional)
 
-        # command line arguments may override the arguments provided here or in the profile
+        <key>: <value>
 
-        <key>: <value>  # if the key does not start with "-", "--" will be prepended to the argument string, e.g. --key value
-
-        # argparse 'nargs' using 'list'
-        key:  # values may be specified as a list, this will translate to "--key val1 val2"
+        key:
         - val1
         - val2
 
-        "--key": value  # arguments can explicitly define dash syntax
+        "--key": value
         "-k": value
 
-        <key>: "*N"  # if the value is "*N", repeat the argument N number of times
+        <key>: "*N"
 
-        <key>: true|false  # if the value is a boolean, leave out the value and only add the key to the argument string, e.g. --flag
+        <key>: true|false
 
-        <key>: "True"  # if the boolean needs to be explicitly added to the argument as the value, explicitly specify a string
+        <key>: "True"
 
-
-    # Note: Script file name is inferred from the manifest file name   file_name.tem -> file_name.py
-
-    # description for the script related to this manifest
     description: |
         # This is the description for this script
         (optional)
 
-    # Note about the script, e.g. instructions or known issues
     note: |
-        # Note about this script
+        # Note about this script, e.g. instructions or known issues
         (optional)
 
-    # tags for searching
     tags:
     -  # string with tag keyword
     (optional)
@@ -53,7 +44,7 @@ Manifest Schema
               # by default, the command is inferred from the 'type'
               # e.g. easypy command: pyats run job
 
-    # definition of runtime for the related script
+    # definition of runtimes for the related script
     # (optional)
     runtimes:
         <name>:  # name of the runtime, e.g. venv
@@ -67,7 +58,7 @@ Manifest Schema
 
             environment:  # dictionary of environment variables for the execution of the script
                           # (optional)
-                key: value
+                <key>: <value>
 
             # list of files/paths that need to exist for succesfull execution (e.g. library files)
             # (optional)
@@ -85,6 +76,8 @@ Manifest Schema
 
             description: |
                 # description of the profile
+                # (optional)
 
             arguments:   # arguments that override the global script arguments
-                testbed-file: testbed.yaml
+                         # (optional)
+                <key>: <value>

@@ -22,10 +22,28 @@ Command line manifest validation:
     $ pyats validate manifest job.tem
 
 The manifest defines the script execution arguments, runtime environment and the profile(s)
-to define environment specific settings and arguments. The profiles are intended to allow
-the same script to be run against mulitple environments, e.g. local testbed, orchestrated
-testbed or production environment. Each profile can have its own specific script arguments
+that define environment specific settings and arguments. Profiles allow the same script
+to be run against multiple environments or run with different input parameters, e.g.
+local testbed, orchestrated testbed, production environment, different scaling numbers,
+or purposes like regression runs. Each profile can have its own specific script arguments
 and runtime specific settings.
+
+The associated script file that the manifest refers to is inferred based on the
+manifest filename with the extension `.py`. E.g. the script filename for a manifest
+with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
+
+
+Script types
+~~~~~~~~~~~~
+
+The manifest defines a ``type`` for the script that is associated with
+the manifest. Currently, the supported types for the manifest are:
+
+    * easypy
+
+Only suported script types have an execution runtime that allows
+the manifest to execute the script.
+
 
 Script arguments
 ~~~~~~~~~~~~~~~~
@@ -38,7 +56,28 @@ These arguments are translated to shell command arguments for script execution.
 Arguments defined for the script can be superseded by arguments defined in a profile.
 Any arguments specified on the command line will override arguments defined in the profile.
 
-The priority of arguments is: command line > profile > script.
+Arguments are transformed into a command line argument string by combining the script arguments,
+profile arguments and command line arguments and translating those using below rules.
+
+The transformation of arguments is done in steps:
+
+    * Arguments are translated from command line, manifest script arguments and profile arguments
+      into internal argument structures
+    * Internal argument structures are combined using the priority: command line > profile > script.
+    * Internal argument structure is translated to the command line argument string
+
+The internal argument structure is translated to the command line argument string using the following rules:
+
+    * Arguments that do not start with `-` are assumed to be double dash arguments and `--` will
+      be prepended to the key in the command line argument string.
+    * Arguments may explicitly define dash syntax, e.g `"-key": value`
+    * Argument values are quoted using double quotes, e.g. `val1` will translate to `"val1"`
+    * Arguments specified as a list will translate to `--key "val1" "val2"`
+    * If the value is `*N`, repeat the argument key N number of times
+    * If the value is a boolean, leave out the value and only add
+      the key to the argument string, e.g. `flag: True` translates to `--flag`.
+    * If the boolean needs to be explicitly added to the argument string, the value
+      must be explicitly specified as a string, e.g. `key: "True"`
 
 For example, the script arguments defined in the manifest could look like this:
 
@@ -53,7 +92,7 @@ For example, the script arguments defined in the manifest could look like this:
             arguments:
                 testbed-file: testbed.yaml
 
-The arguments will be combined from the profile and top level arguments key and translated
+The arguments will be combined from the profile arguments and script arguments and translated
 to command arguments for execution. Adding command line arguments will add or override
 these.
 
