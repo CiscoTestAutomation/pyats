@@ -12,7 +12,7 @@ in a standard INI style config file.
 
 - the per-user configuration file is ``$HOME/.pyats/pyats.conf``
 
-- Set environment variable ``export PYATS_CONFIGURATION=path/to/pyats.conf``
+- Setting environment variable ``export PYATS_CONFIGURATION=path/to/pyats.conf``
 
 
 If multiple configuration files are found, then they are combined in the

@@ -29,6 +29,9 @@ All plugins must obey the following rules of development:
 - plugins may be configured locally (for this run only) by passing in a config
   YAML via a command-line argument called ``--configuration``.
 
+- plugins may also be configured by setting the environment variable as shown 
+  below ``export PYATS_CONFIGURATION_EASYPY=path/to/easypy_config.yaml``
+
 - plugins shall be independent from all other plugins & test scripts.
 
 - plugins must inherit from ``easypy.plugins.bases.BasePlugin`` class
