@@ -8,9 +8,12 @@ in a standard INI style config file.
 
 - on Linux/Mac the default server-wide configuration file is ``/etc/pyats.conf``
 
--  inside a virtual environment, the file is ``$VIRTUAL_ENV/pyats.conf``
+- inside a virtual environment, the file is ``$VIRTUAL_ENV/pyats.conf``
 
 - the per-user configuration file is ``$HOME/.pyats/pyats.conf``
+
+- Setting environment variable ``export PYATS_CONFIGURATION=path/to/pyats.conf``
+
 
 If multiple configuration files are found, then they are combined in the
 following order:
