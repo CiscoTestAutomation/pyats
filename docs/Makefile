@@ -37,9 +37,9 @@ DEPENDENCIES = robotframework Sphinx sphinxcontrib-napoleon \
 			   sphinxcontrib_robotframework
 
 # User-friendly check for sphinx-build
-ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
-$(error The '$(SPHINXBUILD)' command was not found. Please install all required dependecies via make install_build_deps)
-endif
+# ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
+# $(error The '$(SPHINXBUILD)' command was not found. Please install all required dependecies via make install_build_deps)
+# endif
 
 .PHONY: help install_build_deps docs serve html clean
 
