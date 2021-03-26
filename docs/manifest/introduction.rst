@@ -6,7 +6,7 @@ It is intended to formally describe the execution of a single script, the runtim
 script arguments and profile which includes the test topology and related parameters.
 
 A script can be executed via the manifest using the `pyats run manifest` command. Manifest
-files typically use the file extension ``.tem`` which stands for Test Execution Manifest.
+files use the file extension ``.tem`` which stands for Test Execution Manifest.
 
 Command line execution examples:
 
