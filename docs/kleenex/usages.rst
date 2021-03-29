@@ -73,36 +73,17 @@ The content of the YAML file shown above follows.  Note the use of
 
     --- # clean.yaml
     cleaners:
-        TclCleaner:
-            module: tclclean
-            devices: [r1, ]
+        # This means to use the cleaner class `PyatsDeviceClean`
+        PyatsDeviceClean:
+            # The module is where the cleaner class above can be found
+            module: genie.libs.clean
+            devices: [r1]
 
     devices:
         r1:
-            image_type: ios-classic
             images:
                 - /path/to/6500-test-image.bin
-            clean:
-                clean_params: ''
-                tb_boot_device: 'sup-bootdisk:'
-                tb_boot_dir: /tftpboot/
-                tb_boot_no_hostname_append: true
-                tb_compare_image: true
-                tb_clean_cmd: rtr_ngclean
-                tb_copy_protocol: 'tftp'
-                tb_crypto_permission: '0777'
-                tb_default_config: default_config
-                tb_boot_cfg_params: diskboot
-                tb_skip_deletion: true
-                tb_boot_trim_tftp: true
-                tb_platform: '6500'
-                tb_type: '6500'
-                tb_passwd_enable: 'lab'
-                tb_devices: "%{self}"
-                tb_tftp_server_addr: 1.1.1.5
-                tb_tftp_server_name: my-tft-server
-                tb_compare_image: true
-                tb_passwd_enable: 'lab'
+
 
 File Structure
 ^^^^^^^^^^^^^^
@@ -269,20 +250,20 @@ some exceptions.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-image PE1:/path/to/clean_image.bin
+        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
+                      -clean-file /path/to/my/clean.yaml
+                      -invoke-clean
+                      -clean-image PE1:/path/to/clean_image.bin
 
 ``-clean_platform``
     specifies images to be used for clean per OS
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-platform iosxe:/path/to/clean_image.bin
+        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
+                      -clean-file /path/to/my/clean.yaml
+                      -invoke-clean
+                      -clean-platform iosxe:/path/to/clean_image.bin
 
 ``-clean_separator``
     character used to separator device/OS from image path within args
@@ -290,11 +271,11 @@ some exceptions.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-platform iosxe;/path/to/clean_image.bin
-                      --clean-separator ';'
+        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
+                      -clean-file /path/to/my/clean.yaml
+                      -invoke-clean
+                      -clean-platform iosxe;/path/to/clean_image.bin
+                      -clean-separator ';'
 
 ``-loglevel``
     specifies the logging level for Kleenex. Use this to increase or decrease

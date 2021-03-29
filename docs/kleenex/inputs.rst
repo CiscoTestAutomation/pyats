@@ -70,22 +70,6 @@ Here is an example of specifying clean images via fully specified path names:
                     protocol: telnet
                     ip: 1.1.1.10
                     port: 500
-
-            # static clean information for this device
-            clean:
-                golden_image: "/path/to/golden/image.bin"
-
-                preclean: |
-                    switchname example-device
-                    username admin password cisco123
-                    no password strength-check
-                    interface mgmt0
-                        ip address 1.1.1.10 255.255.255.0
-                        no shutdown
-                    vrf context management
-                        ip route 0.0.0.0/0 1.1.1.1
-                    feature telnet
-
     ...
 
     --- # and we had this clean.yaml clean-file for this testbed
@@ -294,26 +278,6 @@ Clean File Loading
                     ip: 1.1.1.10
                     port: 500
 
-            # static clean information for this device
-            clean:
-                mgt_itf:
-                  ipv4:
-                    address: 1.1.1.2
-                    net: {mask: 255.255.255.0, prefixlen: 24}
-
-                golden_image: /path/to/golden/image.bin
-
-                preclean: |
-                    switchname example-device
-                    username admin password cisco123
-                    no password strength-check
-                    interface mgmt0
-                        ip address %{self.clean.mgt_itf.ipv4.address} %{self.clean.mgt_itf.ipv4.net.mask}
-                        no shutdown
-                    vrf context management
-                        ip route 0.0.0.0/0 1.1.1.1
-                    feature telnet
-
         another-example-device:
             type: example-type
             connections:
@@ -321,16 +285,6 @@ Clean File Loading
                     protocol: telnet
                     ip: 1.1.1.10
                     port: 501
-
-            # static clean information for this device
-            clean:
-                mgt_itf:
-                  ipv4:
-                    address: 1.1.1.3
-                    net: {mask: 255.255.255.0, prefixlen: 24}
-
-                golden_image: /path/to/golden/image.bin
-
     ...
 
     --- # and we had this clean.yaml clean-file for this testbed
@@ -370,109 +324,22 @@ Clean File Loading
             # Static clean information may also be specified in the clean file
             # instead of only the testbed file.  Note how the markup refers
             # to content in the testbed file's block for this device.
-            preclean: |
-                switchname another-example-device
-                username admin password cisco123
-                no password strength-check
-                interface mgmt0
-                    ip address %{testbed.self.clean.mgt_itf.ipv4.address} %{testbed.self.clean.mgt_itf.ipv4.net.mask}
-                    no shutdown
-                vrf context management
-                    ip route 0.0.0.0/0 1.1.1.1
-                feature telnet
-
+            apply_configuration:
+                configuration: |
+                    switchname another-example-device
+                    username admin password cisco123
+                    no password strength-check
+                    interface mgmt0
+                        ip address %{testbed.self.clean.mgt_itf.ipv4.address} %{testbed.self.clean.mgt_itf.ipv4.net.mask}
+                        no shutdown
+                    vrf context management
+                        ip route 0.0.0.0/0 1.1.1.1
+                    feature telnet
 
             awesomeclean:
                 check_image_md5: True
 
             timeout: 900
-
-
-During runtime, when the above testbed and clean files are loaded by Kleenex,
-the resulting content would be as follows:
-
-.. code-block:: python
-
-    # Example
-    # -------
-    #
-    #   pseduo-code demonstrating how clean content is applied to device objects
-
-    # after the above testbed is loaded, you start with the following:
-    testbed
-    # <pyats.topology.testbed.Testbed object at 0xf705c40c>
-    testbed.devices
-    # {'example-device': <Device example-device at 0xf705cccc>}
-
-    # the device would only have the static clean information
-    # defined within the testbed yaml file
-    testbed.devices['example-device'].clean
-    # {'golden_image': '/path/to/golden/image.bin',
-    #  'preclean': 'switchname example-device\n'
-    #              'username admin password cisco123\n'
-    #              'no password strength-check\n'
-    #              'interface mgmt0\n'
-    #              '    ip address 1.1.1.2 255.255.255.0\n'
-    #              '    no shutdown\n'
-    #              'vrf context management\n'
-    #              '    ip route 0.0.0.0/0 1.1.1.1\n'
-    #              'feature telnet\n',
-    #  }
-
-    testbed.devices['another-example-device'].clean
-    # {'golden_image': '/path/to/golden/image.bin',
-    #  'preclean': 'switchname another-example-device\n'
-    #              'username admin password cisco123\n'
-    #              'no password strength-check\n'
-    #              'interface mgmt0\n'
-    #              '    ip address 1.1.1.3 255.255.255.0\n'
-    #              '    no shutdown\n'
-    #              'vrf context management\n'
-    #              '    ip route 0.0.0.0/0 1.1.1.1\n'
-    #              'feature telnet\n',
-    #  }
-
-    # --------------------------------------------------
-    # once the clean information is applied, it is added
-    # directly to the device's clean dictionary, and the
-    # resulting device.clean becomes the following:
-
-    testbed.devices['example-device'].clean
-    # {'awesomeclean': {'check_image_md5': True},
-    #  'golden_image': '/path/to/golden/image.bin',
-    #  'images': {'rp': {'file': ['/path/to/device/image/r99.9.9.bin']},
-    #             'pie': {'file': ['ftp://img_svr.domain.com/path/to/mypies/k9sec.bin']}},
-    #  'preclean': 'switchname example-device\n'
-    #              'username admin password cisco123\n'
-    #              'no password strength-check\n'
-    #              'interface mgmt0\n'
-    #              '    ip address 1.1.1.2 255.255.255.0\n'
-    #              '    no shutdown\n'
-    #              'vrf context management\n'
-    #              '    ip route 0.0.0.0/0 1.1.1.1\n'
-    #              'feature telnet\n'}
-
-    testbed.devices['another-example-device'].clean
-    # {'awesomeclean': {'check_image_md5': True},
-    #  'golden_image': '/path/to/golden/image.bin',
-    #  'images': {'rp': {'file': ['sftp://img_svr.domain.com/path/to/devices/images/r99.9.9.bin']}},
-    #  'preclean': 'switchname another-example-device\n'
-    #              'username admin password cisco123\n'
-    #              'no password strength-check\n'
-    #              'interface mgmt0\n'
-    #              '    ip address 1.1.1.3 255.255.255.0\n'
-    #              '    no shutdown\n'
-    #              'vrf context management\n'
-    #              '    ip route 0.0.0.0/0 1.1.1.1\n'
-    #              'feature telnet\n',
-    #  'timeout': 900}
-    #
-    # notice how the content of clean file got applied?
-    #
-    # Note: the clean timeout value if defined at the device level is always
-    # used even if it is also specified at the global level.
-
-
 
 
 .. _clean_schema:

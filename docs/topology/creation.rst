@@ -243,23 +243,6 @@ Any syntax outside of the above is neither recognized nor processed.
               alt:
                 protocol: telnet
                 ip: "%{self.clean.mgt_itf.ipv4.address}"
-            clean:
-              mgt_itf:
-                ipv4:
-                  address: 2.2.2.2
-                  net: {mask: 255.255.255.0, prefixlen: 24}
-              pre_clean: &prepost_clean
-                - switchname %{self}
-                - license grace-period
-                - feature telnet
-                - interface mgmt0
-                -   ip addr %{self.clean.mgt_itf.ipv4.address}/%{self.clean.mgt_itf.ipv4.net.prefixlen}
-                - no shut
-                - vrf context management
-                -   ip route 1.0.0.0/24 1.1.1.1
-                -   ip route 1.0.0.0/24 1.1.1.1
-
-              post_clean: *prepost_clean
 
         dynamic_device: "%CALLABLE{mylib.create_device(2.2.2.2)}"
     topology:
@@ -301,19 +284,20 @@ And this file is named tb2.yaml
 .. code-block:: yaml
 
   extends: tb1.yaml
-  xr-2:
-    connections:
-      cli:
-        ip: 10.2.2.2
-        protocol: ssh
-    credentials:
-      default:
-        password: cisco
-        username: cisco
-      enable:
-        password: cisco
-    os: iosxr
-    type: iosxr
+  devices:
+    xr-2:
+      connections:
+        cli:
+          ip: 10.2.2.2
+          protocol: ssh
+      credentials:
+        default:
+          password: cisco
+          username: cisco
+        enable:
+          password: cisco
+      os: iosxr
+      type: iosxr
 
 Now at run time, you can provide the tb2.yaml, which will merge tb1.yaml and
 tb2.yaml together to create a merged testbed.
