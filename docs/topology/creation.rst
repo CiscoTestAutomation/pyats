@@ -114,6 +114,7 @@ references, ``topology.loader`` effectively added this using specific syntax
     #   %ASK{optional prompt text}
     #   %ENC{encoded text}
     #   %ENC{encoded text, prefix=x}
+    #   %CLI(cli_argument_name}
     #
     #   - use %{ } to denote the begin and end of a markup block
     #   - use . to separate reference path
@@ -132,6 +133,10 @@ references, ``topology.loader`` effectively added this using specific syntax
     #     manually.
     #   - The %ENC{ } form causes an encoded string to be replaced with a
     #     decoded string or secret string which supports decoding.
+    #   - The %CLI{ } form replaces the variable name with the value provided
+    #     from the command line argument. If no command line argument was
+    #     provided for this variable, the value will be an empty string.
+    #     Supports single and double dash argument style.
 
     # reference to current device name
     %{self}
@@ -176,6 +181,29 @@ references, ``topology.loader`` effectively added this using specific syntax
     # Other encoded references are substituted with their decoded string.
     # See secret strings documentation for details.
     %ENC{<encoded text>, prefix=x}
+
+    # Reference to "some_arg" will be replaced by "some_value" if
+    # the command line "pyats run job --some_arg some_value" is used.
+    %CLI{some_arg}
+
+    # If the command line argument is provided without a value,
+    # the value is set to boolean 'True'. The following command line
+    # sets the value for "some_flag" to True.
+    # "pyats run job --some_flag"
+    %CLI{some_flag}
+
+    # If the command line argument has multiple values,
+    # the variable is replaced with a list of values.
+    # The following command line argument creates a list
+    # of values in place of the devices variable.
+    # "pyats run job --devices R1 R2"
+    %CLI{devices}
+
+    # If the command line argument contains a number value,
+    # either integer or float, the variable is converted from
+    # a string to an integer or float.
+    # "pyats run job --retries 3"
+    %CLI{retries}
 
 .. note::
 
