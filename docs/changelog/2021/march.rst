@@ -1,5 +1,42 @@
+February 2021
+=============
+
+March 30, 2021
+--------------
+
+.. csv-table:: New Module Versions
+    :header: "Modules", "Version"
+
+    ``pyats``, v21.3
+    ``pyats.aereport``, v21.3
+    ``pyats.aetest``, v21.3
+    ``pyats.async``, v21.3
+    ``pyats.cisco``, v21.3
+    ``pyats.connections``, v21.3
+    ``pyats.datastructures``, v21.3
+    ``pyats.easypy``, v21.3
+    ``pyats.kleenex``, v21.3
+    ``pyats.log``, v21.3
+    ``pyats.reporter``, v21.3
+    ``pyats.results``, v21.3
+    ``pyats.robot``, v21.3
+    ``pyats.tcl``, v21.3
+    ``pyats.topology``, v21.3
+    ``pyats.utils``, v21.3
+
+Upgrade Instructions
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    # DevNet Community
+    bash$ pip install --upgrade pyats
+
+    # Cisco Internal Developers
+    bash$ pip install --upgrade ats
+
 --------------------------------------------------------------------------------
-                                      Fix                                       
+                                      Fixes
 --------------------------------------------------------------------------------
 
 * Cisco
