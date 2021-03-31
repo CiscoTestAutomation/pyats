@@ -44,6 +44,7 @@ Example Testbed File
 
     devices:
         ott-tb1-n7k4:
+            os: nxos
             type: Nexus 7000
             alias: device-1
             credentials:
@@ -94,6 +95,7 @@ Example Testbed File
                 SUP2: Supervisor Module-1X
 
         ott-tb1-n7k5:
+            os: nxos
             type: Nexus 7000
             alias: device-2
             connections:

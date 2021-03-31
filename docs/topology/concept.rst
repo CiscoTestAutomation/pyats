@@ -190,6 +190,7 @@ constitutes an important part of a testbed topology.
     |-------------------+------------------------------------------------------|
     | name              | device name (a.k.a hostname)                         |
     | alias             | device alias, defaults to device name                |
+    | os                | device os such as iosxe, iosxr, nxos and etc
     | type              | device type (string)                                 |
     | testbed           | parent testbed object. internally this is a weakref  |
     | interfaces        | dict of device interfaces (name:Interface)           |
@@ -247,9 +248,13 @@ constitutes an important part of a testbed topology.
     # giving device a different alias
     device_a.alias = 'newAlias'
 
+    # set device os
+    device_a.os = 'iosxe'
+
     # creating a device with connection parameters
     device_b = Device('deviceThatCanBeConnected',
-                      connections = {
+                      os='iosxe',
+                      connections={
                           'mgmt': {
                               'protocol': 'telnet',
                               'ip': '1.1.1.1'
@@ -261,6 +266,7 @@ constitutes an important part of a testbed topology.
 
     # creating device with interfaces
     device_c = Device('deviceCreatedWithIntfs',
+                      os='iosxe',
                       interfaces = [intf_b])
 
     # associating a device to a testbed can be done either by performing
