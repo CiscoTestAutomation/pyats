@@ -86,5 +86,5 @@ Upgrade Instructions
 * pyATS
     * Add extra empty string to `cli/commands/version/check.py`'s `metavar` argument to keep argparse formatting reliable
 
-* pyats.topology
-    * Updated type as optional in testbed schema validation
+* Topology schema
+    * Updated Device `type` as optional in testbed schema validation
