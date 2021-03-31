@@ -29,11 +29,22 @@ Upgrade Instructions
 
 .. code-block:: bash
 
+    # Make sure you are using the latest pip package
+    bash$ pip install --upgrade pip
+
     # DevNet Community
     bash$ pip install --upgrade pyats
 
     # Cisco Internal Developers
     bash$ pip install --upgrade ats
+
+Known Issues
+^^^^^^^^^^^^
+
+On MacOs we have observed issues with the `requests` package used for REST API calls,
+the workaround is to set the environment variable `no_proxy` to a value,
+e.g. domain.com. Without this, we have seen crashes that halt the script execution.
+This issue seems to be related to a bug in MacOS python https://bugs.python.org/issue31818
 
 --------------------------------------------------------------------------------
                                       Fixes
