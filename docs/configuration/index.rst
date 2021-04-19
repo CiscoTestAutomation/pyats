@@ -192,6 +192,14 @@ The following fields are currently open for user to customize.
     # 'pyats secret decode xyz123'.
     env.hide_pattern = .*PASSWORD.*
 
+    # configuration for the path that points to the versioned external packages
+    # such as, ixia, trex ,etc. By default, it points to /auto/pysw/packages. 
+    # For more detail, please refer to the README.md in the 
+    # `versioned-ext-packages <https://wwwin-github.cisco.com/pyATS/versioned-ext-packages>` 
+    # repository.
+    [devat]
+
+    versioned.external_packages = /auto/pysw/packages/
 
 .. note::
    See :ref:`secret_strings` for more details on how pyATS handles private
