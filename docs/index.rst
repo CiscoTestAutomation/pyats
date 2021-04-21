@@ -42,6 +42,7 @@ studies and more.
     reporter/index
     utilities/index
     robot/index
+    manifest/index
 
 .. toctree::
     :maxdepth: 1
