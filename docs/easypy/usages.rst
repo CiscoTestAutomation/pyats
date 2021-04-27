@@ -25,7 +25,7 @@ that gets installed into your pyATS instance automatically.
     Activating the pyATS instance @ /ws/tony-stark/pyats
     --------------------------------------------------------------------
     PYTHONPATH=/ws/tony-stark/pyats:
-    LD_LIBRARY_PATH=/auto/ttsw/ActiveTcl/8.4.19/lib:/usr/X11R6/lib
+    LD_LIBRARY_PATH=/usr/X11R6/lib
     --------------------------------------------------------------------
 
     # easypy is now part of your path

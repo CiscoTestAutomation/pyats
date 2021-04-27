@@ -52,9 +52,6 @@ In pyATS typical usage, there is only one TaskLog per process. This is achieved
 through the usage of managed handlers, tracking which handler instance is the 
 current active TaskLog. It is required because of the following:
 
-* all existing Tcl code assumes that there's only one TaskLog at a time, and 
-  calls ``Atslog`` Tcl APIs to set/get the log file and directory.
-
 * TaskLogs needs to be closed after a test script finishes running in a job,
   and new TaskLog file need to be assigned to the next script
 
@@ -152,11 +149,6 @@ EasyPy
     from the root logger (but not removed/closed from managed handlers dict).
     When a test script is run in the job file, a new TaskLog is created by using
     the managed tasklog handler's ``changeFile`` API.
-
-Tcl
-    if Tcl ``Atslog`` package is loaded, its internal APIs that controls logging
-    to screen and writing to file are replaced with callbacks to Python logging
-    controls. 
 
 AEtest
     when running in stand-alone mode, AEtest adds the managed screen handler to

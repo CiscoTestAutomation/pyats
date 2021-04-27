@@ -67,7 +67,7 @@ High-Level Design Features
 --------------------------
 * straight-forward, pythonic user experience (object-oriented design)
 
-* big-block mapping to Tcl AEtest features
+* block-based approach to test section breakdowns
 
   * Common Setup with Subsections
 

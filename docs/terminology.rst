@@ -27,7 +27,8 @@ PyPI
     located at http://pyats-pypi.cisco.com/
 
 Tcl-ATS
-    Legacy Tcl-based test infrastructure written using Tcl.
+    Legacy Tcl-based test infrastructure written using Tcl, available only for
+    internal Cisco Engineering. Deprecated since 2016.
 
 Testbed
     defines the sum of all physical hardware (routers, switches, TGNs)
