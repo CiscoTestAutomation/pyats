@@ -1,7 +1,8 @@
-March 2021
+
+April 2021
 ==========
 
-March 30, 2021
+April 27, 2021
 --------------
 
 .. csv-table:: New Module Versions
@@ -29,33 +30,66 @@ Upgrade Instructions
 
 .. code-block:: bash
 
-    # Make sure you are using the latest pip package
-    bash$ pip install --upgrade pip
-
     # DevNet Community
     bash$ pip install --upgrade pyats
 
     # Cisco Internal Developers
     bash$ pip install --upgrade ats
 
-Known Issues
+
+Feature List
 ^^^^^^^^^^^^
 
-On MacOs we have observed issues with the `requests` package used for REST API calls,
-the workaround is to set the environment variable `no_proxy` to a value,
-e.g. domain.com. Without this, we have seen crashes that halt the script execution.
-This issue seems to be related to a bug in MacOS python https://bugs.python.org/issue31818
+.. list-table::
+    :header-rows: 1
 
---------------------------------------------------------------------------------
-                                      Fixes
---------------------------------------------------------------------------------
+    * - Feature
+      - Docs
+      - Whats New
 
-* Cisco
-    * Added devAT.use_lib API:
-      * To support versioned external libraries such as ixia, trex, etc.
-      * Allows multiple versions of the same package to coexist
+    * - pyATS Manifest
+      - :ref:`Docs <manifest>`
+      - | The pyATS Manifest uses a file with YAML syntax (the "manifest" file)
+        | to capture the runtime requirements, script arguments and
+        | execution profile for test scripts.
+        .. code-block:: text
+
+            $ cat jobfile.tem
+            version: 1
+
+            type: easypy
+
+            arguments:
+                configuration: easypy_config.yaml
+                mail-html: True
+
+            $ pyats run manifest jobfile.tem
+            %EASYPY-INFO: Executing: pyats run job jobfile.py  --configuration "easypy_config.yaml" --mail-html
+            ...
+            %EASYPY-INFO: Sending report email...
+            %EASYPY-INFO: Done!
+
+
+Other Changes
+^^^^^^^^^^^^^
+
+* log
+    * Modified LiveView
+        * Fix for liveview to handle improved memory model from reporter
+
+* reporter
+    * added get_section_ctx() to get section context
+
+* log
+    * fixed log liveview ui bug
+    * added fullid in liveview
+    * fixed log viewing key bindings for page up / down getting stuck
+    * fixed files list scroll issue when the list goes beyond the page
+    * removed "No log to display” when it should not display that
+    * enhanced files list search
 
 * pyats
     * Modified configuration:
       * Added new --pyats-configuration argument to specify an additional
         configuration file to be loaded
+

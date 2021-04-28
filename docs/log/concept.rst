@@ -11,9 +11,8 @@ Python's logging system is highly complex. For example:
 
 * log message propagate through its parent logger chain for processing.
 
-To put it simply, compared to how logging was done in Tcl, Python logging 
-is like rocket science, running pure steroids as fuel, with Tony Stark at the 
-controls...
+To put it simply, Python logging is like rocket science, running pure steroids 
+as fuel, with Tony Stark at the controls...
 
 .. figure:: tonystark.jpg
     :align: center

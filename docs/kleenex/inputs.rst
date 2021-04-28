@@ -443,11 +443,11 @@ various different user implementations.
         <cleaner class>:    # Clean class implementation to instantiate
                             # This needs to be the actual class definition name
                             # to be used for cleaning one or more device.
-                            # eg: TclCleaner
+                            # eg: PyatsDeviceClean
                             # (mandatory)
 
             module:         # Module where the cleaner class can be
-                            # imported from. Eg, tclclean
+                            # imported from. Eg, genie.libs.clean
                             # (mandatory)
 
             devices:        # List of cleanable devices using this cleaner class
