@@ -1,3 +1,4 @@
+
 April 2021
 ==========
 
@@ -34,6 +35,7 @@ Upgrade Instructions
 
     # Cisco Internal Developers
     bash$ pip install --upgrade ats
+
 
 Feature List
 ^^^^^^^^^^^^
@@ -85,4 +87,9 @@ Other Changes
     * fixed files list scroll issue when the list goes beyond the page
     * removed "No log to display” when it should not display that
     * enhanced files list search
+
+* pyats
+    * Modified configuration:
+      * Added new --pyats-configuration argument to specify an additional
+        configuration file to be loaded
 
