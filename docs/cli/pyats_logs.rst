@@ -93,7 +93,7 @@ as all commands executed and specific sections of logs.
 pyats logs upload
 ---------------
 
-This subcommand will upload a zipped file to Taas Logviewer. It is an internal to 
+This command will upload a .zip pyATS Archive to TaaS Logviewer. It is an internal to 
 Cisco only feature.
 
 .. code-block:: text
@@ -106,16 +106,16 @@ Cisco only feature.
 
       Examples:
           # uploads an archive zip file to Taas Logviewer (default URL)
-          $ pyats logs upload file.zip
+          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip
 
           # uploads an archive zip file to the specified URL
-          $ pyats logs upload file.zip --upload-url http://someurl.com
+          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --upload-url http://someurl.com
 
           # uploads an archive zip file to Taas Logviewer setting API timeout to 10 seconds
-          $ pyats logs upload file.zip --api-timeout 10
+          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --api-timeout 10
 
           # uploads an archive zip file to custom URL setting API timeout to 10 seconds
-          $ pyats logs upload file.zip --upload-url http://someurl.com --api-timeout 10
+          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --upload-url http://someurl.com --api-timeout 10
 
     Upload Options:
       [archive/runinfo_dir] Archive zip file to upload.
