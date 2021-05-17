@@ -118,7 +118,7 @@ Cisco only feature.
           $ pyats logs upload file.zip --upload-url http://someurl.com --api-timeout 10
 
     Upload Options:
-      [archive/runinfo_dir] Archive zip file or runinfo directory to upload.
+      [archive/runinfo_dir] Archive zip file to upload.
       --upload-url [upload_url] URL to upload archive to.
       --api-timeout [api_timeout] Set API timeout in seconds.
 
