@@ -10,8 +10,8 @@ Execution command for viewing logs of previous or current runs with pyATS.
       pyats logs <subcommand> [options]
 
     Subcommands:
-        view                open and view previous log archive or current run info in browser
         upload              upload a .zip pyATS archive to TaaS Logviewer
+        view                open and view previous log archive or current run info in browser
 
     General Options:
       -h, --help            Show help
