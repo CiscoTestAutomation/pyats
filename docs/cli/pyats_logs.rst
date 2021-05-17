@@ -87,3 +87,43 @@ The following is an example of what the webpage looks like:
 
 Each tab shows the detailed results of each section of each testscript, as well
 as all commands executed and specific sections of logs.
+
+
+
+pyats logs upload
+---------------
+
+This subcommand will upload a zipped file to Taas Logviewer. It is an internal to 
+Cisco only feature.
+
+.. code-block:: text
+
+    Usage:
+      pyats logs upload [archive] [options]
+
+    Description:
+      Upload pyATS generated archive zip files to Taas Logviewer.
+
+      Examples:
+          # uploads an archive zip file to Taas Logviewer (default URL)
+          $ pyats logs upload file.zip
+
+          # uploads an archive zip file to the specified URL
+          $ pyats logs upload file.zip --upload-url http://someurl.com
+
+          # uploads an archive zip file to Taas Logviewer setting API timeout to 10 seconds
+          $ pyats logs upload file.zip --api-timeout 10
+
+          # uploads an archive zip file to custom URL setting API timeout to 10 seconds
+          $ pyats logs upload file.zip --upload-url http://someurl.com --api-timeout 10
+
+    Upload Options:
+      [archive/runinfo_dir] Archive zip file or runinfo directory to upload.
+      --upload-url [upload_url] URL to upload archive to.
+      --api-timeout [api_timeout] Set API timeout in seconds.
+
+    General Options:
+      -h, --help            Show help
+      -v, --verbose         Give more output, additive up to 3 times.
+      -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
+                            and CRITICAL logging levels
