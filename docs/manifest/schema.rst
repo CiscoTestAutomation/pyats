@@ -7,6 +7,8 @@ Manifest Schema
     version: 1 # <integer> schema version for manifest
                # required
 
+    name:  # Name of the job / one-line description
+
     type:  # type of script: easypy
            # required
 
@@ -81,3 +83,22 @@ Manifest Schema
             arguments:   # arguments that override the global script arguments
                          # (optional)
                 <key>: <value>
+
+            max_runtime: HH:MM,   # max runtime in hours:minutes (optional)
+
+            interest_list:       # list of email addresses (optional)
+                - list@domain
+                - user@domain
+
+            priority: #  job priority (integer) (optional)
+
+            testbed:   # (optional)
+                name:  # name of the testbed
+
+            topology:  # (optional)
+                name:  # name of the topology
+
+            docker:  # docker details  (optional)
+                volumes:  # docker volume mounts
+                   - "volume_name:/mountpoint",
+                   - "/directory:/mountpoint"
