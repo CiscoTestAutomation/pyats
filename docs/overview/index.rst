@@ -63,7 +63,7 @@ Release to DevNet
 -----------------
 
 pyATS started its journey initially as an internal Cisco Engineering tool. Over 
-the years, it ammsed thousands of test developers and millions of lines of 
+the years, it amassed thousands of test developers and millions of lines of 
 test scripts and libraries. As pyATS gathered momentum within Cisco, teams began
 inquiring whether it’s possible to share their automation with customers as part
 of collaborative development and release. 
