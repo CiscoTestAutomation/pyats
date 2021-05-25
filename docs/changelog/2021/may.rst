@@ -75,7 +75,7 @@ Other Changes
     * Modified test_kleenex_plugin
         * Updated expected 'images' key in YAML clean file so that it matches the schema provided in the documentation
 
-* Utils
+* utils
     * Modified yaml loader to preserve order if specified
     * Modified markup.py:
         * Fixed bug where called the markup `${testbed}` multiple times would cause the run to slow down
