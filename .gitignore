@@ -104,3 +104,6 @@ ENV/
 # Internal styling and template
 _static
 _templates
+
+# .vscode
+.vscode
