@@ -84,21 +84,26 @@ Manifest Schema
                          # (optional)
                 <key>: <value>
 
+
+            # below parameters are for xpresso
+
             max_runtime: HH:MM,   # max runtime in hours:minutes (optional)
 
             interest_list:       # list of email addresses (optional)
                 - list@domain
                 - user@domain
 
-            priority: #  job priority (integer) (optional)
+            priority:  # job priority (integer) (optional)
+                       # priority ranges from 0-5 where 0 presents the highest priority and 5 represents the lowest priority.
 
-            testbed:   # (optional)
+            testbed:   # static testbed defined in xpresso (optional)
                 name:  # name of the testbed
 
-            topology:  # (optional)
+            topology:  # dynamic testbed defined in xpresso (optional)
                 name:  # name of the topology
 
             docker:  # docker details  (optional)
                 volumes:  # docker volume mounts
+                          # volume mounts are used with container execution using xpresso
                    - "volume_name:/mountpoint",
                    - "/directory:/mountpoint"
