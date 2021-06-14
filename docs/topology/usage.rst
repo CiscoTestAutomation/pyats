@@ -180,10 +180,10 @@ at the same time.
                             'helper': 'console'},
                             log_stdout = False)
 
-This is a convenience function using threads under the hood to perform perform
-per device ``.disconnect()`` asynchronously.
+This is a convenience function using threads under the hood to perform per
+device ``.disconnect()`` asynchronously.
 
-* After disconnecting from devices, the connection objects will be remains,
+* After disconnecting from devices, the connection objects will remain,
 and can be checked by command ``.conectionmgr.connections``, the same objects
 will be used to connect to device again.
 
@@ -191,9 +191,9 @@ Destroy connections to all device
 ----------------------
 
 ``Testbed`` object provides ``Testbed.destroy()`` function, allowing you
-to destroy connections asynchronously from multiple testbed devices. Unlike
-``.disconnect()``, If ``.destroy()`` used, all connection objects will be
-completely removed.
+to destroy connections asynchronously to multiple testbed devices. Unlike
+``.disconnect()``, if ``.destroy()`` is used, then all connection objects
+will be completely removed.
 
 .. code-block:: python
 
