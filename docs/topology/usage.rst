@@ -142,6 +142,84 @@ This is a convenience function, as under the hood it uses threads perform
 per device ``.connect()`` asynchronously. All other behavior follows that of
 the above connection manager concept. 
 
+Disconnect From All Devices
+----------------------
+
+``Testbed`` object also provides a convenience function, ``Testbed.disconnect()``,
+allowing you to make asynchronous disconnection from multiple testbed devices
+at the same time.
+
+.. code-block:: python
+    # Example
+    # -------
+    #
+    #   disconnecting from devices in parallel
+    # using the sample topology file from
+    from pyats import topology
+    testbedfile = os.path.join('sampleTestbed.yaml')
+    testbed = topology.loader.load(testbedfile)
+    # connect to all devices in this testbed
+    testbed.connect()
+    # disconnect from all devices in this testbed
+    testbed.disconnect()
+    # disconnect from some devices in this testbed
+    testbed.disconnect(testbed.devices['uut'],
+                    testbed.devices['helper'])
+    # disconnect from some devices in this testbed
+    # and provide unique vias
+    testbed.disconnect(testbed.devices['uut'],
+                    testbed.devices['helper'],
+                    vias = {'uut': 'cli',
+                            'helper': 'console'})
+    # disconnect from some devices in this testbed
+    # using unique vias per device, and shared kwargs
+    # shared keyword-arguments will be passed to every single connection
+    testbed.disconnect(testbed.devices['uut'],
+                    testbed.devices['helper'],
+                    vias = {'uut': 'cli',
+                            'helper': 'console'})
+This is a convenience function, as under the hood it uses threads perform
+per device ``.disconnect()`` asynchronously.
+
+Destroy From All Devices
+----------------------
+
+``Testbed`` object also provides a convenience function, ``Testbed.destroy()``,
+allowing you to destroying asynchronous from multiple testbed devices
+at the same time.
+
+.. code-block:: python
+    # Example
+    # -------
+    #
+    #   destroy devices in parallel
+    # using the sample topology file from
+    from pyats import topology
+    testbedfile = os.path.join('sampleTestbed.yaml')
+    testbed = topology.loader.load(testbedfile)
+    # connect to all devices in this testbed
+    testbed.connect()
+    # destroy all devices in this testbed
+    testbed.destroy()
+    # destroy some devices in this testbed
+    testbed.destroy(testbed.devices['uut'],
+                    testbed.devices['helper'])
+    # destroy some devices in this testbed
+    # and provide unique vias
+    testbed.destroy(testbed.devices['uut'],
+                    testbed.devices['helper'],
+                    vias = {'uut': 'cli',
+                            'helper': 'console'})
+    # destroy some devices in this testbed
+    # using unique vias per device, and shared kwargs
+    # shared keyword-arguments will be passed to every single connection
+    testbed.destroy(testbed.devices['uut'],
+                    testbed.devices['helper'],
+                    vias = {'uut': 'cli',
+                            'helper': 'console'})
+This is a convenience function, as under the hood it uses threads perform
+per device ``.destroy()`` asynchronously.
+
 Querying Topology
 -----------------
 
