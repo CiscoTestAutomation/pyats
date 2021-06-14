@@ -177,16 +177,18 @@ at the same time.
     testbed.disconnect(testbed.devices['uut'],
                     testbed.devices['helper'],
                     vias = {'uut': 'cli',
-                            'helper': 'console'})
+                            'helper': 'console'},
+                            log_stdout = False)
+
 This is a convenience function, as under the hood it uses threads perform
 per device ``.disconnect()`` asynchronously.
 
-Destroy From All Devices
+Destroy connections to all device
 ----------------------
 
 ``Testbed`` object also provides a convenience function, ``Testbed.destroy()``,
-allowing you to destroying asynchronous from multiple testbed devices
-at the same time.
+allowing you to destroy connections asynchronously from multiple testbed
+devices.
 
 .. code-block:: python
     # Example
@@ -216,7 +218,9 @@ at the same time.
     testbed.destroy(testbed.devices['uut'],
                     testbed.devices['helper'],
                     vias = {'uut': 'cli',
-                            'helper': 'console'})
+                            'helper': 'console'},
+                            log_stdout = False)
+
 This is a convenience function, as under the hood it uses threads perform
 per device ``.destroy()`` asynchronously.
 
