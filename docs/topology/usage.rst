@@ -107,7 +107,7 @@ at the same time.
     # Example
     # -------
     #
-    #   connecting to devices in parallel
+    # connecting to devices in parallel
 
     # using the sample topology file from
     from pyats import topology
@@ -145,7 +145,7 @@ the above connection manager concept.
 Disconnect From All Devices
 ----------------------
 
-``Testbed`` object also provides a convenience function, ``Testbed.disconnect()``,
+``Testbed`` object provides a convenience function, ``Testbed.disconnect()``,
 allowing you to make asynchronous disconnection from multiple testbed devices
 at the same time.
 
@@ -154,11 +154,10 @@ at the same time.
     # Example
     # -------
     #
-    #   disconnecting from devices in parallel
+    # disconnecting from devices in parallel
     # using the sample topology file from
     from pyats import topology
-    testbedfile = os.path.join('sampleTestbed.yaml')
-    testbed = topology.loader.load(testbedfile)
+    testbed = topology.loader.load('your-testbed-file.yaml')
     # connect to all devices in this testbed
     testbed.connect()
     # disconnect from all devices in this testbed
@@ -181,26 +180,31 @@ at the same time.
                             'helper': 'console'},
                             log_stdout = False)
 
-This is a convenience function, as under the hood it uses threads perform
+This is a convenience function using threads under the hood to perform perform
 per device ``.disconnect()`` asynchronously.
+
+* After disconnecting from devices, the connection objects will be remains,
+and can be checked by command ``.conectionmgr.connections``, the same objects
+will be used to connect to device again.
 
 Destroy connections to all device
 ----------------------
 
-``Testbed`` object also provides a convenience function, ``Testbed.destroy()``,
-allowing you to destroy connections asynchronously from multiple testbed
-devices.
+``Testbed`` object provides a function, ``Testbed.destroy()``, allowing you
+to destroy connections asynchronously from multiple testbed devices. Unlike
+``.disconnect()``, If ``.destroy()`` used, all connection objects will be
+completely removed.
 
 .. code-block:: python
 
     # Example
     # -------
     #
-    #   destroy devices in parallel
+    # destroy devices in parallel
     # using the sample topology file from
     from pyats import topology
-    testbedfile = os.path.join('sampleTestbed.yaml')
-    testbed = topology.loader.load(testbedfile)
+    testbed = topology.loader.load('your-testbed-file.yaml')
+
     # connect to all devices in this testbed
     testbed.connect()
     # destroy all devices in this testbed
@@ -223,7 +227,7 @@ devices.
                             'helper': 'console'},
                             log_stdout = False)
 
-This is a convenience function, as under the hood it uses threads perform
+This is a convenience function using threads under the hood to perform
 per device ``.destroy()`` asynchronously.
 
 Querying Topology
