@@ -190,7 +190,7 @@ will be used to connect to device again.
 Destroy connections to all device
 ----------------------
 
-``Testbed`` object provides a function, ``Testbed.destroy()``, allowing you
+``Testbed`` object provides ``Testbed.destroy()`` function, allowing you
 to destroy connections asynchronously from multiple testbed devices. Unlike
 ``.disconnect()``, If ``.destroy()`` used, all connection objects will be
 completely removed.
