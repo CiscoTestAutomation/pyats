@@ -150,6 +150,7 @@ allowing you to make asynchronous disconnection from multiple testbed devices
 at the same time.
 
 .. code-block:: python
+
     # Example
     # -------
     #
@@ -191,6 +192,7 @@ allowing you to destroy connections asynchronously from multiple testbed
 devices.
 
 .. code-block:: python
+
     # Example
     # -------
     #
