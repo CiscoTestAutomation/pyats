@@ -92,9 +92,9 @@ as all commands executed and specific sections of logs.
 
 
 pyats logs upload
----------------
+-----------------
 
-This subcommand will upload a .zip pyATS Archive to TaaS Logviewer. It is an internal to 
+This subcommand will upload a .zip pyATS Archive to TaaS Logviewer. It is an internal to
 Cisco only feature.
 
 .. code-block:: text

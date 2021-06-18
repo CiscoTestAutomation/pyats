@@ -95,7 +95,7 @@ the job file, returing the overall results, and emailing you the report.
       --liveview-host HOST  Specify host for liveview server. Default is localhost
       --liveview-port PORT  Specify port for liveview server. Default is 8080
       --liveview-keepalive  Keep log viewer server alive after the run finishes.
-      
+
     Testbed:
       -t, --testbed-file    Specify testbed file location
 
@@ -208,7 +208,7 @@ details.
       --liveview            Starts a liveview server in a separate process
       --liveview-host HOST  Specify host for liveview server. Default is localhost
       --liveview-port PORT  Specify port for liveview server. Default is 8080
-  
+
     Testbed:
       -t, --testbed-file    Specify testbed file location
 
@@ -235,3 +235,29 @@ details.
       -v, --verbose         Give more output, additive up to 3 times.
       -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
                             and CRITICAL logging levels
+
+
+
+pyats run manifest
+------------------
+
+This subcommand uses the :ref:`Manifest<manifest>` for job execution. The filename specified
+must the a ``.tem`` file with YAML syntax according to the :ref:`manifest_schema`.
+
+.. code-block:: text
+
+    Usage:
+      pyats run manifest [options]
+
+    Example
+    -------
+      pyats run manifest <filename>
+      pyats run manifest <filename> --profile s2c
+      pyats run manifest <filename> --profile local
+
+    Description:
+      Runs a test script by discovering the execution parameters and target environment from the manifest file.
+
+    Manifest Options:
+      FILENAME              manifest filename
+      --profile PROFILE     execution profile

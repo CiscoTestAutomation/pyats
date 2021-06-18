@@ -1,4 +1,6 @@
 
+.. _manifest_schema:
+
 Manifest Schema
 ===============
 
@@ -41,10 +43,10 @@ Manifest Schema
     -  # string with tag keyword
     (optional)
 
-    command:  # command to execute script, e.g. pyats run job
+    command:  # command to execute script. Either `easypy` or `pyats run job`.
               # (optional)
-              # by default, the command is inferred from the 'type'
-              # e.g. easypy command: pyats run job
+              # By default, the command is inferred from the 'type'
+              # e.g. easypy job types use the command: `pyats run job` by default.
 
     # definition of runtimes for the related script
     # (optional)
@@ -84,7 +86,6 @@ Manifest Schema
                          # (optional)
                 <key>: <value>
 
-
             # below parameters are for xpresso
 
             max_runtime: HH:MM,   # max runtime in hours:minutes (optional)
@@ -105,5 +106,5 @@ Manifest Schema
             docker:  # docker details  (optional)
                 volumes:  # docker volume mounts
                           # volume mounts are used with container execution using xpresso
-                   - "volume_name:/mountpoint",
-                   - "/directory:/mountpoint"
+                   - "/path"
+                   - "/another/path"
