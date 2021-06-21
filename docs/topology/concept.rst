@@ -88,6 +88,16 @@ and all subsequent information that is generic to the testbed.
     |               | from this testbed                                        |
     | connect       | connects to all or multiple devices in the testbed       |
     |               | in parallel together                                     |
+    | disconnect    | disconnects all or multiple devices in the testbed       |
+    |               | in parallel together                                     |
+    | destroy       | destroys all or multiple device connections in the       |
+    |               | testbed in parallel together                             |
+    | execute       | executes commands against all or multiple devices in the |
+    |               | testbed in parallel together                             |
+    | configure     | configures commands against all or multiple devices in   |
+    |               | the testbed in parallel together                         |
+    | parse         | parse commands against all or multiple devices in the    |
+    |               | testbed in parallel together                             |
     +==========================================================================+
 
 .. code-block:: python
@@ -135,7 +145,7 @@ and all subsequent information that is generic to the testbed.
 
     # connect to specific devices in this testbed in parallel
     # and optionally, use specific via paths
-    testbed_e.connect(device_a, device_b, 
+    testbed_e.connect(device_a, device_b,
                       via = {device_a.name: 'vty',
                              device_b.name: 'mgmt'})
 
@@ -157,6 +167,21 @@ and all subsequent information that is generic to the testbed.
     # Note that, once set, credentials may be accessed via dot notation.
     testbed_a.credentials['tbcreds'] = dict(username='tbuser', password='tbpw')
     assert testbed_a.credentials.tbcreds.username == 'tbuser'
+
+    # execute commands against all devices in parallel
+    testbed.execute('show version')
+
+    # configure all devices in the testbed in parallel
+    testbed.configure('no logging console')
+
+    # configure some devices in parallel
+    # Note: devices is a list of Device objects
+    devices = testbed.devices[dev] for dev in testbed.devices \
+                    if testbed.devices[dev].os=='iosxe']
+    testbed.configure('no logging console', devices=devices)
+
+    # parse commands from all devices in the testbed in parallel
+    testbed.parse('show version')
 
 .. note ::
    Please see :ref:`secret_strings` for more details on how pyATS models
