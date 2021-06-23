@@ -91,11 +91,11 @@ archive.
 
 If --liveview is appended, ``pyats logs view --liveview`` will open results from
 the latest runinfo directory it can find. A runinfo directory can also be passed
- to specify the run to view.
+to specify the run to view.
 
 The logs will be served from ``localhost`` on a random port. If you want to make
- it accessible by everyone (eg, remote users over network), pass in
- ``--host 0.0.0.0`` to serve on all interfaces.
+it accessible by everyone (eg, remote users over network), pass in
+``--host 0.0.0.0`` to serve on all interfaces.
 
 When started, the logs webpage will be opened automatically in your
 default system browser. You can customize the browser to use by setting
