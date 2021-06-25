@@ -35,25 +35,32 @@ for current runs.
       pyats logs view [archive] [options]
 
     Description:
-      Opens a pyATS generated archive zip file and host it through HTTP server.
+      Opens pyATS generated archive zip files and host them through HTTP server.
 
       Behavior:
-          - if specific file is not provided, opens the last generated archive file
+          - List all archives stored in standard known archive locations in reverse 
+            order on webpage.
+          - Click to view detail results of an archive.
           - set environment variable $BROWSER to your browser executable to force using
             your provided browser
-          - if liveview is enabled, opens the last current running job.
+          - if liveview is enabled, opens the lastest running job.
 
       Examples:
-          # open last archive file
+          # opens the archive list page
           $ pyats logs view
 
-          # opens the log file before the last one
-          $ pyats logs view -1
+          # open the last archive file
+          $ pyats logs view --latest
+          
+          # open a specific archive file
+          $ pyats logs view /path/to/archive.zip
 
     View Options:
       [archive/runinfo_dir] Archive zip file or runinfo directory to open and view.
+      --latest              If provided, open last archive file, else, open result list page.
       --host [host]         Host interface to bind to. Default to: localhost
       --port [port]         Interface port to bind to. Default to: 0
+      --hostname [hostname] Displayed hostname for logviewer/liveview.
       --reuse-port          Flag when set, reuses a TCP port in TIME_WAIT state
       --no-browser          Flag to turn off the default behavior of opening a new browser window.
       --liveview            Flag to enable liveview. Default to: False
@@ -64,17 +71,31 @@ for current runs.
       -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
                             and CRITICAL logging levels
 
-By default ``pyats logs view`` will open results from the most recent archive it
-can find. A specific archive can be chosen by also passing the location of that
+By default ``pyats logs view`` will display a list of result archives it
+can find in following 3 places:
+
+1. <python_env>/users/<username>/<runinfo|archive>
+
+2. ~/.pyats/<runinfo|archive>
+
+3. archive and runinfo location set in pyats.conf, for example:
+
+.. code-block:: text
+
+    [easypy]
+    runinfo.archive = /home/myuser/pyATS/archive
+    runinfo.directory = /home/myuser/pyATS/runinfo
+
+A specific archive can be chosen by also passing the location of that
 archive.
 
 If --liveview is appended, ``pyats logs view --liveview`` will open results from
 the latest runinfo directory it can find. A runinfo directory can also be passed
- to specify the run to view.
+to specify the run to view.
 
 The logs will be served from ``localhost`` on a random port. If you want to make
- it accessible by everyone (eg, remote users over network), pass in
- ``--host 0.0.0.0`` to serve on all interfaces.
+it accessible by everyone (eg, remote users over network), pass in
+``--host 0.0.0.0`` to serve on all interfaces.
 
 When started, the logs webpage will be opened automatically in your
 default system browser. You can customize the browser to use by setting
