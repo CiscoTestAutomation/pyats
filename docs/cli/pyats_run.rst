@@ -52,6 +52,8 @@ the job file, returing the overall results, and emailing you the report.
     Job Information:
       JOBFILE               target jobfile to be launched
       --job-uid             Unique ID identifiying this job run
+      --pyats-configuration
+                            pyats configuration override file
 
     Mailing:
       --no-mail             disable report email notifications
@@ -63,50 +65,50 @@ the job file, returing the overall results, and emailing you the report.
       --submitter           Specify the current submitter user id
       --image               Specify the image under test
       --release             Specify the release being tested
-      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
-                            xunit reports runtime directory
-
-    HTML Logging:
-      --html-logs [DIR]     Experimental feature. Directory to generates HTML logs in addition to any
-                            existing log files. Note - will increase archive size due to log
-                            duplication.
-
-    TIMS:
-      --tims-post           Enable posting results to tims
-      --tims-user           TIMS user. If not specified, the userstarting the run is used
-      --tims-dns            TIMS project dns name
-      --tims-options        A string in the form of -key value sequence. (Add a space at the beginning
-                            of the string to work around python parser bug. e.g. -a 1
-      --tims-folder         A TIMS 3.x ID, a Logical ID or a complete, fully-qualified path
-      --tims-custom-attrs   A str of dashed key/value pairs e.g. -key1 val1 -key2 val2. The key value
-                            pairs are fed to TIMS as global custom attributes
-      --tims-config-id      TIMS config_id, maps to Configuration ID, Related Config or logical
-                            identifier
+      --branch              Specify the branch being tested
+      --meta                Specify some meta information as a dict (supports base64 encoded strings)
+      --no-xml-report       Disable generation of the XML Report
 
     Runinfo:
       --no-archive          disable archive creation
+      --no-archive-subdir   disable archive subdirectory creation
       --runinfo-dir         specify alternate runinfo directory
       --archive-dir         specify alternate archive directory
-      --no-upload           Disable uploading archive to TRADe
-      --bg-upload           Upload to TRADe in background
+      --archive-name        specify alternate archive file name
 
     Liveview:
       --liveview            Starts a liveview server in a separate process
       --liveview-host HOST  Specify host for liveview server. Default is localhost
-      --liveview-port PORT  Specify port for liveview server. Default is 8080
+      --liveview-port PORT  Specify port for liveview server.
+      --liveview-hostname HOSTNAME
+                            Displayed hostname for liveview.
+      --liveview-displayed-url LIVEVIEW_DISPLAYED_URL
+                            Displayed url for liveview, for example, http://<liveview_hostname>:<port>
       --liveview-keepalive  Keep log viewer server alive after the run finishes.
+      --liveview-callback-url LIVEVIEW_CALLBACK_URL
+                            Specify xpresso callback url for jenkins run.
+      --liveview-callback-token LIVEVIEW_CALLBACK_TOKEN
+                            Specify xpresso token for jenkins run.
 
     Testbed:
       -t, --testbed-file    Specify testbed file location
 
     Clean:
-      --clean-file FILE     Specify clean file location
+      --clean-file FILE [FILE ...]
+                            Specify clean file location(s). Multiple clean files can be specified by
+                            separating them with spaces.
       --clean-devices [ [ ...]]
                             Specify list of devices to clean, separated by spaces. To clean groups of
                             devices sequentially, specify as "[[dev1, dev2], dev3]".
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
+      --clean-image  [ ...]
+                            Image files for each device
+      --clean-platform  [ ...]
+                            Image files for each platform
+      --clean-separator     Separator between device/platform & image file in arguments clean-image and
+                            clean-platform
 
     Bringup:
       --logical-testbed-file
@@ -114,8 +116,18 @@ the job file, returing the overall results, and emailing you the report.
 
     Rerun:
       --rerun-file FILE     rerun.results file that contains the information of tasks and testcases
+      --rerun-task  [ ...]  TASKID TESTSCRIPT [TESTCASES...] Details to identify a specific Task to
+                            rerun. Can be used multiple times for multiple tasks.
       --rerun-condition  [ ...]
                             Results type list for the condition of rerun plugin.
+
+    xUnit:
+      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
+                            xunit reports runtime directory
+
+    HTML Logging:
+      --html-logs [DIR]     Directory to generate HTML logs in addition to any existing log files. Note
+                            - will increase archive size due to log duplication.
 
     General Options:
       -h, --help            Show help information
@@ -177,49 +189,50 @@ details.
       --submitter           Specify the current submitter user id
       --image               Specify the image under test
       --release             Specify the release being tested
-      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
-                            xunit reports runtime directory
-
-    HTML Logging:
-      --html-logs [DIR]     Experimental feature. Directory to generates HTML logs in addition to any
-                            existing log files. Note - will increase archive size due to log
-                            duplication.
-
-    TIMS:
-      --tims-post           Enable posting results to tims
-      --tims-user           TIMS user. If not specified, the userstarting the run is used
-      --tims-dns            TIMS project dns name
-      --tims-options        A string in the form of -key value sequence. (Add a space at the beginning
-                            of the string to work around python parser bug. e.g. -a 1
-      --tims-folder         A TIMS 3.x ID, a Logical ID or a complete, fully-qualified path
-      --tims-custom-attrs   A str of dashed key/value pairs e.g. -key1 val1 -key2 val2. The key value
-                            pairs are fed to TIMS as global custom attributes
-      --tims-config-id      TIMS config_id, maps to Configuration ID, Related Config or logical
-                            identifier
+      --branch              Specify the branch being tested
+      --meta                Specify some meta information as a dict (supports base64 encoded strings)
+      --no-xml-report       Disable generation of the XML Report
 
     Runinfo:
       --no-archive          disable archive creation
+      --no-archive-subdir   disable archive subdirectory creation
       --runinfo-dir         specify alternate runinfo directory
       --archive-dir         specify alternate archive directory
-      --no-upload           Disable uploading archive to TRADe
-      --bg-upload           Upload to TRADe in background
+      --archive-name        specify alternate archive file name
 
     Liveview:
       --liveview            Starts a liveview server in a separate process
       --liveview-host HOST  Specify host for liveview server. Default is localhost
-      --liveview-port PORT  Specify port for liveview server. Default is 8080
+      --liveview-port PORT  Specify port for liveview server.
+      --liveview-hostname HOSTNAME
+                            Displayed hostname for liveview.
+      --liveview-displayed-url LIVEVIEW_DISPLAYED_URL
+                            Displayed url for liveview, for example, http://<liveview_hostname>:<port>
+      --liveview-keepalive  Keep log viewer server alive after the run finishes.
+      --liveview-callback-url LIVEVIEW_CALLBACK_URL
+                            Specify xpresso callback url for jenkins run.
+      --liveview-callback-token LIVEVIEW_CALLBACK_TOKEN
+                            Specify xpresso token for jenkins run.
 
     Testbed:
       -t, --testbed-file    Specify testbed file location
 
     Clean:
-      --clean-file FILE     Specify clean file location
+      --clean-file FILE [FILE ...]
+                            Specify clean file location(s). Multiple clean files can be specified by
+                            separating them with spaces.
       --clean-devices [ [ ...]]
                             Specify list of devices to clean, separated by spaces. To clean groups of
                             devices sequentially, specify as "[[dev1, dev2], dev3]".
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
+      --clean-image  [ ...]
+                            Image files for each device
+      --clean-platform  [ ...]
+                            Image files for each platform
+      --clean-separator     Separator between device/platform & image file in arguments clean-image and
+                            clean-platform
 
     Bringup:
       --logical-testbed-file
@@ -227,8 +240,18 @@ details.
 
     Rerun:
       --rerun-file FILE     rerun.results file that contains the information of tasks and testcases
+      --rerun-task  [ ...]  TASKID TESTSCRIPT [TESTCASES...] Details to identify a specific Task to
+                            rerun. Can be used multiple times for multiple tasks.
       --rerun-condition  [ ...]
                             Results type list for the condition of rerun plugin.
+
+    xUnit:
+      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
+                            xunit reports runtime directory
+
+    HTML Logging:
+      --html-logs [DIR]     Directory to generate HTML logs in addition to any existing log files. Note
+                            - will increase archive size due to log duplication.
 
     General Options:
       -h, --help            Show help information

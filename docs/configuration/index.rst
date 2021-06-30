@@ -14,6 +14,8 @@ in a standard INI style config file.
 
 - Setting environment variable ``export PYATS_CONFIGURATION=path/to/pyats.conf``
 
+- The cli argument ``--pyats-configuration`` can be used to specify a
+  configuration file
 
 If multiple configuration files are found, then they are combined in the
 following order:
@@ -21,6 +23,8 @@ following order:
 1. the server-wide file is read
 2. the virtual-environment specific file is read
 3. the per-user file is read
+4. the file specified by environment variable ``PYATS_CONFIGURATION`` is read
+5. the file specified by cli argument ``--pyats-configuration` is read
 
 Each file read overrides any values read from previous files.
 
