@@ -10,8 +10,8 @@ Execution command for viewing logs of previous or current runs with pyATS.
       pyats logs <subcommand> [options]
 
     Subcommands:
-        upload              upload a .zip pyATS archive to TaaS Logviewer
-        view                open and view previous log archive or current run info in browser
+        list                list all log archives
+        view                open and view log archives in browser
 
     General Options:
       -h, --help            Show help
@@ -38,7 +38,7 @@ for current runs.
       Opens pyATS generated archive zip files and host them through HTTP server.
 
       Behavior:
-          - List all archives stored in standard known archive locations in reverse 
+          - List all archives stored in standard known archive locations in reverse
             order on webpage.
           - Click to view detail results of an archive.
           - set environment variable $BROWSER to your browser executable to force using
@@ -51,7 +51,7 @@ for current runs.
 
           # open the last archive file
           $ pyats logs view --latest
-          
+
           # open a specific archive file
           $ pyats logs view /path/to/archive.zip
 
@@ -109,43 +109,3 @@ The following is an example of what the webpage looks like:
 
 Each tab shows the detailed results of each section of each testscript, as well
 as all commands executed and specific sections of logs.
-
-
-
-pyats logs upload
------------------
-
-This subcommand will upload a .zip pyATS Archive to TaaS Logviewer. It is an internal to
-Cisco only feature.
-
-.. code-block:: text
-
-    Usage:
-      pyats logs upload [archive] [options]
-
-    Description:
-      Upload pyATS generated archive zip files to Taas Logviewer.
-
-      Examples:
-          # uploads an archive zip file to Taas Logviewer (default URL)
-          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip
-
-          # uploads an archive zip file to the specified URL
-          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --upload-url http://someurl.com
-
-          # uploads an archive zip file to Taas Logviewer setting API timeout to 10 seconds
-          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --api-timeout 10
-
-          # uploads an archive zip file to custom URL setting API timeout to 10 seconds
-          $ pyats logs upload basic_example_job.2021May17_16:23:14.753998.zip --upload-url http://someurl.com --api-timeout 10
-
-    Upload Options:
-      [archive/runinfo_dir] Archive zip file to upload.
-      --upload-url [upload_url] URL to upload archive to.
-      --api-timeout [api_timeout] Set API timeout in seconds.
-
-    General Options:
-      -h, --help            Show help
-      -v, --verbose         Give more output, additive up to 3 times.
-      -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
-                            and CRITICAL logging levels

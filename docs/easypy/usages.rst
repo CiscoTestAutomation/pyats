@@ -55,6 +55,8 @@ that gets installed into your pyATS instance automatically.
     Job Information:
       JOBFILE               target jobfile to be launched
       --job-uid             Unique ID identifiying this job run
+      --pyats-configuration
+                            pyats configuration override file
 
     Mailing:
       --no-mail             disable report email notifications
@@ -66,13 +68,9 @@ that gets installed into your pyATS instance automatically.
       --submitter           Specify the current submitter user id
       --image               Specify the image under test
       --release             Specify the release being tested
-      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
-                            xunit reports runtime directory
-
-    HTML Logging:
-      --html-logs [DIR]     Experimental feature. Directory to generates HTML logs in addition to any
-                            existing log files. Note - will increase archive size due to log
-                            duplication.
+      --branch              Specify the branch being tested
+      --meta                Specify some meta information as a dict (supports base64 encoded strings)
+      --no-xml-report       Disable generation of the XML Report
 
     Runinfo:
       --no-archive          disable archive creation
@@ -84,23 +82,36 @@ that gets installed into your pyATS instance automatically.
     Liveview:
       --liveview            Starts a liveview server in a separate process
       --liveview-host HOST  Specify host for liveview server. Default is localhost
-      --liveview-port PORT  Specify port for liveview server. 
+      --liveview-port PORT  Specify port for liveview server.
+      --liveview-hostname HOSTNAME
+                            Displayed hostname for liveview.
+      --liveview-displayed-url LIVEVIEW_DISPLAYED_URL
+                            Displayed url for liveview, for example, http://<liveview_hostname>:<port>
       --liveview-keepalive  Keep log viewer server alive after the run finishes.
+      --liveview-callback-url LIVEVIEW_CALLBACK_URL
+                            Specify xpresso callback url for jenkins run.
+      --liveview-callback-token LIVEVIEW_CALLBACK_TOKEN
+                            Specify xpresso token for jenkins run.
 
     Testbed:
       -t, --testbed-file    Specify testbed file location
 
     Clean:
-      --clean-file FILE     Specify clean file location
+      --clean-file FILE [FILE ...]
+                            Specify clean file location(s). Multiple clean files can be specified by
+                            separating them with spaces.
       --clean-devices [ [ ...]]
                             Specify list of devices to clean, separated by spaces. To clean groups of
                             devices sequentially, specify as "[[dev1, dev2], dev3]".
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --clean-image         Clean images provided per device in format 'device:image_path' or 'device:type:image_path'
-      --clean-platform      Clean images provided per OS in format 'os:image_path' or 'os:type:image_path'
-      --clean-separator     Character used to separator device/os from image path within args 'clean-image' and 'clean-platform'
+      --clean-image  [ ...]
+                            Image files for each device
+      --clean-platform  [ ...]
+                            Image files for each platform
+      --clean-separator     Separator between device/platform & image file in arguments clean-image and
+                            clean-platform
 
     Bringup:
       --logical-testbed-file
@@ -112,6 +123,14 @@ that gets installed into your pyATS instance automatically.
                             rerun. Can be used multiple times for multiple tasks.
       --rerun-condition  [ ...]
                             Results type list for the condition of rerun plugin.
+
+    xUnit:
+      --xunit [DIR]         Generate xunit report in the provided location. If used as a flag, generates
+                            xunit reports runtime directory
+
+    HTML Logging:
+      --html-logs [DIR]     Directory to generate HTML logs in addition to any existing log files. Note
+                            - will increase archive size due to log duplication.
 
     General Options:
       -h, --help            Show help information
@@ -140,6 +159,7 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``jobfile``, "positional argument, full path/name of :ref:`easypy_jobfile`
     to run."
     ``--configuration``, "configuration yaml file for plugins"
+    ``--pyats-configuration``, "additional pyats configuration for execution"
     ``--job-uid``, "unique id from upper systems identifying this run"
     ``--testbed-file``, "full path/name to YAML testbed file"
     ``--clean-file``, "file containing :ref:`clean_file` information"
@@ -153,6 +173,8 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--html-logs``, "enable generating HTML logs"
     ``--image``, "specify the current test image information"
     ``--release``, "specify the current release string information"
+    ``--branch``, "specify the current branch information"
+    ``--meta``, "A JSON dict of additional user information about this execution. Can be base64 encoded."
     ``--archive-name``, "specify a different name for the generated archive file."
     ``--no-archive``, "flag, disables the creation of a log archive"
     ``--no-archive-subdir``, "flag, disables the creation of date-specific archive subdirectory."
@@ -210,6 +232,13 @@ constructed and processed using python `argparse`_ module.  Please also see
 
         bash$ pyats run job /path/to/jobfile.py --job-uid "this_is_an_example"
 
+``--pyats-configuration``
+    optional argument. Additional file to add to :ref:`pyats_configuration`.
+
+    .. code-block:: bash
+
+        bash$ pyats run job /path/to/jobfile.py --pyats-configuration /path/to/my/pyats.conf
+
 ``--testbed-file``
     Specifies the full path/name of YAML topology :ref:`topology_testbed_file`
     to be loaded as part of this run. When used, Easypy automatically loads
@@ -217,10 +246,10 @@ constructed and processed using python `argparse`_ module.  Please also see
     to each task inside the jobfiles as its ``testbed`` parameter. Refer to
     :ref:`easypy_testbed` for more details.
 
-    Alternatively, you can specify a source to be loaded with the testbed 
-    creator package. To do so, append 'source:' in front of the desired loader 
+    Alternatively, you can specify a source to be loaded with the testbed
+    creator package. To do so, append 'source:' in front of the desired loader
     name and specify any required arguments in CLI form. Refer to
-    `pyats.contrib <https://github.com/CiscoTestAutomation/pyats.contrib>`_ for 
+    `pyats.contrib <https://github.com/CiscoTestAutomation/pyats.contrib>`_ for
     more details.
 
     .. code-block:: bash
@@ -364,13 +393,23 @@ constructed and processed using python `argparse`_ module.  Please also see
         Experimental feature. Enabling this flag will double the size of your
         result archive due to log duplications.
 
-``--image``/``--release``
-    Specifies the image path/file and release string information of used for
-    result reporting purposes.
+``--image``/``--release``/``--branch``
+    Specifies the image path/file and release/branch string information of used
+    for result reporting purposes.
 
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --image /path/to/image --release zn7
+
+``--meta``
+    User specified JSON dictionary of information to be added for reporting
+    purposes. Can be a base64 encoded string of this JSON dictionary. The two
+    examples are equivalent:
+
+    .. code-block:: bash
+
+        bash$ pyats run job /path/to/jobfile.py --meta "{\"key\":\"value\"}"
+        bash$ pyats run job /path/to/jobfile.py --meta eyJrZXkiOiJ2YWx1ZSJ9
 
 ``--archive-name``
     Specifies an alternative name for the archive file other than <jobuid>.zip.
