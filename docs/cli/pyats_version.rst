@@ -1,7 +1,7 @@
 pyats version
 =============
 
-Command with subcommands that displays and manipulates the currently installed 
+Command with subcommands that displays and manipulates the currently installed
 pyATS and sub-package versions.
 
 .. code-block:: text
@@ -54,30 +54,29 @@ Example
     #
     #   check for outdated package versions, including genie
 
-    bash$ pyats version check --outdated 
+    bash$ pyats version check --outdated
     You are currently running pyATS version: 19.12
 
     Checking for outdated packages...
 
       Package                      Version Latest
       ---------------------------- ------- ------
-      ats                          19.12   20.1
-      ats.aereport                 19.12   20.1
-      ats.aetest                   19.12   20.1
-      ats.async                    19.12   20.1
-      ats.cisco                    19.12   20.1
-      ats.connections              19.12   20.1
-      ats.datastructures           19.12   20.1
-      ats.easypy                   19.12   20.1
-      ats.examples                 19.12   20.1
-      ats.kleenex                  19.12   20.1
-      ats.log                      19.12   20.1
-      ats.results                  19.12   20.1
-      ats.robot                    19.12   20.1
-      ats.tcl                      19.12   20.1
-      ats.templates                19.12   20.1
-      ats.topology                 19.12   20.1
-      ats.utils                    19.12   20.1
+      pyats                        19.12   20.1
+      pyats.aereport               19.12   20.1
+      pyats.aetest                 19.12   20.1
+      pyats.async                  19.12   20.1
+      pyats.connections            19.12   20.1
+      pyats.datastructures         19.12   20.1
+      pyats.easypy                 19.12   20.1
+      pyats.examples               19.12   20.1
+      pyats.kleenex                19.12   20.1
+      pyats.log                    19.12   20.1
+      pyats.results                19.12   20.1
+      pyats.robot                  19.12   20.1
+      pyats.tcl                    19.12   20.1
+      pyats.templates              19.12   20.1
+      pyats.topology               19.12   20.1
+      pyats.utils                  19.12   20.1
       genie                        19.12   20.1
       genie.abstract               19.12   20.1
       genie.conf                   19.12   20.1
@@ -98,7 +97,7 @@ Example
       genie.utils                  19.12   20.1
 
     Note - you can upgrade outdated packages with:
-        pip install --upgrade ats.easypy ats.kleenex ats.utils
+        pip install --upgrade pyats.easypy pyats.kleenex pyats.utils
         pip install --upgrade genie.conf genie.examples genie.harness
         pip install --upgrade genie.libs.parser genie.libs.telemetry genie.ops
         pip install --upgrade genie.parsergen genie.predcore genie.telemetry
@@ -109,7 +108,7 @@ pyats version update
 --------------------
 
 This subcommand performs a one-click update of all your pyATS and its dependency
-packages. The intent is to simplify common upgrade/downgrade process, eliminate 
+packages. The intent is to simplify common upgrade/downgrade process, eliminate
 the need to fiddle with `pip` command, and maintain a seamless user experience
 through packaging refactor/changes.
 
@@ -117,7 +116,7 @@ It performs the following actions in sequence:
 
 1. check whether your environment has package mismatches
 
-2. removes all current pyATS packages 
+2. removes all current pyATS packages
 
 3. installs the newly specified versions.
 
