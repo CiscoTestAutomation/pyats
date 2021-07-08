@@ -24,8 +24,8 @@ pyats validate testbed
 ----------------------
 
 This subcommand validates the content of your :ref:`topology_testbed_file`. It
-gives developer an opportunity to check whether the file written following valid
-YAML syntax, and adheres to the :ref:`schema`.
+gives developers an opportunity to check if the file is written following 
+valid YAML syntax, and adheres to the :ref:`schema`. 
 
 .. code-block:: text
 
@@ -45,7 +45,7 @@ Options
 ^^^^^^^
 
 ``[file]``
-    the input testbed yaml file.
+    the input testbed yaml file. Can be a file path or a URL to a YAML file
 
 ``--connect``
     best-effort attempt to connect to each testbed device using
@@ -92,11 +92,11 @@ pyats validate datafile
 
 This subcommand validates the content any pyATS YAML datafile, including 
 :ref:`aetest_datafile`. It understands the various YAML datafile syntaxes 
-introduced as part of pyATS's extended YAML loader, and gives developer an 
+introduced as part of pyATS's extended YAML loader, and gives developers an 
 opportunity to check:
 
 1. what the expanded data looks like
-2. whether correct YAML syntax is followed.
+2. if correct YAML syntax is followed
 
 Returns the loaded, validated datafile, with ``extends:`` block expanded.
 
@@ -128,7 +128,7 @@ Options
 ^^^^^^^
 
 ``[file]``
-    the input datafile.
+    the input datafile. Can be a file path or a URL to a YAML file
 
 ``--schema``
     Python module.object to the schema to validate the provided datafile against

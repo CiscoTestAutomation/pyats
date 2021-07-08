@@ -161,8 +161,8 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--configuration``, "configuration yaml file for plugins"
     ``--pyats-configuration``, "additional pyats configuration for execution"
     ``--job-uid``, "unique id from upper systems identifying this run"
-    ``--testbed-file``, "full path/name to YAML testbed file"
-    ``--clean-file``, "file containing :ref:`clean_file` information"
+    ``--testbed-file``, "full path/URL for YAML testbed file"
+    ``--clean-file``, "file path/URL to file containing :ref:`clean_file` information"
     ``--clean-devices``, "a list of devices to :ref:`clean<kleenex_index>`"
     ``--clean-scope``, "whether to perform :ref:`clean/bringup<kleenex_index>` at job or task level"
     ``--invoke-clean``, ":ref:`Clean<kleenex_cleaners>` is only invoked when this parameter is specified."
@@ -218,11 +218,12 @@ constructed and processed using python `argparse`_ module.  Please also see
 ``-C, --configuration``
     optional argument, used to provide the YAML plugin configuration file. Use
     this if you want to configure your Easypy to run certain plugins in custom
-    orders for this particular run.
+    orders for this particular run. Can be a file path or URL.
 
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --configuration /path/to/config.yaml
+        bash$ pyats run job /path/to/jobfile.py --configuration "http://path.to/config.yaml"
 
 ``--job-uid``
     optional argument. Allows upstream executor (eg, Jenkins) to pass down
@@ -240,11 +241,11 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job /path/to/jobfile.py --pyats-configuration /path/to/my/pyats.conf
 
 ``--testbed-file``
-    Specifies the full path/name of YAML topology :ref:`topology_testbed_file`
-    to be loaded as part of this run. When used, Easypy automatically loads
-    the testbed yaml file into a topology :ref:`topology_objects`, and passes it
-    to each task inside the jobfiles as its ``testbed`` parameter. Refer to
-    :ref:`easypy_testbed` for more details.
+    Specifies the full path/name or URL of YAML topology 
+    :ref:`topology_testbed_file` to be loaded as part of this run. When used, 
+    Easypy automatically loads the testbed yaml file into a topology 
+    :ref:`topology_objects`, and passes it to each task inside the jobfiles as 
+    its ``testbed`` parameter. Refer to :ref:`easypy_testbed` for more details.
 
     Alternatively, you can specify a source to be loaded with the testbed
     creator package. To do so, append 'source:' in front of the desired loader
@@ -258,9 +259,10 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job /path/to/jobfile.py --testbed-file source:netbox
                                                 --netbox-token=token
                                                 --netbox-url=url
+        bash$ pyats run job /path/to/jobfile.py --testbed-file "http://path.to.my/testbed.yaml"
 
 ``--clean-file``
-    Full path to the clean file. This enables testbed cleaning using
+    Full path or URL to the clean file. This enables testbed cleaning using
     the :ref:`kleenex<kleenex_index>` module.  This option is only useable if
     testbed information is provided using ``--testbed-file`` argument.
 
@@ -268,6 +270,9 @@ constructed and processed using python `argparse`_ module.  Please also see
 
         bash$ pyats run job jobfile.py --testbed-file /path/to/mytestbed.yaml\
                                        --clean-file /path/to/clean.yaml
+                                       --invoke-clean
+        bash$ pyats run job jobfile.py --testbed-file "http://path.to.my/testbed.yaml"\
+                                       --clean-file "http://path.to/clean.yaml"
                                        --invoke-clean
 
 ``--clean-devices``

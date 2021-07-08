@@ -160,6 +160,9 @@ The following fields are currently open for user to customize.
     # This can be inf, for no timeout, otherwise specify a number of seconds.
     timeout.time = <value>
 
+    # Maximum seconds to wait for a response when loading a YAML file from a URL
+    max_wait_time = <value>
+
     # configuration related to file transfer server
     [filetransfer]
 
