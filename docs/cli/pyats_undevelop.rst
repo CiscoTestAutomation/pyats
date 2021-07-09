@@ -1,0 +1,44 @@
+pyats undevelop
+===============
+
+Helper command to ease and expedite the process of removing pyATS packages 
+from development mode. After removal from development mode, packages are 
+reinstalled using pip which resulting in simplified package transitions out of 
+development mode.
+
+.. code-block:: text
+
+    Usage:
+      pyats undevelop [packages...] [options]
+    
+    Usage Examples:
+      pyats undevelop all
+      pyats undevelop pyats --skip-version-check
+      pyats undevelop genie.libs.parser genie.trafficgen
+      pyats undevelop genie.libs unicon.plugins
+    
+    Description:
+      Removes listed pyATS packages from development mode. Each listed package is 
+      removed from development mode with 'make undevelop' and then is reinstalled 
+      using 'pip install <package>'. Internal Cisco packages will be reinstalled if 
+      the pyATS installation is internal, otherwise external packages will be 
+      reinstalled instead.
+    
+    Undevelop Options:
+      packages              Packages to put into development mode. Available choices: all, cisco-
+                            distutils, genie, genie.libs, genie.libs.clean, genie.libs.conf,
+                            genie.libs.filetransferutils, genie.libs.health, genie.libs.ops,
+                            genie.libs.robot, genie.libs.sdk, genie.libs.parser, genie.telemetry,
+                            genie.trafficgen, pyats, pyats.contrib, rest.connector, unicon,
+                            unicon.plugins
+      -s, --skip-version-check
+                            Do not check if pyATS packages are up to date before tool execution.
+                            WARNING: Using this option may lead to pyATS package version conflicts which
+                            could result in a corrupted pyATS installation! Use with discretion
+                            (Optional)
+    
+    General Options:
+      -h, --help            Show help
+      -v, --verbose         Give more output, additive up to 3 times.
+      -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
+                            and CRITICAL logging levels
