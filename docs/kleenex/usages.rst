@@ -181,9 +181,10 @@ some exceptions.
     ``-testbed_file``, "testbed YAML file to load."
     ``-clean_file``, "YAML file(s) containing clean configuration details"
     ``-clean_devices``, "list of devices to clean"
-    ``-clean_image``, "list of clean images per device in format 'device:image_path' or 'device:type:image_path'"
-    ``-clean_platform``, "list of clean images per OS in format 'os:image_path' or 'os:type:image_path'"
-    ``-clean_separator``, "character to separate device/OS from image_path in args 'clean_image' & 'clean_platform'"
+    ``-device_image``, "list of clean images per device in format device:/path/to/image.bin"
+    ``-os_image``, "list of clean images per OS in format os:/path/to/image.bin"
+    ``-group_image``, "list of clean images per group in format group:/path/to/image.bin"
+    ``-platform_image``, "list of clean images per platform in format platform:/path/to/image.bin"
     ``-loglevel``, "kleenex module loglevel"
     ``-logdir``, "directory to save logs to"
     ``-no_mail``, "disable sending email on abort"
@@ -245,37 +246,49 @@ some exceptions.
                                        --clean-devices "[[device_a, device_b, device_c], [device_d, device_e]]"\
                                        --invoke-clean
 
-``-clean_image``
-    specifies images to be used for clean per device
+``-device_image``
+    specifies images to be used for clean per device. See
+    :ref:`the following <kleenex_cli_image_format>` for
+    more details about the expected format of the images and the
+    precedence when images are provided through a combination of
+    `-device_image`, `-os_image`, `-group_image` and `-platform_image`.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
-                      -clean-file /path/to/my/clean.yaml
-                      -invoke-clean
-                      -clean-image PE1:/path/to/clean_image.bin
+        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
+                      --clean-file /path/to/my/clean.yaml
+                      --invoke-clean
+                      --device-image PE1:/path/to/clean_image.bin
 
-``-clean_platform``
-    specifies images to be used for clean per OS
-
-    .. code-block:: bash
-
-        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
-                      -clean-file /path/to/my/clean.yaml
-                      -invoke-clean
-                      -clean-platform iosxe:/path/to/clean_image.bin
-
-``-clean_separator``
-    character used to separator device/OS from image path within args
-    'clean-image' and 'clean-platform'
+``-os_image``
+    specifies images to be used for clean per OS. Uses same format as `-device_image`.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed-file /path/to/my/testbed.yaml\
-                      -clean-file /path/to/my/clean.yaml
-                      -invoke-clean
-                      -clean-platform iosxe;/path/to/clean_image.bin
-                      -clean-separator ';'
+        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
+                      --clean-file /path/to/my/clean.yaml
+                      --invoke-clean
+                      --os-image iosxe:/path/to/clean_image.bin
+
+``-group_image``
+    specifies images to be used for clean per group. Uses same format as `-device_image`.
+
+    .. code-block:: bash
+
+        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
+                      --clean-file /path/to/my/clean.yaml
+                      --invoke-clean
+                      --group-image group1:/path/to/clean_image.bin
+
+``-platform_image``
+    specifies images to be used for clean per platform. Uses same format as `-device_image`.
+
+    .. code-block:: bash
+
+        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
+                      --clean-file /path/to/my/clean.yaml
+                      --invoke-clean
+                      --platform-image n9k:/path/to/clean_image.bin
 
 ``-loglevel``
     specifies the logging level for Kleenex. Use this to increase or decrease
