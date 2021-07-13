@@ -3,7 +3,7 @@ pyats undevelop
 
 Helper command to ease and expedite the process of removing pyATS packages 
 from development mode. After removal from development mode, packages are 
-reinstalled using pip which resulting in simplified package transitions out of 
+reinstalled using pip leading to simplified package transitions out of 
 development mode.
 
 .. code-block:: text
@@ -42,3 +42,24 @@ development mode.
       -v, --verbose         Give more output, additive up to 3 times.
       -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
                             and CRITICAL logging levels
+
+
+Options
+-------
+
+``packages``
+    A space-separated list of packages to remove from development mode. Packages 
+    must be listed by their package name and not by their repository name. The 
+    two exceptions to this rule are 'all' and 'genie.libs'. Using 'all' will 
+    expand the list to all available packages. Using 'genie.libs' will expand 
+    the list to include genie.libs.clean, genie.libs.conf, 
+    genie.libs.filetransferutils, genie.libs.health, genie.libs.ops, 
+    genie.libs.robot, and genie.libs.sdk.  
+
+    Packages will be reinstalled using `pip install <package>` after being 
+    removed from development mode. The most up-to-date version of a package 
+    will be reinstalled. 
+
+``-s, --skip-version-check``
+    By default, this command will run the `pyats version check` command before 
+    execution. Use this flag to skip the version check.

@@ -6,8 +6,8 @@ repositories and putting those packages into development mode.
 
 .. note::
 
-  This commands requires Github SSH keys if internal Cisco packages are to be 
-  cloned 
+  This commands requires Github SSH keys if internal Cisco repositories are to be 
+  cloned.
 
 .. code-block:: text
 
@@ -59,6 +59,63 @@ repositories and putting those packages into development mode.
       -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
                             and CRITICAL logging levels
 
-- if repos already exist in the target directory, then new repos will not be 
-cloned unless the --delete-repos option is used
 
+
+
+Options
+-------
+
+``packages``
+    A space-separated list of packages to put into development mode. Packages 
+    must be listed by their package name and not by their repository name. The 
+    two exceptions to this rule are 'all' and 'genie.libs'. Using 'all' will 
+    expand the list to all available packages. Using 'genie.libs' will expand 
+    the list to include genie.libs.clean, genie.libs.conf, 
+    genie.libs.filetransferutils, genie.libs.health, genie.libs.ops, 
+    genie.libs.robot, and genie.libs.sdk.  
+
+    Packages repositories will be cloned if they do not exist in the default 
+    (or specified) directory.
+
+``-e, --external``
+    If you have an internal Cisco version of pyATS installed, then this tool 
+    will automatically clone internal pyATS repositories. If you have an 
+    external/public version of pyATS installed, then this tool will 
+    automatically clone external/public pyATS repositories. Use this flag if 
+    you have an internal version of pyATS and would like to have external 
+    packages be put into development mode instead. Only applicable to internal 
+    Cisco pyATS installations.
+
+``-d, --directory``
+    By default, repositories will be cloned into one of two directories, 
+    depending on your development environment. `$VIRTUAL_ENV/pypi` if a virtual 
+    environment is used or `/usr/pypi` if no virtual environment is used. Use 
+    this argument to override the default behaviour and allow for a different 
+    directory to be used instead. This tool does not keep a history of where 
+    packages have been cloned, so this argument will have to be used whenever 
+    packages have been cloned into a non-default directory.
+    
+    This argument can be combined with the ``--force-develop`` argument to help 
+    when working with multiple local repositories of the same package. 
+
+``-f, --force-develop``
+    By default, if a package is already in development mode, then the command to 
+    put it into development mode will not be executed. Use this flag to execute 
+    that command even if the package is already in development mode. Useful for 
+    swicthing from an internal package to an external one or vice versa.
+
+``-s, --skip-version-check``
+    By default, this command will run the `pyats version check` command before 
+    execution. Use this flag to skip the version check.
+
+``--delete-repos``
+    Please use this flag with caution. The default behaviour of this tool is to 
+    use any pre-existing package repositories that are found within the used 
+    directory (see above `--directory` argument). Using this flag will cause those 
+    repositories to be deleted and then cloned. This can be a useful option when 
+    you want to ensure packages are clean and up to date, but please, make sure 
+    your work ha been backed up before using this option.
+
+``-c, --clone-only``
+    Use this flag to only clone a package repository and not put that package 
+    into development mode. 
