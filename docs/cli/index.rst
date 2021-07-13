@@ -13,11 +13,13 @@ and usage.
 
     pyats
     pyats_create
-    pyats_run
+    pyats_develop
     pyats_logs
+    pyats_run
+    pyats_secret
     pyats_shell
+    pyats_undevelop
     pyats_validate
     pyats_version
-    pyats_secret
 
 .. sectionauthor:: Siming Yuan <siyuan@cisco.com>
