@@ -41,7 +41,7 @@ repositories and putting those packages into development mode.
       -d, --directory DIRECTORY
                             Absolute or relative path of directory to clone repositories into. If not
                             supplied, then the default directory is $VIRTUAL_ENV/pypi if using a Python
-                            virtual environment, or /usr/pypi otherwise (Optional)
+                            virtual environment (Optional)
       -f, --force-develop   Run 'make develop' even if packages are already in development mode
                             (Optional)
       -s, --skip-version-check
