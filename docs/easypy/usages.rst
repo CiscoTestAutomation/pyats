@@ -404,12 +404,29 @@ constructed and processed using python `argparse`_ module.  Please also see
 ``--meta``
     User specified JSON dictionary of information to be added for reporting
     purposes. Can be a base64 encoded string of this JSON dictionary. The two
-    examples are equivalent:
+    examples below are equivalent:
 
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --meta "{\"key\":\"value\"}"
         bash$ pyats run job /path/to/jobfile.py --meta eyJrZXkiOiJ2YWx1ZSJ9
+
+    URLs to JSON files, paths to JSON files, and individual key/value pairs can 
+    also be supplied. These data sources can be freely combined and the `--meta` 
+    argument can be used multiple times per command. Individual key/value pairs 
+    must use an equals sign (`=`) to separate the key and the value. Being able 
+    to combine different sources of information for the JSON meta dictionary 
+    means that extra info can be added quickly and easily on a per-job basis. 
+    See examples below:
+
+    .. code-block:: bash
+
+        bash$ pyats run job /path/to/jobfile.py --meta https://path/to/jsonfile.json
+        bash$ pyats run job /path/to/jobfile.py --meta /path/to/jsonfile.json
+        bash$ pyats run job /path/to/jobfile.py --meta key=value
+        bash$ pyats run job /path/to/jobfile.py --meta https://path/to/jsonfile.json --meta /path/to/jsonfile.json
+        bash$ pyats run job /path/to/jobfile.py --meta key=value --meta another_key=another_value
+        bash$ pyats run job /path/to/jobfile.py --meta /path/to/jsonfile.json --meta extra_key=value
 
 ``--archive-name``
     Specifies an alternative name for the archive file other than <jobuid>.zip.
