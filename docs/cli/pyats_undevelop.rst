@@ -1,10 +1,16 @@
 pyats undevelop
 ===============
 
-Helper command to ease and expedite the process of removing pyATS packages 
-from development mode. After removal from development mode, packages are 
-reinstalled using pip leading to simplified package transitions out of 
-development mode.
+Almost all pyATS package repositories come with a 'make undevelop' command 
+which removes a package from development mode, effectively uninstalling it. 
+While this command is useful, it doesn't go the extra mile of reinstalling 
+the uninstalled packages afterwards, often resulting in a non-funtional 
+pyATS installation. This is where the `pyats undevelop` command comes in.
+
+The `pyats undevelop` helper command is designed to ease and expedite 
+the process of removing pyATS packages from development mode. After 
+removal from development mode, packages are reinstalled using pip leading 
+to simplified package transitions out of development mode. 
 
 .. code-block:: text
 
