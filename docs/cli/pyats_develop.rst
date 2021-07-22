@@ -1,13 +1,24 @@
 pyats develop
 =============
 
-Helper command to ease and expedite the process of cloning pyATS package 
-repositories and putting those packages into development mode.
+The process of cloning pyATS repositories and putting pyATS packages into 
+development mode can be repetitive and time consuming, especially when working 
+with many packages. This is where the `pyats develop` command comes in. This 
+command is your one-stop-shop for not only cloning pyATS repositories, but for 
+putting them into development mode too. List the packages you want, set the 
+options you'd like, (maybe go make yourself a cup of tea/coffee/cocoa) and let 
+`pyats develop` handle the rest. 
+
+The `pyats develop` helper command is designed to ease and expedite the process 
+of cloning pyATS package repositories and putting each of those packages into 
+development mode. It checks that all of your pyATS packages are up-to-date, 
+downloads packages (if necessary), puts packages into development 
+mode, and then another check that packages in development mode are up-to-date.
 
 .. note::
 
-  This commands requires Github SSH keys if internal Cisco repositories are to be 
-  cloned.
+  This commands requires Github SSH keys to be set up if internal Cisco 
+  repositories are to be cloned.
 
 .. code-block:: text
 
@@ -40,8 +51,7 @@ repositories and putting those packages into development mode.
                             external public repositories will always be used (Optional)
       -d, --directory DIRECTORY
                             Absolute or relative path of directory to clone repositories into. If not
-                            supplied, then the default directory is $VIRTUAL_ENV/pypi if using a Python
-                            virtual environment (Optional)
+                            supplied, then the default directory is $VIRTUAL_ENV/pypi (Optional)
       -f, --force-develop   Run 'make develop' even if packages are already in development mode
                             (Optional)
       -s, --skip-version-check
@@ -87,16 +97,14 @@ Options
     Cisco pyATS installations.
 
 ``-d, --directory``
-    By default, repositories will be cloned into one of two directories, 
-    depending on your development environment. `$VIRTUAL_ENV/pypi` if a virtual 
-    environment is used or `/usr/pypi` if no virtual environment is used. Use 
+    By default, repositories will be cloned `$VIRTUAL_ENV/pypi`. Use 
     this argument to override the default behaviour and allow for a different 
     directory to be used instead. This tool does not keep a history of where 
     packages have been cloned, so this argument will have to be used whenever 
     packages have been cloned into a non-default directory.
     
     This argument can be combined with the ``--force-develop`` argument to help 
-    when working with multiple local repositories of the same package. 
+    when switching between multiple local repositories of the same package. 
 
 ``-f, --force-develop``
     By default, if a package is already in development mode, then the command to 
@@ -114,7 +122,7 @@ Options
     directory (see above `--directory` argument). Using this flag will cause those 
     repositories to be deleted and then cloned. This can be a useful option when 
     you want to ensure packages are clean and up to date, but please, make sure 
-    your work ha been backed up before using this option.
+    your work has been backed up before using this option.
 
 ``-c, --clone-only``
     Use this flag to only clone a package repository and not put that package 
