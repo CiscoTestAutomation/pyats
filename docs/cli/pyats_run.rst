@@ -103,10 +103,10 @@ the job file, returing the overall results, and emailing you the report.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --device-image        list of clean images per device in format device:/path/to/image.bin
-      --os-image            list of clean images per OS in format os:/path/to/image.bin
-      --group-image         list of clean images per group in format group:/path/to/image.bin
-      --platform-image      list of clean images per platform in format platform:/path/to/image.bin
+      --clean-device-image        list of clean images per device in format device:/path/to/image.bin
+      --clean-os-image            list of clean images per OS in format os:/path/to/image.bin
+      --clean-group-image         list of clean images per group in format group:/path/to/image.bin
+      --clean-platform-image      list of clean images per platform in format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file
@@ -225,10 +225,10 @@ details.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --device-image        list of clean images per device in format device:/path/to/image.bin
-      --os-image            list of clean images per OS in format os:/path/to/image.bin
-      --group-image         list of clean images per group in format group:/path/to/image.bin
-      --platform-image      list of clean images per platform in format platform:/path/to/image.bin
+      --clean-device-image        list of clean images per device in format device:/path/to/image.bin
+      --clean-os-image            list of clean images per OS in format os:/path/to/image.bin
+      --clean-group-image         list of clean images per group in format group:/path/to/image.bin
+      --clean-platform-image      list of clean images per platform in format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file

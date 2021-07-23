@@ -106,10 +106,10 @@ that gets installed into your pyATS instance automatically.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --device-image        list of clean images per device in format device:/path/to/image.bin
-      --os-image            list of clean images per OS in format os:/path/to/image.bin
-      --group-image         list of clean images per group in format group:/path/to/image.bin
-      --platform-image      list of clean images per platform in format platform:/path/to/image.bin
+      --clean-device-image        list of clean images per device in format device:/path/to/image.bin
+      --clean-os-image            list of clean images per OS in format os:/path/to/image.bin
+      --clean-group-image         list of clean images per group in format group:/path/to/image.bin
+      --clean-platform-image      list of clean images per platform in format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file
@@ -164,10 +164,10 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--clean-devices``, "a list of devices to :ref:`clean<kleenex_index>`"
     ``--clean-scope``, "whether to perform :ref:`clean/bringup<kleenex_index>` at job or task level"
     ``--invoke-clean``, ":ref:`Clean<kleenex_cleaners>` is only invoked when this parameter is specified."
-    ``--device-image``, "list of clean images per device in format device:/path/to/image.bin"
-    ``--os-image``, "list of clean images per OS in format os:/path/to/image.bin"
-    ``--group-image``, "list of clean images per group in format group:/path/to/image.bin"
-    ``--platform-image``, "list of clean images per platform in format platform:/path/to/image.bin"
+    ``--clean-device-image``, "list of clean images per device in format device:/path/to/image.bin"
+    ``--clean-os-image``, "list of clean images per OS in format os:/path/to/image.bin"
+    ``--clean-group-image``, "list of clean images per group in format group:/path/to/image.bin"
+    ``--clean-platform-image``, "list of clean images per platform in format platform:/path/to/image.bin"
     ``--submitter``, "specify a run submitter (defaults to current user)"
     ``--html-logs``, "enable generating HTML logs"
     ``--image``, "specify the current test image information"
@@ -296,7 +296,7 @@ constructed and processed using python `argparse`_ module.  Please also see
 
 .. _kleenex_cli_image_format:
 
-``--device-image``
+``--clean-device-image``
     specifies images to be used for clean per device.
 
     .. code-block:: bash
@@ -304,7 +304,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --device-image PE1:/path/to/clean_image.bin
+                                       --clean-device-image PE1:/path/to/clean_image.bin
 
     This is equivalent to the following in YAML
 
@@ -320,7 +320,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --device-image PE1:/path/to/controller_image.bin\
+                                       --clean-device-image PE1:/path/to/controller_image.bin\
                                        PE1:/path/to/switch_image.bin
 
     This is equivalent to the following in YAML:
@@ -338,7 +338,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --device-image PE1:image:/path/to/image.bin\
+                                       --clean-device-image PE1:image:/path/to/image.bin\
                                        PE1:packages:/path/to/optional_package1\
                                        PE1:packages:/path/to/optional_package2
 
@@ -353,39 +353,39 @@ constructed and processed using python `argparse`_ module.  Please also see
           - /path/to/optional_package1
           - /path/to/optional_package2
 
-    `--device-image` can be used in combination with `--os-image`,
-    `--group-image` and `--platform-image`. Conflicts are resolved
+    `--clean-device-image` can be used in combination with `--clean-os-image`,
+    `--clean-group-image` and `--clean-platform-image`. Conflicts are resolved
     according to the following order: `device > group > platform > os`.
 
-``--os-image``
-    specifies images to be used for clean per OS. Uses same format as `--device-image`.
+``--clean-os-image``
+    specifies images to be used for clean per OS. Uses same format as `--clean-device-image`.
 
     .. code-block:: bash
 
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --os-image iosxe:/path/to/clean_image.bin
+                                       --clean-os-image iosxe:/path/to/clean_image.bin
 
-``--group-image``
-    specifies images to be used for clean per group. Uses same format as `--device-image`.
-
-    .. code-block:: bash
-
-        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
-                                       --clean-file /path/to/my/clean.yaml\
-                                       --invoke-clean\
-                                       --group-image group1:/path/to/clean_image.bin
-
-``--platform-image``
-    specifies images to be used for clean per platform. Uses same format as `--device-image`.
+``--clean-group-image``
+    specifies images to be used for clean per group. Uses same format as `--clean-device-image`.
 
     .. code-block:: bash
 
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --platform-image n9k:/path/to/clean_image.bin
+                                       --clean-group-image group1:/path/to/clean_image.bin
+
+``--clean-platform-image``
+    specifies images to be used for clean per platform. Uses same format as `--clean-device-image`.
+
+    .. code-block:: bash
+
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml\
+                                       --invoke-clean\
+                                       --clean-platform-image n9k:/path/to/clean_image.bin
 
 ``--clean-scope``
     specifies whether :ref:`clean<kleenex_easypy_integration>`
