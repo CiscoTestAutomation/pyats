@@ -353,9 +353,26 @@ constructed and processed using python `argparse`_ module.  Please also see
           - /path/to/optional_package1
           - /path/to/optional_package2
 
-    `--clean-device-image` can be used in combination with `--clean-os-image`,
-    `--clean-group-image` and `--clean-platform-image`. Conflicts are resolved
-    according to the following order: `device > group > platform > os`.
+    You may also specify an image which resides at a URL:
+
+    .. code-block:: bash
+
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml\
+                                       --invoke-clean\
+                                       --clean-device-image PE1:http://server.com:21/path/to/image.bin
+
+    This is equivalent to the following in YAML:
+
+    .. code-block:: yaml
+
+        images:
+        - http://server.com:21/path/to/image.bin
+
+    .. note::
+        `--clean-device-image` can be used in combination with `--clean-os-image`,
+        `--clean-group-image` and `--clean-platform-image`. Conflicts are resolved
+        according to the following order: `device > group > platform > os`.
 
 ``--clean-os-image``
     specifies images to be used for clean per OS. Uses same format as `--clean-device-image`.
