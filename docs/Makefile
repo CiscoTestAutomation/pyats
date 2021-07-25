@@ -32,7 +32,7 @@ HOSTNAME	  = localhost
 VERSION	      = v`python -c "from pyats import info; print(info.__version__)"`
 
 # Dependencies for building documentation
-DEPENDENCIES = robotframework Sphinx sphinxcontrib-napoleon \
+DEPENDENCIES = robotframework "Sphinx>=3,<4" sphinxcontrib-napoleon \
 			   sphinxcontrib-mockautodoc sphinx-rtd-theme \
 			   sphinxcontrib_robotframework
 
