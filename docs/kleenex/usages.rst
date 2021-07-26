@@ -255,40 +255,40 @@ some exceptions.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-device-image PE1:/path/to/clean_image.bin
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml
+                                       --invoke-clean
+                                       --clean-device-image PE1:/path/to/clean_image.bin
 
 ``-clean_os_image``
     specifies images to be used for clean per OS. Uses same format as `-clean_device_image`.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-os-image iosxe:/path/to/clean_image.bin
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml
+                                       --invoke-clean
+                                       --clean-os-image iosxe:/path/to/clean_image.bin
 
 ``-clean_group_image``
     specifies images to be used for clean per group. Uses same format as `-clean_device_image`.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-group-image group1:/path/to/clean_image.bin
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml
+                                       --invoke-clean
+                                       --clean-group-image group1:/path/to/clean_image.bin
 
 ``-clean_platform_image``
     specifies images to be used for clean per platform. Uses same format as `-clean_device_image`.
 
     .. code-block:: bash
 
-        bash$ kleenex --testbed-file /path/to/my/testbed.yaml\
-                      --clean-file /path/to/my/clean.yaml
-                      --invoke-clean
-                      --clean-platform-image n9k:/path/to/clean_image.bin
+        bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
+                                       --clean-file /path/to/my/clean.yaml
+                                       --invoke-clean
+                                       --clean-platform-image n9k:/path/to/clean_image.bin
 
 ``-loglevel``
     specifies the logging level for Kleenex. Use this to increase or decrease
