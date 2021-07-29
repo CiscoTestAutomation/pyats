@@ -40,7 +40,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
-    'sphinxcontrib_robotframework',
+    #'sphinxcontrib_robotframework',
 ]
 if not os.environ.get('DEVNET', None) == 'false':
     # do NOT show code in devnet
