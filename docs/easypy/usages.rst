@@ -106,10 +106,10 @@ that gets installed into your pyATS instance automatically.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --clean-device-image        list of clean images per device in format device:/path/to/image.bin
-      --clean-os-image            list of clean images per OS in format os:/path/to/image.bin
-      --clean-group-image         list of clean images per group in format group:/path/to/image.bin
-      --clean-platform-image      list of clean images per platform in format platform:/path/to/image.bin
+      --clean-device-image        space separated images per device with format device:/path/to/image.bin
+      --clean-os-image            space separated images per OS with format os:/path/to/image.bin
+      --clean-group-image         space separated images per group with format group:/path/to/image.bin
+      --clean-platform-image      space separated images per platform with format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file
@@ -164,10 +164,10 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--clean-devices``, "a list of devices to :ref:`clean<kleenex_index>`"
     ``--clean-scope``, "whether to perform :ref:`clean/bringup<kleenex_index>` at job or task level"
     ``--invoke-clean``, ":ref:`Clean<kleenex_cleaners>` is only invoked when this parameter is specified."
-    ``--clean-device-image``, "list of clean images per device in format device:/path/to/image.bin"
-    ``--clean-os-image``, "list of clean images per OS in format os:/path/to/image.bin"
-    ``--clean-group-image``, "list of clean images per group in format group:/path/to/image.bin"
-    ``--clean-platform-image``, "list of clean images per platform in format platform:/path/to/image.bin"
+    ``--clean-device-image``, "space separated images per device with format device:/path/to/image.bin"
+    ``--clean-os-image``, "space separated images per OS with format os:/path/to/image.bin"
+    ``--clean-group-image``, "space separated images per group with format group:/path/to/image.bin"
+    ``--clean-platform-image``, "space separated images per platform with format platform:/path/to/image.bin"
     ``--submitter``, "specify a run submitter (defaults to current user)"
     ``--html-logs``, "enable generating HTML logs"
     ``--image``, "specify the current test image information"
@@ -310,8 +310,10 @@ constructed and processed using python `argparse`_ module.  Please also see
 
     .. code-block:: yaml
 
-        images:
-        - /path/to/clean_image.bin
+        devices:
+          PE1:
+            images:
+            - /path/to/clean_image.bin
 
     To provide a list of images:
 
@@ -327,9 +329,11 @@ constructed and processed using python `argparse`_ module.  Please also see
 
     .. code-block:: yaml
 
-        images:
-        - /path/to/controller_image.bin
-        - /path/to/switch_image.bin
+        devices:
+          PE1:
+            images:
+            - /path/to/controller_image.bin
+            - /path/to/switch_image.bin
 
     To provide images with a key structure:
 
@@ -346,12 +350,14 @@ constructed and processed using python `argparse`_ module.  Please also see
 
     .. code-block:: yaml
 
-        images:
-          image:
-          - /path/to/image.bin
-          packages:
-          - /path/to/optional_package1
-          - /path/to/optional_package2
+        devices:
+          PE1:
+            images:
+              image:
+              - /path/to/image.bin
+              packages:
+              - /path/to/optional_package1
+              - /path/to/optional_package2
 
     You may also specify an image which resides at a URL:
 
@@ -366,8 +372,10 @@ constructed and processed using python `argparse`_ module.  Please also see
 
     .. code-block:: yaml
 
-        images:
-        - http://server.com:21/path/to/image.bin
+        devices:
+          PE1:
+            images:
+            - http://server.com:21/path/to/image.bin
 
     .. note::
         `--clean-device-image` can be used in combination with `--clean-os-image`,
