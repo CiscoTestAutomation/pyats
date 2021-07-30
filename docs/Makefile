@@ -32,7 +32,7 @@ HOSTNAME	  = localhost
 VERSION	      = v`python -c "from pyats import info; print(info.__version__)"`
 
 # Dependencies for building documentation
-DEPENDENCIES = robotframework Sphinx sphinxcontrib-napoleon \
+DEPENDENCIES = robotframework "Sphinx==3.5.4" sphinxcontrib-napoleon \
 			   sphinxcontrib-mockautodoc sphinx-rtd-theme \
 			   #sphinxcontrib_robotframework
 
@@ -83,8 +83,3 @@ html:
 	@echo ""
 	@echo "Done."
 	@echo ""
-
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

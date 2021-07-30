@@ -103,12 +103,10 @@ the job file, returing the overall results, and emailing you the report.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --clean-image  [ ...]
-                            Image files for each device
-      --clean-platform  [ ...]
-                            Image files for each platform
-      --clean-separator     Separator between device/platform & image file in arguments clean-image and
-                            clean-platform
+      --clean-device-image        space separated images per device with format device:/path/to/image.bin
+      --clean-os-image            space separated images per OS with format os:/path/to/image.bin
+      --clean-group-image         space separated images per group with format group:/path/to/image.bin
+      --clean-platform-image      space separated images per platform with format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file
@@ -227,12 +225,10 @@ details.
       --clean-scope {job,task}
                             Specify whether clean runs before job or per task
       --invoke-clean        Clean is only invoked if this parameter is specified.
-      --clean-image  [ ...]
-                            Image files for each device
-      --clean-platform  [ ...]
-                            Image files for each platform
-      --clean-separator     Separator between device/platform & image file in arguments clean-image and
-                            clean-platform
+      --clean-device-image        space separated images per device with format device:/path/to/image.bin
+      --clean-os-image            space separated images per OS with format os:/path/to/image.bin
+      --clean-group-image         space separated images per group with format group:/path/to/image.bin
+      --clean-platform-image      space separated images per platform with format platform:/path/to/image.bin
 
     Bringup:
       --logical-testbed-file
