@@ -544,12 +544,13 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         run(testscript = 'testscript.py', groups = And(Or('group1','group2'), 'group3'))
 
 ``datafile``, ``-datafile``
-    full name and path to the script input datafile file in YAML format. For
-    full detail on use cases and examples, refer to :ref:`aetest_datafile`.
+    full name and path or URL to the script input datafile file in YAML format. 
+    For full detail on use cases and examples, refer to :ref:`aetest_datafile`.
 
     .. code-block:: bash
 
         bash$ python testscript.py -datafile="/path/to/datafile.yaml"
+        bash$ python testscript.py -datafile="http://path.to/datafile.yaml"
 
     .. code-block:: python
 

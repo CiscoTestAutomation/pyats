@@ -18,9 +18,10 @@ There are two ways to create a topology within your testscript:
 .. hint::
 
     You can pass in a testbed YAML to ``pyats run job`` using the
-    ``--testbed-file`` option, which automatically invoke
+    ``--testbed-file`` option, which automatically invokes
     ``topology.loader`` to load the YAML file and pass the testbed object to
-    your script.
+    your script. The value following ``--testbed-file`` can be a file path or 
+    a URL.
 
 .. _topology_testbed_file:
 
@@ -33,13 +34,15 @@ convert the YAML description into testbed objects.
 
 .. code-block:: bash
 
-    # Example
-    # -------
+    # Examples
+    # --------
     #
-    #   starting a script using pyats run job and passing in testbed file
+    #   starting scripts using pyats run job and passing in testbed file/url
     #   using --testbed-file argument
 
     pyats run job jobfile.py --testbed-file /path/to/my/testbed/file/testbed.yaml
+    
+    pyats run job jobfile.py --testbed-file "https://path.to.my.testbed.com/testbed.yaml"
 
 Easypy then invokes ``topology`` module to load and convert this
 information into topology object instances, and pass it to the user script.
@@ -63,9 +66,9 @@ Internally, the following is really what happened:
     # voila!
 
 ``topology.loader.load()`` API takes in a loadable input (such as path to a YAML
-testbed file), parses the information, and makes appropriate Class constructor
-calls to construct the corresponding objects, including building the topology
-interconnect relationships.
+testbed file or a URL to a YAML testbed file), parses the information, and makes 
+appropriate Class constructor calls to construct the corresponding objects, 
+including building the topology interconnect relationships.
 
 Testbed files need to follow the standard testbed-file format (a.k.a schema).
 The :ref:`schema` controls how and what information can go into each testbed
