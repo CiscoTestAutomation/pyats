@@ -20,8 +20,8 @@ packages using pip. No need to run each of these commands manually anymore.
     
     Usage Examples:
       pyats undevelop all
-      pyats undevelop pyats --skip-version-check
-      pyats undevelop genie.libs.parser genie.trafficgen
+      pyats undevelop genie.libs.sdk --skip-version-check
+      pyats undevelop genie.libs.parser genie.trafficgen --external
       pyats undevelop genie.libs unicon.plugins
     
     Description:
@@ -32,17 +32,20 @@ packages using pip. No need to run each of these commands manually anymore.
       reinstalled instead.
     
     Undevelop Options:
-      packages              Packages to put into development mode. Available choices: all, cisco-
+      packages              Packages to remove from development mode. Available choices: all, cisco-
                             distutils, genie, genie.libs, genie.libs.clean, genie.libs.conf,
                             genie.libs.filetransferutils, genie.libs.health, genie.libs.ops,
                             genie.libs.robot, genie.libs.sdk, genie.libs.parser, genie.telemetry,
                             genie.trafficgen, pyats, pyats.contrib, rest.connector, unicon,
-                            unicon.plugins
+                            unicon.plugins, yang.connector
       -s, --skip-version-check
                             Do not check if pyATS packages are up to date before tool execution.
                             WARNING: Using this option may lead to pyATS package version conflicts which
                             could result in a corrupted pyATS installation! Use with discretion
                             (Optional)
+      -e, --external        Reinstall external public pip packages instead of internal. Only applicable
+                            to internal Cisco pyATS installations. For external pyATS Installations,
+                            external public pip packages will always be used (Optional)
     
     General Options:
       -h, --help            Show help
@@ -70,3 +73,12 @@ Options
 ``-s, --skip-version-check``
     By default, this command will run the `pyats version check` command before 
     execution. Use this flag to skip the version check.
+
+``-e, --external``
+    If you have an internal Cisco version of pyATS installed, then this tool 
+    will automatically reinstall internal pip packages. If you have an 
+    external/public version of pyATS installed, then this tool will 
+    automatically reinstall external/public pip packages. Use this flag if 
+    you have an internal version of pyATS and would like to have external 
+    pip packages be reinstalled instead. Only applicable to internal 
+    Cisco pyATS installations.
