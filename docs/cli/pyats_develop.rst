@@ -31,21 +31,21 @@ mode, and then another check that packages in development mode are up-to-date.
       pyats develop genie.libs.parser genie.trafficgen --external
       pyats develop unicon.plugins genie.libs --delete-repos --directory my_repos
       pyats develop pyats.config --clone-only
-
+    
     Description:
       Puts listed pyATS packages into development mode. Listed packages will have 
       their repositories downloaded from Github if required and 'make develop' will be 
       run for each package. By default, internal Cisco repos will be cloned if the 
       pyATS installation is internal, otherwise external repos will be cloned instead. 
       Github SSH keys are required to clone internal Cisco packages.
-
+    
     Develop Options:
       packages              Packages to put into development mode. Available choices: all, cisco-
                             distutils, genie, genie.libs, genie.libs.clean, genie.libs.conf,
                             genie.libs.filetransferutils, genie.libs.health, genie.libs.ops,
                             genie.libs.robot, genie.libs.sdk, genie.libs.parser, genie.telemetry,
                             genie.trafficgen, pyats, pyats.contrib, rest.connector, unicon,
-                            unicon.plugins
+                            unicon.plugins, yang.connector
       -e, --external        Clone external public repositories instead of internal. Only applicable to
                             internal Cisco pyATS installations. For external pyATS Installations,
                             external public repositories will always be used (Optional)
@@ -61,8 +61,9 @@ mode, and then another check that packages in development mode are up-to-date.
                             (Optional)
       --delete-repos        Delete existing repositories within directory before cloning new ones
                             (Optional) IMPORTANT: Please back up your work before using this option!
-      -c, --clone-only      Just clone the repos, do not put them into development mode (Optional)
-
+      -c, --clone-only      Clone the repositories, but do not put any packages into development mode
+                            (Optional)
+    
     General Options:
       -h, --help            Show help
       -v, --verbose         Give more output, additive up to 3 times.
