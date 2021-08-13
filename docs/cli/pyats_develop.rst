@@ -17,7 +17,7 @@ mode, and then another check that packages in development mode are up-to-date.
 
 .. note::
 
-  This commands requires Github SSH keys to be set up if internal Cisco 
+  This commands requires a Github SSH key to be set up if internal Cisco 
   repositories are to be cloned.
 
 .. code-block:: text
