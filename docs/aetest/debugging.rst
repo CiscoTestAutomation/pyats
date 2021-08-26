@@ -116,7 +116,14 @@ failure, or exception is encountered during execution, the testing engine
 pauses and starts an interactive `post_mortem`_ debugging session
 at the stack frame of failure.
 
+
 .. _post_mortem: https://docs.python.org/3.4/library/pdb.html#pdb.post_mortem
+
+.. tip::
+
+    Additionally to ``pdb = True``, pyATS debugging supports any debugger that 
+    has post_mortem capabilities. Want to use ``pudb``? Set ``pdb = 'pudb'``.
+    Want to use ``web-pdb``? Set ``pdb = 'web_pdb'``.
 
 .. code-block:: python
 
@@ -187,6 +194,18 @@ at the stack frame of failure.
 The interactive debugging session starts with ``(pdb)`` prompt, and waits for
 user input. Refer to `Debugger Commands`_ for details on how to use the ``pdb``
 debugger.
+
+You can also use ``pdb`` from the command line by including ``--pdb``. This will
+drop you into the default Python pdb debugger. If you have a third-party debugger
+installed that supports post_mortem you can specify it like so ``--pdb <debugger>``.
+
+Examples:
+
+.. code-block::
+
+    pyats run job job.py --pdb
+    pyats run job job.py --pdb pudb
+    pyats run job job.py --pdb web_pdb
 
 .. tip::
 
