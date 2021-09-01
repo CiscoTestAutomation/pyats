@@ -1,7 +1,7 @@
-July 2021
+August 2021
 ========
 
-July 27, 2021
+August 31, 2021
 ------------
 
 .. csv-table:: New Module Versions
