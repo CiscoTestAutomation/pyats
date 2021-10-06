@@ -23,66 +23,73 @@ Any information that falls outside of these fields will be included in the
 
 .. code-block:: text
 
-    +---------------+----------------------------------------------------------+
-    | Section       | Field         | Description                              |
-    +===============+===============+==========================================+
-    | TestSuite     | type          | Identifier that this section is the root |
-    |               |               |  TestSuite                               |
-    |               | id            | Unique ID for this job execution         |
-    |               | name          | Name from jobfile                        |
-    |               | starttime     | Timestamp when job execution began       |
-    |               | stoptime      | Timestamp when job execution ended       |
-    |               | runtime       | Duration of execution                    |
-    |               | cli           | Command that started Easypy              |
-    |               | jobfile       | Location of jobfile                      |
-    |               | pyatspath     | Python environment executing pyATS       |
-    |               | pyatsversion  | Version of pyATS installed               |
-    |               | host          | Name of host machine                     |
-    |               | submitter     | User that started execution              |
-    |               | archivefile   | Path to generated archive file           |
-    |               | summary       | Combined summary of all Tasks            |
-    |               | details       | Details about any exceptions or errors   |
-    |               | extra         | Map of extra info about the TestSuite    |
-    |               | tasks         | List of child Tasks                      |
-    +---------------+---------------+------------------------------------------+
-    | Task          | type          | Identifier that this section is a Task   |
-    |               | id            | Unique ID for this Task                  |
-    |               | name          | Name of TestScript                       |
-    |               | starttime     | Timestamp when execution began           |
-    |               | stoptime      | Timestamp when execution ended           |
-    |               | runtime       | Duration of execution                    |
-    |               | description   | Description of TestScript                |
-    |               | logfile       | Path to logfile for this Task            |
-    |               | testscript    | Path to testscript                       |
-    |               | parameters    | Any parameters passed to this Task       |
-    |               | summary       | Summary of results                       |
-    |               | details       | Details about any exceptions or errors   |
-    |               | extra         | Map of extra info about the Task         |
-    |               | sections      | List of child Sections                   |
-    +---------------+---------------+------------------------------------------+
-    | Section       | type          | Specific type of section being           |
-    |               |               |  represented
-    |               | id            | Unique ID for this Section               |
-    |               | name          | Name of this Section                     |
-    |               | starttime     | Timestamp when this Section began        |
-    |               | stoptime      | Timestamp when this Section ended        |
-    |               | runtime       | Duration of execution                    |
-    |               | description   | Description of this Section              |
-    |               | xref          | XReference to the code defining this     |
-    |               |               |  Section                                 |
-    |               | logs          | Path to logfile showing execution of     |
-    |               |               |  this Section, as well as the beginning  |
-    |               |               |  byte and size in bytes                  |
-    |               | parameters    | Any parameters passed to this Section    |
-    |               | processors    | Lists of processors that ran for this    |
-    |               |               |  section, both before and after          |
-    |               | result        | The test result of this Section          |
-    |               | details       | Details about any exceptions or errors   |
-    |               | extra         | Map of extra info about this Section     |
-    |               | sections      | Any child sections of this section       |
-    |               |               |  (Testcases have TestSections, which can |
-    |               |               |   have Steps, etc.)                      |
-    +---------------+---------------+------------------------------------------+
+    +---------------+------------------------------------------------------------+
+    | Section       | Field           | Description                              |
+    +===============+=================+==========================================+
+    | TestSuite     | type            | Identifier that this section is the root |
+    |               |                 |  TestSuite                               |
+    |               | id              | Unique ID for this job execution         |
+    |               | name            | Name from jobfile                        |
+    |               | starttime       | Timestamp when job execution began       |
+    |               | stoptime        | Timestamp when job execution ended       |
+    |               | runtime         | Duration of execution                    |
+    |               | cli             | Command that started Easypy              |
+    |               | jobfile         | Location of jobfile                      |
+    |               | jobfile_hash    | SHA256 hash of the jobfile contents      |
+    |               | pyatspath       | Python environment executing pyATS       |
+    |               | pyatsversion    | Version of pyATS installed               |
+    |               | host            | Name of host machine                     |
+    |               | submitter       | User that started execution              |
+    |               | archivefile     | Path to generated archive file           |
+    |               | summary         | Combined summary of all Tasks            |
+    |               | details         | Details about any exceptions or errors   |
+    |               | extra           | Map of extra info about the TestSuite    |
+    |               | tasks           | List of child Tasks                      |
+    +---------------+-----------------+------------------------------------------+
+    | Task          | type            | Identifier that this section is a Task   |
+    |               | id              | Unique ID for this Task                  |
+    |               | name            | Name of TestScript                       |
+    |               | starttime       | Timestamp when execution began           |
+    |               | stoptime        | Timestamp when execution ended           |
+    |               | runtime         | Duration of execution                    |
+    |               | description     | Description of TestScript                |
+    |               | logfile         | Path to logfile for this Task            |
+    |               | testscript      | Path to testscript                       |
+    |               | testscript_hash | SHA256 hash of the testscript contents   |
+    |               | datafile        | Path to the data file                    |
+    |               | datafile_hash   | SHA256 hash of the data file contents    |
+    |               | parameters      | Any parameters passed to this Task       |
+    |               | summary         | Summary of results                       |
+    |               | details         | Details about any exceptions or errors   |
+    |               | extra           | Map of extra info about the Task         |
+    |               | sections        | List of child Sections                   |
+    +---------------+-----------------+------------------------------------------+
+    | Section       | type            | Specific type of section being           |
+    |               |                 |  represented                             |
+    |               | id              | Unique ID for this Section               |
+    |               | name            | Name of this Section                     |
+    |               | starttime       | Timestamp when this Section began        |
+    |               | stoptime        | Timestamp when this Section ended        |
+    |               | runtime         | Duration of execution                    |
+    |               | description     | Description of this Section              |
+    |               | xref            | XReference to the code defining this     |
+    |               |                 |  Section                                 |
+    |               | source_hash     | SHA256 hash of the source code for       |
+    |               |                 |   this Section                           |
+    |               | data_hash       | SHA256 hash of the data file input       |
+    |               | logs            | Path to logfile showing execution of     |
+    |               |                 |  this Section, as well as the beginning  |
+    |               |                 |  byte and size in bytes                  |
+    |               | parameters      | Any parameters passed to this Section    |
+    |               | processors      | Lists of processors that ran for this    |
+    |               |                 |  section, both before and after          |
+    |               | result          | The test result of this Section          |
+    |               | details         | Details about any exceptions or errors   |
+    |               | extra           | Map of extra info about this Section     |
+    |               | sections        | Any child sections of this section       |
+    |               |                 |  (Testcases have TestSections, which can |
+    |               |                 |   have Steps, etc.)                      |
+    +---------------+-----------------+------------------------------------------+
 
 Everything under ``TestScript`` is considered a ``Section`` as the information
 gathered is largely the same. The minimal uniqe data (such as ``index`` for
@@ -102,6 +109,8 @@ A sample *results.yaml* file looks like this:
       runtime: 12.35
       cli: pyats run job job/example_job.py --testbed-file etc/example_testbed.yaml
         --no-mail
+      jobfile: /Users/user/examples/comprehensive/job/example_job.py
+      jobfile_hash: 2a452a8683f4f5e5c146d62c78a9a5253198e19c3fb6c8c1771bdf0eea622086
       pyatspath: /Users/user/env
       pyatsversion: '19.11'
       host: HOSTNAME
@@ -135,6 +144,7 @@ A sample *results.yaml* file looks like this:
 
           logfile: TaskLog.Task-1
           testscript: /Users/user/examples/comprehensive/base_example.py
+          testscript_hash: 2938f2d2efbf9be144a9fe68667dd1c12753b84017a56e7d04caefe46edc0602
           parameters:
             labels: {}
             links: []
@@ -169,6 +179,7 @@ A sample *results.yaml* file looks like this:
               xref:
                 file: /Users/user/examples/comprehensive/base_example.py
                 line: 191
+                source_hash: c366a269e45838deb9bed54d28fef648b921c4f19a1753fc1e46e4c9ba3f9264
               logs:
                 begin: 0
                 file: TaskLog.Task-1
@@ -202,6 +213,7 @@ A sample *results.yaml* file looks like this:
                   xref:
                     file: /Users/user/examples/comprehensive/base_example.py
                     line: 249
+                    source_hash: ef801e370c14aacdb508536a357af11cd675e0e04025c06dde3080477cbd310d
                   logs:
                     begin: 106
                     file: TaskLog.Task-1
@@ -219,6 +231,7 @@ A sample *results.yaml* file looks like this:
               xref:
                 file: /Users/user/examples/comprehensive/base_example.py
                 line: 492
+                source_hash: 196c823f82685246c1fd8ce040a81622e3eb48294d457622cb4fa03788d0b220
               logs:
                 begin: 4317
                 file: TaskLog.Task-1
@@ -266,6 +279,7 @@ A sample *results.yaml* file looks like this:
                   xref:
                     file: /Users/user/examples/comprehensive/base_example.py
                     line: 633
+                    source_hash: deed3e44969da0e87c94c7e64fe34f9f92672c520ac1a5eb11cfd1bd04ccf57e
                   logs:
                     begin: 4436
                     file: TaskLog.Task-1
@@ -289,6 +303,7 @@ A sample *results.yaml* file looks like this:
                   xref:
                     file: /Users/user/examples/comprehensive/base_example.py
                     line: 664
+                    source_hash: 6c4cacbd8233299d4d99361ba2518e06005551e1696fe97116d7325a1bb1e876
                   logs:
                     begin: 4781
                     file: TaskLog.Task-1
@@ -314,6 +329,7 @@ A sample *results.yaml* file looks like this:
                   xref:
                     file: /Users/user/examples/comprehensive/base_example.py
                     line: 773
+                    source_hash: b30a1bb819fa0fec0acf1028c75b8d3668b46ffe867d06b2982bf4e25c5f2308
                   logs:
                     begin: 11120
                     file: TaskLog.Task-1
