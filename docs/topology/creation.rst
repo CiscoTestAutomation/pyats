@@ -42,7 +42,7 @@ convert the YAML description into testbed objects.
 
     pyats run job jobfile.py --testbed-file /path/to/my/testbed/file/testbed.yaml
     
-    pyats run job jobfile.py --testbed-file "https://path.to.my.testbed.com/testbed.yaml"
+    pyats run job jobfile.py --testbed-file "https://<url>/testbed.yaml"
 
 Easypy then invokes ``topology`` module to load and convert this
 information into topology object instances, and pass it to the user script.

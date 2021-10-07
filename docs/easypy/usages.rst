@@ -222,7 +222,7 @@ constructed and processed using python `argparse`_ module.  Please also see
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --configuration /path/to/config.yaml
-        bash$ pyats run job /path/to/jobfile.py --configuration "http://path.to/config.yaml"
+        bash$ pyats run job /path/to/jobfile.py --configuration "http://<url>config.yaml"
 
 ``--job-uid``
     optional argument. Allows upstream executor (eg, Jenkins) to pass down
@@ -258,7 +258,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job /path/to/jobfile.py --testbed-file source:netbox
                                                 --netbox-token=token
                                                 --netbox-url=url
-        bash$ pyats run job /path/to/jobfile.py --testbed-file "http://path.to.my/testbed.yaml"
+        bash$ pyats run job /path/to/jobfile.py --testbed-file "http://<url>/testbed.yaml"
 
 ``--clean-file``
     Full path or URL to the clean file. This enables testbed cleaning using
@@ -270,8 +270,8 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file /path/to/mytestbed.yaml\
                                        --clean-file /path/to/clean.yaml
                                        --invoke-clean
-        bash$ pyats run job jobfile.py --testbed-file "http://path.to.my/testbed.yaml"\
-                                       --clean-file "http://path.to/clean.yaml"
+        bash$ pyats run job jobfile.py --testbed-file "http://<url>/testbed.yaml"\
+                                       --clean-file "http://<url>/clean.yaml"
                                        --invoke-clean
 
 ``--clean-devices``
@@ -371,7 +371,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file /path/to/my/testbed.yaml\
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
-                                       --clean-device-image PE1:http://server.com:21/path/to/image.bin
+                                       --clean-device-image PE1:http://<url>/path/to/image.bin
 
     This is equivalent to the following in YAML:
 
@@ -380,7 +380,7 @@ constructed and processed using python `argparse`_ module.  Please also see
         devices:
           PE1:
             images:
-            - http://server.com:21/path/to/image.bin
+            - http://<url>/path/to/image.bin
 
     .. note::
         `--clean-device-image` can be used in combination with `--clean-os-image`,
@@ -511,10 +511,10 @@ constructed and processed using python `argparse`_ module.  Please also see
 
     .. code-block:: bash
 
-        bash$ pyats run job /path/to/jobfile.py --meta https://path/to/jsonfile.json
+        bash$ pyats run job /path/to/jobfile.py --meta https://<url>/jsonfile.json
         bash$ pyats run job /path/to/jobfile.py --meta /path/to/jsonfile.json
         bash$ pyats run job /path/to/jobfile.py --meta key=value
-        bash$ pyats run job /path/to/jobfile.py --meta https://path/to/jsonfile.json --meta /path/to/jsonfile.json
+        bash$ pyats run job /path/to/jobfile.py --meta https://<url>/jsonfile.json --meta /path/to/jsonfile.json
         bash$ pyats run job /path/to/jobfile.py --meta key=value --meta another_key=another_value
         bash$ pyats run job /path/to/jobfile.py --meta /path/to/jsonfile.json --meta extra_key=value
 
