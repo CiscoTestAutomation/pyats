@@ -222,7 +222,7 @@ constructed and processed using python `argparse`_ module.  Please also see
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --configuration /path/to/config.yaml
-        bash$ pyats run job /path/to/jobfile.py --configuration "http://<url>config.yaml"
+        bash$ pyats run job /path/to/jobfile.py --configuration "http://<url>/config.yaml"
 
 ``--job-uid``
     optional argument. Allows upstream executor (eg, Jenkins) to pass down
