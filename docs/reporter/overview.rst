@@ -21,6 +21,9 @@ section. This table shows the possible fields for each section of the report.
 Any information that falls outside of these fields will be included in the
 ``extra`` mapping.
 
+Report structure
+----------------
+
 .. code-block:: text
 
     +---------------+------------------------------------------------------------+
@@ -74,7 +77,7 @@ Any information that falls outside of these fields will be included in the
     |               | description     | Description of this Section              |
     |               | xref            | XReference to the code defining this     |
     |               |                 |  Section                                 |
-    |               | source_hash     | SHA256 hash of the source code for       |
+    |               |   source_hash   | SHA256 hash of the source code for       |
     |               |                 |   this Section                           |
     |               | data_hash       | SHA256 hash of the data file input       |
     |               | logs            | Path to logfile showing execution of     |
@@ -349,5 +352,37 @@ the aggregated results.
 
 Reporter uses contexual reporters that share the hierarchy
 of the testable sections instead of a single global reporter.
+
+Git info
+--------
+
+By default, git information is collected and added to the report. This can be disabled
+by adding ``report.git_info = False`` to the pyats configuration file.
+For more info see :ref:`pyats_configuration`.
+
+Git information on `repo`, `file`, `branch`, `commit` will be added if available.
+If the file has been modified, `modified: True` will be added as well.
+
+.. code-block:: yaml
+
+      testscript: /Users/user/code/examples/basic/basic_example_script.py
+      testscript_hash: bd401d291aaf06f3d6b1969e93fc20dcfad675d8be36df52c24dde61752ed8ff
+      xref:
+        git:
+          branch: master
+          commit: 8140cb8fc0766338d1d98112624e277d27fe3b84
+          file: basic/basic_example_script.py
+          repo: github.com/CiscoTestAutomation/examples
+
+To disable git info collection, set git_info to False under report section in the
+configuration file.
+
+.. code-block:: ini
+
+    # configuration related to the report
+    [report]
+    # Collect git info, default is True.
+    git_info = False
+
 
 .. sectionauthor:: Ben Astell <bastell@cisco.com>
