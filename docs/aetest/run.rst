@@ -550,7 +550,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
     .. code-block:: bash
 
         bash$ python testscript.py -datafile="/path/to/datafile.yaml"
-        bash$ python testscript.py -datafile="http://path.to/datafile.yaml"
+        bash$ python testscript.py -datafile="http://<url>/datafile.yaml"
 
     .. code-block:: python
 
