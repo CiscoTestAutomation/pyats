@@ -5,7 +5,7 @@ There are two primary methods of invoking the functionalities provided by
 ``kleenex`` module:
 
 Decoupled
-    running directly via the command-line executable ``kleenex``. This mode
+    running directly via the command-line executable ``pyats clean``. This mode
     allows for independent orchestration & cleaning of your testbed topology,
     and optionally outputs a resulting testbed YAML file.
 
@@ -27,7 +27,7 @@ Easypy Integration
 Decoupled Execution
 -------------------
 
-Kleenex is run under *decoupled* mode when launched using the ``kleenex``
+Kleenex is run under *decoupled* mode when launched using the ``pyats clean``
 command-line executable. Under this mode, the user is given absolute control
 over the execution environment, and Kleenex will simply ready-up the testbed.
 This mode is great for:
@@ -53,7 +53,7 @@ The following is a list of default behaviors during decoupled execution:
     # -------
 
     # using kleenex to clean a physical testbed topology
-    bash$ kleenex -testbed_file physical_testbed.yaml -clean_file clean.yaml
+    bash$ pyats clean --testbed-file physical_testbed.yaml --clean-file clean.yaml
 
 The unique feature of running under decoupled model of execution is the ability
 to specify an orchestrator using ``-orchestrator`` argument and any orchestrator
@@ -116,10 +116,10 @@ Kleenex.<device_name>.log
     Clean log: one per device that is cleaned.
 
 testbed.static.yaml
-    Contents of the ``-testbed-file``, if specified by the user.
+    Contents of the ``--testbed-file``, if specified by the user.
 
 testbed.clean.yaml
-    Contents of the ``-clean_file``, if specified by the user.
+    Contents of the ``--clean-file``, if specified by the user.
 
 env.txt
     A dump of environment variables and cli args of this Kleenex run.
@@ -172,40 +172,40 @@ Kleenex accepts a number of standard arguments. Most of them can be provided
 as command line arguments to both decoupled & easypy execution models, with
 some exceptions.
 
-.. csv-table:: Kleenex Standard Arguments
+.. csv-table:: pyATS Clean(Kleenex) Standard Arguments
     :header: "Argument", "Description"
 
-    ``-help``, "display help information"
-    ``-testbed_file``, "testbed YAML file to load."
-    ``-clean_file``, "YAML file(s) containing clean configuration details"
-    ``-clean_devices``, "list of devices to clean"
-    ``-clean_device_image``, "space separated images per device with format device:/path/to/image.bin"
-    ``-clean_os_image``, "space separated images per OS with format os:/path/to/image.bin"
-    ``-clean_group_image``, "space separated images per group with format group:/path/to/image.bin"
-    ``-clean_platform_image``, "space separated images per platform with format platform:/path/to/image.bin"
-    ``-loglevel``, "kleenex module loglevel"
-    ``-logdir``, "directory to save logs to"
-    ``-no_mail``, "disable sending email on abort"
-    ``-debug``, "Run kleenex in debug mode (synchronous clean, pdb on error)"
+    ``--help``, "display help information"
+    ``--testbed-file``, "testbed YAML file to load."
+    ``--clean-file``, "YAML file(s) containing clean configuration details"
+    ``--clean-devices``, "list of devices to clean"
+    ``--clean-device_image``, "space separated images per device with format device:/path/to/image.bin"
+    ``--clean-os-image``, "space separated images per OS with format os:/path/to/image.bin"
+    ``--clean-group-image``, "space separated images per group with format group:/path/to/image.bin"
+    ``--clean-platform-image``, "space separated images per platform with format platform:/path/to/image.bin"
+    ``--loglevel``, "kleenex module loglevel"
+    ``--logdir``, "directory to save logs to"
+    ``--no-mail``, "disable sending email on abort"
+    ``--debug``, "Run kleenex in debug mode (synchronous clean, pdb on error)"
 
 
-``-help``
+``--help``
     used under command-line to provide help information w.r.t. available command
     line arguments and how to use them.
 
     .. code-block:: bash
 
-        bash$ kleenex -help
+        bash$ pyats clean -help
 
-``-testbed_file``
+``--testbed-file``
     specifies the topology :ref:`topology_testbed_file` to load. This informs
     Kleenex which actual testbed to work with.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml
+        bash$ pyats clean -testbed_file /path/to/my/testbed.yaml
 
-``-clean_file``
+``--clean-file``
     specifies the YAML-formatted :ref:`clean_file` or files describing how the
     devices in the topology are to be brought up and/or cleaned. When multiple
     files are provided, they are handled in the order provided, overriding any
@@ -215,10 +215,10 @@ some exceptions.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml\
-                      -clean_file /path/to/my/clean.yaml
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                      --clean-file /path/to/my/clean.yaml
 
-``-clean_devices``
+``--clean-devices``
     specifies the list of devices to clean. If not specified, defaults to
     cleaning all devices specified in the clean file that are also present in
     the testbed file.
@@ -244,12 +244,12 @@ some exceptions.
                                        --clean-devices "[[device_a, device_b, device_c], [device_d, device_e]]"\
                                        --invoke-clean
 
-``-clean_device_image``
+``--clean-device-image``
     specifies images to be used for clean per device. See
     :ref:`the following <kleenex_cli_image_format>` for
     more details about the expected format of the images and the
     precedence when images are provided through a combination of
-    `-clean_device_image`, `-clean_os_image`, `-clean_group_image` and `-clean_platform_image`.
+    `--clean-device-image`, `--clean-os-image`, `--clean-group-image` and `--clean-platform-image`.
 
     .. code-block:: bash
 
@@ -258,8 +258,8 @@ some exceptions.
                                        --invoke-clean
                                        --clean-device-image PE1:/path/to/clean_image.bin
 
-``-clean_os_image``
-    specifies images to be used for clean per OS. Uses same format as `-clean_device_image`.
+``--clean-os-image``
+    specifies images to be used for clean per OS. Uses same format as `--clean-device-image`.
 
     .. code-block:: bash
 
@@ -268,8 +268,8 @@ some exceptions.
                                        --invoke-clean
                                        --clean-os-image iosxe:/path/to/clean_image.bin
 
-``-clean_group_image``
-    specifies images to be used for clean per group. Uses same format as `-clean_device_image`.
+``--clean-group-image``
+    specifies images to be used for clean per group. Uses same format as `--clean-device-image`.
 
     .. code-block:: bash
 
@@ -278,8 +278,8 @@ some exceptions.
                                        --invoke-clean
                                        --clean-group-image group1:/path/to/clean_image.bin
 
-``-clean_platform_image``
-    specifies images to be used for clean per platform. Uses same format as `-clean_device_image`.
+``--clean-platform-image``
+    specifies images to be used for clean per platform. Uses same format as `--clean-device-image`.
 
     .. code-block:: bash
 
@@ -288,43 +288,43 @@ some exceptions.
                                        --invoke-clean
                                        --clean-platform-image n9k:/path/to/clean_image.bin
 
-``-loglevel``
+``--loglevel``
     specifies the logging level for Kleenex. Use this to increase or decrease
     Kleenex module's log output level for debugging purposes.  May be
     specified in UPPERCASE or lowercase.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml\
-                      -clean_file /path/to/my/clean.yaml\
-                      -loglevel DEBUG
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                          --clean-file /path/to/my/clean.yaml\
+                          --loglevel DEBUG
 
-``-logdir``
+``--logdir``
     specifies the logging directory for Kleenex. In easypy mode, this defaults
     to the :ref:`Easypy runinfo <easypy_runinfo>` directory. In decoupled mode,
     this defaults to the current working directory.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml\
-                      -clean_file /path/to/my/clean.yaml\
-                      -logdir /tmp
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                          --clean-file /path/to/my/clean.yaml\
+                          --logdir /tmp
 
     .. note::
 
         when defaulting to current working directory, a folder named
         ``Kleenex_%Y%b%d_%H:%M:%S`` is created per run.
 
-``-no_mail``
+``--no-mail``
     disables sending email to user when abort/error is encountered.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml\
-                      -clean_file /path/to/my/clean.yaml\
-                      -no_mail
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                          --clean-file /path/to/my/clean.yaml\
+                          --no-mail
 
-``-debug``
+``--debug``
     put kleenex into debug mode.  May also be specified with the ``-pdb``
     command-line parameter.
     In debug mode, kleenex runs its cleaners in series instead of in parallel.
@@ -333,6 +333,6 @@ some exceptions.
 
     .. code-block:: bash
 
-        bash$ kleenex -testbed_file /path/to/my/testbed.yaml\
-                      -clean_file /path/to/my/clean.yaml\
-                      -debug
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                          --clean-file /path/to/my/clean.yaml\
+                          --debug
