@@ -164,8 +164,8 @@ Clean Steps
     - `Context Manager`_
     - `The with statement`_
 
-.. _Context Manager: https://docs.python.org/3.4/reference/datamodel.html#context-managers
-.. _The with statement: https://docs.python.org/3.4/reference/compound_stmts.html#the-with-statement
+.. _Context Manager: https://docs.python.org/3.8/reference/datamodel.html#context-managers
+.. _The with statement: https://docs.python.org/3.8/reference/compound_stmts.html#the-with-statement
 
 Users may choose to slice a device clean into a series of steps that are
 individually logged and included in the ``CleanResultsDetails.yaml`` report.
