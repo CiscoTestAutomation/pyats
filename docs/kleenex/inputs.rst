@@ -357,7 +357,7 @@ various different user implementations.
 
 ``clean_devices``
     optional key containing a list of devices to clean sequentially. If not
-    specified here or via the ``clean_devices`` CLI parameter, defaults to
+    specified here or via the ``--clean-devices`` CLI parameter, defaults to
     cleaning all devices specified in the clean file that are also present
     in the testbed file.
 
