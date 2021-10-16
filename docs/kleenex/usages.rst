@@ -138,7 +138,7 @@ Easypy Integration
 
 Invoking Kleenex as part of a :ref:`Easypy <easypy>` job run is called *Easypy
 execution mode*. In this mode, all environment handling and control is set by
-the Easypy launcher, and Kleenex is simply run as as a plugin, before and after
+the Easypy launcher, and Kleenex is simply run as a plugin, before and after
 the job & its tasks runs:
 
     - provision & clean the testbed before job and/or task run
