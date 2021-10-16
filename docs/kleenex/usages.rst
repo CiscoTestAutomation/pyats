@@ -53,7 +53,6 @@ The following is a list of default behaviors during decoupled execution:
     # -------
 
     # using kleenex to clean a physical testbed topology
-    # (using tclclean implementation for device image loading)
     bash$ kleenex -testbed_file physical_testbed.yaml -clean_file clean.yaml
 
 The unique feature of running under decoupled model of execution is the ability
@@ -155,7 +154,6 @@ official test runs in sanity/regression shops.
     # -------
 
     # using kleenex in pyats to clean a physical testbed topology
-    # (using tclclean implementation for device image loading).
     bash$ pyats run job myjob.py --testbed-file physical_testbed.yaml\
                                  --clean-file physical_testbed_clean.yaml\
                                  --invoke-clean
