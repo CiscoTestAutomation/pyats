@@ -91,7 +91,7 @@ Luckily, there are a few known ways to workaround this problem:
 
 4. Any other creative methods you may cook-up :-)
 
-.. _Winpdb: http://winpdb.org/
+.. _Winpdb: http://manpages.ubuntu.com/manpages/bionic/man1/winpdb.1.html
 .. _Multiprocessing: https://docs.python.org/3.4/library/multiprocessing.html
 
 .. hint::

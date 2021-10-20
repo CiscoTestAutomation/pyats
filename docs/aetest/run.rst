@@ -10,7 +10,7 @@ Running TestScripts
     - `Shell Scripts`_
 
 .. _`__main__`: https://docs.python.org/3.4/library/__main__.html
-.. _Shell Scripts: http://linuxcommand.org/writing_shell_scripts.php
+.. _Shell Scripts: http://linuxcommand.org/lc3_writing_shell_scripts.php
 .. _PYTHONPATH: https://docs.python.org/3.4/using/cmdline.html#envvar-PYTHONPATH
 
 There are two primary methods of running ``aetest`` testscripts directly.
@@ -550,7 +550,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
     .. code-block:: bash
 
         bash$ python testscript.py -datafile="/path/to/datafile.yaml"
-        bash$ python testscript.py -datafile="http://<url>/datafile.yaml"
+        bash$ python testscript.py -datafile="http://path.to/datafile.yaml"
 
     .. code-block:: python
 
