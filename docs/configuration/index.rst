@@ -120,6 +120,8 @@ The following fields are currently open for user to customize.
     # Format of the report file generated at the end of execution.
     # Default is JSON.
     format = <json/yaml>
+    # Collect git info, default is True.
+    git_info = <True/False>
 
     # configuration related to timestamps
     [timestamp]
