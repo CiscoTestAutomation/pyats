@@ -110,6 +110,7 @@ that gets installed into your pyATS instance automatically.
       --clean-os-image            space separated images per OS with format os:/path/to/image.bin
       --clean-group-image         space separated images per group with format group:/path/to/image.bin
       --clean-platform-image      space separated images per platform with format platform:/path/to/image.bin
+      --clean-image-json          dictionary of clean images in JSON string (supports base64 encoded strings)
 
     Bringup:
       --logical-testbed-file
@@ -168,6 +169,7 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--clean-os-image``, "space separated images per OS with format os:/path/to/image.bin"
     ``--clean-group-image``, "space separated images per group with format group:/path/to/image.bin"
     ``--clean-platform-image``, "space separated images per platform with format platform:/path/to/image.bin"
+    ``--clean-image-json``, "dictionary of clean images in JSON string. Can be base64 encoded."
     ``--submitter``, "specify a run submitter (defaults to current user)"
     ``--html-logs``, "enable generating HTML logs"
     ``--image``, "specify the current test image information"
@@ -416,6 +418,52 @@ constructed and processed using python `argparse`_ module.  Please also see
                                        --clean-file /path/to/my/clean.yaml\
                                        --invoke-clean\
                                        --clean-platform-image n9k:/path/to/clean_image.bin
+
+``--clean-image-json``
+    JSON string with images for clean. The string can be base64 encoded. The two examples below are equivalent:
+
+    .. code-block:: bash
+
+        bash$ pyats run job /path/to/jobfile.py --clean-image-json '{"os":{"iosxe":["test.bin"]}}'
+        bash$ pyats run job /path/to/jobfile.py --clean-image-json eyJvcyI6eyJpb3N4ZSI6WyJ0ZXN0LmJpbiJdfX0=
+
+    The schema for the JSON string is as follows:
+
+    .. code-block:: json
+
+        {
+            "device": {
+                "DEVICE_NAME": [
+                    "URL_TO_IMAGE"
+                ]
+            },
+            "os": {
+                "OS_NAME": [
+                    "URL_TO_IMAGE"
+                ]
+            },
+            "group": {
+                "GROUP_NAME": [
+                    "URL_TO_IMAGE"
+                ]
+            },
+            "platform": {
+                "PLATFORM_NAME": [
+                    "URL_TO_IMAGE"
+                ]
+            }
+        }
+
+    The clean image json will override any other image arguments as it will be applied after
+    the standard arguments of device image, os image, group image and platform image.
+
+    E.g. using the following argument combination:
+
+    .. code-block:: bash
+
+        --clean-device-image R1:test.bin --clean-image-json '{"os":{"iosxe":["test_new.bin"]}}'
+
+    will use test_new.bin if the device `R1` is an IOSXE device.
 
 ``--clean-scope``
     specifies whether :ref:`clean<kleenex_easypy_integration>`
