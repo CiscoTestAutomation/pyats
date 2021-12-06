@@ -711,16 +711,25 @@ various different user implementations.
                             # Specify the list of devices that belong to this
                             # group (either device name or device alias may
                             # be specified).
-                            # If specified, then platforms: cannot be specified.
-                            # (mandatory if platforms not specified)
+                            # (Do not specify more than a single group type)
+                            # (choose only one from os, platforms, devices group types.)
 
 
             platforms:      # list of platforms
                             # Specify the list of platforms that belong to this
                             # group. The devices in this group are derived from
                             # testbed topology devices with matching platform.
-                            # If specified, then devices: cannot be specified.
-                            # (mandatory if devices not specified)
+                            # (Do not specify more than a single group type)
+                            # (choose only one from os, platforms, devices group types.)
+            
+
+            os:             # list of os
+                            # Specify the list of os that belong to this
+                            # group. The devices in this group are derived from
+                            # testbed topology devices with matching os.
+                            # (Do not specify more than a single group type)
+                            # (choose only one from os, platforms, devices group types.)
+                            
 
 
             images:         # Image(s) to be loaded for this group's
