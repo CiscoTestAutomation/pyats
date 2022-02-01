@@ -183,10 +183,22 @@ some exceptions.
     ``--clean-os-image``, "space separated images per OS with format os:/path/to/image.bin"
     ``--clean-group-image``, "space separated images per group with format group:/path/to/image.bin"
     ``--clean-platform-image``, "space separated images per platform with format platform:/path/to/image.bin"
+    ``--clean-image-json``, "dictionary of clean images in JSON string"
     ``--loglevel``, "kleenex module loglevel"
     ``--logdir``, "directory to save logs to"
+    ``--no-upload``, "disable uploading log to TaaS."
+    ``--runinfo-dir``, "specify alternate runinfo directory"
+    ``--archive-dir``, "specify alternate archive directory"
+    ``--no-archive-subdir``, "disable archive subdirectory creation"
     ``--no-mail``, "disable sending email on abort"
+    ``--orchestrator``, "The specified orchestrator is imported and used to launch and tear down the
+                        requested topology"
     ``--debug``, "Run kleenex in debug mode (synchronous clean, pdb on error)"
+    ``--liveview``, "Starts a liveview server in a separate process"
+    ``--liveview-host``, "Specify host for liveview server. Default is localhost"
+    ``--liveview-port``, "Specify port for liveview server"
+    ``--liveview-callback-url``, "Specify xpresso callback url for jenkins run"
+    ``--liveview-callback-token``, "Specify xpresso token for jenkins run"
 
 
 ``--help``
