@@ -545,12 +545,14 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
 
 ``datafile``, ``-datafile``
     full name and path or URL to the script input datafile file in YAML format. 
+    URL with token can be given like below example.
     For full detail on use cases and examples, refer to :ref:`aetest_datafile`.
 
     .. code-block:: bash
 
         bash$ python testscript.py -datafile="/path/to/datafile.yaml"
         bash$ python testscript.py -datafile="http://<url>/datafile.yaml"
+        bash$ python testscript.py -datafile="http://<token>@<url>/datafile.yaml"
 
     .. code-block:: python
 

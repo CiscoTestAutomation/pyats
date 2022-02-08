@@ -220,11 +220,13 @@ constructed and processed using python `argparse`_ module.  Please also see
     optional argument, used to provide the YAML plugin configuration file. Use
     this if you want to configure your Easypy to run certain plugins in custom
     orders for this particular run. Can be a file path or URL.
+    URL with token can be given like below example.
 
     .. code-block:: bash
 
         bash$ pyats run job /path/to/jobfile.py --configuration /path/to/config.yaml
         bash$ pyats run job /path/to/jobfile.py --configuration "http://<url>/config.yaml"
+        bash$ pyats run job /path/to/jobfile.py --configuration "http://<token>@<url>/config.yaml"
 
 ``--job-uid``
     optional argument. Allows upstream executor (eg, Jenkins) to pass down
@@ -243,6 +245,7 @@ constructed and processed using python `argparse`_ module.  Please also see
 
 ``--testbed-file``
     Specifies the full path/name or URL of YAML topology 
+    URL with token can be given like below example.
     :ref:`topology_testbed_file` to be loaded as part of this run. When used, 
     Easypy automatically loads the testbed yaml file into a topology 
     :ref:`topology_objects`, and passes it to each task inside the jobfiles as 
@@ -261,11 +264,13 @@ constructed and processed using python `argparse`_ module.  Please also see
                                                 --netbox-token=token
                                                 --netbox-url=url
         bash$ pyats run job /path/to/jobfile.py --testbed-file "http://<url>/testbed.yaml"
+        bash$ pyats run job /path/to/jobfile.py --testbed-file "http://<token>@<url>/testbed.yaml"
 
 ``--clean-file``
     Full path or URL to the clean file. This enables testbed cleaning using
     the :ref:`kleenex<kleenex_index>` module.  This option is only useable if
     testbed information is provided using ``--testbed-file`` argument.
+    URL with token can be given like below example.
 
     .. code-block:: bash
 
@@ -275,7 +280,9 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job jobfile.py --testbed-file "http://<url>/testbed.yaml"\
                                        --clean-file "http://<url>/clean.yaml"
                                        --invoke-clean
-
+        bash$ pyats run job jobfile.py --testbed-file "http://<token>@<url>/testbed.yaml"\
+                                       --clean-file "http://<token>@<url>/clean.yaml"
+                                       --invoke-clean
 ``--clean-devices``
     Specifies the list of devices to :ref:`clean<kleenex_easypy_integration>`.
     If not specified, defaults to cleaning all devices specified in the clean
