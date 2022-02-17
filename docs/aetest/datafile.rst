@@ -50,6 +50,11 @@ written in accordance to the :ref:`aetest_datafile_schema` below.
     # as command-line argument
     # python script.py -datafile=/path/to/your/datafile.yaml
 
+    # as a dictionary
+    data = {"parameters": {"param_a": 1, "param_b": 2}}
+    def main():
+        run(script, datafile = data)
+
 Once loaded, the content of this YAML file is then used to dynamically update
 your testscript objects. The following describes this behavior:
 
@@ -80,23 +85,31 @@ your testscript objects. The following describes this behavior:
   YAML file are **updated** into corresponding section's base parameters
   using ``dict.update()`` mechanism.
 
-- all other key/value pairs, including :ref:`aetest_processors` provided via
+- All other key/value pairs, including :ref:`aetest_processors` provided via
   the various ``processors:`` block in the YAML file **replace** any
   existing values & settings.
 
 .. tip::
 
-    to better understand this feature, see the datafile example script
+    To better understand this feature, see the datafile example script
     provided in `GitHub example repository<https://github.com/CiscoTestAutomation/examples/tree/master/datafiles>`_.
 
 .. hint::
 
-    as YAML naturally loads in Python nested dictionaries, it is possible to
+    As YAML naturally loads in Python nested dictionaries, it is possible to
     provide a dictionary that respects the :ref:`aetest_datafile_schema` instead
     of an input file. However, this only works for job file execution and/or
     standalone execution through ``aetest.main()``, and does not work over the
     command line.
 
+.. note::
+
+    It is recommended to define the data objects for different levels
+    (module, common_setup/testcase/common_cleanup classes) and initialize them
+    with a value, e.g. None if no default value is applicable. If you are
+    not defining the variables as module or class attributes, they will not
+    be visible to code inspection tools and raise a warning or be highlighted
+    as undefined variables.
 
 .. _aetest_datafile_schema:
 
@@ -213,9 +226,14 @@ of YAML's sensitivity to indentation and whitespaces.
                         # (useful only when run in Easypy mode)
                         # (optional)
 
-            description:    # testcase description
-                            # string describing what this testcase does
-                            # (optional)
+            description:  # testcase description
+                          # string describing what this testcase does
+                          # (optional)
+
+            parameters:   # testcase parameters
+                          # key/values become parameters belonging to testcase
+                          # sections.
+                          # (optional)
 
             processors:   # testcase's local processors
                           # pre/post processors to be used in this testcase
@@ -240,7 +258,6 @@ of YAML's sensitivity to indentation and whitespaces.
                           #         kwargs:
                           #           <key>: <value>
                           # (optional)
-
 
             # any custom key/value pairs to be set as data (attributes) to
             # this testcase class
@@ -354,7 +371,17 @@ many parameters and values are not defined directly in the script.
 
     logger = logging.getLogger(__name__)
 
+    # Initialize module level data variables,
+    # the values are set via the datafile.
+    module_var_a: None
+    module_var_b: None
+
     class MyTestcase(aetest.Testcase):
+
+        # Initialize testcase class data variables,
+        # the values will be set via the datafile.
+        class_var_a: None
+        class_var_b: None
 
         @aetest.test
         def uid_and_groups(self):
