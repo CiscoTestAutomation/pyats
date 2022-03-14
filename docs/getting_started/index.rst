@@ -14,7 +14,7 @@ test project.
 Installation
 ------------
 
-pyATS currently supports Python ``v3.6.x``, ``v3.7.x`` and  ``v3.8.x``, and is
+pyATS currently supports Python ``v3.7.x``, ``v3.8.x``, ``v3.9.x`` 0and  ``v3.10.x``, and is
 tested to work on the following platforms:
 
     - Linux (tested with CentOS, RHEL, Ubuntu, Alpine)
