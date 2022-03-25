@@ -28,9 +28,16 @@ local testbed, orchestrated testbed, production environment, different scaling n
 or purposes like regression runs. Each profile can have its own specific script arguments
 and runtime specific settings.
 
-The associated script file that the manifest refers to is inferred based on the
-manifest filename with the extension `.py`. E.g. the script filename for a manifest
-with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
+.. warning::
+
+    Passing the job filename as an argument is not supported. See note below.
+
+.. note::
+
+    The associated script file that the manifest refers to is inferred based on the
+    manifest filename with the extension `.py`. E.g. the script filename for a manifest
+    with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
+
 
 
 Script types
