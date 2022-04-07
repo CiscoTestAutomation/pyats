@@ -99,7 +99,7 @@ Connect To All Devices
 ----------------------
 
 ``Testbed`` object also provides a convenience function, ``Testbed.connect()``,
-allowing you to establish asynchronous connection to multiple testbed devices 
+allowing you to establish asynchronous connection to multiple testbed devices
 at the same time.
 
 .. code-block:: python
@@ -119,12 +119,12 @@ at the same time.
     testbed.connect()
 
     # connect to some devices in this testbed
-    testbed.connect(testbed.devices['uut'], 
+    testbed.connect(testbed.devices['uut'],
                     testbed.devices['helper'])
 
     # connect to some devices in this testbed
     # and provide unique vias
-    testbed.connect(testbed.devices['uut'], 
+    testbed.connect(testbed.devices['uut'],
                     testbed.devices['helper'],
                     vias = {'uut': 'cli',
                             'helper': 'console'})
@@ -132,7 +132,7 @@ at the same time.
     # connect to some devices in this testbed
     # using unique vias per device, and shared kwargs (eg, log_stdout = False)
     # shared keyword-arguments will be passed to every single connection
-    testbed.connect(testbed.devices['uut'], 
+    testbed.connect(testbed.devices['uut'],
                     testbed.devices['helper'],
                     vias = {'uut': 'cli',
                             'helper': 'console'},
@@ -140,10 +140,10 @@ at the same time.
 
 This is a convenience function, as under the hood it uses threads perform
 per device ``.connect()`` asynchronously. All other behavior follows that of
-the above connection manager concept. 
+the above connection manager concept.
 
 Disconnect From All Devices
-----------------------
+---------------------------
 
 ``Testbed`` object provides a convenience function, ``Testbed.disconnect()``,
 allowing you to make asynchronous disconnection from multiple testbed devices
@@ -188,7 +188,7 @@ and can be checked by command ``.conectionmgr.connections``, the same objects
 will be used to connect to device again.
 
 Destroy connections to all device
-----------------------
+---------------------------------
 
 ``Testbed`` object provides ``Testbed.destroy()`` function, allowing you
 to destroy connections asynchronously to multiple testbed devices. Unlike
@@ -243,7 +243,7 @@ The basic concept is simple:
 
     - ``Link`` connects one or more ``Interface`` together.
 
-It may be useful to refer to :ref:`topology_concept` page for detailed object 
+It may be useful to refer to :ref:`topology_concept` page for detailed object
 attributes and how everything is tailored together.
 
 .. code-block:: python
@@ -398,6 +398,11 @@ using aliases as an added feature.
     device_1 = testbed.devices['device-1']
     device_2 = testbed.devices['device-2']
 
+    # if the device name or alias is a valid python name,
+    # the object can be accessed via attribute syntax
+    device1 = testbed.devices.device1
+    device1 = testbed.devices.alias1
+
     # device in testbed check also works using alias
     'device-1' in testbed.devices
     # True
@@ -417,6 +422,11 @@ using aliases as an added feature.
     'device1-intf1' in device_1.interfaces
     True
 
+    # if the interface name or alias is a valid python name,
+    # the object can be accessed via attribute syntax
+    device_1.interfaces.Eth0
+    device_1.interfaces.alias_eth0
+
     # in addition, to test if something is an alias or not, use is_alias()
     device_1.interfaces.is_alias('device1-intf1')
     # True
@@ -426,6 +436,12 @@ using aliases as an added feature.
 Thus, as long as the testscript does not hard-code device and interface names,
 and instead refers to them using aliases, the script would remain agnostic,
 and run on any similarly configured testbeds with the same topology.
+
+.. tip::
+
+    Device and interface objects can be accessed via attribute syntax if the name
+    or alias is a valid python name. For example: ``testbed.devices.uut`` instead of
+    ``testbed.devices['uut']``.
 
 .. note::
 

@@ -117,7 +117,7 @@ references, ``topology.loader`` effectively added this using specific syntax
     #   %ASK{optional prompt text}
     #   %ENC{encoded text}
     #   %ENC{encoded text, prefix=x}
-    #   %CLI(cli_argument_name}
+    #   %CLI{cli_argument_name}
     #
     #   - use %{ } to denote the begin and end of a markup block
     #   - use . to separate reference path
