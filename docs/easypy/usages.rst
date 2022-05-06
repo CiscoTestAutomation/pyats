@@ -57,6 +57,8 @@ that gets installed into your pyATS instance automatically.
       --job-uid             Unique ID identifiying this job run
       --pyats-configuration
                             pyats configuration override file
+    Tasks:
+      --task-uids LOGIC     Logic string to match task UIDs to run eg: "Or('Task-[12]')"
 
     Mailing:
       --no-mail             disable report email notifications
@@ -160,6 +162,7 @@ constructed and processed using python `argparse`_ module.  Please also see
     ``--configuration``, "configuration yaml file for plugins"
     ``--pyats-configuration``, "additional pyats configuration for execution"
     ``--job-uid``, "unique id from upper systems identifying this run"
+    ``--task-uids``, "Logic string with Task UID filter"
     ``--testbed-file``, "full path/URL for YAML testbed file"
     ``--clean-file``, "file path/URL to file containing :ref:`clean_file` information"
     ``--clean-devices``, "a list of devices to :ref:`clean<kleenex_index>`"
@@ -243,12 +246,23 @@ constructed and processed using python `argparse`_ module.  Please also see
 
         bash$ pyats run job /path/to/jobfile.py --pyats-configuration /path/to/my/pyats.conf
 
+``--task-uids``
+    Logic string to filter which tasks will be run. See :ref:`logic_from_str`.
+
+    .. code-block:: bash
+
+        # filter tasks to run, run only task "Task-1"
+        bash$ pyats run job job.py --task-uids "Or('Task-1$')"
+
+        # filter tasks to run, run task "task1" and "task3"
+        bash$ pyats run job job.py --task-uids "Or('task[13]$')"
+
 ``--testbed-file``
-    Specifies the full path/name or URL of YAML topology 
+    Specifies the full path/name or URL of YAML topology
     URL with token can be given like below example.
-    :ref:`topology_testbed_file` to be loaded as part of this run. When used, 
-    Easypy automatically loads the testbed yaml file into a topology 
-    :ref:`topology_objects`, and passes it to each task inside the jobfiles as 
+    :ref:`topology_testbed_file` to be loaded as part of this run. When used,
+    Easypy automatically loads the testbed yaml file into a topology
+    :ref:`topology_objects`, and passes it to each task inside the jobfiles as
     its ``testbed`` parameter. Refer to :ref:`easypy_testbed` for more details.
 
     Alternatively, you can specify a source to be loaded with the testbed
@@ -556,12 +570,12 @@ constructed and processed using python `argparse`_ module.  Please also see
         bash$ pyats run job /path/to/jobfile.py --meta "{\"key\":\"value\"}"
         bash$ pyats run job /path/to/jobfile.py --meta eyJrZXkiOiJ2YWx1ZSJ9
 
-    URLs to JSON files, paths to JSON files, and individual key/value pairs can 
-    also be supplied. These data sources can be freely combined and the `--meta` 
-    argument can be used multiple times per command. Individual key/value pairs 
-    must use an equals sign (`=`) to separate the key and the value. Being able 
-    to combine different sources of information for the JSON meta dictionary 
-    means that extra info can be added quickly and easily on a per-job basis. 
+    URLs to JSON files, paths to JSON files, and individual key/value pairs can
+    also be supplied. These data sources can be freely combined and the `--meta`
+    argument can be used multiple times per command. Individual key/value pairs
+    must use an equals sign (`=`) to separate the key and the value. Being able
+    to combine different sources of information for the JSON meta dictionary
+    means that extra info can be added quickly and easily on a per-job basis.
     See examples below:
 
     .. code-block:: bash
@@ -659,7 +673,6 @@ constructed and processed using python `argparse`_ module.  Please also see
 
         # enable and also copy report to specified location
         bash$ pyats run job /path/to/job/file.py --xunit /path/to/dir
-
 
 .. _easypy_argument_propagation:
 
