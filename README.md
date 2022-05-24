@@ -22,8 +22,6 @@ $ pip install pyats[full]
 ##### Where do I get support?
 You can send an email to pyats-support-ext@cisco.com directly, or post a question in the issues page in this repo. The team will get back to you as soon as possible.
 
-You can also tweet @simingy and @jeaubin5 on twitter, hash-tag #pyATS.
-
 Note that if you received pyATS/scripts as part of a collaborated effort with a Cisco development/test/engineering team, you should be approaching that team instead for script support.
 
 ##### Is pyATS Open Source?
