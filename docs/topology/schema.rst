@@ -220,8 +220,19 @@ Production YAML Schema
 
             peripherals:  # device hardware block
                           # may contain anything describing peripherals
-                          # connected to the device.
+                          # connected to the device. 
+                          # currently supported devices are terminal servers 
+                          # and power cyclers.
                           # (optional)
+
+                terminal_server:  # device terminal server information
+                                  # with its ports on which clear line
+                                  # needs to be executed
+                                  # (optional)
+
+                power_cycler:     # device power cycler information
+                                  # to powercycle the device
+                                  # (optional)
 
             credentials:
                 # credential details common to the device
