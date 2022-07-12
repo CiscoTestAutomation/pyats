@@ -17,21 +17,21 @@ Test Parameters
 
 ``aetest`` is a data-driven test infrastructure. Its scripts and testcases are
 intended to be driven dynamically by:
-    
+
 - data in the form of input arguments to the testscript
 - dynamic data generated during runtime
 
 The collection of dynamic data that artificially affects the behavior of
 testscripts and testcases in ``aetest`` is called **parameters**. It adheres to
 a pre-defined set of parent/child propagation relationships, and may be used as
-`Function Arguments`_ to each test section. 
+`Function Arguments`_ to each test section.
 
 This feature is a supplement to static testcase data (attribute values stored
 within each testcases).
 
 .. tip::
 
-    The concept of parameters in ``aetest`` and its underlying object 
+    The concept of parameters in ``aetest`` and its underlying object
     relationship model is rather complex. This section of the documentation
     is structured so that the understanding of this core concept is built-up
     iteratively - *peeling the onion*.
@@ -43,9 +43,9 @@ Before delving deeper into the concept and mechanism of **parameters**, let's
 first spend some time on what it is, why they are needed, and how they may
 benefit the end user.
 
-Parameters are a special kind of variable, used within functions and methods to 
+Parameters are a special kind of variable, used within functions and methods to
 refer and access its input data (arguments). If you consider the function and
-methods as the "doer", then parameters are the "what to do with". Eg, an 
+methods as the "doer", then parameters are the "what to do with". Eg, an
 ``add`` function would require 2 or more parameters to be "added together".
 
 .. code-block:: python
@@ -75,8 +75,8 @@ methods as the "doer", then parameters are the "what to do with". Eg, an
     # 103
 
 In a data-driven testing, testscripts are the *doers*, performing the act
-of testing a facet of some product. Its arguments and parameters are thus the 
-input data that influences the specific acts of testing being carried out. Here 
+of testing a facet of some product. Its arguments and parameters are thus the
+input data that influences the specific acts of testing being carried out. Here
 are some possible use cases:
 
     - ``testbed`` argument to a script tells it which testbed to run on, and
@@ -88,7 +88,7 @@ are some possible use cases:
 
     - other toggle arguments that dynamically turns on/off certain testcases,
       and/or combination of features to be configured & tested
-    
+
     - etc.
 
 Of course, the parameters feature in ``aetest`` is much more than just script
@@ -99,7 +99,7 @@ Relationship Model
 ------------------
 
 In ``aetest``, parameters are **relative**: parameters corresponding to each
-object is the combination of its local specific parameters, and all of its 
+object is the combination of its local specific parameters, and all of its
 parent object's parameters. Eg:
 
 - ``Testcase`` parameters = local parameters + ``TestScript``
@@ -115,7 +115,7 @@ parameters.
 
 In case when an object and its parent (or its parent's parent, etc) have the same
 parameter names defined, then the parameter value closest to the current scope
-is used/prefered. 
+is used/prefered.
 
 .. figure:: parameter_relations.png
     :align: center
@@ -123,7 +123,7 @@ is used/prefered.
     *Parameter Relationship Model In a Nutshell*
 
 Below is a behavior demonstration of this relationship model. In actual script
-execution, this happens behind-the-scenes automatically. 
+execution, this happens behind-the-scenes automatically.
 
 .. code-block:: python
 
@@ -134,7 +134,7 @@ execution, this happens behind-the-scenes automatically.
     #   of object parameters & their parents.
 
     # in this example, assume there are the following objects:
-    #   
+    #
     #   testscript: the TestScript object
     #   testcase:   the Testcase object. (parent=testscript)
 
@@ -152,11 +152,11 @@ execution, this happens behind-the-scenes automatically.
         'param_C': 3,
     }
 
-    # during runtime, the combined parameters seen at the 
+    # during runtime, the combined parameters seen at the
     # testcase level, would be equivalent to the following:
     #   - take the testscript parameters as basis
     #   - and add to it, testcase parameters
-    # 
+    #
     # eg:
     new_testcase_parameters = testscript.parameters.copy()
     new_testcase_parameters.update(testcase.parameters)
@@ -168,14 +168,14 @@ execution, this happens behind-the-scenes automatically.
     # {'param_A': 100, 'param_B': 2, 'param_C': 3}
 
 .. hint::
-    
-    in other words, childs inherits but shadows parent parameters. This is 
+
+    in other words, childs inherits but shadows parent parameters. This is
     similar to Python `Variable Scoping`_ concept.
 
 Parameters Property
 -------------------
 
-Every top-level object in ``aetest`` comes with the special ``parameters`` 
+Every top-level object in ``aetest`` comes with the special ``parameters``
 property: a dictionary containing the key/value data pairs relative to this
 object (:ref:`object_model`). Its default values can be set/updated by the user
 within the testscript.
@@ -204,7 +204,7 @@ within the testscript.
     class Testcase(aetest.Testcase):
 
         # all default parameters specific to this testcase is declared
-        # in its own parameters dictionary. 
+        # in its own parameters dictionary.
         parameters = {
             'generic_param_A': 200
         }
@@ -220,22 +220,22 @@ of their corresponding section. Eg:
       ``Testcase`` object parameter.
 
 One exception to the above is method local parameters for sections such as
-``subsection``, ``setup``, ``test`` and ``cleanup``. Even though their 
+``subsection``, ``setup``, ``test`` and ``cleanup``. Even though their
 corresponding classes (``Subection``, ``SetupSection``, ``TestSection``,
 ``CleanupSection``) also have the parameters property, these class instances
 only exists briefly during runtime (see :ref:`aetest_function_classes`), so
 their attributes are mostly only dynamic in nature, set & controlled by the
 infrastructure. This is also coupled with the fact that adding attributes (such
-as ``parameters``) to methods definitions are rather awkward to code in the 
-script. Thus, for all intents and purposes, consolidate section specific 
+as ``parameters``) to methods definitions are rather awkward to code in the
+script. Thus, for all intents and purposes, consolidate section specific
 parameters to their parent ``TestContainer`` sections.
 
 In addition to pre-defined parameters within the script, it is also possible to
-dynamically access & update parameters. 
+dynamically access & update parameters.
 
 .. important::
-    
-    even though parameters seen at each object level also includes its parent's 
+
+    even though parameters seen at each object level also includes its parent's
     parameters, setting & updating the parameters dictionary is only reflected
     locally, and does not propagate to the parent. This is also inline with how
     Python  `Variable Scoping`_ works.
@@ -257,7 +257,7 @@ dynamically access & update parameters.
 
         # within any sections, the parent container parameters are directly
         # accessible (applicable to setup/test/cleanup and subsections)
-        
+
         # here we'll do a combination access & updating of parameters
         @aetest.setup
         def setup(self):
@@ -275,8 +275,8 @@ dynamically access & update parameters.
             # access & print parent testscript parameters
             # (following the parent model)
             print(self.parent.parameters)
-            # {'generic_param_A': 100, 
-            #  'testscript_param_B': [], 
+            # {'generic_param_A': 100,
+            #  'testscript_param_B': [],
             #  'testscript_param_A': 'some value'}
 
             # access & print all current known parameter
@@ -284,8 +284,8 @@ dynamically access & update parameters.
             # (shadowed by local parameters, if the same name exists)
             print(self.parameters)
             # {'new_parameter_from_setup': 'new value',
-            #  'generic_param_A': 200, 
-            #  'testscript_param_B': [], 
+            #  'generic_param_A': 200,
+            #  'testscript_param_B': [],
             #  'testscript_param_A': 'another value'}
 
 
@@ -296,7 +296,7 @@ section of modifying testcase parameters based on current testbed state, and
 altering the behavior of ensuiting ``test`` sections, etc.
 
 .. tip::
-    
+
     ``parameters`` properties are implemented internally as a ``ChainMap``
     object. See `Collections.ChainMap`_ documentation if you are eager to know.
 
@@ -311,8 +311,8 @@ Script Arguments
 In short, any arguments passed to the testscript before startup becomes part of
 the ``TestScript`` parameter. This includes all the arguments passed through the
 :ref:`easypy_jobfile` during :ref:`aetest_jobfile_execution`, and/or any command
-line arguments parsed and passed to ``aetest.main()`` during 
-:ref:`aetest_standalone_execution`. 
+line arguments parsed and passed to ``aetest.main()`` during
+:ref:`aetest_standalone_execution`.
 
 .. code-block:: python
 
@@ -349,23 +349,23 @@ line arguments parsed and passed to ``aetest.main()`` during
 
 As demonstrated in the above example, script arguments/parameters are actually
 added on top of ``TestScript`` parameters defined within the script. In
-other words, script arguments are added dynamically to the current running 
+other words, script arguments are added dynamically to the current running
 script's base parameters, and overwrites any existing ones.
 
 .. tip::
-    
+
     define your default parameters in the script, and change the behavior of
     the testscript by overwriting specific ones using script arguments.
 
-.. _parameters_as_funcargs: 
+.. _parameters_as_funcargs:
 
 Parameters as Function Arguments
 --------------------------------
 
-``parameters`` property & functionality provides a means for objects within 
+``parameters`` property & functionality provides a means for objects within
 ``aetest`` to follow the :ref:`parent` model and aggregate data together in a
 clean, accessible format. It serves also as the basis for providing section
-methods their `Function Arguments`_. This is the main mechanism behind the 
+methods their `Function Arguments`_. This is the main mechanism behind the
 data-driven concept of ``aetest``: function/methods are **driven** by input
 parameters.
 
@@ -404,9 +404,9 @@ their supports.
 
     class Testcase(aetest.Testcase):
 
-        # this setup section definition identifies "param_B" as 
+        # this setup section definition identifies "param_B" as
         # as a input requirement. as this parameter is available at this
-        # testcase level (aggregated from parent testscript), it 
+        # testcase level (aggregated from parent testscript), it
         # is passed in as input
         @aetest.setup
         def setup(self, param_B):
@@ -436,7 +436,7 @@ their supports.
         @aetest.cleanup
         def cleanup(self, **kwargs):
             print(kwargs)
-            # {'param_A': 1, 
+            # {'param_A': 1,
             #  'param_B': {'new_key': 'a key added during setup section'}}
 
 This is the preferred method of accessing parameters: by passing each in
@@ -452,12 +452,12 @@ explicitly as function arguments. It is more pythonic:
       operations)
 
     - maintaining the ability to call each section as a function with various
-      arguments during test/debugging situations. 
+      arguments during test/debugging situations.
 
     - etc...
 
 .. tip::
-    
+
     once a parameter is passed into a section as a function argument, it becomes
     a local variable. All rules of `Variable Scoping`_ apply.
 
@@ -465,10 +465,10 @@ explicitly as function arguments. It is more pythonic:
 Callable Parameters
 -------------------
 
-A callable parameter is a one that evaluates to ``True`` using callable_. When 
-a callable parameter is filled as a function argument to test sections, the 
-infrastructure "calls" it, and uses its return value as the actual argument 
-parameter. 
+A callable parameter is a one that evaluates to ``True`` using callable_. When
+a callable parameter is filled as a function argument to test sections, the
+infrastructure "calls" it, and uses its return value as the actual argument
+parameter.
 
 .. code-block:: python
 
@@ -482,7 +482,7 @@ parameter.
 
     # define a callable parameter called "number"
     # the provided parameter value is the random function, imported
-    # from python random library. 
+    # from python random library.
     # when called, random.random() generates a float number between 0 and 1
     parameters = {
         'number': random.random,
@@ -491,7 +491,7 @@ parameter.
     class Testcase(aetest.Testcase):
 
         # as the "number" parameter's value is the callable function
-        # random.random, this function is evaluated right before the 
+        # random.random, this function is evaluated right before the
         # execution of this test method, and the call result is then used
         # as the actual argument input
         @aetest.test
@@ -510,7 +510,7 @@ parameter.
             # <built-in method random of Random object at 0x91e2fc4>
 
 
-Callable parameters still shows up as their original function object when 
+Callable parameters still shows up as their original function object when
 accessed through ``parameters`` property. They are only evaluated (called) when
 used as function arguments to test methods. This evaluation occurs "on demand":
 
@@ -519,7 +519,7 @@ used as function arguments to test methods. This evaluation occurs "on demand":
     - each method gets its own indepedent evaluated result.
 
 The only limitation with callable parameters is that they cannot have arguments.
-``aetest`` would not know how to fulfill them during runtime. 
+``aetest`` would not know how to fulfill them during runtime.
 
 .. tip::
 
@@ -534,17 +534,17 @@ Parametrizing Functions
 -----------------------
 
 Parametrized functions are a special breed of "smart" callable parameters. They
-support arguments, are capable of identifying the current execution context, and 
+support arguments, are capable of identifying the current execution context, and
 act accordingly.
 
-A parametrized function is declared when the ``@parameters.parametrize`` 
+A parametrized function is declared when the ``@parameters.parametrize``
 decorator is used on a function in your testscript. This also adds the newly
-created parametrized function automatically as part of ``TestScript`` 
-parameters, using the function name as the parameter name. 
+created parametrized function automatically as part of ``TestScript``
+parameters, using the function name as the parameter name.
 
-During runtime, the behavior of these parametrized functions is exactly 
+During runtime, the behavior of these parametrized functions is exactly
 identical to its callable parameter sibling, with the following additions:
-    
+
     - any arguments to the ``@parameters.parametrize`` decorator are stored
       and used as function arguments during the evaluation.
 
@@ -563,11 +563,11 @@ identical to its callable parameter sibling, with the following additions:
 
     # defining a parametrized function called "number"
     # ------------------------------------------------
-    # this function accepts a lower and an upper bound, and 
+    # this function accepts a lower and an upper bound, and
     # uses the random.randint() api to do the actual work.
     # as part of this parametrization declaration, notice that
     # a lower_bound and an upper_bound was provided. these values
-    # are used as function arguments when the function is evaluated 
+    # are used as function arguments when the function is evaluated
     @aetest.parameters.parametrize(lower_bound=1, upper_bound=100)
     def number(lower_bound, upper_bound):
         return random.randint(lower_bound, upper_bound)
@@ -612,8 +612,8 @@ identical to its callable parameter sibling, with the following additions:
             # test whether expectation is > than generated number
             assert expectation > number
 
-Essentially, parametrized functions allows users to create smart, dynamic 
-parameter values that can vary based on the current state of execution: by 
+Essentially, parametrized functions allows users to create smart, dynamic
+parameter values that can vary based on the current state of execution: by
 leveraging the :ref:`object_model` and :ref:`parent` relationship, the use cases
 are endless:
 
@@ -625,8 +625,8 @@ are endless:
     - etc.
 
 .. warning::
-    
-    when using ``section`` argument in parametrized function, the provided 
+
+    when using ``section`` argument in parametrized function, the provided
     section object is the same as the internal parameter described in the next
     topic below. Try not to break stuff.
 
@@ -639,20 +639,21 @@ Reserved parameters are those that are generated by the test infrastructure
 during runtime. They are not normally seen when accessing the ``parameters``
 dictionary property, but are extremely useful when you need to refer to
 ``aetest`` internal objects that are normally unaccessible, and are needed when
-using certain ``aetest`` optional features, such as :ref:`aetest_steps`. 
+using certain ``aetest`` optional features, such as :ref:`aetest_steps`.
 
 .. csv-table:: Current Reserved Parameters
     :header: Name, Type, Description
     :widths: 15, 15, 70
 
     ``testscript``, internal,  proxy to the ``TestScript`` object
-    ``section``, internal, "proxy to the current test section object. 
+    ``section``, internal, "proxy to the current test section object.
     Eg: ``TestSection``"
-    ``steps``, feature, "proxy to ``Steps`` object for :ref:`aetest_steps` 
+    ``reporter``, internal, "proxy to :ref:``
+    ``steps``, feature, "proxy to ``Steps`` object for :ref:`aetest_steps`
     feature."
 
 .. code-block:: text
-    
+
     Reserved Parameter Types
     ------------------------
 
@@ -661,13 +662,13 @@ using certain ``aetest`` optional features, such as :ref:`aetest_steps`.
 
 
 Reserved parameters are special: they are only accessible if their name is
-provided as a keyword argument to test methods (or in the case of parametrized 
-functions, ``section`` as a function input argument). They remain hidden in all 
-other cases. 
+provided as a keyword argument to test methods (or in the case of parametrized
+functions, ``section`` as a function input argument). They remain hidden in all
+other cases.
 
-They are *reserved*: eg, they are resolved first and takes precedence over 
+They are *reserved*: eg, they are resolved first and takes precedence over
 normal parameters. In the case where a normal parameter is created with the
-same name, that parameter is only accessible using the ``parameters`` 
+same name, that parameter is only accessible using the ``parameters``
 property, and is not useable as a function argument.
 
 .. code-block:: python
@@ -704,10 +705,10 @@ property, and is not useable as a function argument.
             # subsection_one
 
             # steps object enables the usages of steps
-            with steps.start('a new demo step'): 
+            with steps.start('a new demo step'):
                 pass
 
-        # reserved parameters do not show up in **kwargs 
+        # reserved parameters do not show up in **kwargs
         @aetest.subsection
         def subsection_two(self, **kwargs):
 
@@ -726,7 +727,7 @@ property, and is not useable as a function argument.
 
 Reserved parameters provides ``aetest`` a mechanism to offer optional features
 without polluting the :ref:`object_model` with additional attributes. It also
-allows users to write testscripts that delve deeper and interact with the 
+allows users to write testscripts that delve deeper and interact with the
 internals of ``aetest`` using a supported method, instead of hacking around.
 
     *With great power, comes great responsibilities* - use them wisely.
@@ -740,7 +741,7 @@ internals of ``aetest`` using a supported method, instead of hacking around.
 .. warning::
 
     modifying internal parameters without knowing what you're doing may result
-    in catastrophic failures, and/or inexplicable script behaviors. 
+    in catastrophic failures, and/or inexplicable script behaviors.
 
     Monkey patching internals is strictly prohibited. Doing so will void your
     warranty: **no further support will be provided.**

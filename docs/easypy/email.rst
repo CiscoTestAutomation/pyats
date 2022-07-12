@@ -19,39 +19,39 @@ The following describes the default email report content. Note that fields in
 
     # Default Email Subject
     # ---------------------
-    pyATS Report - job: {jobname} by: {user}, total: # (P:#, PX:#, F:# ...)
+    pyATS Report - job: {runtime.job.name} by: {runtime.env.user}, total: {runtime.job.results[total]} (P:{runtime.job.results[passed]}, PX:{runtime.job.results[passx]}, F:{runtime.job.results[failed]} ...)
 
 
     # Default Email Body
     # ------------------
-    pyATS Instance   : {pyats_instance_path}
-    Python Version   : {python_name}-{python_version} ({platform arch bits})
-    CLI Arguments    : {easypy_cli_arguments}
-    User             : {user_id}
-    Host Server      : {hostname}
-    Host OS Version  : {linux_distro} ({system_architecture})
+    pyATS Instance   : {runtime.env.prefix}
+    Python Version   : {runtime.env.python.name}-{runtime.env.python.version} ({runtime.env.python.architecture})
+    CLI Arguments    : {runtime.env.argv.all}
+    User             : {runtime.env.user}
+    Host Server      : {runtime.env.host.name}
+    Host OS Version  : {runtime.env.host.distro} ({runtime.env.host.architecture})
 
     Job Information
-        Name         : {job.name}
-        Start time   : {job.starttime}
-        Stop time    : {job.stoptime}
-        Elapsed time : {job.elapsedtime}
-        Archive      : {job.archive}
+        Name         : {runtime.job.name}
+        Start time   : {runtime.job.starttime}
+        Stop time    : {runtime.job.stoptime}
+        Elapsed time : {runtime.job.elapsedtime}
+        Archive      : {runtime.archive}
 
-    Total Tasks    : {job.taskcount}
+    Total Tasks    : {runtime.tasks.count} {runtime.tasks.error_str}
 
     Overall Stats
-        Passed     : {#}
-        Passx      : {#}
-        Failed     : {#}
-        Aborted    : {#}
-        Blocked    : {#}
-        Skipped    : {#}
-        Errored    : {#}
+        Passed     : {runtime.job.results[passed]}
+        Passx      : {runtime.job.results[passx]}
+        Failed     : {runtime.job.results[failed]}
+        Aborted    : {runtime.job.results[aborted]}
+        Blocked    : {runtime.job.results[blocked]}
+        Skipped    : {runtime.job.results[skipped]}
+        Errored    : {runtime.job.results[errored]}
 
-        TOTAL      : {#}
+        TOTAL      : {runtime.job.results[total]}
 
-    Success Rate   : #.## %
+    Success Rate   : {runtime.job.results[success_rate]:.02f} %
 
     +------------------------------------------------------------------------------+
     |                             Task Result Summary                              |
@@ -101,7 +101,8 @@ three editable fields:
 ``mail_report.subject``
     contains the current report subject template (defaults to the above). This
     field reflects current custom subject if ``--mail-subject`` argument is used
-    to invoke ``pyats run job``.
+    to invoke ``pyats run job``, or if the ``email.subject`` configuration is
+    populated.
 
 ``mail_report.contents``
     a sortable, :ref:`orderabledict` containing report section titles and
