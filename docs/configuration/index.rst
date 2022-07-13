@@ -83,6 +83,10 @@ The following fields are currently open for user to customize.
     # (use this to enable setting recipients to just ID without @domain.com)
     default_domain = <domain.com>
 
+    # subject to use for report email
+    # formatted with the easypy runtime object before sending
+    subject = <email subject template>
+
     # configuration related to log viewing
     [logs]
     server.host = <host interface/ip to start log server on>
