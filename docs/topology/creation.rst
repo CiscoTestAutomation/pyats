@@ -109,6 +109,7 @@ references, ``topology.loader`` effectively added this using specific syntax
     # basic syntax
     # ------------
     #   %{<path>.<path>.<...>}
+    #   %{<path>.<path>.<...>.keys()}
     #   %INTF{logical_interface_name}
     #   %ENV{environment_variable_name}
     #   %CALLABLE{path_to_callable}
@@ -122,6 +123,7 @@ references, ``topology.loader`` effectively added this using specific syntax
     #   - use %{ } to denote the begin and end of a markup block
     #   - use . to separate reference path
     #   - use 'self' as first word to reference current device
+    #   - use '.keys()' to get the key values for a path
     #   - The %INTF{ } form causes the logical interface name to be
     #     replaced with the actual interface name from the
     #     device's topology block.
@@ -153,6 +155,9 @@ references, ``topology.loader`` effectively added this using specific syntax
 
     # reference to arbitrary attribute within this YAML file
     %{a.b.c}
+
+    # reference to the list of keys of this attribute within this YAML file
+    %{d.e.keys()}
 
     # reference to environment variable from the os
     # (replaced with actual environment variable name)
