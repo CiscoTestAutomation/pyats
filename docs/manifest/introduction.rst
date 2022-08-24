@@ -48,7 +48,7 @@ the manifest. Currently, the supported types for the manifest are:
 
     * easypy
 
-Only suported script types have an execution runtime that allows
+Only supported script types have an execution runtime that allows
 the manifest to execute the script.
 
 
@@ -80,11 +80,13 @@ The internal argument structure is translated to the command line argument strin
     * Arguments may explicitly define dash syntax, e.g `"-key": value`
     * Argument values are quoted using double quotes, e.g. `val1` will translate to `"val1"`
     * Arguments specified as a list will translate to `--key "val1" "val2"`
-    * If the value is `*N`, repeat the argument key N number of times
+    * If the value is `*N`, repeat the argument key N number of times (e.g. `"-v": "*3"` translates to `-v -v -v`)
     * If the value is a boolean, leave out the value and only add
-      the key to the argument string, e.g. `flag: True` translates to `--flag`.
-    * If the boolean needs to be explicitly added to the argument string, the value
-      must be explicitly specified as a string, e.g. `key: "True"`
+      the key to the argument string, e.g. `flag: True` translates to `--flag`. Note:
+      if the boolean needs to be explicitly added to the argument string, the value
+      must be explicitly specified as a string, e.g. `key: "True"` (not as a boolean value).
+      See below for overriding boolean arguments.
+    * If the `meta` argument is used on the command line, it will be prepended as an additional meta argument.
 
 For example, the script arguments defined in the manifest could look like this:
 
@@ -109,6 +111,46 @@ For example running the manifest execution with the above arguments and adding t
 .. code-block:: shell
 
     $ pyats validate manifest job.tem --profile local --testbed-file testbed2.yaml
+
+**Meta argument handling**
+
+If the `meta` argument is used on the command line, it will be prepended
+as an additional meta argument. Note, the value for the `meta` argument provided
+via a *profile* argument will override the default value (same as for any other argument).
+
+.. code-block:: yaml
+
+    arguments:
+        meta: key1=value1
+
+.. code-block::
+
+    $ pyats validate manifest job.tem --meta key2=value2
+
+The above will result in the following command line arguments to be used:
+
+.. code-block::
+
+    pyats run job job.py --meta key2=value2 --meta key1=value1
+
+
+**Overriding boolean arguments**
+
+You can override boolean arguments by specifying the boolean string value after the argument
+on the command line, i.e. `"False"` or `"True"`.
+
+With below example, the ``no-mail: True`` argument specified in the manifest can be overriden
+by specifying the argument on the manifest command line with value `False`. This combination
+will result in the `--no-mail` argument *not* to be added to the `pyats run job` command.
+
+.. code-block:: yaml
+
+    arguments:
+        no-mail: True
+
+.. code-block:: shell
+
+    $ pyats validate manifest job.tem --no-mail False
 
 
 runtimes
