@@ -242,18 +242,24 @@ Task Class
 
 ``Task`` class objects represent the task/testscript being executed in a child
 process. It is a subclass of Python ``multiprocessing.Process`` class, and
-always uses ``multiproessing.get_context('fork')`` to fork and create child
-processes.
+always uses ``multiprocessing.get_context('fork')`` to fork and create child
+processes. The ``gTask`` class object is used for Genie Tasks.
 
 .. csv-table:: Task Class Arguments
     :header: "Argument", "Description"
 
     ``testscript``, "testscript to be run in this task"
-    ``taskid``, "unique task id (defaults to ``Task-#`` where # is an
-    incrementing number)"
+    ``taskid``, "unique task id (defaults to ``Task-#`` where # is an incrementing number)"
     ``runtime``, "easypy runtime object"
-    ``kwargs``, "any other keyword-arguments to be passed to the testscript
-    as script parameters"
+    ``clean_files``, "List of clean files, specific to this task (optional)"
+    ``logical_testbed_file``, "Path to logical testbed file, specific to this task (optional)"
+    ``kwargs``, "any other keyword-arguments to be passed to the testscript as script parameters"
+
+For Genie tasks, the `gTask` class can be used. No testscript should be specified for Genie tasks.
+
+The ``clean_files`` and ``logical_testbed_File`` arguments are optional arguments
+that can be passed if the task uses task specific clean. By default, the job level
+clean arguments are used.
 
 Like its parent ``Process`` class, instantiating a ``Task`` object does not
 create the actual child process: the class constructor only sets internal states
@@ -349,6 +355,32 @@ each task process.
 
             # raise exception
             raise TimeoutError('Not all tasks finished in 5 minutes!')
+
+Example for Genie tasks with gTask. The ``gTask`` class is imported from the `genie.harness.main` module.
+
+.. code-block:: python
+
+    # Example
+    # -------
+    #
+    #   job file tasks using gTask() api
+
+    from genie.harness.main import gTask
+
+    def main(runtime):
+
+        # using Task class to create a task object
+        task_1 = gTask(trigger_datafile='trigger_data.yaml',
+                       config_datafile='config_data.yaml',
+                       subsection_datafile='subsection_data.yaml',
+                       trigger_uids='TestBgp',
+                       taskid='task1')
+
+        # start the task
+        task_1.start()
+
+        # wait for a max runtime of 60*5 seconds = 5 minutes
+        task_1.wait(60*5)
 
 Easypy expects all tasks to be finished/terminated when ``main()`` scope is
 exited (eg, the jobfile finished execution). Therefore, all tasks created and
