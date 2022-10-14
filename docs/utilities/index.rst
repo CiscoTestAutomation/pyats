@@ -11,5 +11,6 @@ Utilities
    file_transfer_utilities
    file_transfer_server
    import_utils
+   yaml_markup
 
 .. sectionauthor:: Myles Dear <mdear@cisco.com>
