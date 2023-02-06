@@ -153,6 +153,16 @@ Markup Examples
                 tacacs: "%{testbed.passwords.enable}"
             tacacs:
                 username: admin
+.. note::
+
+    Make sure to enclose strings with % sign in quotes
+    in the yaml file.  For example::
+
+        testbed:
+            name: my_testbed
+
+            credentials:
+                password: "%ASK{Your password}"
 
 YAML itself does not distinguish the markups from regular text (strings).
 Before the creation of testbed objects, the loader walks through the generated
