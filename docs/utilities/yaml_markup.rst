@@ -34,6 +34,8 @@ Reference
     #   %ENC{encoded text}
     #   %ENC{encoded text, prefix=x}
     #   %CLI{cli_argument_name}
+    #   %CLI{another_cli_arg, default=<value>}
+    #   %CLI{another_list, default=[<value>,<value>]}
     #   %EXTEND_LIST{key}
     #   %EXTEND_LIST{path.to.value1,path.to.value2}
     #
@@ -58,7 +60,9 @@ Reference
     #   - The %CLI{ } form replaces the variable name with the value provided
     #     from the command line argument. If no command line argument was
     #     provided for this variable, the value will be an empty string.
-    #     Supports single and double dash argument style.
+    #     Supports single and double dash argument style. A default value
+    #     can be specified using `, default=` syntax. A list can be specified
+    #     as default value.
     #   - The %EXTEND_LIST{ } form can be used for keys to extend a list
     #     from another YAML file. The same syntax can also be used to create
     #     a value by extending one or more list references.
@@ -138,6 +142,12 @@ Markup Examples
     # a string to an integer or float.
     # "pyats run job --retries 3"
     %CLI{retries}
+
+    # A default value can be specified for the %CLI markup.
+    %CLI{another_flag, default=12}
+
+    # A default value can be a list
+    %CLI{another_flag, default=[1,2]}
 
 .. note::
 
