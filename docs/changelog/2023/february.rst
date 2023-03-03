@@ -1,7 +1,7 @@
 February 2023
 ==========
 
-February 24 - Pyats v23.2 
+February 28 - Pyats v23.2 
 ------------------------
 
 
