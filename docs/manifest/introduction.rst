@@ -38,8 +38,15 @@ and runtime specific settings.
     manifest filename with the extension `.py`. E.g. the script filename for a manifest
     with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
 
+.. note::
+    In case the associated script file is in a different location from the manifest you could use a symlink
+    to refering the script. To change the default behavior for using the symlink and change where to execute
+    the script you need to pass --follow-symlink.
 
+.. code-block:: shell
 
+    $ pyats run manifest job.tem --follow-symlink
+    $ job.py     # is a symlink for the associated script
 Script types
 ~~~~~~~~~~~~
 
