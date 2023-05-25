@@ -39,13 +39,15 @@ and runtime specific settings.
     with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
 
 .. note::
-    In case the associated script file is in a different location from the manifest you could use a symlink
-    to refering the script. To change the default behavior for using the symlink and change where to execute
-    the script you need to pass --follow-symlink.
+    In case the associated script file is in a different location from the manifest you can use a symlink
+    to refer to the job.py. By default, the job will be executed in the directory where the manifest file is located.
+    To change the execution directory and use the symlink target directory to execute the script you need
+    to pass --follow-symlink.
 
 .. code-block:: shell
 
     $ pyats run manifest job.tem --follow-symlink
+
     $ job.py     # is a symlink for the associated script
 Script types
 ~~~~~~~~~~~~
