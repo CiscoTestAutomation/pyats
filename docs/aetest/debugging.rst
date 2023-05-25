@@ -513,8 +513,10 @@ The pause will also dump the connection information, including which devices are
     # +-------------------+--------------------------------+
 
 
-If it is required to connect to the device directly while the test is paused, the device connection must be disconnected
-from before it can be accessed directly.
+.. note::
+    
+    If it is required to connect to the device directly while the test is paused, the device connection must be disconnected
+    from before it can be accessed directly.
 
 .. code-block:: python
 
