@@ -521,7 +521,7 @@ The pause will also dump the connection information, including which devices are
 .. code-block:: python
 
     >>> import pyats.easypy as ep
-    >>> dev = ep.runtime.testbed.devices.uut
+    >>> dev = ep.runtime.testbed.devices['<device>']
     >>> dev.disconnect()
 
     # the device can now be connected to in a separate terminal. Once ready to resume the test,
