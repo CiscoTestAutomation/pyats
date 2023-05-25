@@ -495,20 +495,22 @@ The pause will also dump the connection information, including which devices are
     # --------------------------------------------------------------------------------
     # Pause On Phrase: Connection Information
     #
-    # +-----------------+--------------------------------+
-    # | Device Property |             Value              |
-    # +-----------------+--------------------------------+
-    # |       Name      |           device.name          |
-    # |      Alias      |          device.alias          |
-    # |      Status     |   "Connected"/"Disconnected"   |
-    # |      Class      |  connections.connection.class  |
-    # |        IP       |    connection.connection.ip    |
-    # |       Port      |   connection.connection.port   |
-    # |     Protocol    | connection.connection.protocol |
-    # |     --------    |            --------            |
-    # |       URL       |    <protocol>://<ip>:<port>    |
-    # |  Spawn Command  |   device.spawn.spawn_command   |
-    # +-----------------+--------------------------------+
+    # +-------------------+--------------------------------+
+    # |  Device Property  |             Value              |
+    # +-------------------+--------------------------------+
+    # |        Name       |           device.name          |
+    # |       Alias       |           device.alias         |
+    # | Active Connection |   alias of active connection   |
+    # |       Status      |     Connected|Disconnected     |
+    # |   Spawn Command   |  command for active connection |
+    # |      --------     |            --------            |
+    # |  Connection Alias |   connection alias e.g. cli    |
+    # |       Class       |  Unicon, Gnmi, Netconf, etc    |
+    # |         IP        |        IPV4|IPV6 address       |
+    # |      Protocol     |        ssh, telnet, etc        |
+    # |      --------     |            --------            |
+    # |        URL        |    <protocol>://<ip>:<port>    |
+    # +-------------------+--------------------------------+
 
 
 If it is required to connect to the device directly while the test is paused, the device connection must be disconnected
