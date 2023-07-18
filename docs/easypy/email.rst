@@ -51,7 +51,20 @@ The following describes the default email report content. Note that fields in
 
         TOTAL      : {runtime.job.results[total]}
 
-    Success Rate   : {runtime.job.results[success_rate]:.02f} %
+    Success Rate   : {runtime.job.results[success_rate]:.02f}
+
+    Section Stats
+        Passed     : {runtime.job.section_results[passed]}
+        Passx      : {runtime.job.section_results[passx]}
+        Failed     : {runtime.job.section_results[failed]}
+        Aborted    : {runtime.job.section_results[aborted]}
+        Blocked    : {runtime.job.section_results[blocked]}
+        Skipped    : {runtime.job.section_results[skipped]}
+        Errored    : {runtime.job.section_results[errored]}
+
+        TOTAL      : {runtime.job.section_results[total]}
+
+    Section Success Rate   : {runtime.job.section_results[success_rate]:.02f}
 
     +------------------------------------------------------------------------------+
     |                             Task Result Summary                              |
@@ -90,6 +103,24 @@ host, update the following fields in pyATS :ref:`pyats_configuration`'s
 
 Report Customization
 --------------------
+
+The email and job summary report includes Overall Stats which is based on the
+count of CommonSetup, CommonCleanup and Testcase classes defined in test
+scripts. The report also includes Section Stats that summarize SubSection,
+SetupSection, CleanupSection and TestSection stats.
+
+The section reporting can be changed by updating the `report.sections`
+configuration to define which sections should be counted for reporting purposes.
+
+For example, to include only TestSections (decorated with `@aetest.test`), Setup
+(`aetest.setup`) and Cleanup (`@aetest.cleanup`) sections, set `report.sections`
+as below. The values for the sections are space separated.
+
+.. code-block:: ini
+
+    # report configuration
+    [report]
+    sections = TestSection SetupSection CleanupSection
 
 Easypy email notification reports are fully customizable, allowing users to
 attach custom information to the email report body.
