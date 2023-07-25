@@ -105,9 +105,9 @@ Report Customization
 --------------------
 
 The email and job summary report includes Overall Stats which is based on the
-count of CommonSetup, CommonCleanup and Testcase classes defined in test
-scripts. The report also includes Section Stats that summarize SubSection,
-SetupSection, CleanupSection and TestSection stats.
+count of CommonSetup, CommonCleanup, Testcase, Trigger and Verification
+classes defined in test scripts. The report also includes Section Stats that
+summarize SubSection, SetupSection, CleanupSection and TestSection stats.
 
 The section reporting can be changed by updating the `report.sections`
 configuration to define which sections should be counted for reporting purposes.
