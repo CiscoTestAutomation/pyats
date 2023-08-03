@@ -279,8 +279,42 @@ at any time prior to calling the send() method.
     - **to_email**: A list or tuple of recipient addresses.
     - **subject**: The subject line of the email.
     - **body**: The body text. This should be a plain text message.
-    - **attachments**: A list of attachments to put on the message. These can be
-      either email.MIMEBase.MIMEBase instances, or (filename, content, mimetype)
-      triples - currently only supports MIMEText.
+    - **attachments**: A list of attachments to put on the message. Currently only supports MIMEText.
     - **html_email**: flag to enable alternative HTML email format.
     - **html_body**: Body in HTML format.
+
+.. code-block:: python
+
+    # Example
+    # -------
+    #
+    # Sending email from pyATS
+
+    # import EmailMsg class
+    from pyats.utils.email import EmailMsg
+
+    # Create email message object
+    mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        body=email_body)
+
+    # send email
+    mail.send()
+
+    # If you want to send HTML email:
+     mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        html_email=True,
+        html_body=html_body)
+
+    # You can also add attachments:
+    mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        body=email_body,
+        attachments=['/path/to/file'])
