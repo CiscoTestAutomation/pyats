@@ -313,7 +313,7 @@ Production YAML Schema
                     port:   # port to connect to
                             # (optional)
 
-                    fallback_credentials: # list of the fallback credential for this
+                    fallback_credentials: # list of the fallback credentials for this
                                           # connection.(optional)
 
                     credentials:
