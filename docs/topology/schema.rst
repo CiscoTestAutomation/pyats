@@ -272,6 +272,7 @@ Production YAML Schema
                             # to apis such as connect(), start_pool(), etc.
                             # (default: None - let the connection class decide)
                             # (optional)
+
                     fallback_credentials: # list of the fallback credentials to be used for
                                           # the connections in the testbed.(optional)
 
