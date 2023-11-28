@@ -49,6 +49,7 @@ and runtime specific settings.
     $ pyats run manifest job.tem --follow-symlink
 
     $ job.py     # is a symlink for the associated script
+    
 Script types
 ~~~~~~~~~~~~
 
