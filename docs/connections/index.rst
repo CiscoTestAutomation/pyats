@@ -11,5 +11,5 @@ integrates into the pyATS topology model.
    integration
    manager
    class
-   hook
+   wrapper
    sharing
