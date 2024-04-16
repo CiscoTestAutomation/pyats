@@ -3,7 +3,11 @@
 Service Wrapper
 ===============
 
-The Service Wrapper is a class designed to wrap various methods of a Connection object with pre, post, and exception handlers, adding extra functionality to existing Connection methods. It allows users to extend and customize the behavior of specific Connection methods without modifying the original implementation.
+The Service Wrapper is a class designed to wrap various methods of a Connection 
+object with pre, post, and exception handlers, adding extra functionality to 
+existing Connection methods. It allows users to extend and customize the 
+behavior of specific Connection methods without modifying the original 
+implementation.
 
 Here are some typical use cases of service wrappers:
 
@@ -22,21 +26,33 @@ Usage
 
 To use the Service Wrapper, follow these steps:
 
-1) Create a child class derived from the `pyats.connections.ServiceWrapper` class. This child class will serve as the Service Wrapper for the desired Connection methods.
+1) Create a child class derived from the `pyats.connections.ServiceWrapper` 
+class. This child class will serve as the Service Wrapper for the desired 
+Connection methods.
 
-2) Set the `conn_type` and `service_name` of the child class to the Connection type and service name that the Service Wrapper will be applied to. This will typically be `unicon.Connection` and the name of the service method, such as `execute` or `configure`. The `order` class variable can also be set to determine the order in which the Service Wrappers will be applied.
+2) Set the `conn_type` and `service_name` of the child class to the Connection 
+type and service name that the Service Wrapper will be applied to. This will 
+typically be `unicon.Connection` and the name of the service method, such as 
+`execute` or `configure`. The `order` class variable can also be set to 
+determine the order in which the Service Wrappers will be applied.
 
-3) Define the conditions under which the Service Wrapper should be applied to the service using the `applicable` method.
+3) Define the conditions under which the Service Wrapper should be applied to 
+the service using the `applicable` method.
 
-4) (Optional) Implement the necessary methods in the child class to define pre, post, and exception handling behavior. These methods will be executed at different stages during the service call.
+4) (Optional) Implement the necessary methods in the child class to define pre, 
+post, and exception handling behavior. These methods will be executed at 
+different stages during the service call.
 
-5) (Optional) Use Testcase `Steps` to provide more robust reporting and leverage the pyATS reporter functionality.
+5) (Optional) Use Testcase `Steps` to provide more robust reporting and 
+leverage the pyATS reporter functionality.
 
-6) (Optional) Configure CLI parser arguments in the child class using the `configure_parser` method. This is used to enable easy integration with CLI interfaces.
+6) (Optional) Configure CLI parser arguments in the child class using the 
+`configure_parser` method. This is used to enable easy integration with CLI 
+interfaces.
 
 .. note:: 
 
-    error handlers can suppress an exception, and/or track/register it 
+    Error handlers can suppress an exception, and/or track/register it 
     internally. By default the built-in error handler will simply raise the
     current exception. Developer can modify that to suppress the current 
     exception being handled, and return a fixed/altered result.
@@ -45,12 +61,17 @@ To use the Service Wrapper, follow these steps:
 Service Wrapper Class
 ---------------------
 
-The Service Wrapper base class provides several methods that can be overwritten by the user to customize the behavior of the service call:
+The Service Wrapper base class provides several methods that can be overwritten 
+by the user to customize the behavior of the service call:
 
 `call_service`
 ``````````````
 
-This method is responsible for calling the wrapped service. By default, it calls the service and passes any arguments that were provided to it. It returns the output of the service call, which can be utilized in the `post_service` method. If an error occurs, it calls the `exception_service` method. This method can be completely overloaded to change the behavior of the service call.
+This method is responsible for calling the wrapped service. By default, it calls
+ the service and passes any arguments that were provided to it. It returns the 
+ output of the service call, which can be utilized in the `post_service` method.
+  If an error occurs, it calls the `exception_service` method. This method can 
+  be completely overloaded to change the behavior of the service call.
 
 .. code-block:: python
 
@@ -67,7 +88,10 @@ This method is responsible for calling the wrapped service. By default, it calls
 `exception_service`
 ```````````````````
 
-The `exception_service` method is called if an exception occurs during the service call inside the `call_service` method. It is an abstracted method that will only run if the child class implements it. It can return anything to be used in the `post_service` method.
+The `exception_service` method is called if an exception occurs during the 
+service call inside the `call_service` method. It is an abstracted method that 
+will only run if the child class implements it. It can return anything to be 
+used in the `post_service` method.
 
 .. code-block:: python
 
@@ -78,7 +102,10 @@ The `exception_service` method is called if an exception occurs during the servi
 `pre_service`
 `````````````
 
-The `pre_service` method is called before the `call_service` method is executed. It is an abstracted method that will only run if the child class implements it. This method allows performing any necessary actions or setup before the actual service call.
+The `pre_service` method is called before the `call_service` method is executed.
+ It is an abstracted method that will only run if the child class implements it.
+  This method allows performing any necessary actions or setup before the actual
+   service call.
 
 .. code-block:: python
 
@@ -89,7 +116,10 @@ The `pre_service` method is called before the `call_service` method is executed.
 `post_service`
 ``````````````
 
-The `post_service` method is called after the `call_service` method is executed. It is an abstracted method that will only run if the child class implements it. This method is used to handle any post-processing actions after the service call. It receives the output of the `call_service` method as an argument.
+The `post_service` method is called after the `call_service` method is executed.
+ It is an abstracted method that will only run if the child class implements it.
+  This method is used to handle any post-processing actions after the service 
+  call. It receives the output of the `call_service` method as an argument.
 
 .. code-block:: python
 
@@ -100,7 +130,10 @@ The `post_service` method is called after the `call_service` method is executed.
 `configure_parser`
 ``````````````````
 
-The `configure_parser` method is called when the Service Wrapper is loaded. It is used to configure CLI parser arguments, similar to an easypy plugin. This is a classmethod that requires definition from the implementor. It takes in a `parser` argument, which is an instance of the `argparse.ArgumentParser` class.
+The `configure_parser` method is called when the Service Wrapper is loaded. It 
+is used to configure CLI parser arguments, similar to an easypy plugin. This is 
+a classmethod that requires definition from the implementor. It takes in a 
+`parser` argument, which is an instance of the `argparse.ArgumentParser` class.
 
 .. code-block:: python
 
@@ -118,9 +151,18 @@ The `configure_parser` method is called when the Service Wrapper is loaded. It i
 `applicable`
 ````````````
 
-The `applicable` class method is used to determine whether the Service Wrapper should be applied to the service. This is also a classmethod that requires definition from the implementor. It takes in a `connection` argument, which is an instance of the `pyats.connections.BaseConnection` class. It should return a boolean value: `True` if the Service Wrapper should be applied, and `False` otherwise. 
+The `applicable` class method is used to determine whether the Service Wrapper 
+should be applied to the service. This is also a classmethod that requires 
+definition from the implementor. It takes in a `connection` argument, which is 
+an instance of the `pyats.connections.BaseConnection` class. It should return a 
+boolean value: `True` if the Service Wrapper should be applied, and `False` 
+otherwise. 
 
-This is in addition to the default `conn_type` and `service_name` checks that are done. This allows for more fine-grained control over which services the Service Wrapper is applied to. For example, the Service Wrapper can be applied to a specific device type, or only when a certain argument is passed to the service.
+This is in addition to the default `conn_type` and `service_name` checks that 
+are done. This allows for more fine-grained control over which services the 
+Service Wrapper is applied to. For example, the Service Wrapper can be applied 
+to a specific device type, or only when a certain argument is passed to the 
+service.
 
 .. code-block:: python
 
@@ -133,31 +175,40 @@ This is in addition to the default `conn_type` and `service_name` checks that ar
 Important Attributes
 ````````````````````
 
-The Service Wrapper base class also provides several attributes that can be used in the Service Wrapper methods:
+The Service Wrapper base class also provides several attributes that can be used
+ in the Service Wrapper methods:
 
 - `self.service`
     - The service method that the Service Wrapper is applied to
-    - Note that this should be exclusively used to call the wrapper services. You **cannot** call `self.execute` for example as this does not exist.
+    - Note that this should be exclusively used to call the wrapper services. 
+    You **cannot** call `self.execute` for example as this does not exist.
 - `self.connection`
     - The Connection object that the Service Wrapper is applied to
-    - Note that caution should be taken when calling wrapped attributes on the connection object. It's possible to create an infinite loop if the wrapped attribute is also wrapped by the Service Wrapper.
+    - Note that caution should be taken when calling wrapped attributes on the 
+    connection object. It's possible to create an infinite loop if the wrapped 
+    attribute is also wrapped by the Service Wrapper.
 - `self.device`
     - The device object that the Connection object is connected to
 - `self.logger`
-    - The logger object that can be used to log messages specific to the Service Wrapper
+    - The logger object that can be used to log messages specific to the Service
+     Wrapper
 - `self.testcase`
     - The testcase object that can be used to access testcase data
-    - This is the same testcase object that is passed to easypy plugins and has access to testcase data through `self.testcase.parameters`
+    - This is the same testcase object that is passed to easypy plugins and has 
+    access to testcase data through `self.testcase.parameters`
 - `self.args`
     - The arguments as defined in the `configure_parser` method
 
 Class Variables
 ```````````````
 
-In addition to the methods, the Service Wrapper base class also provides several class variables that must be set to define which service the Service Wrapper will be applied to:
+In addition to the methods, the Service Wrapper base class also provides several
+ class variables that must be set to define which service the Service Wrapper 
+ will be applied to:
 
 - `conn_type`
-    - The Connection type that the Service Wrapper will be applied to. Options include
+    - The Connection type that the Service Wrapper will be applied to. Options 
+    include
     
     .. code-block:: python
 
@@ -175,10 +226,13 @@ In addition to the methods, the Service Wrapper base class also provides several
       yang.connector.Netconf
 
 - `service_name`
-    - The service the wrapper will be used on. This will be the name of the service method, such as `execute` or `configure`
+    - The service the wrapper will be used on. This will be the name of the 
+    service method, such as `execute` or `configure`
 
 - `order`
-    - This is an optional variable. It's is used to determine the order in which the Service Wrappers will be applied. It is an integer value, with higher values being applied first. The default value is `0`.
+    - This is an optional variable. It's is used to determine the order in which
+     the Service Wrappers will be applied. It is an integer value, with higher 
+     values being applied first. The default value is `0`.
 
 Examples
 --------
@@ -186,9 +240,12 @@ Examples
 Execute Service Wrapper - IOSXE Device
 ``````````````````````````````````````
 
-This is an example of a service wrapper for wrapping the execute service on an IOSXE device
+This is an example of a service wrapper for wrapping the execute service on an 
+IOSXE device
 
-.. note:: This example wrapper will run for ALL IOSXE devices when this wrapper script is installed. If this wrapper is installed in a shared environment, be aware that it affects all user jobs and any IOSXE devices in use.
+.. note:: This example wrapper will run for ALL IOSXE devices when this wrapper 
+    script is installed. If this wrapper is installed in a shared environment, 
+    be aware that it affects all user jobs and any IOSXE devices in use.
 
 .. code-block:: python
 
@@ -234,7 +291,10 @@ This is an example of a service wrapper for wrapping the execute service on an I
 Steps
 -----
 
-Inside of each service wrapper method you are able to pass a `steps` argument that will automatically pick up the Testcase's current `steps` object, which allows for use of the context manager style of reporting, failing, and passing a test.
+Inside of each service wrapper method you are able to pass a `steps` argument 
+that will automatically pick up the Testcase's current `steps` object, which 
+allows for use of the context manager style of reporting, failing, and passing 
+a test.
 
 .. code-block:: python
 
@@ -268,10 +328,17 @@ This can be used in any of the four service wrapper methods.
         with steps.start('Exception Service Step') as step:
             step.passed('Sucessfully ran exception service step')
 
-.. note:: The `steps` argument is only filled when the service wrapper is run in the context of a Testcase. If no Testcase is found, the `steps` argument will be `None`. Keep this in mind if your service wrapper is used in a standalone context with no Testcase.
+.. note:: The `steps` argument is only filled when the service wrapper is run in
+     the context of a Testcase. If no Testcase is found, the `steps` argument 
+     will be `None`. Keep this in mind if your service wrapper is used in a 
+     standalone context with no Testcase.
 
-Execution
+Discovery
 ---------
+
+There are two methods to enable pyATS to discover service wrappers. The first
+method is to configure the service wrapper in the pyats configuration file. The
+second method is to use an entry point.
 
 Configuration Method
 ````````````````````
