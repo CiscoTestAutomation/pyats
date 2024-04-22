@@ -75,5 +75,6 @@ Changelogs
         * Fixed an issue that caused a circular import when using the service wrapper with external connection packages
         * Changed `BaseServiceWrapper` to `ServiceWrapper`
         * Changed `ServiceWrapper` import from `from pyats.connections.bases import BaseServiceWrapper` to `from pyats.connections import ServiceWrapper`
+        * This feature replaces the previous concept of Service Hooks
 
 
