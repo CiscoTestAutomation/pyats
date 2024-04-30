@@ -1,8 +1,8 @@
 April 2024
 ==========
 
- - Pyats v24.4 
-------------------------
+April 30 - Pyats v24.4 
+----------------------
 
 
 
@@ -69,7 +69,7 @@ Changelogs
 
 * easypy/plugins
     * kleenex
-        * updated logic to add device recovery section even if there
+        * updated logic to add device recovery section even if there are no clean image attributes.
 
 * pyats.connections
     * Modified connection manager
@@ -90,7 +90,7 @@ Changelogs
 
 * kleenex
     * loader
-        * Update to load and check the logical testbed in _preprocess_add_cli_images in order to
+        * Update to load and check the logical testbed in _preprocess_add_cli_images in order to get correct image_set for iol devices.
 
 * pyats.cisco
     * Fix telemetry upload
