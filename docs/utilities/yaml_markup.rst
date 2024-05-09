@@ -29,6 +29,7 @@ Reference
     #   %ENV{environment_variable_name}
     #   %CALLABLE{path_to_callable}
     #   %CALLABLE{path_to_callable(param1,param2,param3)}
+    #   %CALLABLE{path_to_callable(param1='val1',param2='val2')}
     #   %INCLUDE{yaml_file_path}
     #   %ASK{optional prompt text}
     #   %ENC{encoded text}
@@ -100,6 +101,10 @@ Markup Examples
     # reference to callable with parameters param1, param2 and param3
     # (replaced with actual path to callable)
     %CALLABLE{path.to.callable(param1,param2,param3)}
+
+    # reference to callable with paramter param1 and
+    # kwarg style parameter param2
+    %CALLABLE{path.to.callable(param1, param2='val1')}
 
     # reference to content from other YAML file
     # (replaced with actual path to YAML file)
