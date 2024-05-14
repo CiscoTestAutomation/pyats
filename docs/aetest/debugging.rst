@@ -554,6 +554,7 @@ Example yaml configuration with custom handler:
 
 .. code-block:: yaml
 
+    action: custom
     custom:
         module: custom_action
         method: myaction
