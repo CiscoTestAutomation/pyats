@@ -550,6 +550,36 @@ additional actions: ``collect`` and ``custom``.
 To enable this feature, provide the ``pause_on`` YAML file to your script run
 with `collect` or `custom` actions as described below.
 
+Example yaml configuration with custom handler:
+
+.. code-block:: yaml
+
+    custom:
+        module: custom_action
+        method: myaction
+        additional_arguments:
+            key: value
+
+The function specified in the custom handler will be passed the following objects:
+
+* `section` object
+* `Steps`` object
+* Any data from the yaml under `custom`
+* The log message that was matched
+* The pattern match object
+
+Example custom log handler function:
+
+.. code-block:: python
+
+    # custom_action.py
+    def myaction(section, steps, message=None, pattern_match=None, **kwargs):
+        logger.info(section)
+        logger.info(steps)
+        logger.info(message)
+        logger.info(pattern_match)
+
+
 The following schema describes the YAML pause file with the collect and custom options:
 
 .. code-block:: yaml
@@ -592,3 +622,4 @@ The following schema describes the YAML pause file with the collect and custom o
 
         method: <function name>    # function to execute
 
+        <any>: <any>
