@@ -563,7 +563,7 @@ Example yaml configuration with custom handler:
 The function specified in the custom handler will be passed the following objects:
 
 * `section` object
-* `Steps`` object
+* `Steps` object
 * Any data from the yaml under `custom`
 * The log message that was matched
 * The pattern match object
