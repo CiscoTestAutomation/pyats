@@ -23,6 +23,7 @@ studies and more.
     :maxdepth: 1
     :caption: Main Components
 
+    aereport/index
     aetest/index
     easypy/index
     topology/index

@@ -13,6 +13,7 @@ Subpackages
 
    pyats.kleenex.loader
    pyats.kleenex.reporter
+   pyats.bringup
 
 Submodules
 ----------
