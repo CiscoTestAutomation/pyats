@@ -11,38 +11,39 @@ Subpackages
 
 .. toctree::
 
-   pyats.kleenex.loader
+   pyats.clean.loader
    pyats.kleenex.reporter
+   pyats.bringup
 
 Submodules
 ----------
 
 
-.. automodule:: pyats.kleenex.bases
+.. automodule:: pyats.bringup.bases
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.bringup_base_cli_parser
+.. automodule:: pyats.bringup.base_cli_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.bringup_manager
+.. automodule:: pyats.bringup.manager
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.bringup_manager_cli_parser
+.. automodule:: pyats.bringup.manager_cli_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.bringup_signals
+.. automodule:: pyats.bringup.signals
    :members:
    :undoc-members:
    :show-inheritance:
@@ -66,19 +67,19 @@ Submodules
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.kleenex_traceback
+.. automodule:: pyats.clean.traceback
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.schema
+.. automodule:: pyats.clean.schema
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: pyats.kleenex.utils
+.. automodule:: pyats.clean.utils
    :members:
    :undoc-members:
    :show-inheritance:
