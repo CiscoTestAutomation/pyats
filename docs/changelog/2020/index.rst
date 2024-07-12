@@ -10,7 +10,6 @@
     sep
     aug
     jul
-    jun
     may
     apr
     mar

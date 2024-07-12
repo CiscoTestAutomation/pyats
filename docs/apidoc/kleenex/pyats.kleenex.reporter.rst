@@ -10,19 +10,7 @@ Submodules
 ----------
 
 
-.. automodule:: pyats.kleenex.reporter.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: pyats.kleenex.reporter.clean
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: pyats.kleenex.reporter.context
+.. automodule:: pyats.kleenex.reporter.reporter
    :members:
    :undoc-members:
    :show-inheritance:

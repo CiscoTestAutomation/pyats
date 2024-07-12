@@ -1,7 +1,7 @@
-pyats.kleenex.loader package
+pyats.clean.loader package
 ============================
 
-.. automodule:: pyats.kleenex.loader
+.. automodule:: pyats.clean.loader
    :members:
    :undoc-members:
    :show-inheritance:
@@ -10,7 +10,7 @@ Submodules
 ----------
 
 
-.. automodule:: pyats.kleenex.loader.markup
+.. automodule:: pyats.clean.loader.markup
    :members:
    :undoc-members:
    :show-inheritance:
