@@ -207,6 +207,22 @@ The following fields are currently open for user to customize.
     # 'pyats secret decode xyz123'.
     env.hide_pattern = .*PASSWORD.*
 
+    # configuration related to abstraction
+    [abstract]
+    default_revision = <value>
+
+    # configuration related to default abstraction tokens
+    [abstract_token_defaults]
+    origin = <value>
+    os = <value>
+    platform = <value>
+    model = <value>
+    submodel = <value>
+    pid = <value>
+    version = <value>
+    os_flavor = <value>
+    revision = <value>
+
 
 .. note::
    See :ref:`secret_strings` for more details on how pyATS handles private
