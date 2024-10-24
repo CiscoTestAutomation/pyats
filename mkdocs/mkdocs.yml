@@ -5,16 +5,47 @@ theme:
   features:
     - navigation.sections
     - navigation.tracking
+  palette:
+    # # Palette toggle for automatic mode
+    # - media: "(prefers-color-scheme)"
+    #   primary: deep purple
+    #   toggle:
+    #     icon: material/brightness-auto
+    #     name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
 markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
   - pymdownx.details
+  # - pymdownx.highlight:
+  #     use_pygments: true
+  #     anchor_linenums: true
+  #     line_spans: __span
+  #     pygments_lang_class: true
+  - pymdownx.inlinehilite
+  # - pymdownx.snippets
   - pymdownx.superfences
+  - custom.pre_processors:makeExtension
+  - def_list
 nav:
-  - Home: /
+  - Home: index.md
   - Getting Started:
-    - Overview: overview/
-    - Getting Started: getting_started/
-    - Command Line Tools: cli/
-    - Configuration: configuration/
+    - Overview: overview/index.md
+    - Getting Started: getting_started/index.md
+    - Command Line Tools: cli/index.md
+    - Configuration: configuration/index.md
+extra_css:
+  - stylesheets/extra.css

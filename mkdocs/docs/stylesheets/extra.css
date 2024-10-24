@@ -1,0 +1,7 @@
+.double-backtick-highlight {
+    color: var(--md-code-hl-special-color) !important;
+}
+
+.double-space-indent {
+    margin-left: 2em;
+}

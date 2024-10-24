@@ -10,47 +10,39 @@ studies and more.
 
 ## Getting Started
 
-- [Overview](overview/)
-- [Getting Started](getting_started/)
-- [CLI](cli/)
-- [Configuration](configuration/)
+- [Overview](overview/index.md)
+- [Getting Started](getting_started/index.md)
+- [CLI](cli/index.md)
+- [Configuration](configuration/index.md)
 
-.. toctree::
-    :maxdepth: 1
-    :caption: Main Components
+<!-- ## Main Components
 
-    aereport/index
-    aetest/index
-    easypy/index
-    topology/index
-    kleenex/index
-    connections/index
+- [Aereport](aereport/)
+- [Aetest](aetest/)
+- [Easypy](easypy/)
+- [Topology](topology/)
+- [Kleenex](kleenex/)
+- [Connections](connections/)
 
 
-.. toctree::
-    :maxdepth: 1
-    :caption: Supporting Components
+## Supporting Components
 
-    async/index
-    datastructures/index
-    tcl/index
-    log/index
-    results/index
-    reporter/index
-    utilities/index
-    robot/index
-    manifest/index
+- [Async](async/)
+- [Datastructures](datastructures/)
+- [Tcl](tcl/)
+- [Log](log/)
+- [Results](results/)
+- [Reporter](reporter/)
+- [Utilities](utilities/)
+- [Robot](robot/)
+- [Manifest](manifest/)
 
-.. toctree::
-    :maxdepth: 1
-    :caption: Resources
+## Resources
 
-    terminology
-    resources/index
-    changelog/index
+- [Terminology](terminology.md)
+- [Resources](resources/)
+- [Changelog](changelog/)
 
-.. toctree::
-    :maxdepth: 1
-    :caption: API Doc
+## API Doc
 
-    apidoc/index
+- [API](apidoc/) -->
