@@ -1,0 +1,20 @@
+site_name: pyATS
+site_url: https://mydomain.org/mysite
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.tracking
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+nav:
+  - Home: /
+  - Getting Started:
+    - Overview: overview/
+    - Getting Started: getting_started/
+    - Command Line Tools: cli/
+    - Configuration: configuration/
