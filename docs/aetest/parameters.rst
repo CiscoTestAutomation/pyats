@@ -736,5 +736,3 @@ internals of ``aetest`` using a supported method instead of hacking around.
 
     Monkey patching internals is strictly prohibited. Doing so will void your
     warranty: **no further support will be provided.**
-
-
