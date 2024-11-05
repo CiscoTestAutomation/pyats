@@ -75,7 +75,7 @@ methods as the "doer," then parameters are the "what to do with." E.g., an
     # 103
 
 In data-driven testing, TestScripts are the *doers*, performing the act
-of testing a facet of some product. Test script arguments and parameters are thus the
+of testing a facet of some product. TestScript arguments and parameters are thus the
 input data that influences the specific actions of testing. Here
 are some possible use cases:
 
@@ -178,7 +178,7 @@ Parameters Property
 Every top-level object in ``aetest`` comes with the special ``parameters``
 property: a dictionary containing the key/value data pairs relative to this
 object (:ref:`object_model`). Its default values can be set/updated by the user
-within the TestScript.
+within the test script.
 
 .. code-block:: python
 
@@ -736,3 +736,5 @@ internals of ``aetest`` using a supported method instead of hacking around.
 
     Monkey patching internals is strictly prohibited. Doing so will void your
     warranty: **no further support will be provided.**
+
+
