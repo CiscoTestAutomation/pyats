@@ -22,14 +22,4 @@ Submodules
    :show-inheritance:
 
 
-.. automodule:: pyats.easypy.runinfo.kafka
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: pyats.easypy.runinfo.s3
-   :members:
-   :undoc-members:
-   :show-inheritance:
 

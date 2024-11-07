@@ -220,8 +220,8 @@ Production YAML Schema
 
             peripherals:  # device hardware block
                           # may contain anything describing peripherals
-                          # connected to the device. 
-                          # currently supported devices are terminal servers 
+                          # connected to the device.
+                          # currently supported devices are terminal servers
                           # and power cyclers.
                           # (optional)
 
@@ -273,6 +273,9 @@ Production YAML Schema
                             # (default: None - let the connection class decide)
                             # (optional)
 
+                    fallback_credentials: # list of the fallback credentials to be used for
+                                          # the connections in the testbed.(optional)
+
                     connections: # a list of subconnections for a multi-console
                                  # device.
                                  # Supported by unicon connector implementation.
@@ -310,6 +313,9 @@ Production YAML Schema
 
                     port:   # port to connect to
                             # (optional)
+
+                    fallback_credentials: # list of the fallback credentials for this
+                                          # connection.(optional)
 
                     credentials:
                         # credential details specific to this connection

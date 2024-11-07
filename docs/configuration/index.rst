@@ -126,6 +126,8 @@ The following fields are currently open for user to customize.
     format = <json/yaml>
     # Collect git info, default is True.
     git_info = <True/False>
+    # section reporting, default is "SubSection SetupSection CleanupSection TestSection"
+    sections = SubSection SetupSection CleanupSection TestSection
 
     # configuration related to timestamps
     [timestamp]

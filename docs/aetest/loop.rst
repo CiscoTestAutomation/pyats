@@ -28,8 +28,8 @@ it with different parameters during each loop iteration.
 The following describes each section and their loop capability and behaviors:
 
 ``CommonSetup``/``CommonCleanup``
-    Common setup and cleanup sections are unique within each test script. They
-    are run only once per test script execution, and are not loopable.
+    Common setup and cleanup sections are unique within each TestScript. They
+    are run only once per TestScript execution, and are not loopable.
 
     ``subsection``
         Subsections within ``CommonSetup`` and ``CommonCleanup`` are loopable.
@@ -38,12 +38,12 @@ The following describes each section and their loop capability and behaviors:
 
 ``Testcase``
     Testcases are loopable. Each iteration of a looping ``Testcase`` is reported 
-    individually as new test case instances with a different ``uid``. When a 
+    individually as new ``Testcase`` instances with a different ``uid``. When a
     ``Testcase`` is looped, and all of its contents (setup, tests, and cleanup) are
     run fully per each iteration.
 
     ``setup``/``cleanup``
-        Setup and cleanup sections within each test case is unique, and are run
+        Setup and cleanup sections within each Testcase is unique, and are run
         only once per ``Testcase``. They cannot be looped individually, but
         if their parent ``Testcase`` is looped, then they are run once per
         ``Testcase`` iteration.
@@ -52,9 +52,9 @@ The following describes each section and their loop capability and behaviors:
         Test sections within ``Testcase`` are loopable individually. Each
         iteration has its own unique id and is reported as a new test 
         section. When a looping ``test`` section's parent ``Testcase`` is 
-        looped, the resulting loops are multiplicative. E.g.: if a test case is 
-        looped ``2x``and contains a test that is also looped ``2x``, that 
-        test would loop ``2x`` per test case loop iteration.
+        looped, the resulting loops are multiplicative. E.g.: if a Testcase is
+        looped ``2x`` and contains a test that is also looped ``2x``, that
+        test would loop ``2x`` per Testcase loop iteration.
 
 .. hint::
 
@@ -93,27 +93,27 @@ section object is then instantiated once for each iteration.
         def looped_subsection(self):
             pass
 
-    # Defining a test case that loops
+    # Defining a Testcase that loops
     # ----------------------------------
-    # This test case also contains a test section that is looped twice
+    # This Testcase also contains a test section that is looped twice
     @aetest.loop(uids=['testcase_one', 'testcase_two'])
     class Testcase(aetest.Testcase):
 
-        # Setup section of this test case is run once
-        # every time the test case is looped.
+        # Setup section of this Testcase is run once
+        # every time the Testcase is looped.
         @aetest.setup
         def setup(self):
             pass
 
         # Looped test section
-        # both iterations are run per test case iteration
+        # both iterations are run per Testcase iteration
         @aetest.loop(uids=['test_one', 'test_two'])
         @aetest.test
         def test(self):
             pass
 
-        # Cleanup section of this test case is run once
-        # every time the test case is looped.
+        # Cleanup section of this Testcase is run once
+        # every time the Testcase is looped.
         @aetest.cleanup
         def cleanup(self):
             pass
@@ -216,7 +216,7 @@ looped section is then driven to potentially do something different.
 
     from pyats import aetest
 
-    # Loop this test case with a loop parameter named "a"
+    # Loop this Testcase with a loop parameter named "a"
     # and set it to value 2 for the first iteration, 
     # and 3 for the second iteration
     @aetest.loop(a=[2, 3])
@@ -229,7 +229,7 @@ looped section is then driven to potentially do something different.
             # this test prints the exponential of two inputs, a and b
             print("%s ^ %s = %s" % (a, b, a**b))
 
-    # The output of the test case would look like this:
+    # The output of the Testcase would look like this:
     #   2 ^ 8 = 256
     #   2 ^ 9 = 512
     #   3 ^ 8 = 6561
@@ -449,7 +449,7 @@ would normally expect it to:
         def test_two(self, b):
             print('b = %s' % b)
 
-    # The output of the test case would be:
+    # The output of the Testcase would be:
     #   returning [1, 2, 3]
     #   a = 1
     #   a = 2
@@ -482,7 +482,7 @@ Dynamic Loop Marking
 --------------------
 
 So far, all loop examples focus on defining the ``@loop`` decorator directly within the 
-test scripts. E.g., the ``@loop`` decorators are coded as part of the test script. 
+TestScripts. E.g., the ``@loop`` decorators are coded as part of the TestScript.
 However, it is also possible to dynamically mark sections for looping during
 runtime, e.g., creating loops based on information that is only available during
 a script’s run. To do this, use the ``loop.mark()`` function.
@@ -506,7 +506,7 @@ a script’s run. To do this, use the ``loop.mark()`` function.
             aetest.loop.mark(self.simple_test, uids=['test_one', 'test_two'])
 
         # Note: the simple_test section is not directly marked for looping
-        # instead, during runtime, its testcase's setup section marks it for
+        # instead, during runtime, its Testcase's setup section marks it for
         # looping dynamically.
 
         @aetest.test
@@ -515,7 +515,7 @@ a script’s run. To do this, use the ``loop.mark()`` function.
             # by using the internal parameter "section"
             print("current section: %s" % section.uid)
 
-    # Output of this test case
+    # Output of this Testcase
     #   current section: test_one
     #   current section: test_two
     #
@@ -656,9 +656,9 @@ wish to customize loop behavior, it is possible to extend and override it.
 
     
     # This loop generator can be used as the @loop and loop.mark() argument.
-    # Let's define a looped test case with it.
+    # Let's define a looped Testcase with it.
 
-    # Looping this test case with a custom generator, and a=1, b=5
+    # Looping this Testcase with a custom generator, and a=1, b=5
     @aetest.loop(generator=DemoGenerator, a=1, b=5)
     class Testcase(aetest.Testcase):
 
@@ -668,7 +668,7 @@ wish to customize loop behavior, it is possible to extend and override it.
         def test(self, number):
             print('current number: %s' % number)
 
-    # Output of this test case
+    # Output of this Testcase
     #   current number: 1
     #   current number: 2
     #   current number: 3

@@ -13,7 +13,6 @@ API Documentation
     robot/index
     async/index
     datastructures/index
-    tcl/index
     log/index
     reporter/index
     results/index
