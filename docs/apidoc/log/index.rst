@@ -12,6 +12,7 @@ Subpackages
 .. toctree::
 
    pyats.log.commands
+   pyats.atslog
 
 Submodules
 ----------

@@ -15,6 +15,7 @@ and usage.
     pyats_create
     pyats_develop
     pyats_logs
+    pyats_migrate
     pyats_run
     pyats_secret
     pyats_shell

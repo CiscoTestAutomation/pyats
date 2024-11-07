@@ -51,7 +51,20 @@ The following describes the default email report content. Note that fields in
 
         TOTAL      : {runtime.job.results[total]}
 
-    Success Rate   : {runtime.job.results[success_rate]:.02f} %
+    Success Rate   : {runtime.job.results[success_rate]:.02f}
+
+    Section Stats
+        Passed     : {runtime.job.section_results[passed]}
+        Passx      : {runtime.job.section_results[passx]}
+        Failed     : {runtime.job.section_results[failed]}
+        Aborted    : {runtime.job.section_results[aborted]}
+        Blocked    : {runtime.job.section_results[blocked]}
+        Skipped    : {runtime.job.section_results[skipped]}
+        Errored    : {runtime.job.section_results[errored]}
+
+        TOTAL      : {runtime.job.section_results[total]}
+
+    Section Success Rate   : {runtime.job.section_results[success_rate]:.02f}
 
     +------------------------------------------------------------------------------+
     |                             Task Result Summary                              |
@@ -90,6 +103,24 @@ host, update the following fields in pyATS :ref:`pyats_configuration`'s
 
 Report Customization
 --------------------
+
+The email and job summary report includes Overall Stats which is based on the
+count of CommonSetup, CommonCleanup, Testcase, Trigger and Verification
+classes defined in test scripts. The report also includes Section Stats that
+summarize SubSection, SetupSection, CleanupSection and TestSection stats.
+
+The section reporting can be changed by updating the `report.sections`
+configuration to define which sections should be counted for reporting purposes.
+
+For example, to include only TestSections (decorated with `@aetest.test`), Setup
+(`aetest.setup`) and Cleanup (`@aetest.cleanup`) sections, set `report.sections`
+as below. The values for the sections are space separated.
+
+.. code-block:: ini
+
+    # report configuration
+    [report]
+    sections = TestSection SetupSection CleanupSection
 
 Easypy email notification reports are fully customizable, allowing users to
 attach custom information to the email report body.
@@ -248,8 +279,42 @@ at any time prior to calling the send() method.
     - **to_email**: A list or tuple of recipient addresses.
     - **subject**: The subject line of the email.
     - **body**: The body text. This should be a plain text message.
-    - **attachments**: A list of attachments to put on the message. These can be
-      either email.MIMEBase.MIMEBase instances, or (filename, content, mimetype)
-      triples - currently only supports MIMEText.
+    - **attachments**: A list of attachments to put on the message. Currently only supports MIMEText.
     - **html_email**: flag to enable alternative HTML email format.
     - **html_body**: Body in HTML format.
+
+.. code-block:: python
+
+    # Example
+    # -------
+    #
+    # Sending email from pyATS
+
+    # import EmailMsg class
+    from pyats.utils.email import EmailMsg
+
+    # Create email message object
+    mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        body=email_body)
+
+    # send email
+    mail.send()
+
+    # If you want to send HTML email:
+     mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        html_email=True,
+        html_body=html_body)
+
+    # You can also add attachments:
+    mail = EmailMsg(
+        from_email=email_from_address,
+        to_email=email_to_address,
+        subject=email_subject,
+        body=email_body,
+        attachments=['/path/to/file'])

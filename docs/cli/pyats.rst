@@ -14,8 +14,18 @@ Synopsis
       pyats <command> [options]
 
     Commands:
-        validate            utlities that helps to validate input files
-        version             display currently installed pyATS version
+        clean               runs the provided clean file
+        create              create scripts and libraries from template
+        diff                Command to diff two snapshots saved to file or directory
+        learn               Command to learn device features and save to file
+        logs                command enabling log archive viewing in local browser
+        migrate             utilities for migrating to future versions of pyATS
+        parse               Command to parse show commands
+        run                 runs the provided script and output corresponding results.
+        secret              utilities for working with secret strings.
+        shell               enter Python shell, loading a pyATS testbed file and/or pickled data
+        validate            utilities that help to validate input files
+        version             commands related to version display and manipulation
 
     General Options:
       -h, --help            Show help

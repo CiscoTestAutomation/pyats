@@ -11,6 +11,7 @@ related input files, formats, and content.
 
     Subcommands:
         datafile            validate your YAML-based datafile syntax
+        jinja2_config       validate genie config file jinja2 rendering
         testbed             validate your testbed file yaml syntax
 
     General Options:
@@ -226,3 +227,70 @@ Example
 .. tip::
 
     use ``-q`` to quiet pretty information such as "----" sections and headers.
+
+
+
+
+pyats validate jinja2_config
+----------------------------
+
+This subcommand validates the content of your Genie configuration datafile. It
+gives developers an opportunity to check if the file is written following
+valid YAML syntax and what the Jinja2 rendered output configuration looks like.
+
+.. code-block:: text
+
+    Usage:
+      pyats validate jinja2_config [file] [options]
+
+    Description:
+      Validates the provided genie config file for jinja2 rendering.
+
+    Jinja2_config Options:
+      [file]                Genie config datafile to validate
+      --testbed-file TESTBED
+                            Testbed file (required)
+      --devices DEVICES [DEVICES ...]
+                            Devices to render configs for (optional)
+      --sequence SEQUENCE [SEQUENCE ...]
+                            Sequence(s) to render (optional)
+
+    General Options:
+      -h, --help            Show help
+      -v, --verbose         Give more output, additive up to 3 times.
+      -q, --quiet           Give less output, additive up to 3 times, corresponding to WARNING, ERROR,
+                            and CRITICAL logging levels
+
+Options
+^^^^^^^
+
+``[file]``
+    The Genie configuration datafile. Can be a file path or a URL to a YAML file
+
+``--devices``
+    Device names to render the configuration for. Only configurations for these devices will be
+    used to render configurations.
+
+``--sequence``
+    Sequence(s) to render the configuration for. Only the sequences specified will be rendered.
+
+
+Example
+^^^^^^^
+
+
+.. code-block:: text
+
+    $ pyats validate jinja2_config data/config_datafile.yaml --testbed-file data/testbed.yaml --sequence 1
+
+    Device R1 sequence 1:
+    interface Loopback0
+    no shutdown
+    ip address 1.1.1.1 255.255.255.255
+
+
+    Device R2 sequence 1:
+    interface Loopback0
+    no shutdown
+    ip address 2.2.2.2 255.255.255.255
+

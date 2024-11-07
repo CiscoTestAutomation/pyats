@@ -18,16 +18,16 @@ Test Parameters
 ``aetest`` is a data-driven test infrastructure. Its scripts and test cases are
 intended to be driven dynamically by:
 
-- Data in the form of input arguments to the test script
+- Data in the form of input arguments to the TestScript
 - Dynamic data generated during runtime
 
 The collection of dynamic data that artificially affects the behavior of
-test scripts and test cases in ``aetest`` is called **parameters**. It adheres to
+TestScripts and Testcases in ``aetest`` is called **parameters**. It adheres to
 a pre-defined set of parent/child propagation relationships and may be used as
 `Function Arguments`_ to each test section.
 
-This feature is a supplement to static test case data (attribute values stored
-within each test case).
+This feature is a supplement to static Testcase data (attribute values stored
+within each Testcase).
 
 .. tip::
 
@@ -74,8 +74,8 @@ methods as the "doer," then parameters are the "what to do with." E.g., an
     add_to_c(1, 2)
     # 103
 
-In data-driven testing, test scripts are the *doers*, performing the act
-of testing a facet of some product. Test script arguments and parameters are thus the
+In data-driven testing, TestScripts are the *doers*, performing the act
+of testing a facet of some product. TestScript arguments and parameters are thus the
 input data that influences the specific actions of testing. Here
 are some possible use cases:
 
@@ -86,13 +86,13 @@ are some possible use cases:
     - The ``vlan`` argument to the ``layer2_traffic`` script can dynamically control the
       VLAN to be configured for traffic testing.
 
-    - Other toggle arguments that dynamically turn on/off certain test cases,
+    - Other toggle arguments that dynamically turn on/off certain Testcases,
       and a combination of features to be configured & tested
 
     - Etc.
 
 Of course, the parameters feature in ``aetest`` is much more than just script
-arguments. It enables users to write test cases and test scripts that are capable
+arguments. It enables users to write Testcases and TestScripts that are capable
 of being driven by inputs, varying the degree of testing, etc.
 
 Relationship Model
@@ -162,7 +162,7 @@ execution, this happens behind the scenes automatically.
     new_testcase_parameters.update(testcase.parameters)
     testcase.parameters = new_testcase_parameters
 
-    # so that the new parameters seen in the test case
+    # so that the new parameters seen in the Testcase
     # level, is:
     testcase.parameters
     # {'param_A': 100, 'param_B': 2, 'param_C': 3}
@@ -203,7 +203,7 @@ within the test script.
     # note that this also applies to CommonSetup & CommonCleanup
     class Testcase(aetest.Testcase):
 
-        # all default parameters specific to this test case are declared
+        # all default parameters specific to this Testcase are declared
         # in its own parameters dictionary.
         parameters = {
             'generic_param_A': 200
@@ -247,7 +247,7 @@ dynamically access & update parameters.
     #
     #   continuing from the above
 
-    # re-defining the test case for the sake of code-continuity
+    # re-defining the Testcase for the sake of code-continuity
     class Testcase(aetest.Testcase):
 
         # local parameters defaults, same as above
@@ -272,7 +272,7 @@ dynamically access & update parameters.
 
         @aetest.test
         def test(self):
-            # access & print parent test script parameters
+            # access & print parent TestScript parameters
             # (following the parent model)
             print(self.parent.parameters)
             # {'generic_param_A': 100,
@@ -291,7 +291,7 @@ dynamically access & update parameters.
 Consider the above example: parameters can be set and accessed as the script
 runs, opening the opportunity for scripts to dynamically discover the runtime
 environment and modify test behavior (parameters) as required. E.g., the ``setup``
-section of modifying test case parameters based on the current testbed state, and
+section of modifying Testcase parameters based on the current testbed state, and
 altering the behavior of ensuing ``test`` sections, etc.
 
 .. tip::
@@ -306,7 +306,7 @@ altering the behavior of ensuing ``test`` sections, etc.
 Script Arguments
 ----------------
 
-In short, any arguments passed to the test script before startup becomes part of
+In short, any arguments passed to the TestScript before startup becomes part of
 the ``TestScript`` parameter. This includes all the arguments passed through the
 :ref:`easypy_jobfile` during :ref:`aetest_jobfile_execution`, and/or any command
 line arguments parsed and passed to ``aetest.main()`` during
@@ -323,7 +323,7 @@ line arguments parsed and passed to ``aetest.main()`` during
     # without going into details about how script parameters/arguments are
     # passed in (covered under Running Scripts section)
 
-    # assuming that the test script was called with the following inputs
+    # assuming that the TestScript was called with the following inputs
     script_arguments = {
         'arg_a': 100,
         'arg_c': 3,
@@ -353,7 +353,7 @@ script's base parameters and overwrite existing ones.
 .. tip::
 
     Define your default parameters in the script, and change the behavior of
-    the test script by overwriting specific ones using script arguments.
+    the TestScript by overwriting specific ones using script arguments.
 
 .. _parameters_as_funcargs:
 
@@ -404,7 +404,7 @@ their support.
 
         # this setup section definition identifies "param_B"
         # as an input requirement. As this parameter is available at this
-        # test case level (aggregated from the parent test script), it
+        # Testcase level (aggregated from the parent TestScript), it
         # is passed in as input
         @aetest.setup
         def setup(self, param_B):
@@ -533,7 +533,7 @@ support arguments, can identify the current execution context, and
 can act accordingly.
 
 A parametrized function is declared when the ``@parameters.parametrize``
-decorator is used on a function within a test script. This also adds the newly
+decorator is used on a function within a TestScript. This also adds the newly
 created parametrized function automatically as part of ``TestScript``
 parameters, using the function name as the parameter name.
 
@@ -583,7 +583,7 @@ identical to its callable parameter sibling, with the following additions:
     # As previously stated, there's no need to add parametrized functions
     # to the parameters dict(). They are automatically discovered and added.
 
-    # Defining two tests under this test case
+    # Defining two tests under this Testcase
     # ----------------------------------------------
     # Similar to callable parameters, the above parameters
     # are evaluated when used as function arguments to section
@@ -686,8 +686,8 @@ property, and is not useable as a function argument.
         # names as keyword arguments to methods
         @aetest.subsection
         def subsection_one(self, testscript, section, steps):
-            # Testscript object has an attribute called module
-            # which is this test script's module
+            # TestScript object has an attribute called module
+            # which is this TestScript's module
             print (testscript.module)
             # <module 'example_script' from '/path/to/example.py'>
 
@@ -718,7 +718,7 @@ property, and is not useable as a function argument.
 
 Reserved parameters provide ``aetest`` a mechanism to offer optional features
 without polluting the :ref:`object_model` with additional attributes. It also
-allows users to write test scripts that delve deeper and interact with the
+allows users to write TestScripts that delve deeper and interact with the
 internals of ``aetest`` using a supported method instead of hacking around.
 
     *With great power comes great responsibilities* - use them wisely.
