@@ -57,8 +57,8 @@ The following describes each section and their retry capability and behaviors:
     are the only retryable sections.
 
 
-Defining Retry
---------------
+Defining Retry using retry decorator
+------------------------------------
 
 Sections are marked for retry when they are decorated with ``@retry``, and its
 looping parameters provided as decorator arguments. During runtime, when 
@@ -70,7 +70,7 @@ arguments
 
 .. code-block:: python
 
-    # Example
+    # Example-1
     # -------
     #
     #   defining retry on sections
@@ -97,66 +97,26 @@ arguments
                     step.passed()
                 step.failed()
 
-        # To test retry on aetest.cleanup and check the retry and retry_count parameters
+        # cleanup section
         @aetest.retry(retries=2, retry_wait=2)
         @aetest.cleanup
         def testcase_cleanup(self, retry, retry_count):
-            if retry and retry_count>1:
-                pass
-            else:
-                raise AEtestStepFailedSignal
-    
+            pass
 
-    # this testscript's resulting sections would look like this below
-
+# this testscript's resulting sections would look like this
 +------------------------------------------------------------------------------+
-  SECTIONS/TESTCASES                                                      RESULT
- --------------------------------------------------------------------------------
- .
- |-- MyTestcase_1                                                          FAILED
- |   |-- testcase_setup                                                    PASSED
- |   |-- connect_testcase                                                  FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 1                                          FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 2                                           PASSX
- |   |   `-- Step 1: Failure case                                          PASSED
- |   |-- testcase_cleanup                                                  FAILED
- |   |-- testcase_cleanup Retry 1                                          FAILED
- |   `-- testcase_cleanup Retry 2                                           PASSX
- |-- MyTestcase_1 Retry 1                                                  FAILED
- |   |-- testcase_setup                                                    PASSED
- |   |-- connect_testcase                                                  FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 1                                          FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 2                                           PASSX
- |   |   `-- Step 1: Failure case                                          PASSED
- |   |-- testcase_cleanup                                                  FAILED
- |   |-- testcase_cleanup Retry 1                                          FAILED
- |   `-- testcase_cleanup Retry 2                                           PASSX
- |-- MyTestcase_1 Retry 2                                                  FAILED
- |   |-- testcase_setup                                                    PASSED
- |   |-- connect_testcase                                                  FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 1                                          FAILED
- |   |   `-- Step 1: Failure case                                          FAILED
- |   |-- connect_testcase Retry 2                                           PASSX
- |   |   `-- Step 1: Failure case                                          PASSED
- |   |-- testcase_cleanup                                                  FAILED
- |   |-- testcase_cleanup Retry 1                                          FAILED
- |   `-- testcase_cleanup Retry 2                                           PASSX
- `-- MyTestcase_1 Retry 3                                                  FAILED
-     |-- testcase_setup                                                    PASSED
-     |-- connect_testcase                                                  FAILED
-     |   `-- Step 1: Failure case                                          FAILED
-     |-- connect_testcase Retry 1                                          FAILED
-     |   `-- Step 1: Failure case                                          FAILED
-     |-- connect_testcase Retry 2                                           PASSX
-     |   `-- Step 1: Failure case                                          PASSED
-     |-- testcase_cleanup                                                  FAILED
-     |-- testcase_cleanup Retry 1                                          FAILED
-     `-- testcase_cleanup Retry 2                                           PASSX
+|                             Task Result Details                              |
++------------------------------------------------------------------------------+
+Task-1: script_1                                                           PASSX
+`-- MyTestcase_1                                                           PASSX
+    |-- testcase_setup                                                    PASSED
+    |-- connect_testcase                                                  FAILED
+    |   `-- STEP 1: Failure case                                          FAILED
+    |-- connect_testcase [Retry 1]                                        FAILED
+    |   `-- STEP 1: Failure case                                          FAILED
+    |-- connect_testcase [Retry 2]                                         PASSX
+    |   `-- STEP 1: Failure case                                          PASSED
+    `-- testcase_cleanup                                                  PASSED
 
 
 As shown above, the minimum requirement to retry a section (eg, to run its code 
@@ -168,31 +128,52 @@ make more sense to use ``@retry`` as the outermost decorator, signifying that
 this method is first marked as a section, then this section is retryable.
 
 
-To use the retry using the cli args.
+Defining Retry using --retry argument
+--------------------------------------
+
+Retry feature can be triggered from cli as well, by using the --retry parameter.
+It supports the following formats:
+
+    1. yaml file
+    2. json formatted data
+    3. k=v Pair
+    4. Base64 encoded
+
+Examples:
+---------
 
 case 1: Yaml file
-
+-----------------
 pyats run manifest job.tem --retry retry.yaml
 
 retry.yaml
 
- sections:
-   - Testcase
-   - Subsection
+.. code-block:: yaml
 
- retries: 4
- retry_wait: 2
+    sections:
+        - Testcase
+        - Testsection
+
+    retries: 4
+    retry_wait: 2
+
+The section type mentioned under the ``sections`` key will be retried.
+This will retry testcase and testsection 4 times with a waiting period of 2 seconds.
+If no sections provided then the testcase will be retried by default.
 
 case 2: Json formatted data
-
+---------------------------
 pyats run manifest job.tem --retry {"sections": ["Cleanupsection", "Testsection"], "retries": 2, "retry_wait": 2}
 
-case 3: Parameters
-
+case 3: k=v Pair
+----------------
 pyats run manifest job.tem --retry retries=3 retry_wait=10
 
 case 4: Base64 encoded
-
+----------------------
 `pyats run manifest job.tem --retry eyJ0ZXN0Y2FzZXMiOiB7IkZsYWt5VGVzdC50ZXN0X2ZsYWt5IjogeyJyZXRyaWVzIjogMywgInJldHJ5X3dhaXQiOiAxMH19fQo=
 
+Note:
+-----
+By default the ``retries`` is set to 3 times and retry_wait is set to 10 seconds.
 
