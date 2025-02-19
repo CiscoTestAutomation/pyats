@@ -20,7 +20,6 @@ Retry Sections
 .. _Yield Expressions: https://docs.python.org/3.4/reference/expressions.html#yieldexpr
 .. _Factory Design: http://en.wikipedia.org/wiki/Factory_%28object-oriented_programming%29
 
-    *What is a  retry? Refer to the end of this section.*
 
 As an integral extension of :ref:`test_parameters` data-driven testing concept, 
 ``aetest`` also supports section retry: reusing section code body by providing
@@ -65,8 +64,16 @@ looping parameters provided as decorator arguments. During runtime, when
 ``aetest`` infrastructure detects retryable section code, their corresponding 
 section object is then instantiated once for each of its iterations. It takes two
 arguments
-        retries - Number of retries.
-        retry_wait - Wait time between each retries.
+        - ``retries``(int) - Number of retries.
+        - ``retry_wait``(int) - Wait time between each retries.
+
+Aetest retry parameters
+------------------------
+The user can use ``retry`` and ``retry_count`` aetest parameters in their script to do
+the retry check and keep in track of retry count.
+
+        - ``retry``(bool) -  To check if the section is being retried. (Optional)
+        - ``retry_count``(int) - To track the retry count (Optional)
 
 .. code-block:: python
 
@@ -104,19 +111,22 @@ arguments
             pass
 
 # this testscript's resulting sections would look like this
-+------------------------------------------------------------------------------+
-|                             Task Result Details                              |
-+------------------------------------------------------------------------------+
-Task-1: script_1                                                           PASSX
-`-- MyTestcase_1                                                           PASSX
-    |-- testcase_setup                                                    PASSED
-    |-- connect_testcase                                                  FAILED
-    |   `-- STEP 1: Failure case                                          FAILED
-    |-- connect_testcase [Retry 1]                                        FAILED
-    |   `-- STEP 1: Failure case                                          FAILED
-    |-- connect_testcase [Retry 2]                                         PASSX
-    |   `-- STEP 1: Failure case                                          PASSED
-    `-- testcase_cleanup                                                  PASSED
+
+.. code-block:: log
+
+    +------------------------------------------------------------------------------+
+    |                             Task Result Details                              |
+    +------------------------------------------------------------------------------+
+    Task-1: script_1                                                           PASSX
+    `-- MyTestcase_1                                                           PASSX
+        |-- testcase_setup                                                    PASSED
+        |-- connect_testcase                                                  FAILED
+        |   `-- STEP 1: Failure case                                          FAILED
+        |-- connect_testcase [Retry 1]                                        FAILED
+        |   `-- STEP 1: Failure case                                          FAILED
+        |-- connect_testcase [Retry 2]                                         PASSX
+        |   `-- STEP 1: Failure case                                          PASSED
+        `-- testcase_cleanup                                                  PASSED
 
 
 As shown above, the minimum requirement to retry a section (eg, to run its code 
@@ -144,7 +154,8 @@ Examples:
 
 case 1: Yaml file
 -----------------
-pyats run manifest job.tem --retry retry.yaml
+.. code-block:: text
+    pyats run manifest job.tem --retry retry.yaml
 
 retry.yaml
 
@@ -161,19 +172,24 @@ The section type mentioned under the ``sections`` key will be retried.
 This will retry testcase and testsection 4 times with a waiting period of 2 seconds.
 If no sections provided then the testcase will be retried by default.
 
+
 case 2: Json formatted data
 ---------------------------
-pyats run manifest job.tem --retry {"sections": ["Cleanupsection", "Testsection"], "retries": 2, "retry_wait": 2}
+.. code-block:: text
+    pyats run manifest job.tem --retry \
+    {"sections": ["Cleanupsection", "Testsection"], "retries": 2, "retry_wait": 2}
 
 case 3: k=v Pair
 ----------------
-pyats run manifest job.tem --retry retries=3 retry_wait=10
+.. code-block:: text
+    pyats run manifest job.tem --retry retries=3 retry_wait=10
 
 case 4: Base64 encoded
 ----------------------
-`pyats run manifest job.tem --retry eyJ0ZXN0Y2FzZXMiOiB7IkZsYWt5VGVzdC50ZXN0X2ZsYWt5IjogeyJyZXRyaWVzIjogMywgInJldHJ5X3dhaXQiOiAxMH19fQo=
+.. code-block:: text
+    pyats run manifest job.tem --retry \
+    eyJ0ZXN0Y2FzZXMiOiB7IkZsYWt5VGVzdC50ZXN0X2ZsYWt5IjogeyJyZXRyaWVzIjogMywgInJldHJ5X3dhaXQiOiAxMH19fQo=
 
-Note:
------
-By default the ``retries`` is set to 3 times and retry_wait is set to 10 seconds.
+.. note::
+    By default the ``retries`` is set to 3 times and retry_wait is set to 10 seconds.
 
