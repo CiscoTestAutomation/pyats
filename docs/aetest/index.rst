@@ -20,6 +20,7 @@ blocks.
     behavior
     parameters
     loop
+    retry
     results
     steps
     run
