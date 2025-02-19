@@ -110,7 +110,7 @@ the retry check and keep in track of retry count.
         def testcase_cleanup(self, retry, retry_count):
             pass
 
-# this testscript's resulting sections would look like this
+# This testscript's resulting sections would look like this
 
 .. code-block:: log
 
@@ -138,10 +138,10 @@ make more sense to use ``@retry`` as the outermost decorator, signifying that
 this method is first marked as a section, then this section is retryable.
 
 
-Defining Retry using --retry argument
+Defining Retry using the `\-\-retry` argument
 --------------------------------------
 
-Retry feature can be triggered from cli as well, by using the --retry parameter.
+Retry feature can be triggered from cli as well, by using the `\-\-retry` argument.
 It supports the following formats:
 
     1. yaml file
@@ -157,9 +157,9 @@ case 1: Yaml file
 .. code-block:: text
     pyats run manifest job.tem --retry retry.yaml
 
-retry.yaml
-
 .. code-block:: yaml
+
+    # retry.yaml
 
     sections:
         - Testcase
