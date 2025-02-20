@@ -130,6 +130,22 @@ To provide setting for retry, you can use one of the following formats:
 
 The JSON and Key/Value pairs can optionally be Base64 encoded.
 
+Schema
+------
+.. code-block:: python
+    {
+        Optional('sections'): list, # sections that needs to be retried. Eg  - Testcase, Subsection, Setupsection, Cleanupsection, Testsection
+        Optional('section_results'): list, # section that needs to be retried based on its results. Eg Failed, Errored. Default: Failed
+        Optional('testcases'): { # aetest testcases
+            Any(): { # section name
+                Optional('retries'): Default(int, 3), # number of retries
+                Optional('retry_wait'): Default(int, 10), # retry delay between each retry
+            }
+        },
+        'retries': Default(int, 3),
+        'retry_wait': Default(int, 10),
+    }
+
 YAML file
 ~~~~~~~~~
 
