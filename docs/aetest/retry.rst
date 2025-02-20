@@ -157,14 +157,14 @@ case 1: Yaml file
 .. code-block:: text
     pyats run manifest job.tem --retry retry.yaml
 
+Example-1
+---------
 .. code-block:: yaml
 
     # retry.yaml
-
     sections:
         - Testcase
         - Testsection
-
     retries: 4
     retry_wait: 2
 
@@ -172,6 +172,35 @@ The section type mentioned under the ``sections`` key will be retried.
 This will retry testcase and testsection 4 times with a waiting period of 2 seconds.
 If no sections provided then the testcase will be retried by default.
 
+Example-2
+---------
+.. code-block:: yaml
+
+    # retry.yaml
+    section_results:
+        - failed
+        - errored
+    retries: 4
+    retry_wait: 2
+
+The section results mentioned under the ``section_results`` key will be retried.
+
+Example-3
+---------
+.. code-block:: yaml
+    testcases:
+        # section
+        test_flaky:
+            # Optionally specify retry count and wait time
+            retries: 3
+            retry_wait: 2
+
+To Enable retry on specific sections, refer the above example.
+
+Important
+---------
+These scenarios can also be enabled in retry with other supported
+formats like json, k=v pair and Base64 encoded.
 
 case 2: Json formatted data
 ---------------------------
