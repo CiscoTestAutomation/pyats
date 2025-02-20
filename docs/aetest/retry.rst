@@ -201,8 +201,8 @@ spacing and/or quote interpretation by the unix shell.
     eyJ0ZXN0Y2FzZXMiOiB7IkZsYWt5VGVzdC50ZXN0X2ZsYWt5IjogeyJyZXRyaWVzIjogMywgInJldHJ5X3dhaXQiOiAxMH19fQo=
 
 
-Example output
---------------
+Example output - 1
+-------------------
 
 This testscript's resulting section summary report would look like below with
 section retry enabled.
@@ -232,3 +232,38 @@ the section method is effectively decorated twice, and even though the order
 does not matter, it make more sense to use ``@aetest.retry`` as the outermost
 decorator, signifying that this method is first marked as a section, then this
 section is retryable.
+
+
+Example output - 2
+-------------------
+
+This testscript's resulting section summary report would look like below with
+testcase retry enabled.
+
+.. code-block:: log
+
+    +------------------------------------------------------------------------------+
+    |                             Task Result Details                              |
+    +------------------------------------------------------------------------------+
+    Task-1: script                                                            FAILED
+    |-- MyTestcase_1                                                          FAILED
+    |   |-- testcase_setup                                                    PASSED
+    |   |-- connect_testcase                                                  FAILED
+    |   |   `-- STEP 1: Failure case                                          FAILED
+    |   `-- testcase_cleanup                                                  PASSED
+    |-- MyTestcase_1 [Retry 1]                                                FAILED
+    |   |-- testcase_setup                                                    PASSED
+    |   |-- connect_testcase                                                  FAILED
+    |   |   `-- STEP 1: Failure case                                          FAILED
+    |   `-- testcase_cleanup                                                  PASSED
+    |-- MyTestcase_1 [Retry 2]                                                FAILED
+    |   |-- testcase_setup                                                    PASSED
+    |   |-- connect_testcase                                                  FAILED
+    |   |   `-- STEP 1: Failure case                                          FAILED
+    |   `-- testcase_cleanup                                                  PASSED
+    `-- MyTestcase_1 [Retry 3]                                                FAILED
+        |-- testcase_setup                                                    PASSED
+        |-- connect_testcase                                                  FAILED
+        |   `-- STEP 1: Failure case                                          FAILED
+        `-- testcase_cleanup                                                  PASSED
+
