@@ -90,6 +90,15 @@ arguments
         def testcase1(self):
             pass
 
+As shown above, the minimum requirement to retry a section (eg, to run its code
+1+ times) is to decorate the section with ``@aetest.retry``.
+
+When ``@aetest.retry`` is used on a ``@aetest.subsection`` or ``@aetest.test``,
+the section method is effectively decorated twice, and even though the order
+does not matter, it make more sense to use ``@aetest.retry`` as the outermost
+decorator, signifying that this method is first marked as a section, then this
+section is retryable.
+
 
 Function Arguments
 ------------------
@@ -132,7 +141,13 @@ The JSON and Key/Value pairs can optionally be Base64 encoded.
 
 Schema
 ------
+
+The schema for YAML and JSON structured settings is show below.
+
+The values for sections and section_results are not case sensitive, i.e. you can use `Failed` or `failed` as values.
+
 .. code-block:: python
+
     {
         Optional('sections'): list, # sections that needs to be retried. Eg  - Testcase, Subsection, Setupsection, Cleanupsection, Testsection
         Optional('section_results'): list, # section that needs to be retried based on its results. Eg Failed, Errored. Default: Failed
@@ -148,6 +163,8 @@ Schema
 
 YAML file
 ~~~~~~~~~
+
+To use a YAML file with retry settings, add the filename after the retry argument.
 
 .. code-block:: text
 
@@ -191,17 +208,34 @@ To Enable retry on specific sections, refer the above example.
 JSON formatted data
 ~~~~~~~~~~~~~~~~~~~
 
+To use JSON as settings for retry, you can specify a raw JSON string or Base64
+encoded JSON string.
+
 .. code-block:: text
 
     pyats run manifest job.tem --retry \
-    {"sections": ["Cleanupsection", "Testsection"], "retries": 2, "retry_wait": 2}
+    '{"sections": ["Cleanupsection", "Testsection"], "retries": 2, "retry_wait": 2}'
+
+.. note::
+
+    Using raw JSON strings on the command line is error prone, using Base64
+    encoded JSON strings is recommended.
 
 Key/value Pairs
 ~~~~~~~~~~~~~~~
 
+Key/value argments can be used using ``k=v`` syntax on the command line.
+
 .. code-block:: text
 
     pyats run manifest job.tem --retry retries=3 retry_wait=10
+
+For a list of values for sections and section_results, use comma seperated values:
+
+.. code-block:: text
+
+    pyats run manifest job.tem --retry sections=testsection section_result=failed,errored
+
 
 Base64 encoded JSON (or Key/Value pair)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -217,8 +251,11 @@ spacing and/or quote interpretation by the unix shell.
     eyJ0ZXN0Y2FzZXMiOiB7IkZsYWt5VGVzdC50ZXN0X2ZsYWt5IjogeyJyZXRyaWVzIjogMywgInJldHJ5X3dhaXQiOiAxMH19fQo=
 
 
-Example output - 1
--------------------
+Example output
+--------------
+
+TestSection Retry
+~~~~~~~~~~~~~~~~~
 
 This testscript's resulting section summary report would look like below with
 section retry enabled.
@@ -240,18 +277,8 @@ section retry enabled.
         `-- testcase_cleanup                                                  PASSED
 
 
-As shown above, the minimum requirement to retry a section (eg, to run its code
-1+ times) is to decorate the section with ``@aetest.retry``.
-
-When ``@aetest.retry`` is used on a ``@aetest.subsection`` or ``@aetest.test``,
-the section method is effectively decorated twice, and even though the order
-does not matter, it make more sense to use ``@aetest.retry`` as the outermost
-decorator, signifying that this method is first marked as a section, then this
-section is retryable.
-
-
-Example output - 2
--------------------
+Testcase Retry
+~~~~~~~~~~~~~~
 
 This testscript's resulting section summary report would look like below with
 testcase retry enabled.
