@@ -3,11 +3,6 @@
 Retry Sections
 ==============
 
-.. warning::
-
-    Retry is not yet supported with Genie Triggers.
-
-
 .. sidebar:: Helpful Reading
 
     - `Classes Tutorial`_
