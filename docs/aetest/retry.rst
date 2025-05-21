@@ -255,7 +255,7 @@ TestSection Retry
 This testscript's resulting section summary report would look like below with
 section retry enabled.
 
-.. code-block:: log
+.. code-block:: text
 
     +------------------------------------------------------------------------------+
     |                             Task Result Details                              |
@@ -278,7 +278,7 @@ Testcase Retry
 This testscript's resulting section summary report would look like below with
 testcase retry enabled.
 
-.. code-block:: log
+.. code-block:: text
 
     +------------------------------------------------------------------------------+
     |                             Task Result Details                              |
