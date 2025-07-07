@@ -293,7 +293,7 @@ fact, they only differ in the following:
 
     ``__init__``, "takes in the exact same arguments as ``pcall``"
     ``pids``, "tuple of all child processes"
-    ``living``, "tuple of all currently alive child processes"
+    ``livings``, "tuple of all currently alive child processes"
     ``results``, "tuple of results from all child processes. None if no results
     currently available"
     ``start()``, "starts all child worker processes"
