@@ -1,7 +1,8 @@
 September 2025
 ==========
 
- - Pyats v25.9 
+September 30 - Pyats v25.9
+
 ------------------------
 
 
