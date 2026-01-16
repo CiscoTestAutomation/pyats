@@ -234,6 +234,95 @@ Production YAML Schema
                                   # to powercycle the device
                                   # (optional)
 
+            management:  # device management configuration
+                         # contains management interface and addressing information
+                         # (optional)
+
+                interface:  # management interface name
+                            # (optional)
+
+                address:    # management IP address configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 address(es) for management interface
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                    ipv6:   # IPv6 address(es) for management interface
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                gateway:    # management gateway configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 gateway address(es)
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                    ipv6:   # IPv6 gateway address(es)
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                routes:     # static routes configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 static routes
+                            # list of route entries with subnet and next-hop
+                            # (optional)
+
+                        subnet:    # IPv4 subnet
+                        next-hop:  # IPv4 next-hop address
+
+                    ipv6:   # IPv6 static routes
+                            # list of route entries with subnet and next-hop
+                            # (optional)
+
+                        subnet:    # IPv6 subnet
+                        next-hop:  # IPv6 next-hop address
+
+                vrf:        # VRF name for management interface
+                            # (optional)
+
+                protocols:  # management protocols configuration
+                            # list of protocol strings or dictionaries
+                            # (optional)
+
+                rommon:     # ROMMON configuration for each RP
+                            # (optional)
+
+                    <rp>:   # RP identifier (e.g., rp0, rp1)
+                            # (optional)
+
+                        address:    # ROMMON IP address configuration
+                                    # (optional)
+
+                            ipv4:   # IPv4 address(es) for ROMMON
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                            ipv6:   # IPv6 address(es) for ROMMON
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                        gateway:    # ROMMON gateway configuration
+                                    # (optional)
+
+                            ipv4:   # IPv4 gateway address(es)
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                            ipv6:   # IPv6 gateway address(es)
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                switchport: # switchport mode configuration
+                            # must be one of: 'access', 'trunk', or 'no'
+                            # (optional)
+
+                vlan:       # VLAN ID for management interface
+                            # must be an integer between 1 and 4094
+                            # (optional)
+
             credentials:
                 # credential details common to the device
                 # (optional)
