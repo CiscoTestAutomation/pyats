@@ -519,9 +519,6 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
                                                '^test_.*',
                                                'common_cleanup'))
 
-        # easypy.run() example (job file snippet) using lambda
-        run(testscript = 'testscript.py', uids = lambda tc, section=None: tc in ['common_setup', 'test_one'])
-
 ``exclude_uids``, ``--exclude-uids``
     specify the list of section uids to be excluded from execution using a callable expression.
     This argument takes in a ``callable`` that returns True or False for each
@@ -541,9 +538,6 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         from pyats.datastructures.logic import Or
         aetest.main('testscript.py', exclude_uids = Or('test_skip_.*',
                                                        'test_temp_.*'))
-
-        # easypy.run() example (job file snippet) using lambda
-        run(testscript = 'testscript.py', exclude_uids = lambda tc, section=None: tc in ['test_broken', 'test_disabled'])
 
 ``groups``, ``-groups``
     expression specifying the group(s) of testcases to execute. This argument
