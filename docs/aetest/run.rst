@@ -465,6 +465,8 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
     "n/a", ``-help``, "display help information"
     ``uids``, ``-uids``, "specify the list of section uids to run (logic
     expression)"
+    ``exclude_uids``, ``--exclude-uids``, "specify the list of section uids to exclude (logic
+    expression)"
     ``groups``, ``-groups``, "specify the list of testcase groups to run (logic
     expression)"
     ``datafile``, ``-datafile``, "input datafile/value for this script"
@@ -517,8 +519,25 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
                                                '^test_.*',
                                                'common_cleanup'))
 
-        # easypy.run() example (job file snippet) using lambda
-        run(testscript = 'testscript.py', uids = lambda tc, section=None: tc in ['common_setup', 'test_one'])
+``exclude_uids``, ``--exclude-uids``
+    specify the list of section uids to be excluded from execution using a callable expression.
+    This argument takes in a ``callable`` that returns True or False for each
+    section uid input, controlling whether the section is excluded or not. This is the inverse of ``uids``.
+    (Docs @ :ref:`aetest_uids`)
+
+    When using this argument in command line, the input is required to be of
+    valid python syntax, evaluatable by :ref:`logic_from_str`.
+
+    .. code-block:: bash
+
+        bash$ python testscript.py --exclude-uids "Or('pattern_1', 'pattern_2')"
+
+    .. code-block:: python
+
+        # aetest.main() example using datastructure logic
+        from pyats.datastructures.logic import Or
+        aetest.main('testscript.py', exclude_uids = Or('test_skip_.*',
+                                                       'test_temp_.*'))
 
 ``groups``, ``-groups``
     expression specifying the group(s) of testcases to execute. This argument
