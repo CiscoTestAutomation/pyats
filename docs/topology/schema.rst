@@ -188,18 +188,6 @@ Production YAML Schema
                 password:   # server password
                             # (optional)
 
-                laas:       # LAAS (Lab as a Service) configuration
-                            # (optional)
-
-                    port:               # LAAS port
-                                        # (optional)
-
-                    notification_port:  # LAAS notification port
-                                        # (optional)
-
-                    image_dir:          # LAAS image directory
-                                        # (optional)
-
                 credentials:
                     # credential details common to the server
                     # (optional)
@@ -255,18 +243,6 @@ Production YAML Schema
             # any network key/value pair information concerning this testbed
             # (optional)
             <key>: <value>
-
-        bringup:    # bringup configuration for the testbed
-                    # (optional)
-
-            xrut:   # XRUT (XR User Test) configuration
-                    # (optional)
-
-                sim_dir:    # simulation directory
-                            # (required if xrut is specified)
-
-                base_dir:   # base directory
-                            # (required if xrut is specified)
 
         custom:
             # any custom key/value pairs common to this entire testbed
