@@ -96,6 +96,39 @@ Production YAML Schema
                 # (default: ats.topology.Testbed)
                 # (optional)
 
+        tacacs: # tacacs credentials for the testbed
+                # (required)
+
+            login_prompt:       # tacacs login prompt
+                                # (default: 'login:')
+                                # (optional)
+
+            password_prompt:    # tacacs password prompt
+                                # (default: 'Password:')
+                                # (optional)
+
+            username:           # tacacs username
+                                # (default: current user)
+                                # (optional)
+
+        passwords:  # common passwords for the testbed
+                    # (required)
+
+            tacacs: # tacacs password
+                    # (default: 'lab')
+                    # (optional)
+
+            enable: # enable password
+                    # (default: 'lab')
+                    # (optional)
+
+            line:   # line password
+                    # (default: 'lab')
+                    # (optional)
+
+            linux:  # linux password
+                    # (default: 'lab')
+                    # (optional)
 
         credentials:
             # credential details common to the testbed
@@ -118,17 +151,41 @@ Production YAML Schema
                     # description section
                     # (optional)
 
+                os:     # server operating system
+                        # (optional)
+
                 server: # server name
                         # (optional)
+
+                timeout:    # server timeout in seconds
+                            # (optional)
 
                 type:   # server type generic string
                         # use this to describe the type of server
                         # (optional)
 
+                protocol:   # server protocol
+                            # (optional)
+
+                dynamic:    # whether the server is dynamic
+                            # (optional)
+
+                subnet:     # server subnet
+                            # (optional)
+
                 address:    # server ip address, or list of server ip addresses.
                             # (optional)
 
+                port:       # server port number
+                            # (optional)
+
                 path:       # path to root folder (eg, tftproot)
+                            # (optional)
+
+                username:   # server username
+                            # (optional)
+
+                password:   # server password
                             # (optional)
 
                 credentials:
@@ -144,6 +201,39 @@ Production YAML Schema
 
                         # Any other credential details
                         <key>: <value>
+
+                services:   # server services configuration
+                            # (optional)
+
+                    <name>: # service name
+                            # (optional)
+
+                        type:       # service type
+                                    # (optional)
+
+                        logical:    # whether the service is logical
+                                    # (optional)
+
+                        protocol:   # service protocol
+                                    # (optional)
+
+                        port:       # service port number
+                                    # (optional)
+
+                        transport:  # service transport protocol
+                                    # (optional)
+
+                        version:    # service version
+                                    # (optional)
+
+                        application:    # service application name
+                                        # (optional)
+
+                        username:   # service username
+                                    # (optional)
+
+                        order:      # service order number
+                                    # (optional)
 
                 custom:
                     # any custom key/value pairs concerning this server
@@ -186,6 +276,9 @@ Production YAML Schema
                     #   Eg: ASR9k
                     # (required)
 
+            device_id:  # unique device identifier
+                        # (optional)
+
             region: # device region string
                     # (optional)
 
@@ -200,6 +293,12 @@ Production YAML Schema
                     #  Eg: iosxe
                     # (optional)
 
+            os_flavor:  # device os flavor string
+                        # (optional)
+
+            version:    # device software version string
+                        # (optional)
+
             series: # device series string
                     #  Eg: cat3k
                     # (optional)
@@ -208,7 +307,19 @@ Production YAML Schema
                         # Eg: cat9300
                         # (optional)
 
+            platform_alias: # device platform alias string
+                            # (optional)
+
             model:  # device model string
+                    # (optional)
+
+            model_alias:    # device model alias string
+                            # (optional)
+
+            submodel:   # device submodel string
+                        # (optional)
+
+            pid:    # device product ID string
                     # (optional)
 
             power:  # device power string
@@ -216,6 +327,42 @@ Production YAML Schema
 
             hardware:   # device hardware block
                         # may contain anything describing the hardware info
+                        # (optional)
+
+            tacacs: # tacacs credentials for the device
+                    # falls back to testbed.tacacs if not specified
+                    # (required)
+
+                login_prompt:       # tacacs login prompt
+                                    # (fallback: testbed.tacacs.login_prompt)
+                                    # (optional)
+
+                password_prompt:    # tacacs password prompt
+                                    # (fallback: testbed.tacacs.password_prompt)
+                                    # (optional)
+
+                username:           # tacacs username
+                                    # (fallback: testbed.tacacs.username)
+                                    # (optional)
+
+            passwords:  # common passwords for the device
+                        # falls back to testbed.passwords if not specified
+                        # (required)
+
+                tacacs: # tacacs password
+                        # (fallback: testbed.passwords.tacacs)
+                        # (optional)
+
+                enable: # enable password
+                        # (fallback: testbed.passwords.enable)
+                        # (optional)
+
+                line:   # line password
+                        # (fallback: testbed.passwords.line)
+                        # (optional)
+
+                linux:  # linux password
+                        # (fallback: testbed.passwords.linux)
                         # (optional)
 
             peripherals:  # device hardware block
@@ -233,6 +380,95 @@ Production YAML Schema
                 power_cycler:     # device power cycler information
                                   # to powercycle the device
                                   # (optional)
+
+            management:  # device management configuration
+                         # contains management interface and addressing information
+                         # (optional)
+
+                interface:  # management interface name
+                            # (optional)
+
+                address:    # management IP address configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 address(es) for management interface
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                    ipv6:   # IPv6 address(es) for management interface
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                gateway:    # management gateway configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 gateway address(es)
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                    ipv6:   # IPv6 gateway address(es)
+                            # can be a single address or list of addresses
+                            # (optional)
+
+                routes:     # static routes configuration
+                            # (optional)
+
+                    ipv4:   # IPv4 static routes
+                            # list of route entries with subnet and next-hop
+                            # (optional)
+
+                        subnet:    # IPv4 subnet
+                        next-hop:  # IPv4 next-hop address
+
+                    ipv6:   # IPv6 static routes
+                            # list of route entries with subnet and next-hop
+                            # (optional)
+
+                        subnet:    # IPv6 subnet
+                        next-hop:  # IPv6 next-hop address
+
+                vrf:        # VRF name for management interface
+                            # (optional)
+
+                protocols:  # management protocols configuration
+                            # list of protocol strings or dictionaries
+                            # (optional)
+
+                rommon:     # ROMMON configuration for each RP
+                            # (optional)
+
+                    <rp>:   # RP identifier (e.g., rp0, rp1)
+                            # (optional)
+
+                        address:    # ROMMON IP address configuration
+                                    # (optional)
+
+                            ipv4:   # IPv4 address(es) for ROMMON
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                            ipv6:   # IPv6 address(es) for ROMMON
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                        gateway:    # ROMMON gateway configuration
+                                    # (optional)
+
+                            ipv4:   # IPv4 gateway address(es)
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                            ipv6:   # IPv6 gateway address(es)
+                                    # can be a single address or list of addresses
+                                    # (optional)
+
+                switchport: # switchport mode configuration
+                            # must be one of: 'access', 'trunk', or 'no'
+                            # (optional)
+
+                vlan:       # VLAN ID for management interface
+                            # must be an integer between 1 and 4094
+                            # (optional)
 
             credentials:
                 # credential details common to the device
@@ -341,6 +577,10 @@ Production YAML Schema
                 # below for usage details.
                 # (optional)
                 <key>: <value>
+
+            auto_bringup:   # automatic bringup configuration for this device
+                            # (optional)
+                            <key>: <value>
 
             custom:
                 # any custom key/value pairs specific to this device
