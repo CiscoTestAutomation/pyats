@@ -514,7 +514,7 @@ The pause will also dump the connection information, including which devices are
 
 
 .. note::
-    
+
     If it is required to connect to the device directly while the test is paused, the device connection must be disconnected
     from before it can be accessed directly.
 
@@ -530,3 +530,97 @@ The pause will also dump the connection information, including which devices are
     >>> dev.connect()
 
 
+Automated Log Collection
+------------------------
+
+The :ref:`aetest_pause_on_phase` feature works well for interactive debugging
+and troubleshooting when you are running scripts manually. For automated runs,
+we need a better way to collect information. The Automated Log Collection
+feature builds on top of the Pause on Phrase functionality by adding two
+additional actions: ``collect`` and ``custom``.
+
+``collect``
+    pauses, collects information from devices using CLI commands and/or Genie
+    APIs and resumes the script execution.
+
+``custom``
+    pauses, executes user provided, custom test code to collect information and
+    resumes script execution once completed.
+
+To enable this feature, provide the ``pause_on`` YAML file to your script run
+with `collect` or `custom` actions as described below.
+
+Example yaml configuration with custom handler:
+
+.. code-block:: yaml
+
+    action: custom
+    custom:
+        module: custom_action
+        method: myaction
+        additional_arguments:
+            key: value
+
+The function specified in the custom handler will be passed the following objects:
+
+* `section` object
+* `Steps` object
+* Any data from the yaml under `custom`
+* The log message that was matched
+* The pattern match object
+
+Example custom log handler function:
+
+.. code-block:: python
+
+    # custom_action.py
+    def myaction(section, steps, message=None, pattern_match=None, **kwargs):
+        logger.info(section)
+        logger.info(steps)
+        logger.info(message)
+        logger.info(pattern_match)
+
+
+The following schema describes the YAML pause file with the collect and custom options:
+
+.. code-block:: yaml
+
+    # Pause On Phrase YAML Schema
+    # ---------------------------
+
+    action:     # action to be performed on pause (email/pdb/code/collect/custom)
+                # (required)
+
+    patterns:   # patterns to search & pause on (list)
+                # each list item needs to follow a particular structure as below
+                # (mandatory)
+
+        - pattern:      # pattern to pause on (str)
+                        # this is internally compiled into a regex pattern used
+                        # to match log messages with
+                        # (mandatory)
+
+          section:      # section/uid to enable pattern searching (str)
+                        # this is internally compiled into regex, used
+                        # to match the current executing section uid
+                        # note that you can use Testcase.setup to denote setup
+                        # section of a testcase, etc.
+                        # (if not provided, the pattern is used globally)
+                        # (optional)
+
+    collect:            # For `collect` action, collection specific settings
+        devices:        # collection for devices
+            <name>:     # device name
+                cmds:
+                - cmd: <command>   # List of CLI commands to collect
+                apis:
+                - api: <api>   # And/or List of Genie APIs to execute
+
+
+    custom:             # For `custom` action, settings for custom log collection
+
+        module: <package.module>   # package/module to load the method from
+
+        method: <function name>    # function to execute
+
+        <any>: <any>
