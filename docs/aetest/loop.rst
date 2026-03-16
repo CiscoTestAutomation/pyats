@@ -349,14 +349,18 @@ of iterations:
     #   iteration 1: uid='id_one'
     #   iteration 2: uid='id_two'
     @loop(uids=['id_one', 'id_two'])
+    def test_zero(self): pass
 
     # loop with 2 iterations using parameters argument
     # ------------------------------------------------
     #   iteration 1: a=1, b=4
     #   iteration 2: a=2, b=5
     @loop(a = [1, 2], b = [4, 5])
+    def test_one(self): pass
+
     # same as above, using args and argvs
     @loop(args=['a', 'b'], argvs=[(1, 4), (2, 5)])
+    def test_two(self): pass
 
     # loop with 2 iterations, and extra arguments are discarded due to uids
     # ---------------------------------------------------------------------
@@ -378,11 +382,13 @@ of iterations:
     #   iteration 2: a=2, b=5
     #   iteration 3: a=3, b=None ---> default filler comes in to fill the blanks
     @loop(a=[1, 2, 3], b=[4, 5])
+    def test_three(self): pass
     # same as above, using args and argvs
     @loop(args=['a', 'b'],
           argvs=[(1, 4),
                  (2, 5),
                  (3, )])
+    def test_four(self): pass
 
     # loop with more uids than parameters, and custom filler
     # ------------------------------------------------------
@@ -391,9 +397,11 @@ of iterations:
     #   iteration 1: uid='id_three', a=999, b=999  ---> custom filler
     @loop(uids = ['id_one', 'id_two', 'id_three'], 
           a = [1, 2], b = [3, 4], filler = 999)
+    def test_five(self): pass
     # same as above, using args and argvs
     @loop(uids=['id_one', 'id_two', 'id_three'], 
           args=['a', 'b'], argvs=[(1, 3), (2, 3)], filler=999)
+    def test_six(self): pass
 
 Advanced Loop Usages
 --------------------

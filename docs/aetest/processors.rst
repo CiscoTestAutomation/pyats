@@ -593,7 +593,7 @@ defined.
           # and the test section also receives a result of Skipped
           assert 'vim' is 'great'
 
-      def preprocessorReturnFalse()
+      def preprocessorReturnFalse():
           # if a pre-processor returns False, all remaining pre-processors
           # are skipped, and the test section is skipped also.
           return False
@@ -604,7 +604,7 @@ defined.
 
   .. code-block:: python
 
-      def preprocessorReturnFalseWithReason()
+      def preprocessorReturnFalseWithReason():
           # return false along with a reason (as a tuple)
           return False, "murphy's law :-("
 

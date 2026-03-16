@@ -176,7 +176,7 @@ and all subsequent information that is generic to the testbed.
 
     # configure some devices in parallel
     # Note: devices is a list of Device objects
-    devices = testbed.devices[dev] for dev in testbed.devices \
+    devices = [testbed.devices[dev] for dev in testbed.devices \
                     if testbed.devices[dev].os=='iosxe']
     testbed.configure('no logging console', devices=devices)
 

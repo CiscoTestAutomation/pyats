@@ -193,12 +193,12 @@ functions that does the mappings:
 
     # define a function that translates legacy names to new names
     def to_new(name):
-        if name == 'my_package' or if name.startswith('my_package.'):
+        if name == 'my_package' or name.startswith('my_package.'):
             return name.replace('my_package', 'your_package', 1)
 
     # define the reverse function that translates a new name to a legacy one
     def to_old(name):
-        if name == 'your_package' or if name.startswith('your_package.'):
+        if name == 'your_package' or name.startswith('your_package.'):
             return name.replace('your_package', 'my_package', 1)
 
     # in your module's __init__, instead of defining a dictionary,
