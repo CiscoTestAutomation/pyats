@@ -62,31 +62,37 @@ when called simultaneously.
         def __init__(self, *args, **kwargs):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def connect(self):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def send(self, text):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def receive(self):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def execute(self, command):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def configure(self, *args, **kwargs):
             # ...
             # same code as before
+            pass
 
 As we now applied locking & unlocking to all **actions**, whenever a process
 or threads makes a call to the decorated api, the object is locked, and all

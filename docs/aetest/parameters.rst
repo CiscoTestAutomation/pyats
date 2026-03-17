@@ -583,7 +583,7 @@ identical to its callable parameter sibling, with the following additions:
     def expectation(section):
         if section.uid == 'expected_to_pass':
             return 9999
-        else
+        else:
             return 0
 
     # as previously stated, there's no need to add parametrized functions

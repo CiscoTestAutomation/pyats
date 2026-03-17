@@ -88,7 +88,7 @@ runtime argument:
 
     # use special argument runtime in main() argument list
     # the engine automatically passes in the runtime object
-    def main(runtime)
+    def main(runtime):
 
         # pass in runtime directory as an argument to testscript
         run('script.py', directory = runtime.directory)

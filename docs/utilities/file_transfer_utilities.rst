@@ -85,11 +85,11 @@ The following example shows a sample operation on such a host:
     # Contents of testbed YAML file tb.yaml
     devices:
         my_xyz_device:
-            os: xyz
-            connections:
-                protocol: telnet
-                ip: 1.2.3.4
-                port: 5678
+          os: xyz
+          connections:
+            protocol: telnet
+            ip: 1.2.3.4
+            port: 5678
 
     testbed:
       servers:
@@ -803,45 +803,45 @@ The child (protocol-specific) class:
                     timeout_seconds = DEFAULT_COPY_TIMEOUT_SECONDS,
                     *args, upload, **kwargs):
 
-            from_parsed_url = urlparse(source)
-            to_parsed_url = urlparse(destination)
-            if upload:
-                from_path = from_parsed_url.path
+                from_parsed_url = urlparse(source)
+                to_parsed_url = urlparse(destination)
+                if upload:
+                    from_path = from_parsed_url.path
 
-                to_server_name = to_parsed_url.hostname
-                to_parsed_port = to_parsed_url.port
-                to_path = to_parsed_url.path
-                server_name = to_server_name
-                port = to_parsed_port
-            else:
-                to_path = to_parsed_url.path
-                from_server_name = from_parsed_url.hostname
-                from_parsed_port = from_parsed_url.port
-                from_path = from_parsed_url.path
+                    to_server_name = to_parsed_url.hostname
+                    to_parsed_port = to_parsed_url.port
+                    to_path = to_parsed_url.path
+                    server_name = to_server_name
+                    port = to_parsed_port
+                else:
+                    to_path = to_parsed_url.path
+                    from_server_name = from_parsed_url.hostname
+                    from_parsed_port = from_parsed_url.port
+                    from_path = from_parsed_url.path
 
-                server_name = from_server_name
-                port = from_parsed_port
+                    server_name = from_server_name
+                    port = from_parsed_port
 
-            # Get auth details
-            username, password = self.get_auth(server_name)
+                # Get auth details
+                username, password = self.get_auth(server_name)
 
-            # Transfer the file by executing commands on the device.
-            if upload:
-                upload_ftp_file(
-                    from_path=from_path,
-                    to_path=to_path,
-                    device=self.parent.device,
-                    username=username,
-                    password=password,
-                    timeout=timeout_seconds)
-            else:
-                download_ftp_file(
-                    from_path=from_path,
-                    to_path=to_path,
-                    device=self.parent.device,
-                    username=username,
-                    password=password,
-                    timeout=timeout_seconds)
+                # Transfer the file by executing commands on the device.
+                if upload:
+                    upload_ftp_file(
+                        from_path=from_path,
+                        to_path=to_path,
+                        device=self.parent.device,
+                        username=username,
+                        password=password,
+                        timeout=timeout_seconds)
+                else:
+                    download_ftp_file(
+                        from_path=from_path,
+                        to_path=to_path,
+                        device=self.parent.device,
+                        username=username,
+                        password=password,
+                        timeout=timeout_seconds)
 
 
 
@@ -866,7 +866,7 @@ Returns `True` if the URL refers to a local resource.
 
     from pyats.utils.fileutils import FileUtils
     futils = FileUtils(testbed=tb)
-    assert futils.is_local("file:///path/to/local/file"
+    assert futils.is_local("file:///path/to/local/file")
 
 
 is_remote
@@ -884,7 +884,7 @@ Returns `True` if the URL refers to a remote (ie. non-local) resource.
 
     from pyats.utils.fileutils import FileUtils
     futils = FileUtils(testbed=tb)
-    assert futils.is_remote("ftp://server.com/path/to/remote/file"
+    assert futils.is_remote("ftp://server.com/path/to/remote/file")
 
 
 get_protocol

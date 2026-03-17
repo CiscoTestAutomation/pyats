@@ -377,7 +377,7 @@ to ``True``. By default, no testcase is "requisite", eg, ``must_pass = False``.
     class TestcaseTwo(aetest.Testcase):
         pass
 
-    class CommonCleanup(aetest.CommonCleanup)
+    class CommonCleanup(aetest.CommonCleanup):
 
         @aetest.subsection
         def subsection(self):
@@ -735,7 +735,7 @@ Rules:
     from pyats.aetest import runtime
     from pyats.aetest.discovery import ScriptDiscovery
 
-    class MyCustomScriptDiscovery(ScriptDiscovery)
+    class MyCustomScriptDiscovery(ScriptDiscovery):
         pass
 
     runtime.discoverer.script = MyCustomScriptDiscovery
@@ -759,7 +759,7 @@ Rules:
     from pyats.aetest import runtime
     from pyats.aetest.discovery import TestcaseDiscovery
 
-    class MyCustomTestcaseDiscovery(TestcaseDiscovery)
+    class MyCustomTestcaseDiscovery(TestcaseDiscovery):
         pass
 
     runtime.discoverer.testcase = MyCustomTestcaseDiscovery
@@ -810,7 +810,7 @@ In the example above, ``my_testcase1`` uses ``MyTestcaseDiscovery1`` class,
     from pyats.aetest import runtime
     from pyats.aetest.discovery import CommonDiscovery
 
-    class MyCustomCommonDiscovery(CommonDiscovery)
+    class MyCustomCommonDiscovery(CommonDiscovery):
         pass
 
     runtime.discoverer.common = MyCustomCommonDiscovery

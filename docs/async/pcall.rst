@@ -55,7 +55,7 @@ parallel. It comes with the following built-in features:
     result = pcall(add, x = (1, 2, 3), y = (4, 5, 6))
     # (5, 7, 9)
 
-In essense, arguments to ``pcall`` are zipped together to create multiple calls
+In essence, arguments to ``pcall`` are zipped together to create multiple calls
 to the given target(s), and run concurrently through forked child processes.
 The number of child processes forked is automatically optimized based on the
 number of target calls, arguments and so on.
@@ -119,7 +119,7 @@ This is inline with  Python ``zip()`` function behavior.
     #   child 2: args=(1, 2, 3, 5), kwargs= {}
     #   child 3: args=(1, 2, 3, 6), kwargs= {}
     pcall(func, cargs = (1, 2, 3),
-                iargs = ((4,), (5,), (6,))
+                iargs = ((4,), (5,), (6,)))
 
     # keyword argument building
     # -------------------------

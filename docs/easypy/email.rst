@@ -304,7 +304,7 @@ at any time prior to calling the send() method.
     mail.send()
 
     # If you want to send HTML email:
-     mail = EmailMsg(
+    mail = EmailMsg(
         from_email=email_from_address,
         to_email=email_to_address,
         subject=email_subject,

@@ -59,7 +59,7 @@ name. An example using a Genie API:
     uut.api.copy_to_device(protocol='ftp',
                            server='myftpserver',
                            remote_path='myimage.bin',
-                           local_path='flash:/‘)
+                           local_path='flash:/')
 
 
 Using as a context manager
@@ -80,7 +80,7 @@ add itself to the testbed for discovery by various copy APIs during that time.
         uut.api.copy_to_device(protocol='ftp',
                                server='mycontextserver',
                                remote_path='myimage.bin',
-                               local_path='flash:/‘)
+                               local_path='flash:/')
 
 
 Caveats
