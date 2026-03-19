@@ -207,6 +207,10 @@ The following fields are currently open for user to customize.
     # 'pyats secret decode xyz123'.
     env.hide_pattern = .*PASSWORD.*
 
+    # Set this to a space-separated list of environment variable names to hide
+    # (encoded as secret strings) prior to being dumped into env.txt.
+    # Exact name matching is used (unlike hide_pattern which uses regex).
+    env.hide_list = MY_SECRET MY_TOKEN MY_API_KEY MY_PASSWORD
 
 .. note::
    See :ref:`secret_strings` for more details on how pyATS handles private
