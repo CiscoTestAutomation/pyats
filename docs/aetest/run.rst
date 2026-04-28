@@ -43,7 +43,7 @@ module `argparse`_ to parse command-line arguments stored in `sys.argv`_.
 This process can be summarized into the following rules of thumb:
 
     - all known arguments (:ref:`aetest_standard_arguments`) are parsed by
-      ``aetest``, and removed from ``sys.argv`` list.
+      ``aetest``, and removed from``sys.argv`` list.
 
     - all unknown arguments (arguments that aren't part of the standard argument
       list) are kept in ``sys.argv`` as they were and untouched.
@@ -52,14 +52,14 @@ This process can be summarized into the following rules of thumb:
 .. _sys.argv: https://docs.python.org/3.4/library/sys.html#sys.argv
 .. _argparse: https://docs.python.org/3.4/library/argparse.html
 
-For example, when ``aetest`` is started, and ``sys.argv`` contains the following
+For example, when ``aetest``is started, and``sys.argv`` contains the following
 command line arguments:
 
 .. code-block:: python
 
     sys.argv = ['python script.py', '-loglevel=INFO', '-my_arg=1', '-your_arg=2']
 
-``aetest`` takes away ``-loglevel=INFO``, and leave the rest in
+``aetest``takes away``-loglevel=INFO ``, and leave the rest in
 ``sys.argv``.
 
 This argument propagation scheme allows users to pass additional arguments to
@@ -102,7 +102,7 @@ control is entirely at the hands of the user.
 
     - Runtime folder is the present working directory ``pwd``.
 
-    - All logging is redirected to ``STDOUT`` and ``STDERR``.
+    - All logging is redirected to ``STDOUT``and``STDERR``.
 
     - No :ref:`tasklog`, result report and archive generation.
 
@@ -213,7 +213,7 @@ This enables your script to be executed using ``python`` executable:
          Number of SKIPPED                                                            0
         --------------------------------------------------------------------------------
 
-In essence, the ``main()`` function is what actually starts up the ``aetest``
+In essence, the ``main()``function is what actually starts up the``aetest``
 script execution under standalone mode. It is the primary entry point to
 ``aetest``, and accepts the following optional arguments:
 
@@ -227,7 +227,7 @@ script execution under standalone mode. It is the primary entry point to
 
 If your scripts require any input arguments from the command line (eg, script
 arguments), you will need to write your own argument parser, and provide that
-parsed information as ``**kwargs`` to ``aetest.main()`` so that they become
+parsed information as ``**kwargs``to``aetest.main()`` so that they become
 :ref:`test_parameters`.
 
 .. code-block:: python
@@ -291,7 +291,7 @@ parsed information as ``**kwargs`` to ``aetest.main()`` so that they become
 .. tip::
 
     when writing standalone argument parsers, try to only parse known arguments
-    using ``parse_known_args()``. This allows all remaining ``aetest`` only
+    using ``parse_known_args()``. This allows all remaining``aetest`` only
     arguments to propagate upstream, adhering to ``aetest``
     :ref:`aetest_argument_propagation` scheme.
 
@@ -400,15 +400,15 @@ following behaviors are observed:
     - all ``aetest`` :ref:`aetest_standard_arguments` are accepted as keyword
       arguments.
 
-    - all ``**kwargs`` keyword arguments to ``run()`` api propagate to
+    - all ``**kwargs``keyword arguments to``run()`` api propagate to
       the testscript as :ref:`script_args`.
 
     - in addition, if ``pyats run job`` was launched with a testbed file (through
-      ``--testbed-file`` or ``--logical-testbed-file`` arguments,
+      ``--testbed-file``or``--logical-testbed-file`` arguments,
       see :ref:`easypy_arguments`), the corresponding testbed object
       propagates to the testscript as argument ``testbed``.
 
-    - If neither ``--testbed-file`` nor ``--logical-testbed-file`` was
+    - If neither ``--testbed-file``nor``--logical-testbed-file`` was
       provided to ``pyats run job``, then the argument
       ``testbed`` is set to `None`.
 
@@ -457,27 +457,27 @@ Standard Arguments
 ``aetest`` accepts a number of standard arguments that can be used to influence
 and/or change script execution behaviors. They can be provided either as command
 line arguments when running directly under Linux shell, or used as keyword
-arguments to ``aetest.main()`` and ``easypy.run()``.
+arguments to ``aetest.main()``and``easypy.run()``.
 
 .. csv-table:: AETest Standard Arguments
     :header: "Keyword", "Command Line", "Description"
 
     "n/a", ``-help``, "display help information"
-    ``uids``, ``-uids``, "specify the list of section uids to run (logic
+    ``uids``,``-uids``, "specify the list of section uids to run (logic
     expression)"
-    ``exclude_uids``, ``--exclude-uids``, "specify the list of section uids to exclude (logic
+    ``exclude_uids``,``--exclude-uids``, "specify the list of section uids to exclude (logic
     expression)"
-    ``groups``, ``-groups``, "specify the list of testcase groups to run (logic
+    ``groups``,``-groups``, "specify the list of testcase groups to run (logic
     expression)"
-    ``datafile``, ``-datafile``, "input datafile/value for this script"
-    ``random``, ``-random``, "flag to enable testcase randomization"
-    ``random_seed``, ``-random_seed``, "testcase randomization seed"
-    ``max_failures``, ``-max_failures``, "max acceptable number of failures"
-    ``pdb``, ``-pdb``, "start interactive debugger on failure"
-    ``step_debug``, ``-step_debug``, "step debug input file"
-    ``pause_on``, ``-pause_on``, "pause on phrase input string/file"
-    ``loglevel``, ``-loglevel``, "``aetest`` logging level"
-    ``submitter``, ``-submitter``, "submitter of this script (defaults to
+    ``datafile``,``-datafile``, "input datafile/value for this script"
+    ``random``,``-random``, "flag to enable testcase randomization"
+    ``random_seed``,``-random_seed``, "testcase randomization seed"
+    ``max_failures``,``-max_failures``, "max acceptable number of failures"
+    ``pdb``,``-pdb``, "start interactive debugger on failure"
+    ``step_debug``,``-step_debug``, "step debug input file"
+    ``pause_on``,``-pause_on``, "pause on phrase input string/file"
+    ``loglevel``,``-loglevel``, "``aetest`` logging level"
+    ``submitter``,``-submitter``, "submitter of this script (defaults to
     current user)"
 
 .. code-block:: text
@@ -498,7 +498,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         bash$ python /path/to/my/script.py -help
         bash$ python -m pyats.aetest -help
 
-``uids``, ``-uids``
+``uids``,``-uids``
     specify the list of section uids to be executed using a callable expression.
     This argument takes in a ``callable`` that returns True or False for each
     section uid input, controlling whether the section is run or not. (Docs @
@@ -519,7 +519,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
                                                '^test_.*',
                                                'common_cleanup'))
 
-``exclude_uids``, ``--exclude-uids``
+``exclude_uids``,``--exclude-uids``
     specify the list of section uids to be excluded from execution using a callable expression.
     This argument takes in a ``callable`` that returns True or False for each
     section uid input, controlling whether the section is excluded or not. This is the inverse of ``uids``.
@@ -539,7 +539,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         aetest.main('testscript.py', exclude_uids = Or('test_skip_.*',
                                                        'test_temp_.*'))
 
-``groups``, ``-groups``
+``groups``,``-groups``
     expression specifying the group(s) of testcases to execute. This argument
     accepts a ``callable`` evaluating to True/False, where each testcase's
     groups field is supplied as input, to test whether that
@@ -562,7 +562,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         from pyats.datastructures.logic import Or, And
         run(testscript = 'testscript.py', groups = And(Or('group1','group2'), 'group3'))
 
-``datafile``, ``-datafile``
+``datafile``,``-datafile``
     full name and path or URL to the script input datafile file in YAML format. 
     URL with token can be given like below example.
     For full detail on use cases and examples, refer to :ref:`aetest_datafile`.
@@ -582,7 +582,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         run(testscript = 'testscript.py', datafile = "/path/to/datafile.yaml")
 
 
-``random``, ``-random``
+``random``,``-random``
     flag to enable testcase randomization, allowing a script's testcase orders
     to be randomly shuffled before execution. To learn more about testcase
     randomization, refer to :ref:`aetest_testcase_randomization`.
@@ -599,7 +599,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', random = True)
 
-``random_seed``, ``-random_seed``
+``random_seed``,``-random_seed``
     randomization seed integer, used to fix the randomizer and re-generate the
     same testcase sequence, useful for debugging purposes. Requires testcase
     randomization to be turned on first. To learn more about it, refer to
@@ -617,7 +617,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', random = True, random_seed = 42)
 
-``max_failures``, ``-max_failures``
+``max_failures``,``-max_failures``
     integer specifying the maximum number of failures allowed before the script
     auto-aborts. Refer to :ref:`aetest_max_failures` for details.
 
@@ -633,7 +633,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', max_failures = 13)
 
-``pdb``, ``-pdb``
+``pdb``,``-pdb``
     flag, allowing AEtest to automatically invoke the python interactive
     debugger ``pdb`` on failure/errors. Refer to :ref:`aetest_pdb` for details.
 
@@ -649,7 +649,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', pdb = True)
 
-``step_debug``, ``-step_debug``
+``step_debug``,``-step_debug``
     full name and path to step debug file, containing debug commands to run at
     each testcase steps. To learn more about steps, refer to :ref:`aetest_steps`
     documentation.
@@ -666,7 +666,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', step_debug = "/path/to/my/stepdebugfile")
 
-``pause_on``, ``-pause_on``
+``pause_on``,``-pause_on``
     full name and path to pause on phrase file, its dictionary content in
     string format, or a plain string. For full detail on use cases and examples,
     refer to :ref:`aetest_pause_on_phase` documentation.
@@ -683,8 +683,8 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', pause_on = "/path/to/my/pause_on_file")
 
-``loglevel``, ``-loglevel``:
-    changes the ``pyats.aetest`` logger loglevel. Defaults to ``logging.INFO``.
+``loglevel``,``-loglevel``:
+    changes the ``pyats.aetest``logger loglevel. Defaults to``logging.INFO``.
 
     .. code-block:: bash
 
@@ -698,7 +698,7 @@ arguments to ``aetest.main()`` and ``easypy.run()``.
         # easypy.run() example (job file snippet)
         run(testscript = 'testscript.py', loglevel="WARNING")
 
-``submitter``, ``-submitter``:
+``submitter``,``-submitter``:
     changes the submitter user id. Defaults to current Linux shell user.
 
     .. code-block:: bash
@@ -720,7 +720,7 @@ Testable
 --------
 
 The definition of a *testable* in ``aetest`` is any object that can be loaded
-by ``aetest.loader`` module into a ``TestScript`` class instance and executed
+by ``aetest.loader``module into a``TestScript`` class instance and executed
 as a testscript without throwing errors.
 
 .. code-block:: python
@@ -762,7 +762,7 @@ The following are acceptable as **testables**:
 
 Do not confuse **testables** with *testscripts that generate meaningful testing
 and results*. Because of python's specific **inspect & run** mechanism, it is
-possible to pass meaningless modules (such as ``urllib``) to ``aetest``, and
+possible to pass meaningless modules (such as ``urllib``) to``aetest``, and
 generate 0 results because even-though it passes as a testable, it contains no
 actual tests.
 

@@ -46,5 +46,5 @@ Changes
 
 * fixed a bug in AEreport where the testcase's name is not used as TIMS entry
   title.
-* Added new parameters `filter_`, `index` and `all_keys` to find API, giving
+* Added new parameters ``filter_``,``index``and``all_keys`` to find API, giving
   users more fine-grained control on matching results.

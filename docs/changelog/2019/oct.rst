@@ -44,7 +44,7 @@ Changes
 
 Logviewer
 
-    - support for ``$BROWSER`` environment variable and ``pyats.conf`` settings
+    - support for ``$BROWSER``environment variable and``pyats.conf`` settings
       for your preferred browser to automatically open for log vieweing
 
     - support for alternative host/port to view logs on (such as hosting on
@@ -54,7 +54,7 @@ Logviewer
     - now guesses the correct Linux/WSL browsers to open, and will not try
       to open browser on sessions without x-forwarding enabled
 
-    - log viewer now ignores ``__pycache__``, ``*.pyc`` and ``*.pyo`` files
+    - log viewer now ignores ``__pycache__``,``*.pyc``and``*.pyo`` files
       present in the archives
 
 Configuration
@@ -75,7 +75,7 @@ Email
 
     - Removed dead link to .diags file in TRADe
 
-    - added `smtp` timeout value, and now supports configuration adjustments
+    - added ``smtp`` timeout value, and now supports configuration adjustments
       to timeout.
 
 Rerun

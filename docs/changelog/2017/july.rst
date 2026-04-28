@@ -43,7 +43,7 @@ Changes
 ^^^^^^^
 
 * Bug fix : Users may now specify a nonexistent directory and expect
-  it to be created when using ``-archive_dir`` or ``-runinfo_dir``.
+  it to be created when using ``-archive_dir``or``-runinfo_dir``.
 
 July 3, 2017
 ------------

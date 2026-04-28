@@ -62,12 +62,12 @@ your testscript objects. The following describes this behavior:
   directly, after the script is imported, before execution starts.
 
 - Only **module & classes** level attributes and features may be provided via
-  the datafile (eg, ``CommonSetup``, ``Testcases``, ``CommonCleanup``). Function
-  based sections such as ``test``, ``subsection`` etc are not affected.
+  the datafile (eg, ``CommonSetup``,``Testcases``,``CommonCleanup``). Function
+  based sections such as ``test``,``subsection`` etc are not affected.
 
 - Testcases & common sections defined in the datafile **must** each match up to
-  a corresponding class: ``common_setup:`` and ``common_cleanup:`` to script's
-  unique ``CommonSetup`` and ``CommonCleanup`` subclasses; testcases block's
+  a corresponding class: ``common_setup:``and``common_cleanup:`` to script's
+  unique ``CommonSetup``and``CommonCleanup`` subclasses; testcases block's
   ``classname:`` to the actual testcase class definition name.
 
 - If a testcase is looping (using :ref:`aetest_looping` feature), the base class
@@ -92,7 +92,7 @@ your testscript objects. The following describes this behavior:
 .. tip::
 
     To better understand this feature, see the datafile example script
-    provided in `GitHub example repository<https://github.com/CiscoTestAutomation/examples/tree/master/datafiles>`_.
+    provided in the `GitHub example repository <https://github.com/CiscoTestAutomation/examples/tree/master/datafiles>`_.
 
 .. hint::
 
@@ -517,5 +517,4 @@ Running the above together, here is the expected output:
     INFO:  Number of PASSX                                                              0
     INFO:  Number of SKIPPED                                                            0
     INFO: --------------------------------------------------------------------------------
-
 

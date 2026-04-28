@@ -226,5 +226,5 @@ converted into python object expression.
 
 .. note::
 
-    ``logic_str`` conversion only supports ``str`` (regex) style inputs and
+    ``logic_str``conversion only supports``str`` (regex) style inputs and
     lambda functions. 

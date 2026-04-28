@@ -151,27 +151,27 @@ Async
 BringUp
     - `US49255 <https://rally1.rallydev.com/#/18032525878d/detail/story/43458955135>`_ (allow user-defined bringup implementations):
     - Dynamic topologies are now brought up in a worker subprocess.
-    - Debugging of a worker subprocess is possible via the `-pdb` CLI argument.
-    - Introduced the new `ats.bringup.BringUp` object as the primary user
+    - Debugging of a worker subprocess is possible via the ``-pdb`` CLI argument.
+    - Introduced the new ``ats.bringup.BringUp`` object as the primary user
       interface to bringup.
-    - The `ats.bringup.BringUp` object is now the recommended context manager
-      for standalone scripts, although `ats.bringup.XrutBringUp` is still
+    - The ``ats.bringup.BringUp`` object is now the recommended context manager
+      for standalone scripts, although ``ats.bringup.XrutBringUp`` is still
       supported for back-compatibility.
-    - Added the `bringup/class` key to the clean YAML schema to make it possible
+    - Added the ``bringup/class`` key to the clean YAML schema to make it possible
       for users to contribute their own bringup implementations.
     - Changed the standalone bringup tool CLI option from
-      `-xrut_tb_yaml_output_file_name` to `-tb_yaml_output_file_name`.
-    - `bringup -help` now renders all CLI options correctly.
+      ``-xrut_tb_yaml_output_file_name``to``-tb_yaml_output_file_name``.
+    - ``bringup -help`` now renders all CLI options correctly.
     - Refactored and split out common bringup logic that is not
       XR-UT specific.
-    - Refactored `bringup` parameters to make them more similar to `ats.aetest`.
-      This means that most of the parameters displayed by `bringup -help`
-      may also be specified on the `easypy` command line and they will be
+    - Refactored ``bringup``parameters to make them more similar to``ats.aetest``.
+      This means that most of the parameters displayed by ``bringup -help``
+      may also be specified on the ``easypy`` command line and they will be
       passed through to the bringup subsystem
-      (but they won't appear in the `easypy -help` display).
+      (but they won't appear in the ``easypy -help`` display).
     - Refactored easypy clean plugin to bring up dynamic topologies in a
       subprocess.
-    - Reworked example standalone script to use `ats.bringup.BringUp`.
+    - Reworked example standalone script to use ``ats.bringup.BringUp``.
     - Refactored the topology loader, pulled out common logic which is now used
       for both testbed and clean YAML loading.
     - Realigned the allowable virtual logical device types to be less
@@ -180,11 +180,11 @@ BringUp
         .. csv-table:: Virtual logical device type mappings
             :header: "Old logical type name", "New logical type name"
 
-            ``nxos``, ``nxosv``
-            ``iol-pagent``, ``iol_pagent``
-            ``ios``, ``ios_dynamips or iosv``
-            ``ios-pagent``, ``ios_dynamips_pagent or iosv_pagent``
-            ``xrvr``, ``iosxrv``
+            ``nxos``,``nxosv``
+            ``iol-pagent``,``iol_pagent``
+            ``ios``,``ios_dynamips or iosv``
+            ``ios-pagent``,``ios_dynamips_pagent or iosv_pagent``
+            ``xrvr``,``iosxrv``
 
     - `US58901 <https://rally1.rallydev.com/#/18032525878d/detail/userstory/47562740650>`_ ,
       `US54326 <https://rally1.rallydev.com/#/18032525878d/detail/userstory/45569642625>`_ :
@@ -193,8 +193,8 @@ BringUp
     - Fixed a bug in testbed configuration merge conflict resolution,
       now conflicting values are properly resolved when they are more than
       one level deep.
-    - Now warning the user if they are using the `is_logical` testbed YAML key.
-      This will be removed in the next release, the `logical` key is to be used instead.
+    - Now warning the user if they are using the ``is_logical`` testbed YAML key.
+      This will be removed in the next release, the ``logical`` key is to be used instead.
     - `US60655 <https://rally1.rallydev.com/#/22527801475d/detail/userstory/48234726165>`_ (allow user-defined logical device/interface testbed configuration):
       Users can now specify their own keys and values under logical devices and
       interfaces in their testbed configuration and see them appear in the
@@ -205,7 +205,7 @@ BringUp
       properly configuring their devices.
 
 Clean & Connections
-    - ``tcl_clean`` now supports ``tftpServer_unix`` key
+    - ``tcl_clean``now supports``tftpServer_unix`` key
 
     - support for ``aireos`` device type & connection.
 
@@ -219,14 +219,14 @@ Easypy
     - email report now includes step details
 
     - Fixed an issue with ``easypy`` not setting correct folder permissions when
-      creating ``/users`` and ``/users/<id>`` etc.
+      creating ``/users``and``/users/<id>`` etc.
 
     - enhanced ``-xunit`` support, now includes a TRADe link.
 
     - fixed an issue with plugin import exceptions not being printed properly
 
 Installation
-    - install script now always checks out ``xbu-shared``, ``regression`` and
+    - install script now always checks out ``xbu-shared``,``regression`` and
       ``cisco-shared`` repos
 
     - install script now checks for your ``git`` binary location, and warns error if
@@ -236,11 +236,11 @@ Installation
       needed, making user's life slightly easier.
 
     - install script now suggests ``branch.autosetuprebase always`` as a global
-      configuration, and now auto-applies ``pull.rebase`` to ``true`` for all
+      configuration, and now auto-applies ``pull.rebase``to``true`` for all
       checked-out repositories.
 
-    - install script now uses ``pip.conf`` to configure ``pip``, and will always
-      update ``pip`` and ``setuptools`` to latest.
+    - install script now uses ``pip.conf``to configure``pip``, and will always
+      update ``pip``and``setuptools`` to latest.
 
     - new ``update_pip_config`` script to upgrade user's pip configurations.
 
@@ -248,7 +248,7 @@ Installation
       ``pyats-pypi.cisco.com``.
 
 Log
-    - ``atslog`` module is now renamed to just ``log``
+    - ``atslog``module is now renamed to just``log``
 
     - backwards compatibility code is included in this release to notify users
       to make the necessary modifications.

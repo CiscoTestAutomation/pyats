@@ -147,9 +147,9 @@ Clean Reporting
 
 The results of cleaning for each device is found inside of the
 ``results.json`` file generated at the end of a pyats job or clean. Every device
-is listed under the ``KleenexPlugin`` plugin in ``Testsuite`` / ``Cleansuite`` /
+is listed under the ``KleenexPlugin``plugin in``Testsuite``/``Cleansuite`` /
 ``Task`` plugins depending on the clean scope. Each device will have a result of
-``Passed`` or ``Failed`` and the plugin will have a summary of the results for
+``Passed``or``Failed`` and the plugin will have a summary of the results for
 all devices
 
 The way a cleaner implementation indicates failure is by raising an exception
@@ -170,7 +170,7 @@ Clean Steps
 Users may choose to slice a device clean into a series of steps that are
 individually logged and included in the ``CleanResultsDetails.yaml`` report.
 
-If a cleaner's ``clean`` API optionally includes the reserved ``steps``
+If a cleaner's ``clean``API optionally includes the reserved``steps``
 parameter, a step may be created via the ``steps.start`` API and used as a
 context manager.  Any exception raised while in the step's context causes the
 step to be marked as failed and the clean for the entire device to be marked

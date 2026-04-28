@@ -7,15 +7,15 @@ should not need to concern themselves with the logging facility, and only focus
 on standard usage. 
 
 The following describes the points of automated integration with ``easypy``, 
-``tcl`` and ``aetest`` in case you are interested.
+``tcl``and``aetest`` in case you are interested.
 
 
 Managed Handlers
 ----------------
 
 Following the Python logger hierarchy, by default, all ``LogRecord`` objects
-propagate to the ``root`` logger. This allows the simple concept of ``TaskLog``
-to work: if we only configure the ``root`` logger with a ``TaskLogHandler``, 
+propagate to the ``root``logger. This allows the simple concept of``TaskLog``
+to work: if we only configure the ``root``logger with a``TaskLogHandler``, 
 then all log messages would be processed and stored to the given TaskLog file.
 
 However, since each logger is able to have multiple handlers, there is a need
@@ -23,7 +23,7 @@ to track which handler is the current active TaskLog. Ergo the concept of
 managed handlers:
     
     instead of creating new handler instances on the fly, a "globally" managed 
-    instance of ``ScreenHandler`` and ``TaskLogHandler`` is automatically
+    instance of ``ScreenHandler``and``TaskLogHandler`` is automatically
     created and stored in the ``log`` module. 
 
 .. code-block:: python
@@ -42,7 +42,7 @@ managed handlers:
 These managed handlers are intended to be attached to the ``root`` logger so 
 that wherever within the code, we can always refer back to current TaskLog
 handler. Consider this as the same concept as how ``logging`` always creates
-the ``root`` logger as ``logging.root`` internally.
+the ``root``logger as``logging.root`` internally.
 
 
 One TaskLog

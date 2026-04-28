@@ -29,7 +29,7 @@ the job file, returing the overall results, and emailing you the report.
 
 .. tip::
 
-    ``pyats run job`` replaces the legacy ``easypy`` cli command with new POSIX
+    ``pyats run job``replaces the legacy``easypy`` cli command with new POSIX
     style arguments.
 
 .. code-block:: text

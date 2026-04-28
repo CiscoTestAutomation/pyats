@@ -1,7 +1,7 @@
 Tcl & Interpreter
 =================
 
-``Interpreter`` class is an extension of ``tkinter.Tk`` class, inhering all of 
+``Interpreter``class is an extension of``tkinter.Tk`` class, inhering all of 
 Python's native Tcl integration whilst providing extended APIs for ease
 of use.
 
@@ -63,7 +63,7 @@ This module features a special mechanism that offers a similar concept of
     # use the module directly to make tcl calls
     tcl.eval('set myVar 1')
 
-The ``tcl`` module itself is also the global instance of ``Interpreter`` class.
+The ``tcl``module itself is also the global instance of``Interpreter`` class.
 Within the same Python process, the ``tcl`` module always refers to the same
 ``interpreter`` instance. This eliminates user's need to explicitly create
 new ``Interpreter`` instances and having to pass them around, drastically 
@@ -90,7 +90,7 @@ reducing code complexity & time to market.
 
 .. note::
     
-    as the ``tcl`` module is also a global ``Interpreter`` instance, all of its
+    as the ``tcl``module is also a global``Interpreter`` instance, all of its
     features/APIs & etc are also inherited. Therefore,  documentations w.r.t.
     ``Interpreter`` instance is also applicable to this global instance. For
     variety's sake, examples are given using either.
@@ -211,13 +211,13 @@ strings with spaces as separators and braces as sub-list containers.
 Things To Know
 --------------
 
-#. When ``Interpreter`` or ``tkinter`` is loaded inside Python, it exists as 
+#. When ``Interpreter``or``tkinter`` is loaded inside Python, it exists as 
    a native Tcl environment within Python, running Tcl C code internally. Thus 
    there is no separate Tcl PID inside Unix. Tcl ``pid`` call returns the
    same PID as the Python process.
 
-#. If ``debug`` or ``interpreter`` call is made within Tcl, the Tcl process 
-   takes over STDIO, pauses and gives user the typical ``expect>`` or ``dbg>`` 
+#. If ``debug``or``interpreter`` call is made within Tcl, the Tcl process 
+   takes over STDIO, pauses and gives user the typical ``expect>``or``dbg>`` 
    prompt. This is the same behavior as in native Tcl. Exiting 
    debug/interpreter mode continues the script execution.
 

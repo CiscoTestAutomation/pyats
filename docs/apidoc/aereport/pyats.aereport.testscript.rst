@@ -23,6 +23,7 @@ Submodules
 
 
 .. automodule:: pyats.aereport.testscript.result
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
@@ -62,4 +63,3 @@ Submodules
    :members:
    :undoc-members:
    :show-inheritance:
-

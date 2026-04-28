@@ -1,5 +1,5 @@
 August 2025
-==========
+===========
 
 August 23 - Pyats v25.8 
 ------------------------
@@ -32,7 +32,7 @@ August 23 - Pyats v25.8
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.devat
@@ -47,11 +47,11 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * kleenex
-    * Added support for overriding configuration values in the clean file using the `--clean-config-override` argument. This allows users to specify configuration overrides in the format `path__to__some_key=value`, enabling dynamic adjustments to the clean configuration without modifying the original file.
+    * Added support for overriding configuration values in the clean file using the ``--clean-config-override``argument. This allows users to specify configuration overrides in the format``path__to__some_key=value``, enabling dynamic adjustments to the clean configuration without modifying the original file.
 
 * easypy
     * CLI arguments and manifest meta field support for product, component, feature, owner

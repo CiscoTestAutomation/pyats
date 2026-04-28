@@ -51,7 +51,7 @@ This package is featured on the PyPI server.
 
 .. note::
 
-    The ``kleenex`` module is part of the ``pyats`` namespace, and therefore,
+    The ``kleenex``module is part of the``pyats`` namespace, and therefore,
     users should always refer to the full namespace when installing & using it.
 
 

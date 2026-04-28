@@ -36,7 +36,7 @@ intents and purposes, read the official documentation: `The Python Debugger`_.
 However, one thing to note is that ``pdb`` does not play well with python
 `Multiprocessing`_ module. When ``multiprocessing`` forks a child process,
 it closes the ``stdin`` as part of the default child process bootstrap. Thus,
-as ``pdb`` relies on ``stdin`` to provide an interactive session, it crashes
+as ``pdb``relies on``stdin`` to provide an interactive session, it crashes
 with the following cryptic exception:
 
 .. code-block:: text
@@ -103,7 +103,7 @@ Luckily, there are a few known ways to workaround this problem:
 PDB on Failure
 --------------
 
-``pdb`` is golden, but putting ``pdb`` everywhere in your scripts and
+``pdb``is golden, but putting``pdb`` everywhere in your scripts and
 libraries trying to catch a runaway bug is... not pretty. There are
 times where you can't seem to figure out what, where, and why an exception is
 raised, why your script is failing, and where to put
@@ -122,8 +122,8 @@ at the stack frame of failure.
 .. tip::
 
     Additionally to ``pdb = True``, pyATS debugging supports any debugger that 
-    has post_mortem capabilities. Want to use ``pudb``? Set ``pdb = 'pudb'``.
-    Want to use ``web-pdb``? Set ``pdb = 'web_pdb'``.
+    has post_mortem capabilities. Want to use ``pudb``? Set``pdb = 'pudb'``.
+    Want to use ``web-pdb``? Set``pdb = 'web_pdb'``.
 
 .. code-block:: python
 
@@ -195,7 +195,7 @@ The interactive debugging session starts with ``(pdb)`` prompt, and waits for
 user input. Refer to `Debugger Commands`_ for details on how to use the ``pdb``
 debugger.
 
-You can also use ``pdb`` from the command line by including ``--pdb``. This will
+You can also use ``pdb``from the command line by including``--pdb ``. This will
 drop you into the default Python pdb debugger. If you have a third-party debugger
 installed that supports post_mortem you can specify it like so ``--pdb <debugger>``.
 
@@ -308,14 +308,14 @@ executing user, including with it the instructions on how to resume execution
     timer will be disabled and execution will be paused until the pause file is
     deleted.
 
-However, if the action is set to ``pdb`` or ``code``, the script pauses
+However, if the action is set to ``pdb``or``code``, the script pauses
 and provides an interactive python debugger/shell to the user, allowing for
 look-arounds, debugs & etc. *Be careful with what you do in these modes:*
 modifications persist when the script continues.
 
 .. hint::
 
-    use ``Ctrl-D`` to resume from interactive shell, and ``c`` to resume from
+    use ``Ctrl-D``to resume from interactive shell, and``c`` to resume from
     pdb.
 
 .. warning::

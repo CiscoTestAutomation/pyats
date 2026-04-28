@@ -14,16 +14,16 @@ Banner API behaviors:
 
 It accepts the following arguments
 
-* The width of the banner can be altered with ``width = W``. ``W`` must be an
+* The width of the banner can be altered with ``width = W``.``W`` must be an
   int.  The default value is 80.
 * The minimum ammount of white space to center the text can be
-  altered with ``padding = Y``. ``Y`` must be an int. The default value is 8.
+  altered with ``padding = Y``.``Y`` must be an int. The default value is 8.
 * The character that represents the top and bottom border of the box can be
-  modified with ``h_margin = Z``. ``Z`` must be a ``string`` and its size must
-  be of ``1``.  The default value is ``-``.
+  modified with ``h_margin = Z``.``Z``must be a``string`` and its size must
+  be of ``1``.  The default value is``-``.
 * The character that represents the right and left side border of the box can
-  be modified with ``v_margin = X``. ``X`` must be a ``string`` and its size
-  must be of ``1``. The default value is ``|``
+  be modified with ``v_margin = X``.``X``must be a``string`` and its size
+  must be of ``1``. The default value is``|``
 
 .. note::
     The width of the banner must always be greater than the padding + 2 (for
@@ -107,14 +107,14 @@ Title API behaviors:
 
 It accepts the following arguments
 
-* The width of the title can be altered with ``width = W``. ``W`` must be an
+* The width of the title can be altered with ``width = W``.``W`` must be an
   int.  The default value is 80.
 * The minimum ammount of space that is filled with margin to center the
-  text can be altered with ``padding = Y``. ``Y`` must be an int. The default
+  text can be altered with ``padding = Y``.``Y`` must be an int. The default
   value is 10.
 * The character that fills the empty space within the given width can be
-  modified with ``margin = Z``. ``Z`` must be a ``string`` and its size must
-  be of ``1``.  The default value is ``=``.
+  modified with ``margin = Z``.``Z``must be a``string`` and its size must
+  be of ``1``.  The default value is``=``.
 
 .. note::
     The width of the title must always be greater than the padding

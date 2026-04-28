@@ -15,7 +15,7 @@ Highlights
 ^^^^^^^^^^
 
 * Dialogs for Linux connections.
-* ``-reply`` option with ``execute`` for Linux connections.
+* ``-reply``option with``execute`` for Linux connections.
 * transmit/receive for Linux connections.
 * adminconfig service for XR platforms
 * adminexec service for XR platforms.

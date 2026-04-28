@@ -2,7 +2,7 @@ Introduction
 ============
 
 In most test infrastructures, such as `pytest`_ and `unittest`_, test results
-are only available as ``pass``, ``fail`` or ``error``. This works quite well in
+are only available as ``pass``,``fail``or``error``. This works quite well in
 unit and simplistic testing. However, the downside of having only three
 result types is the inability to describe testcase result relationships, or 
 distinguish a test's genuine failure, versus a failure of the test script caused

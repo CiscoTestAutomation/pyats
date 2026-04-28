@@ -24,7 +24,7 @@ Upgrade Instructions
 - if you've upgraded your ``pip`` package to 7.x.x, please also perform the 
   following:
 
-  - Modify your ``env.sh`` file, starting from ``# BEGIN CUSTOM pyATS CONTENT``:
+  - Modify your ``env.sh``file, starting from``# BEGIN CUSTOM pyATS CONTENT ``:
 
     .. code-block:: bash
      
@@ -33,8 +33,8 @@ Upgrade Instructions
         export PIP_INDEX_URL=http://ats-pypi-server.cisco.com/simple
         export PIP_DISABLE_PIP_VERSION_CHECK=1
 
-    - Modify your ``env.csh`` file, starting from ``# BEGIN CUSTOM pyATS 
-      CONTENT``:
+    - Modify your ``env.csh``file, starting from``# BEGIN CUSTOM pyATS 
+      CONTENT ``:
 
     .. code-block:: bash
      
@@ -56,7 +56,7 @@ Misc
 ^^^^
 
 - installation now adds a new environment variable 
-  ``PIP_DISABLE_PIP_VERSION_CHECK=1`` to ``env.sh`` and ``env.csh`` file, 
+  ``PIP_DISABLE_PIP_VERSION_CHECK=1``to``env.sh``and``env.csh`` file, 
   intentionally disabling the automated version checking of ``pip``.
-- removed ``PIP_EXTRA_INDEX_URL`` environment variable from ``env.sh`` and 
+- removed ``PIP_EXTRA_INDEX_URL``environment variable from``env.sh`` and 
   ``env.csh`` file, 

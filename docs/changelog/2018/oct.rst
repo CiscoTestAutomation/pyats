@@ -193,7 +193,7 @@ Namespace
     users in DevNet/customers. This change re-aligns the package name and
     namespace.
 
-    - the pyATS package namespace is now renamed from ``ats`` to ``pyats``.
+    - the pyATS package namespace is now renamed from ``ats``to``pyats``.
       All imports are thus reflected as ``from pyats import x``.
 
 
@@ -214,7 +214,7 @@ Easypy
       avoiding collisions when multiple of the same job is launched
       simultaneously.
 
-    - default task naming changed from ``__task-%s`` to ``Task-%s``, where
+    - default task naming changed from ``__task-%s``to``Task-%s``, where
       ``%s`` is substituted by the task number
 
 Pcall

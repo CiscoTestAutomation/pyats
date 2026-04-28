@@ -1,5 +1,5 @@
 September 2025
-==========
+==============
 
 September 30 - Pyats v25.9
 
@@ -33,7 +33,7 @@ September 30 - Pyats v25.9
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.topology
@@ -47,13 +47,13 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * pyats.devat
-    * Add a new method `Update_device_compliance_attribute` to update the device compliance attribute for devices based on their compliance status.
+    * Add a new method ``Update_device_compliance_attribute`` to update the device compliance attribute for devices based on their compliance status.
 
 * pyats.utils
-    * Added new singleton `working_set` to utils.py to take over for deprecated `pkg_resources.working_set`.
+    * Added new singleton ``working_set``to utils.py to take over for deprecated``pkg_resources.working_set``.
 
 

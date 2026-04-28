@@ -59,9 +59,9 @@ plugin may choose to run its actions in any or all of these available stages.
     the task process"
     ``post_job``, "run after the jobfile finishes"
 
-During ``pre_job`` and ``pre_task`` stages, plugins are run in the same sequence
+During ``pre_job``and``pre_task`` stages, plugins are run in the same sequence
 as they appear in the ``order`` definition section of the easypy configuration
-YAML file. During ``post_task`` and ``post_job`` stages, plugins are
+YAML file. During ``post_task``and``post_job`` stages, plugins are
 run in exactly the same but reverse order.
 
 

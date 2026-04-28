@@ -9,7 +9,7 @@ the behavior and/or objects available while Easypy is running :ref:`easypy_jobfi
 Easypy Return Codes
 -------------------
 
-``pyats run job`` exits with Linux exit code ``0`` (Success) if all the
+``pyats run job``exits with Linux exit code``0`` (Success) if all the
 following conditions are met:
 
 .. csv-table:: Easypy Successful Return Conditions
@@ -18,7 +18,7 @@ following conditions are met:
 
     "Some tests were ran", "At least one test script/testcase was run and reported"
     "Test results are available", "No exception seen while trying to access test results."
-    "success rate is 100%", "Total # of tests with ``Passed``, ``Passx`` or ``Skipped`` results / total # of tests."
+    "success rate is 100%", "Total # of tests with ``Passed``,``Passx``or``Skipped`` results / total # of tests."
     "All pre-job plugins ran ok", "No exception seen in any pre-job plugin."
     "All pre-task plugins ran ok", "No exception seen in any pre-task plugin for all scripts in the jobfile."
     "All post-task plugins ran ok", "No exception seen in any post-task plugin for all scripts in the jobfile."
@@ -122,7 +122,7 @@ The following attributes are currently accessible through ``runtime``:
 ``runtime.archive``
     Location of the archive zip file. Note that this is a "target" location.
     The actual zip file is not created until the jobfile finishes execution.
-    Set to ``None`` when ``--no-archive`` option is used.
+    Set to ``None``when``--no-archive `` option is used.
 
 ``runtime.testbed``
     current topology :ref:`topology_objects`, loaded through ``--testbed-file``
@@ -148,9 +148,9 @@ The following attributes are currently accessible through ``runtime``:
 ``runtime.job.uid``
     this job's unique string identifier, format: ``<name>.<'%Y%b%d_%H:%M:%S'``.
 
-``runtime.job.image``, ``runtime.job.release``
+``runtime.job.image``,``runtime.job.release``
     image name and release string information associated with this job run.
-    By default, these values are provided by ``--image`` and ``--release``
+    By default, these values are provided by ``--image``and``--release``
     command line arguments.
 
 .. warning::
@@ -180,7 +180,7 @@ still provided to the testscript for consistency, indicating that
 "no testbed was provided".
 
 This behavior can be overridden if ``testbed`` argument was explicitly provided
-to ``run()`` method or ``Task()`` class constructor.
+to ``run()``method or``Task()`` class constructor.
 
 .. code-block:: python
 
@@ -252,7 +252,7 @@ folder, where their :ref:`easypy_runinfo` and :ref:`easypy_archive` is located.
             `-- etc                  -> anything else
 
 
-``users/`` folder is always created with ``0o777`` permission in order to allow
+``users/``folder is always created with``0o777`` permission in order to allow
 sharing of a single pyATS instance by multiple users. Each user's own directory
 is created with ``0o755`` to avoid other users from accidentally writing to it.
 

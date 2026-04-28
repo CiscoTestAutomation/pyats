@@ -43,7 +43,7 @@ Changes
 Easypy
     - now returns a more detailed Linux return code based on nature of failure
 
-    - ``--html-logs`` feature now generates ``TaskLog.<jobname>.html`` file to
+    - ``--html-logs``feature now generates``TaskLog.<jobname>.html`` file to
       try to avoid overwriting previous log files
 
 
@@ -77,7 +77,7 @@ utils.FileUtils
     - Changed local FileUtil package name from 'linux' to 'localhost' to avoid
       conflict with genie FileUtils
 
-    - Removed `darwin` from FileUtil package, it is now supported by `localhost`
+    - Removed ``darwin``from FileUtil package, it is now supported by``localhost``
 
     - Fixed a bug where FileUtil will pick up the incorrect server block if the
       provided address is a sub string of any address in the testbed
@@ -97,7 +97,7 @@ Results
     - Results can contain a reason and data associated with that result
 
 Generic Changes
-    - removed `setproctitle` as a dependency from all packages
+    - removed ``setproctitle`` as a dependency from all packages
 
 
 November 8, 2019

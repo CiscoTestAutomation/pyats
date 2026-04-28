@@ -1,7 +1,7 @@
 May 2025
 ==========
 
- - Pyats v25.5 
+- Pyats v25.5
 ------------------------
 
 
@@ -32,7 +32,7 @@ May 2025
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * utils
@@ -41,7 +41,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * reporter
@@ -51,7 +51,7 @@ Changelogs
         * Added retry logic for connection to server
 
 * easypy
-    * Replace special characters in job UID with `_`
+    * Replace special characters in job UID with ``_``
     * Ingore testscript path for rerun check
 
 * pyats

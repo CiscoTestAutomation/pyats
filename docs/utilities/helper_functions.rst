@@ -4,11 +4,11 @@ Find
 ====
 
 Are you looking for a specific object with specific values in a list that
-consists of thousands of items? Don't worry ``find`` API of ``pyATS`` is here to
+consists of thousands of items? Don't worry ``find``API of``pyATS`` is here to
 help you to find your objects and even filter them depending on the given
 requirements.
 
-Once upon a time, ``find`` API of ``Genie`` package was doing its job happily,
+Once upon a time, ``find``API of``Genie`` package was doing its job happily,
 finding some topology objects such as devices, interfaces and links with its
 wrapper friends. But one day, it recieved a message: "Follow the white rabbit",
 so trouble knocked on its door, action had to be taken and the red pill was
@@ -412,7 +412,7 @@ once and get their intersection.
     In the example above, R object recieved 2 sets of requirements as lists.
 
     First one is ["child\_", "name", "my_child"] which
-    means, object's ``child_`` attribute's ``name`` attribute is equal to
+    means, object's ``child_``attribute's``name`` attribute is equal to
     ``my_child``
 
     Second requirement is ["number", 1] means object's ``number`` attribute is

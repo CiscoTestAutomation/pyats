@@ -73,7 +73,7 @@ package is featured on the PyPI server.
 
 .. note::
 
-    ``connections`` module is part of the ``pyats`` namespace, and therefore,
+    ``connections``module is part of the``pyats`` namespace, and therefore,
     users should always refer to the full namespace when installing & using it.
 
 

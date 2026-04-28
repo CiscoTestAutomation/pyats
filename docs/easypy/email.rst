@@ -132,7 +132,7 @@ three editable fields:
 ``mail_report.subject``
     contains the current report subject template (defaults to the above). This
     field reflects current custom subject if ``--mail-subject`` argument is used
-    to invoke ``pyats run job``, or if the ``email.subject`` configuration is
+    to invoke ``pyats run job``, or if the``email.subject`` configuration is
     populated.
 
 ``mail_report.contents``
@@ -257,7 +257,7 @@ content in your jobfile using
 Report Internals
 ----------------
 
-The ``easypy`` mailing engine expects ``runtime.mail_report`` object to be
+The ``easypy``mailing engine expects``runtime.mail_report`` object to be
 a subclass of ``easypy.email.AbstractEmailReport`` instance. At the end of
 execution, ``runtime.mail_report.create_email()`` api is called to automatically
 to create an email message to be sent out through SMTP client.

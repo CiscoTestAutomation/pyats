@@ -3,7 +3,7 @@
 Parallel Call
 =============
 
-Parallel call ``pcall`` is an API provided by ``async`` module that supports
+Parallel call ``pcall``is an API provided by``async`` module that supports
 calling procedures and functions in parallel using ``multiprocessing`` fork,
 without having to write boilerplate code to handle the overhead of process
 creation, waiting and terminations.
@@ -14,7 +14,7 @@ parallel, as long as they satisfy the following requirements:
     - the return of called target must be a **pickleable** object.
       (refer to: `What can be pickled`_)
 
-Consider ``pcall`` as a shortcut library to ``multiprocessing``, intended to
+Consider ``pcall``as a shortcut library to``multiprocessing``, intended to
 satisfying most users' need for parallel processing. However, for more custom
 & advanced use cases, stick with direct usages of ``multiprocessing``.
 
@@ -60,7 +60,7 @@ to the given target(s), and run concurrently through forked child processes.
 The number of child processes forked is automatically optimized based on the
 number of target calls, arguments and so on.
 
-``pcall`` argument builder is coded with python ``zip``, and follows the ``zip``
+``pcall``argument builder is coded with python``zip``, and follows the``zip``
 mentality: the iterator stops when the shortest input iterable is exhausted,
 instead of throwing an exception about iterable length mismatches.
 
@@ -165,7 +165,7 @@ Multiple Targets
 ----------------
 
 When a **list of target** functions is provided to ``pcall``, each target is run
-within its own child process, and elements of ``iargs`` and ``ikwargs`` directly
+within its own child process, and elements of ``iargs``and``ikwargs`` directly
 corresponds to each target in the same order as they appear.
 
 .. code-block:: python
@@ -243,7 +243,7 @@ this ``ChildProcessException``.
     this is only available in python-3. In python-2, only the exception message
     is raised (without traceback). This is a limitation of python-2 language.
 
-When child processes exceed the provided ``timeout`` value, ``SIGTERM`` is sent
+When child processes exceed the provided ``timeout``value,``SIGTERM`` is sent
 to each child process, and ``TimeoutError`` is raised in the calling process.
 
 Logging
@@ -273,25 +273,25 @@ section.
 Pcall Object
 ------------
 
-``pcall`` API is atually a classmethod of ``Pcall`` class, intended to further
+``pcall``API is atually a classmethod of``Pcall`` class, intended to further
 minimize the number of lines of boilerplate code in user libraries and scripts.
 You can instantiate your own instances of ``Pcall`` to poll and control the
 forked parallel processes.
 
-``Pcall`` class methods are similar to those of ``multiprocessing.Pool``. In
+``Pcall``class methods are similar to those of``multiprocessing.Pool``. In
 fact, they only differ in the following:
 
     - ``Pool`` allows users to create a fixed number of worker processes to do
       generic processing. ``Pcall`` automatically creates processes based on
       user inputs and only runs the given procedure/function once.
 
-    - ``Pcall`` builds argument for each function/process. ``Pool`` expects the
+    - ``Pcall``builds argument for each function/process.``Pool`` expects the
       user to provide it the exact arguments per invocation.
 
 .. csv-table:: Pcall Class Methods/Properties
     :header: "Attribute", "Description"
 
-    ``__init__``, "takes in the exact same arguments as ``pcall``"
+    ``__init__``, "takes in the exact same arguments as``pcall``"
     ``pids``, "tuple of all child processes"
     ``livings``, "tuple of all currently alive child processes"
     ``results``, "tuple of results from all child processes. None if no results
@@ -302,7 +302,7 @@ fact, they only differ in the following:
     ``terminate()``, "terminates all children processes with SIGTERM"
 
 Once all processes are started using ``start()`` method, make sure to call
-``join()`` so that results can be collected. ``results`` defaults to ``None``
+``join()`` so that results can be collected.``results``defaults to``None``
 when the process has not yet started, or joined.
 
 .. code-block:: python

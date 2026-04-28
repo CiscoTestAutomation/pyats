@@ -43,13 +43,13 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.utils
     * Modified argv parser helper function
-        * Ignore arguments after `--`
-        * Allow `-` to be passed as a value
+        * Ignore arguments after ``--``
+        * Allow ``-`` to be passed as a value
 
 * pyats.cli
     * Modified version update
@@ -57,7 +57,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * pyats.reporter

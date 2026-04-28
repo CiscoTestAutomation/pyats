@@ -1,7 +1,7 @@
 March 2024
 ==========
 
- - Pyats v24.3 
+- Pyats v24.3
 ------------------------
 
 
@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * easypy.plugins
@@ -55,7 +55,7 @@ Changelogs
 
 * pyats.cli
     * Migrate abstract
-        * Added functionality to the `pyats migrate abstract` command to modify the files in-place with the suggested changes
+        * Added functionality to the ``pyats migrate abstract`` command to modify the files in-place with the suggested changes
 
 * easypy
     * plugins(kleenex)
@@ -67,14 +67,14 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.connection
     * Service Wrapper
         * Fixed an issue that caused a circular import when using the service wrapper with external connection packages
-        * Changed `BaseServiceWrapper` to `ServiceWrapper`
-        * Changed `ServiceWrapper` import from `from pyats.connections.bases import BaseServiceWrapper` to `from pyats.connections import ServiceWrapper`
+        * Changed ``BaseServiceWrapper``to``ServiceWrapper``
+        * Changed ``ServiceWrapper``import from``from pyats.connections.bases import BaseServiceWrapper``to``from pyats.connections import ServiceWrapper``
         * This feature replaces the previous concept of Service Hooks
 
 

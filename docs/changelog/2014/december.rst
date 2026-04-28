@@ -46,11 +46,11 @@ Highlights
 
 * Added Tcl Q magic function
 
-* Tcl ``Array.keys`` API now can also accept Tcl ``[array names]`` style args.
+* Tcl ``Array.keys``API now can also accept Tcl``[array names]`` style args.
 
-* Keeping ``runinfo`` directory if ``-a`` argument is used.
+* Keeping ``runinfo``directory if``-a `` argument is used.
 
-* Revamped ``atslog`` and ``tcl`` documentation
+* Revamped ``atslog``and``tcl`` documentation
 
 * Execution group support in AEtest
 
@@ -73,7 +73,7 @@ Highlights
 User Impacting Changes
 ^^^^^^^^^^^^^^^^^^^^^^
 
-* ``banner`` API is now part of ``ats.atslog.utils`` and no longer performs the
+* ``banner``API is now part of``ats.atslog.utils`` and no longer performs the
   actual logging. It returns a pre-formatted text to be logged instead.
 
     .. code-block:: python
@@ -89,7 +89,7 @@ User Impacting Changes
 
 * job file now defines a ``main()`` method. When the job file is imported, the
   ``main()`` method will be invoked, which would start the actual execution of
-  the job file. All ``run`` calls should go inside this new ``main()`` method.
+  the job file. All ``run``calls should go inside this new`` main()`` method.
 
     .. code-block:: python
         

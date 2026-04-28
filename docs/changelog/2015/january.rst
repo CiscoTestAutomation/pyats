@@ -86,8 +86,8 @@ Highlights
 
 * Install script now checks for CEL package dependencies
 
-* Removed bug with ``topology`` where it required ``Csccon``, which further
-  required ``tcl``, causing the whole thing to fail when ``_tkinter`` is not
+* Removed bug with ``topology``where it required``Csccon``, which further
+  required ``tcl``, causing the whole thing to fail when``_tkinter `` is not
   available on target machine. 
 
 * Ubuntu 12.04 and 14.04 LTS support
@@ -110,7 +110,7 @@ Highlights
 
 * Added dynamic device connection example 
 
-* Fixed issue with ``topology`` and ``connections.csccon`` for support for 
+* Fixed issue with ``topology``and``connections.csccon`` for support for 
   multiple devices with the same hostname. Added device.hostname to schema.
 
 * In AETEST testcase attributes ID, DESCRIPTION, EXECUTION_GROUP, SEQUENCE is

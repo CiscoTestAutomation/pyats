@@ -1,8 +1,8 @@
 February 2026
-==========
+=============
 
 February 24 - Pyats v26.2 
-------------------------
+-------------------------
 
 
 
@@ -32,7 +32,7 @@ February 24 - Pyats v26.2
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.bringup
@@ -57,7 +57,7 @@ Changelogs
 
 * devat-pkg
     * DeviceCompliance
-        * Add support for `PYATS_DEV_COMPLIANCE_EXTRA_ATTRS` environment variable, which is a comma separated list of additional attributes which will be included for each device payload published to business telemetry topic
+        * Add support for ``PYATS_DEV_COMPLIANCE_EXTRA_ATTRS`` environment variable, which is a comma separated list of additional attributes which will be included for each device payload published to business telemetry topic
         * internal support for OAuth authentication in Kafka client
 
 * pyats
@@ -65,7 +65,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * topology-pkg

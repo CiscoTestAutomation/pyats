@@ -1,5 +1,5 @@
 August 2022
-==========
+===========
 
 August 26 - Pyats v22.8 
 ------------------------
@@ -43,14 +43,14 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.easypy
     * Fixed task-uids filter when using default Task IDs (e.g. Task-2)
 
 * pyats.manifest
-    * Add support for boolean overrides with `pyats manifest` CLI command
+    * Add support for boolean overrides with ``pyats manifest`` CLI command
 
 * manifest
     * combine_cli_args_and_script_arguments
@@ -66,7 +66,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * ats.cisco

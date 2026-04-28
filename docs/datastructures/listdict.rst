@@ -60,8 +60,8 @@ path/value, where:
 Where each path value represents a level of dictionary nesting, with the last
 path key holding the final value at the end of the chain.
 
-Taking advantage of this pattern, ``ListDict`` takes each nested ``dict`` and
-breaks it down into a list of ``(path, value)`` (``DictItem`` namedtuples):
+Taking advantage of this pattern, ``ListDict``takes each nested``dict`` and
+breaks it down into a list of ``(path, value)``(``DictItem`` namedtuples):
 
 .. code-block:: python
 
@@ -111,7 +111,7 @@ stored end value. Same paths always yield the same ``dict``, for example:
 Creation
 --------
 
-A ``ListDict`` can only be instantiated from another (nested) ``dict``.
+A ``ListDict``can only be instantiated from another (nested)``dict``.
 
 .. code-block:: python
 
@@ -134,7 +134,7 @@ is always of format path/value (``DictItem`` named tuple).
 Access & Reconstruction
 -----------------------
 
-``ListDict`` is an extension (inheriting from) ``list``, and thus all known APIs
+``ListDict``is an extension (inheriting from)``list``, and thus all known APIs
 of ``list`` is expected to continue to work.
 
 .. code-block:: python
@@ -213,7 +213,7 @@ path/value format, back to its represented ``dict`` format by calling the
     id(new_dict) == id(suggest)
     # False
 
-The creation of a ``ListDict`` object and reconstructing a ``dict`` object is
+The creation of a ``ListDict``object and reconstructing a``dict`` object is
 the easiest way to take nested ``dict`` formats, flatten it, operate on it, and
 return it to original state. However, keep in mind that the process is 
 *destructive*: the newly created dictionary is a new object.

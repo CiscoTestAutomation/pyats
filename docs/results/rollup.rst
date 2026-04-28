@@ -124,7 +124,7 @@ by referencing the chart below:
     cross point, and this is the result you would get after roll up.
 
     Here is an example on how to read the table :
-    ``Passed`` + ``Failed`` = ``Failed``
+    ``Passed``+``Failed``=``Failed``
 
 When multiple results are added together in a single line, consider that
 operation to be the same as breaking it down to multiple intermediate two-item

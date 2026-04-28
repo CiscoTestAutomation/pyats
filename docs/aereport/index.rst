@@ -174,16 +174,16 @@ AEClients & Forking
 ===================
     
 By default, ``AEClient`` class instances (and their pid) are registered to the 
-server during ``connect()``. When ``multiprocessing`` forks the current process,
+server during ``connect()``. When``multiprocessing`` forks the current process,
 all ``AEClients`` objects in the child process are longer recongnized by
 the server (as they now belong to a new pid).
 
 This causes all subsequent XML-RPC calls from the child process's inherited
 client objects to fail. To solve this issue and allow auto-reconnect after
-a fork, ``AEClient`` object features two apis: ``AEClient.enable_forked()`` and
+a fork, ``AEClient``object features two apis:`` AEClient.enable_forked()`` and
 ``AEClient.disable_forked()``.
 
-When ``enable_forked()`` is called on an ``AEClient``, the client instance
+When ``enable_forked()``is called on an``AEClient``, the client instance
 becomes process aware, and automatically reconnects back to the server after
 a ``multiprocessing`` fork. This allows seamless transition between forking
 processes & returning.

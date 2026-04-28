@@ -78,9 +78,9 @@ Feature List
       - :ref:`Docs <aetest_processors>`
       - | Processors now have :ref:`parameters <test_parameters>` which can be
         | passed by adding a correctly named argument to the processor.
-        | Processors support :ref:`steps <aetest_steps>` by adding a `steps`
+        | Processors support :ref:`steps <aetest_steps>` by adding a ``steps``
         | argument. Processors have their own result APIs, which can be accessed
-        | from the `processor` argument.
+        | from the ``processor`` argument.
         .. code-block:: python
 
             from pyats import aetest
@@ -100,21 +100,20 @@ Other Changes
 ^^^^^^^^^^^^^
 
 Kleenex
-  - Added `-archive_dir` argument in kleenex to generate zip archive file for
+  - Added ``-archive_dir`` argument in kleenex to generate zip archive file for
     clean results
   - Added the extended clean yaml to the log archive
-  - Added the cli command 'pyats clean' which replaces `kleenex` cli command
+  - Added the cli command 'pyats clean' which replaces ``kleenex`` cli command
 
 Commands
-  - Changed default behavior of `pyats secret encode` command.
+  - Changed default behavior of ``pyats secret encode`` command.
     - New default is to input password by prompt
-    - plaintext password can be still given via `--string` option
+    - plaintext password can be still given via ``--string`` option
 
 Aetest
   - Section uid chaining to accurately represent where each test occurs in the
-    hierarchy with `uid.list`
+    hierarchy with ``uid.list``
 
 Reporter/Easypy
   - Generate results file in JSON format instead of YAML format
   - Plugin summary in results file in addition to regular tests summary
-

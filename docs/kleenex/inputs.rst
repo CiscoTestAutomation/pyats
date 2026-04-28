@@ -195,7 +195,7 @@ Image directory URLs take the following form :
 ``<dir-protocol>://<server>.<domain>:<port>/path/to/image/``
 
 Where ``dir-protocol`` is a protocol capable of retrieving a file listing.
-If ``<dir-protocol>`` is not specified then a protocol of ``file`` is assumed.
+If ``<dir-protocol>``is not specified then a protocol of``file`` is assumed.
 A protocol of ``file`` is assumed when an image path is specified in
 non-URL form.
 

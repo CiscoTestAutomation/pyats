@@ -155,5 +155,5 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-    - Easypy argument `-html_logs` now accepts a directory location. The
-      html_log will be saved in this location as file `TaskLog.html`.
+    - Easypy argument ``-html_logs`` now accepts a directory location. The
+      html_log will be saved in this location as file ``TaskLog.html``.

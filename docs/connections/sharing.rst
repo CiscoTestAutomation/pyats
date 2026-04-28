@@ -174,7 +174,7 @@ following sets of rules governs this behavior:
     :align: center
 
 In effect, pools look & behave like any other :ref:`connection_class`: each 
-carries its own unique ``alias``, has a path ``via``, and is of a certain type 
+carries its own unique ``alias``, has a path``via``, and is of a certain type 
 of connection implementation ``target``. The key difference is that it manages
 multiple connections of that type (governed by ``pool_size``), and is started
 using ``ConnectionManager.connect(pool_size=N)`` API.

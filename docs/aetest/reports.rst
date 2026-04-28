@@ -13,7 +13,7 @@ run, and what their results are. Depending on the :ref:`execution mode
 Standalone Reporter
 -------------------
 
-``StandaloneReporter`` is default reporter used when ``aetest`` scripts are run
+``StandaloneReporter``is default reporter used when``aetest`` scripts are run
 directly from the commandline via :ref:`aetest_standalone_execution`. This
 reporter directly prints testcases, sections and steps information to the screen
 at the end of of the run in a tree-structure format.

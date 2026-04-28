@@ -1,8 +1,8 @@
 December 2021
-==========
+=============
 
 December 14 - Pyats v21.12
-------------------------
+--------------------------
 
 
 
@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * aetest
@@ -77,14 +77,14 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * kleenex
     * Added groups by os feature
 
 * pyats.cisco
-    * Added `pyats replay` command for Cisco internal use
+    * Added ``pyats replay`` command for Cisco internal use
 
 * logs
     * Allow switching logviewer to dark mode

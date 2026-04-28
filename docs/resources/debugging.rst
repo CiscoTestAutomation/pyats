@@ -48,7 +48,7 @@ goes into an interactive shell:
     (pdb) 
 
 This is not the same as your typical python interactive shell. There are some
-differences, for example, built-in commands like ``w(here)``, ``a(rgs)`` etc.
+differences, for example, built-in commands like ``w(here)``,``a(rgs)`` etc.
 Refer to the above documentation for details.
 
 .. hint::
@@ -62,7 +62,7 @@ Dynamic Code Modification & Evaluation
 
 If you're asking this question, you are likely to be coming from a Tcl coding
 background. Unfortunately, there's no equivalent support for Tcl commands like
-``edprocs``, ``interpreter`` and etc. It's just not Python or Pythonic.
+``edprocs``,``interpreter`` and etc. It's just not Python or Pythonic.
 
     Didn't they say you can ``reload`` a module?
 
@@ -81,7 +81,7 @@ documentation on ``importlib.reload``
 Keep in mind that Python is all about classes and objects. You cannot change
 an object's class after it's created. 
 
-    Can't you use ``eval`` and ``exec`` to dynamically evaluate code?
+    Can't you use ``eval``and``exec`` to dynamically evaluate code?
 
 Yes, but that's a **highly** unsuggested way to execute python code. If you're
 using them, you're doing it wrong. Just because Python provides you a tool,

@@ -67,7 +67,7 @@ Changes
 ^^^^^^^
 
 Logs/Easypy
-  - added ``--liveview-callback-url`` and ``--liveview-callback-token``
+  - added ``--liveview-callback-url``and``--liveview-callback-token``
     option to support running liveview on xpresso for jenkins run.
 
 
@@ -119,7 +119,7 @@ Feature List
     * - Processor Reporting Decorator
       - :ref:`Docs <aetest_processors>`
       - | Processors are no longer reported by default. To enable reporting on a
-        | processor, the `@aetest.processors.report` decorator has been added.
+        | processor, the ``@aetest.processors.report`` decorator has been added.
         .. code-block:: python
 
             @aetest.processors.report
@@ -144,7 +144,7 @@ Feature List
 
     * - Liveview Keepalive
       - :ref:`Docs <easypy_usage>`
-      - | New `--liveview-keepalive` option to keep the liveview process running
+      - | New ``--liveview-keepalive`` option to keep the liveview process running
         | after a job has completed.
         .. code-block:: text
 
@@ -154,7 +154,7 @@ Feature List
         | WebEx Teams Notification Plugin
       - `Readme <https://github.com/CiscoTestAutomation/pyats.contrib/blob/master/src/pyats/contrib/plugins/README.md>`_
       - | A new plugin in the pyats.contrib package which can send notifications
-        | when a pyATS job finishes execution. `pip install pyats.contrib` and
+        | when a pyATS job finishes execution. ``pip install pyats.contrib`` and
         | add the appropriate configuration or arguments to enable.
         .. code-block:: text
 
@@ -172,4 +172,4 @@ Reporter
   - Fixed issue with sending reporter messages >4GB
 
 Cisco
-  - Fix for `--tims-user` argument being ignored
+  - Fix for ``--tims-user`` argument being ignored

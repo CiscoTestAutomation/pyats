@@ -80,9 +80,9 @@ namespace qualifiers with this mechanism.
 Automatic Tcl Typecasting
 -------------------------
 
-The ``Interpreter`` class provides a ``cast_any`` API to make *best-effort* 
+The ``Interpreter``class provides a``cast_any`` API to make *best-effort* 
 typecasting of Tcl returns to Python object types. This can also be done per
-evaluate call if users pass in ``typecast=True`` to ``eval()``.
+evaluate call if users pass in ``typecast=True``to`` eval()``.
 
 ``Interpreter.cast_any(value)``
     takes a Tcl string value and perform a best-effort attempt at converting it
@@ -253,7 +253,7 @@ method to do casting. The following methods are available:
 Automatic Python Typecasting
 ----------------------------
 
-To cast Python objects to Tcl, the ``tcl`` module features ``tclstr()``, an API 
+To cast Python objects to Tcl, the ``tcl``module features`` tclstr()``, an API 
 with functionality similar to Python ``str()``:
 
 * call an object's ``__tclstr__()`` attribute if it has one.
@@ -359,31 +359,31 @@ set/get variables by name and do the data typecasting together.
     equivalent to ``tcl.eval('set %s %s' % (name, str(value)))``
 
 ``Interpreter.get_int(name)``
-    reads a Tcl variable ``name`` and cast its values into an ``int`` object.
+    reads a Tcl variable ``name``and cast its values into an``int`` object.
 
 ``Interpreter.set_double(name, value)``
     equivalent to ``tcl.eval('set %s %s' % (name, str(value)))``
 
 ``Interpreter.get_double(name)``
-    reads a Tcl variable ``name`` and cast its values into a ``float`` object.
+    reads a Tcl variable ``name``and cast its values into a``float`` object.
 
 ``Interpreter.set_boolean(name, value)``
-    sets Tcl variable ``name`` with 1 for ``True``, 0 for ``False``.
+    sets Tcl variable ``name``with 1 for``True``, 0 for``False``.
 
 ``Interpreter.get_boolean(name)``
-    reads a Tcl variable ``name`` and cast its values into a ``bool`` object.
+    reads a Tcl variable ``name``and cast its values into a``bool`` object.
 
 ``Interpreter.set_array(name, value)``
-    sets Tcl array ``name`` with values from a Python ``Tcl.Array`` object.
+    sets Tcl array ``name``with values from a Python``Tcl.Array`` object.
 
 ``Interpreter.get_array(name)``
-    reads a Tcl array ``name`` and cast its values into a ``Tcl.Array`` object.
+    reads a Tcl array ``name``and cast its values into a``Tcl.Array`` object.
 
 ``Interpreter.set_keyed_list(name, value)``
-    sets Tcl array ``name`` with values from a Python ``Tcl.KeyedList`` object.
+    sets Tcl array ``name``with values from a Python``Tcl.KeyedList`` object.
 
 ``Interpreter.get_keyed_list(name)``
-    reads a Tcl keyed list ``name`` and cast its values into a ``Tcl.KeyedList``
+    reads a Tcl keyed list ``name``and cast its values into a``Tcl.KeyedList``
     object.
 
 .. code-block:: python
