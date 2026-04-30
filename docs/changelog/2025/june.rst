@@ -32,7 +32,7 @@ June 29 - Pyats v25.6
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * topology-pkg
@@ -40,7 +40,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * easypy
@@ -63,7 +63,7 @@ Changelogs
     * Merge the clean config from kleenex processor with the actual clean config
 
 * topology
-    * Moved `rommon` attribute to `management` attribute to avoid service conflict.
+    * Moved ``rommon``attribute to``management`` attribute to avoid service conflict.
 
 * easypy/plugins/kleenex
     * Modified Kleenex logic to add JIT clean configs.
@@ -75,7 +75,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      Add                                       
+Add
 --------------------------------------------------------------------------------
 
 * kleenex-pkg

@@ -56,7 +56,7 @@ libraries and scripts) can be conceptually summarized as follows:
    used to configure Python ``logging``.
 
 #. Under most circumstances, the pyATS test infrastructure configures logging
-   for the user (in ``easypy`` and ``aetest``). However, when needed, the user
+   for the user (in ``easypy``and``aetest``). However, when needed, the user
    scripts/modules/libraries is also able to configure their own logging 
    behavior/format (such as when used in another peer, non-pyATS infra)
 
@@ -145,14 +145,14 @@ self-intuitive.
 
 
 ``Logging`` provides a set of convenience functions for simple logging usage. 
-These are ``critical()``, ``error()``, ``warning()``, ``info()``, ``debug()``
+These are ``critical()``,``error()``,``warning()``,``info()``,``debug()``
 and ``exception()``. To determine when and which logging level API to use, 
 refer to the table below:
 
 +-----------------------------------+------------------------------------------+
 | Task you want to perform          | Suggested API                            |
 +===================================+==========================================+
-| Report event that occurred during | ``logger.info()`` or ``logger.debug()``  |
+| Report event that occurred during | ``logger.info()``or``logger.debug()``    |
 |                                   |                                          |
 | normal operation of a program     | debug for very detailed output for       |
 |                                   |                                          |

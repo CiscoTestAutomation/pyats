@@ -47,7 +47,7 @@ Forking_ is always used to create child processes. Child processes created using
     Multiprocessing_ uses `POSIX Shared Memory`_ to create pipes, queues &
     shared variables. On Linux devices, this requires `/dev/shm`_ to be read and
     writable by your processes. The typical/default permission on this folder
-    should be: ``drwxrwxrwt`` (or ``0o1777``).
+    should be: ``drwxrwxrwt``(or``0o1777``).
 
 
 
@@ -150,7 +150,7 @@ In addition, Easypy also performs the following to enable hands-off
     - ``ReportClient``: enable auto-reconnect to Reporter server in forked
       processes.
 
-    - re-open ``/dev/stdin`` as ``sys.stdin`` to enable ``pdb`` debugger to work
+    - re-open ``/dev/stdin``as``sys.stdin``to enable``pdb`` debugger to work
       within task processes when AEtest flag ``pdb = True`` is detected.
 
 
@@ -174,7 +174,7 @@ Reporter
 
 Easypy uses :ref:`reporter` to aggregate Task result reports. This is a Unix
 socket-based server-client model, with each Task having its own
-``ReportClient`` connection client object that talks to the parent ``Reporter``
+``ReportClient``connection client object that talks to the parent``Reporter``
 server.
 
 As ``AERunner`` server is client/pid aware, when a process is forked,

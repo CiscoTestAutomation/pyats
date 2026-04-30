@@ -19,7 +19,7 @@ The Quartermaster
 
 ``tcl`` module offers a magic quartermaster function that allows users to make 
 Tcl calls as if they were Python objects, allowing object attribute chaining and
-support for mapping Python style arguments ``args`` and ``kwargs`` to Tcl's
+support for mapping Python style arguments ``args``and``kwargs`` to Tcl's
 positional and dashed argument styles.
 
 .. figure:: q.jpg
@@ -28,7 +28,7 @@ positional and dashed argument styles.
     *A tribute to Desmond Llewelyn, Q from 1963 to 1999.*
 
 The magic Q function is built-in to each ``Interpreter`` object instance and can
-be accessed via either the ``q`` or ``Q`` attribute.
+be accessed via either the ``q``or``Q`` attribute.
 
 .. code-block:: python
     
@@ -157,7 +157,7 @@ following rules are followed:
         # representation -a 1 -b 2 dashed arguments
         tcl.q.testProc(a = 1, b = 2)
 
-* When ``*args`` and ``**kwargs`` are used together, positional arguments comes
+* When ``*args``and``**kwargs`` are used together, positional arguments comes
   first, keywords/dashed arguments comes last.
 
 * All arguments are converted from Python objects to Tcl string forms using
@@ -204,12 +204,12 @@ Limitations
 There are still some fundamental differences between Tcl and Python syntax, 
 leading to corner conditions that cannot be handled even by the all-mighty Q.
 
-* Python identifiers are limited to ``A-Z``, ``a-z``, ``0-9`` and ``_``. Thus,
+* Python identifiers are limited to ``A-Z``,``a-z``,``0-9``and``_``. Thus,
   any procedure/namespace names with characters outside of this allowed set
   cannot be called with Q function. 
 
 * Any Tcl procedure/namespaces with names the same as Python reserved keywords,
-  statements and operators cannot be called. Eg: ``pass``, ``return``, ``def``.
+  statements and operators cannot be called. Eg: ``pass``,``return``,``def``.
 
 .. code-block:: python
 

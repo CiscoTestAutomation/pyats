@@ -74,7 +74,7 @@ Tcl-based scripts and libraries. In order to make the integration easier, the
 
 * **Two-Way Typecasting:** APIs and Python classes, enabling typecasting Tcl 
   variables to its appropriate Python objects and back. Including but not 
-  limited to: ``int``, ``list``, ``string``, ``array``, ``keyed lists`` etc.
+  limited to: ``int``,``list``,``string``,``array``,``keyed lists`` etc.
 
 * **Call history:** maintaining a historical record of Tcl API calls for 
   debugging purposes.
@@ -85,7 +85,7 @@ Tcl-based scripts and libraries. In order to make the integration easier, the
   dictionary.
 
 * **Magic Q Calls:** calling Tcl APIs as if calling a python object method, with
-  support for Python ``*args`` and ``**kwargs`` mapping to Tcl positional and 
+  support for Python ``*args``and``**kwargs`` mapping to Tcl positional and 
   dashed arguments.
 
 

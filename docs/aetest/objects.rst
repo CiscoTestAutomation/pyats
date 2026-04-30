@@ -33,10 +33,10 @@ This section provides insight on how this delicate process is carried out.
 TestScript Class
 ----------------
 
-``aetest`` testscripts are simply standard python files with ``.py`` extension.
+``aetest``testscripts are simply standard python files with``.py `` extension.
 They are called ``aetest`` testscripts because they import the AEtest module
 (``from pyats import aetest``), and has section definitions such as
-``CommonSetup``, ``Testcase``, and ``CommonCleanup``.
+``CommonSetup``,``Testcase``, and``CommonCleanup``.
 
 In Python, ``.py`` files are imported into Python as module objects. During
 ``aetest`` execution, the infrastructure internally wraps the running testscript
@@ -68,7 +68,7 @@ This class and its object instance during execution is not normally directly
 accessible by the user (unless through :ref:`reserved_parameters`). However, it
 is still important for users to know about this class, as its instances enables
 testscripts to have an overall result, where :ref:`script_args` are stored as
-``TestScript`` parameters, and is where all major script section's ``parent``
+``TestScript``parameters, and is where all major script section's``parent``
 attribute points to (eg, ``Testcase.parent``).
 
 .. code-block:: text
@@ -93,7 +93,7 @@ attribute points to (eg, ``Testcase.parent``).
 Container Classes
 -----------------
 
-``CommonSetup``, ``Testcase`` and ``CommonCleanup`` are the 3 different
+``CommonSetup``,``Testcase``and``CommonCleanup`` are the 3 different
 container classes in ``aetest``. They are called container classes because they
 "house" other test sections, and all inherit from the base ``TestContainer``.
 
@@ -217,7 +217,7 @@ instance effectively runs it, and the result object is returned.
 Function Classes
 ----------------
 
-``Subsection``, ``SetupSection``, ``TestSection`` and ``CleanupSection`` classes
+``Subsection``,``SetupSection``,``TestSection``and``CleanupSection`` classes
 are function classes: they carry out a specific test function, and inherits
 from the base ``TestFunction`` class.
 
@@ -312,11 +312,11 @@ are here for power-user references only.
 TestItem Class
 ^^^^^^^^^^^^^^
 
-``TestItem`` is the base class of all other classes within ``aetest``: all other
+``TestItem``is the base class of all other classes within``aetest``: all other
 classes inherit from it, thus establishing the basic properties of all
 ``aetest`` object/classes:
 
-    - objects must have ``uid`` and ``description``
+    - objects must have ``uid``and``description``
 
     - objects may have a ``parent``: the container where this object is housed
       in
@@ -348,13 +348,13 @@ classes inherit from it, thus establishing the basic properties of all
 TestContainer Class
 ^^^^^^^^^^^^^^^^^^^
 
-``TestContainer`` class extends the base ``TestItem`` and serves as a base class
+``TestContainer``class extends the base``TestItem`` and serves as a base class
 to all testscript's major sections such as ``Testcase``. The only technical
-difference between ``TestContainer`` and ``TestItem`` is at the implementation
+difference between ``TestContainer``and``TestItem`` is at the implementation
 level:
 
-- ``TestContainer`` may contain other ``TestItem``
-- iterating a ``TestContainer`` instance yields its child ``TestItem``
-- executing a ``TestContainer`` executes all child ``TestItem``.
+- ``TestContainer``may contain other``TestItem``
+- iterating a ``TestContainer``instance yields its child``TestItem``
+- executing a ``TestContainer``executes all child``TestItem``.
 
 All other model behavior should be the exact same.

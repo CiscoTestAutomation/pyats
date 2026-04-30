@@ -25,12 +25,12 @@ enabled via decorator or CLI argument.
 
 The following describes each section and their retry capability and behaviors:
 
-``CommonSetup``/ ``CommonCleanup``
+``CommonSetup``/``CommonCleanup``
     Common setup and cleanup sections are unique within each testscript. They
     are run only once per testscript execution, and are not retryable.
 
     ``subsection``
-        Subsections within ``CommonSetup`` and ``CommonCleanup`` are retryable.
+        Subsections within ``CommonSetup``and``CommonCleanup`` are retryable.
         When a ``subsection`` is marked for retry, each of its iterations is
         reported as a new subsection.
 
@@ -40,7 +40,7 @@ The following describes each section and their retry capability and behaviors:
     ``Testcase`` is retried, all of its contents (setup, tests and cleanup) are
     run fully per each iteration.
 
-    ``setup``/ ``cleanup``
+    ``setup``/``cleanup``
         Setup and cleanup sections within each testcase is unique, and are retryable.
 
     ``test``
@@ -50,7 +50,7 @@ The following describes each section and their retry capability and behaviors:
 
 .. hint::
 
-    ``SetupSection``, ``CleanupSection``, ``SubSection``, ``Testcase`` and
+    ``SetupSection``,``CleanupSection``,``SubSection``,``Testcase`` and
     ``TestSection`` sections are the only retryable sections.
 
 
@@ -61,9 +61,10 @@ Sections are marked for retry when they are decorated with ``@aetest.retry``, an
 looping parameters provided as decorator arguments. During runtime, when
 ``aetest`` infrastructure detects retryable section code, their corresponding
 section object is then instantiated once for each of its iterations. It takes two
-arguments
-        - ``retries`` (int) - Number of retries.
-        - ``retry_wait`` (int) - Wait time between each retries.
+arguments:
+
+- ``retries`` (int) - Number of retries.
+- ``retry_wait`` (int) - Wait time between each retry.
 
 .. note::
     By default the ``retries`` is set to 3 times and retry_wait is set to 10 seconds.
@@ -88,7 +89,7 @@ arguments
 As shown above, the minimum requirement to retry a section (eg, to run its code
 1+ times) is to decorate the section with ``@aetest.retry``.
 
-When ``@aetest.retry`` is used on a ``@aetest.subsection`` or ``@aetest.test``,
+When ``@aetest.retry``is used on a``@aetest.subsection``or``@aetest.test``,
 the section method is effectively decorated twice, and even though the order
 does not matter, it make more sense to use ``@aetest.retry`` as the outermost
 decorator, signifying that this method is first marked as a section, then this
@@ -98,7 +99,7 @@ section is retryable.
 Function Arguments
 ------------------
 
-The ``retry`` and ``retry_count`` arguments can be passsed as function
+The ``retry``and``retry_count`` arguments can be passsed as function
 parameters check for retry and retry count values.
 
         - ``retry`` (bool) -  To check if the section is being retried. (Optional)
@@ -255,7 +256,7 @@ TestSection Retry
 This testscript's resulting section summary report would look like below with
 section retry enabled.
 
-.. code-block:: log
+.. code-block:: text
 
     +------------------------------------------------------------------------------+
     |                             Task Result Details                              |
@@ -278,7 +279,7 @@ Testcase Retry
 This testscript's resulting section summary report would look like below with
 testcase retry enabled.
 
-.. code-block:: log
+.. code-block:: text
 
     +------------------------------------------------------------------------------+
     |                             Task Result Details                              |
@@ -304,4 +305,3 @@ testcase retry enabled.
         |-- connect_testcase                                                  FAILED
         |   `-- STEP 1: Failure case                                          FAILED
         `-- testcase_cleanup                                                  PASSED
-

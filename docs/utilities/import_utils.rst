@@ -37,7 +37,7 @@ Legacy Import Helper
 
 Enables you to continue using legacy import paths without having to modify much
 of your script. This functionality is akin to Python's native
-``from __future__ import X`` where ``X`` is a new, future feature. Where as in
+``from __future__ import X``where``X`` is a new, future feature. Where as in
 Python the above import gives you a glimpse into the future, and leverage
 future, upcoming features, this ``LegacyImporter`` enables you to dwell in the
 past, and enables your older scripts to continue to function.
@@ -99,7 +99,7 @@ Limitations
   modules.
 
 - Only works with **packaged** python code. Eg, any package that is installed
-  using ``pip install`` command, that is built using a ``setup.py`` file using
+  using ``pip install``command, that is built using a``setup.py`` file using
   Setuptools.
 
 Developer Guide
@@ -178,8 +178,8 @@ your translation mapping dictionary. Here's the built-in behaviour:
     .. note::
 
         the translation also auto-applies to a package's child modules. Eg,
-        if ``x.y`` module is renamed to ``x.z``, then your imports such as
-        ``x.y.a`` will auto map to ``x.z.a``
+        if ``x.y``module is renamed to``x.z``, then your imports such as
+        ``x.y.a``will auto map to``x.z.a``
 
 In addition, if you are making "complex" transformations, you can provide
 functions that does the mappings:

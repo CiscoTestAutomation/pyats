@@ -20,7 +20,7 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-* Now supports test script ``__version__`` in ``float`` format.
+* Now supports test script ``__version__``in``float`` format.
 
 
 May 11, 2017
@@ -54,7 +54,7 @@ May 8, 2017 - pyATS v3.3.0
 
     *May pyATS be with you.*
 
-`v3.3.0` is a major release, **gearing up the infrastructure for release to
+``v3.3.0`` is a major release, **gearing up the infrastructure for release to
 Cisco external customers as an independent product.** Soon, pyATS will be
 available through licensing to any Cisco direct customer (and as well, used in
 the realm of Cisco Advanced Services & Technical Assistance Center.)
@@ -74,7 +74,7 @@ Genie
     Genie website: http://wwwin-genie.cisco.com/
 
 Jenkins Plugins
-    no more free-style projects & command-line maddness. Along with `v3.3.0` we
+    no more free-style projects & command-line maddness. Along with ``v3.3.0`` we
     are also releasing two Jenkins plugins:
 
         - **pyATS Project Plugin:** allowing users to create pyATS-focused
@@ -83,8 +83,8 @@ Jenkins Plugins
           servers.
 
         - **pyATS Results Plugin:** enabling Jenkins to understand and display
-          Cisco automation results, including result values such as `Blocked`,
-          `PASSX`, and allowing post-build result archive upload to S\ :sup:`3`\
+          Cisco automation results, including result values such as ``Blocked``,
+          ``PASSX``, and allowing post-build result archive upload to S\ :sup:`3`\
           (next-generation SSR), TRADe, and Kafka in the future.
 
 Webdriver
@@ -164,7 +164,7 @@ Documentation
       https://wiki.cisco.com/display/PYATS/Bitbucket+Repo
 
 Easypy
-    - ``-no_log_copy`` is now deprecated, and replaced with ``-no_upload``.
+    - ``-no_log_copy``is now deprecated, and replaced with``-no_upload``.
 
     - AEreport TIMS results file now includes AEtest diagnostic/version
       information
@@ -203,7 +203,7 @@ Easypy
     - Fixed a bug preventing Easypy from generating html email report using
       customized html template
 
-    - jobfile ``main()`` now accepts a ``runtime`` argument that describes the
+    - jobfile ``main()``now accepts a``runtime`` argument that describes the
       current runtime environment
 
     - redesigned how easypy command line arguments parsers are collected &
@@ -258,10 +258,10 @@ Topology
     - Removed topology custom block usage warning
 
 AEtest
-    - Skipped testcase due to ``-ids`` and ``-groups`` argument usage no longer
+    - Skipped testcase due to ``-ids``and``-groups`` argument usage no longer
       show up as ``SKIPPED`` and is no longer displayed instead
 
-    - Fixed a bug in AEtest where objects with `__testcls__` attributes were
+    - Fixed a bug in AEtest where objects with ``__testcls__`` attributes were
       being mistakenly treated as AEtest sections.
 
     - Fixed a bug in AEtest where standalone execution always overwrote AETest's
@@ -276,7 +276,7 @@ AEtest
       parent
 
     - Raised the logging severity level from info to error when ``failed``,
-      ``errored``, or ``aborted`` result method is called from AEtest test
+      ``errored``, or``aborted`` result method is called from AEtest test
       sections
 
     - now provides a better exception when sections have duplicate uids.
@@ -305,7 +305,7 @@ Miscellaenous
     - new ``classproperty`` decorator in datastructures
     - new ``MetaClassFactory`` class in datastructures
     - new ``ArgsPropagatingParser`` class in utils
-    - Fixed a bug with WeakList where casting it to `tuple` yielded a tuple of
+    - Fixed a bug with WeakList where casting it to ``tuple`` yielded a tuple of
       weak references instead of actual objects
     - Installation updated to include support for Bitbucket
 

@@ -4,7 +4,7 @@ Weak List References
 A standard ``list`` object stores every internal object as a direct reference.
 That is, if the ``list`` exists, then its internally stored objects exist.
 
-A ``WeakList`` instance is the exact same as a python ``list``, except that it
+A ``WeakList``instance is the exact same as a python``list``, except that it
 only stores weak references (using ``weakref.ref()``) of the objects. All access
 (add/delete/comparison/slicing) is still the same as native ``list``, done with 
 the actual objects. This gives it a specific behavior where if an object it
@@ -74,7 +74,7 @@ removed from the ``WeakList``.
 Creation
 --------
 
-Create a ``WeakList`` the same way as creating your typical ``list`` objects by
+Create a ``WeakList``the same way as creating your typical``list`` objects by
 providing the constructor any iterable.
 
 .. code-block:: python
@@ -97,7 +97,7 @@ providing the constructor any iterable.
 Access
 ------
 
-All ``list`` usage patterns & APIs work also on ``WeakList``. From a usability
+All ``list``usage patterns & APIs work also on``WeakList``. From a usability
 perspective, all access appears as if you are dealing with a standard ``list``
 object, except that the internally stored references are weak references.
 
@@ -124,7 +124,7 @@ object, except that the internally stored references are weak references.
 
 .. hint::
 
-    essentially, the sole difference between a ``list`` and ``WeakList`` is how
+    essentially, the sole difference between a ``list``and``WeakList`` is how
     reference to objects are stored internally. There are no external apparent
     differences.
 
@@ -133,5 +133,5 @@ Limitations
 
 The only requirement is that objects stored into a ``WeakList`` must be able to
 have its weak reference objects created by ``weakref.ref()`` api. Eg, objects
-such as ``str`` and ``int`` cannot have weak references, and thus cannot be
+such as ``str``and``int`` cannot have weak references, and thus cannot be
 added to a ``WeakList``

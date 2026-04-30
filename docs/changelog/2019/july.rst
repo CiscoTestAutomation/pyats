@@ -37,7 +37,7 @@ Upgrade Instructions
 Deprecation Notice
 ^^^^^^^^^^^^^^^^^^
 
-- ``pyats.templates`` and ``pyats.examples`` packages are completely removed
+- ``pyats.templates``and``pyats.examples`` packages are completely removed
   as packages, and are replaced with alternate functionality:
 
   - Templating is now done through ``pyats create`` command.
@@ -55,7 +55,7 @@ Changes
   - ``pip install pyats[robot]``
   - ``pip install pyats[full]``
 
-- fixed a bug in ``utils.yaml.Loader()`` where ``extends:`` key did not properly
+- fixed a bug in ``utils.yaml.Loader()``where``extends:`` key did not properly
   resolve markup syntax before loading the extension YAML file.
 
 - YAML loading (including topology yaml loader) now supports loading using
@@ -82,8 +82,8 @@ Changes
 - fixed a bug in ``ConnectionPool`` where worker allocation wait-delay-backoff
   algorithm was too aggressive and wasted time
 
-- deprecated ``ConnectionManager.instantiate_pool()`` and ``.start_pool()``
-  api: harmonized into ``.connect()`` and ``.instantiate()``
+- deprecated ``ConnectionManager.instantiate_pool()``and``.start_pool()``
+  api: harmonized into ``.connect()``and``.instantiate()``
 
 - ConnectionPool now starts and stops using threads at supercharged speeds
 

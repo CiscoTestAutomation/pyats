@@ -13,7 +13,7 @@ Hello World
 -----------
 
 This is a very simply testscript demonstrating the *hello world* usage of
-``aetest``. It contains a single ``Testcase`` with a single ``test``. Keep in
+``aetest``. It contains a single``Testcase``with a single``test``. Keep in
 mind that this is the smallest possible testscript, as ``CommonSetup`` and
 ``CommonCleanup`` are optional sections block.
 
@@ -133,7 +133,7 @@ To run under Easypy, a job file needs to be created for it:
 
 Keep in mind that during :ref:`aetest_jobfile_execution`, the ``testbed``
 argument is automatically passed to the testscript if ``pyats run job`` was run with
-the ``--testbed-file`` and/or ``--logical-testbed-file`` arguments.
+the ``--testbed-file``and/or``--logical-testbed-file`` arguments.
 Thus, save this to ``script_argument_demo_job.py`` file and run it with:
 
 .. code-block:: bash

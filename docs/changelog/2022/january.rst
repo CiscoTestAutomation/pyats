@@ -1,5 +1,5 @@
 January 2022
-==========
+============
 
 January 25 - Pyats v22.1
 ------------------------
@@ -43,14 +43,14 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * kleenex
     * Modified Arguments
         * Restored creation of timestamped subdirectory for runinfo and archives
     * Added Argument
-        * `--no-archive-subdir` argument to disable creating the `yy-mm`
+        * ``--no-archive-subdir``argument to disable creating the``yy-mm``
 
 * pyats.utils
     * Support local address discovery for dynamic file servers using device.spawn object
@@ -66,7 +66,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * kleenex

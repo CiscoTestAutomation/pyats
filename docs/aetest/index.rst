@@ -1,5 +1,5 @@
 
-.. highlightlang:: python
+.. highlight:: python
 
 .. _aetest_index:
 

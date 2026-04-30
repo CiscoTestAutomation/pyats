@@ -12,12 +12,12 @@ Section Steps
 .. _The with statement: https://docs.python.org/3.4/reference/compound_stmts.html#the-with-statement
 
 
-In ``aetest``, testscripts are naturally broken down into ``TestContainers``
+In ``aetest``, testscripts are naturally broken down into``TestContainers``
 and ``TestFunctions``, two-level segments defined in :ref:`object_model`. For
 example:
 
-    - ``CommonSetup``: ``subsection``
-    - ``Testcase``: ``setup``/``test``/``cleanup``
+    - ``CommonSetup``:``subsection``
+    - ``Testcase``:``setup``/``test``/``cleanup``
 
 This two-level approach is mostly sufficient when sections can be kept short &
 independent. However, often times, there's a need for larger, longer sections,
@@ -133,9 +133,9 @@ All other step result behaviors are identical to its parent
 
     - the default result for all steps is ``Passed``
 
-    - ``AssertionError``: AssertionError_ exceptions corresponds to ``Failed``
+    - ``AssertionError``: AssertionError_ exceptions corresponds to``Failed``
 
-    - ``Exception``: Exceptions_ corresponds to ``Errored``
+    - ``Exception``: Exceptions_ corresponds to``Errored``
 
 .. _AssertionError: https://docs.python.org/3.4/library/exceptions.html#AssertionError
 .. _Exceptions: https://docs.python.org/3.4/library/exceptions.html
@@ -270,10 +270,10 @@ current step's result, and do not have :ref:`aetest_goto` support.
                 # manually provide Failed result
                 step.failed('because i had to')
 
-By default, when a step's result is not ``Passed``, ``Passx``, or ``Skipped``,
+By default, when a step's result is not ``Passed``,``Passx``, or``Skipped``,
 all remaining steps are avoided and the engine terminates the current test
 section immediately to achieve time-savings. This behavior can be avoided by
-providing ``continue_ = True`` to ``steps.start()``.
+providing ``continue_ = True``to`` steps.start()``.
 
 .. code-block:: python
 
@@ -658,10 +658,10 @@ are supported for step names and device names.
 
 About the keys:
 
-    - ``when`` and ``device`` keys are mandatory in the step debug file. ``cmd``
+    - ``when``and``device``keys are mandatory in the step debug file.``cmd``
       and ``func`` are optional and can be provided together.
 
-    - If ``cmd`` and ``func`` are provided together, the cli commands are first
+    - If ``cmd``and``func`` are provided together, the cli commands are first
       executed in turn on matching devices and only then are the functions are
       called on each device in turn.
 
@@ -714,7 +714,7 @@ Step feature is internally implemented using two classes:
 
 
 ``Step``
-    extends the base ``Steps`` class. ``Step`` is a `Context Manager`_, intended
+    extends the base ``Steps``class.``Step`` is a `Context Manager`_, intended
     to be used in conjunction with python ``with`` statement. This is the
     workhorse class that offers:
 

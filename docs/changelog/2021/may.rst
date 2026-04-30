@@ -78,7 +78,7 @@ Other Changes
 * utils
     * Modified yaml loader to preserve order if specified
     * Modified markup.py:
-        * Fixed bug where called the markup `${testbed}` multiple times would cause the run to slow down
+        * Fixed bug where called the markup ``${testbed}`` multiple times would cause the run to slow down
             * Variable values are now stored for future use
 
 * topology

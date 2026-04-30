@@ -513,7 +513,7 @@ constructed and processed using python `argparse`_ module.  Please also see
 
 
 ``-v, --verbose, -q, --quiet``
-    Controls the logging level for Easypy. Use ``-v`` to increase and ``-q`` to
+    Controls the logging level for Easypy. Use ``-v``to increase and``-q`` to
     decrease the verbosity of log output. Additive - use up to three to achieve
     more effect.
 
@@ -631,7 +631,7 @@ constructed and processed using python `argparse`_ module.  Please also see
 
 ``--mail-subject``
     When specified, replaces the default email notification subject line.
-    (default: ``pyATS Report - job: <name> by: <uid> - Total: # (P:#, PX:#,
+    (default: `` pyATS Report - job: <name> by: <uid> - Total: # (P:#, PX:#,
     F:# ...)``)
 
     .. code-block:: bash

@@ -101,10 +101,12 @@ if os.environ.get('DEVNET', None) == 'false':
 else:
     # modify exclude_patterns for devnet builds
     exclude_patterns = ['_build', 'tests']
+exclude_patterns.extend(['changelog/undistributed.rst', 'changelog/undistributed/*'])
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 default_role = 'py:obj'
+suppress_warnings = ['ref.python', 'docutils', 'duplicate_declaration', 'misc.highlighting_failure']
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True

@@ -117,7 +117,7 @@ smaller :ref:`test_section`.
 +-------------------+----------------------------------------------------------+
 | mandatoriness     | what's a testscript without testcases?                   |
 +-------------------+----------------------------------------------------------+
-| sub-divisions     | ``setup``, ``test``, ``cleanup``                         |
+| sub-divisions     | ``setup``,``test``,``cleanup``                           |
 +-------------------+----------------------------------------------------------+
 | dependency        | ``CommonSetup`` must pass                                |
 +-------------------+----------------------------------------------------------+
@@ -126,7 +126,7 @@ smaller :ref:`test_section`.
 | result item count | 1 for each testcase                                      |
 +-------------------+----------------------------------------------------------+
 
-Each ``Testcase`` is defined by inheriting ``aetest.Testcase`` class, and
+Each ``Testcase``is defined by inheriting``aetest.Testcase`` class, and
 defining one or more :ref:`test_section` inside. Optionally, each ``Testcase`` 
 may also have a single :ref:`setup_section` and a single :ref:`cleanup_section`.
 Testcases are run in the order as they are defined/appear in the testscript.
@@ -136,7 +136,7 @@ defaults to the testcase's class name, and can be changed by setting the
 ``Testcase.uid`` attribute. This testcase unique ID is used for result reporting
 purposes.
 
-``Testcase`` are independent: the testing code of a ``Testcase`` instance should
+``Testcase``are independent: the testing code of a``Testcase`` instance should
 be entirely self-contained, such that it can be run either in isolation or in
 arbitrary combination with any number of testcases. Each testcase shall test 
 out a unique aspect of the product, is self-reliant, and its result separate 
@@ -284,7 +284,7 @@ section.
 | result item count | 0 - subsections results are rolled into parent result    |
 +-------------------+----------------------------------------------------------+
 
-When a ``CommonSetup`` or ``CommonCleanup`` class method is decorated with
+When a ``CommonSetup``or``CommonCleanup`` class method is decorated with
 ``@subsection``, the corresponding method name is used as the subsection name 
 for result reporting. 
 
@@ -329,7 +329,7 @@ Its result is rolled-up into the parent common section.
 Setup Section
 -------------
 
-``setup`` is an sub-division section, available for ``Testcase``. It can be used
+``setup``is an sub-division section, available for``Testcase``. It can be used
 to perform all the common configuration, prerequisites and initializations 
 specific to that testcase. Here are some examples:
 
@@ -356,11 +356,11 @@ specific to that testcase. Here are some examples:
 | result item count | 0 - setup section result is rolled into parent result    |
 +-------------------+----------------------------------------------------------+
 
-``setup`` section is defined by decorating a ``Testcase`` class method with 
+``setup``section is defined by decorating a``Testcase`` class method with 
 ``@aetest.setup`` decorator. It is optional to each testcase: if defined, it 
 always runs before all other sections.
 
-``setup`` is unique: each ``Testcase`` may only have one method decorated to 
+``setup``is unique: each``Testcase`` may only have one method decorated to 
 be its setup section. Regardless of this method's function name, its 
 reporting/result uid is always named ``setup``.
 
@@ -392,7 +392,7 @@ Test Sections
 -------------
 
 ``test`` sections are the smallest units of testing and the most basic building
-block that makes up ``Testcase``. Each ``test`` should carry out a single 
+block that makes up ``Testcase``. Each``test`` should carry out a single 
 identifiable check/evaluation to be completed as part of the greater section.
 
 +-------------------+----------------------------------------------------------+
@@ -407,7 +407,7 @@ identifiable check/evaluation to be completed as part of the greater section.
 | result item count | 0 - test section results are rolled into parent result   |
 +-------------------+----------------------------------------------------------+
 
-``test`` section is defined by decorating a ``Testcase`` class method with 
+``test``section is defined by decorating a``Testcase`` class method with 
 ``@aetest.test`` decorator. The corresponding method name is used as the test 
 name for result reporting. Each testcase must have at least one or more ``test``
 section.
@@ -440,7 +440,7 @@ rolled up to the parent ``Testcase`` result.
 Cleanup Section
 ---------------
 
-``cleanup`` is the last sub-division section within each ``Testcase``. Any 
+``cleanup``is the last sub-division section within each``Testcase``. Any 
 configurations, initializations & changes that occured during this testcase
 should be cleaned up (removed) here. Eg, the testbed/environment should be 
 returned to the same state as it was before the current testcase. Here are 
@@ -473,11 +473,11 @@ environment to its original state.
 | result item count | 0 - cleanup section result is rolled into parent result  |
 +-------------------+----------------------------------------------------------+
 
-``cleanup`` section is defined by decorating a ``Testcase`` class method with 
+``cleanup``section is defined by decorating a``Testcase`` class method with 
 ``@aetest.cleanup`` decorator. It is optional to each testcase: if defined, it
 always runs after all other sections.
 
-``cleanup`` is unique: each ``Testcase`` may only have one method decorated to 
+``cleanup``is unique: each``Testcase`` may only have one method decorated to 
 be its cleanup section. Regardless of this method's function name, its 
 reporting/result uid is always named ``cleanup``.
 

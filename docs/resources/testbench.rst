@@ -319,7 +319,7 @@ The execution of the above code looks like this:
 And ... the testcase passed. 
 
 Notice that within this bench environment, you can simply instantiate a Testcase
-object ``tc = Testcase()``, and run it by calling that instance ``tc()`` and
+object ``tc = Testcase()``, and run it by calling that instance``tc()`` and
 passing it any testcase parameters it requires. This, combined with ``%cpaste``
 copy/pasting functionality, enables users to get immediate feedback of the code 
 (in this case, a ``Testcase``) that's just been written, by simply treating them

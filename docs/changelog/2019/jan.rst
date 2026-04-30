@@ -106,7 +106,7 @@ Robot
       through Easypy without generating a job file
 
 Topology
-    - added ``yamllint`` to ``pyats validate testbed`` command - now prints out
+    - added ``yamllint``to``pyats validate testbed`` command - now prints out
       lint errors and warnings.
 
 Miscellaneous:

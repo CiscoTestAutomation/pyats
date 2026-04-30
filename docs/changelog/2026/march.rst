@@ -32,7 +32,7 @@ March 31 - Pyats v26.3
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.clean
@@ -48,10 +48,10 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * easypy/debug.py
-    * Added support for ``env.hide_list`` in pyATS configuration (``pyats.conf``) under
+    * Added support for ``env.hide_list``in pyATS configuration (``pyats.conf``) under
 
 

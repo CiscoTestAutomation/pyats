@@ -83,7 +83,7 @@ are some possible use cases:
       what the topology is like. The script can then connect to the testbed, and
       decide how to perform the testing best suited for this topology.
 
-    - ``vlan`` argument to ``layer2_traffic`` script can dynamically control the
+    - ``vlan``argument to``layer2_traffic`` script can dynamically control the
       vlan to be be configured for traffic testing.
 
     - other toggle arguments that dynamically turns on/off certain testcases,
@@ -102,10 +102,10 @@ In ``aetest``, parameters are **relative**: parameters corresponding to each
 object is the combination of its local specific parameters, and all of its
 parent object's parameters. Eg:
 
-- ``Testcase`` parameters = local parameters + ``TestScript``
+- ``Testcase``parameters = local parameters +``TestScript``
   parameters
 
-- ``TestSection`` parameters = local parameters + ``Testcase``
+- ``TestSection``parameters = local parameters +``Testcase``
   parameters + ``TestScript`` parameters.
 
 This relationship follows the :ref:`parent` model described in the previous
@@ -175,7 +175,7 @@ execution, this happens behind-the-scenes automatically.
 Parameters Property
 -------------------
 
-Every top-level object in ``aetest`` comes with the special ``parameters``
+Every top-level object in ``aetest``comes with the special``parameters``
 property: a dictionary containing the key/value data pairs relative to this
 object (:ref:`object_model`). Its default values can be set/updated by the user
 within the testscript.
@@ -214,14 +214,14 @@ within the testscript.
 During runtime, these dictionaries form the baseline ``parameters`` properties
 of their corresponding section. Eg:
 
-    - script-level ``parameters`` dictionary is used to create ``TestScript``
+    - script-level ``parameters``dictionary is used to create``TestScript``
       object parameters.
     - Testcase-level ``parameters`` dictionary is used to create that
       ``Testcase`` object parameter.
 
 One exception to the above is method local parameters for sections such as
-``subsection``, ``setup``, ``test`` and ``cleanup``. Even though their
-corresponding classes (``Subection``, ``SetupSection``, ``TestSection``,
+``subsection``,``setup``,``test``and``cleanup``. Even though their
+corresponding classes (``Subection``,``SetupSection``,``TestSection``,
 ``CleanupSection``) also have the parameters property, these class instances
 only exists briefly during runtime (see :ref:`aetest_function_classes`), so
 their attributes are mostly only dynamic in nature, set & controlled by the
@@ -297,7 +297,7 @@ altering the behavior of ensuiting ``test`` sections, etc.
 
 .. tip::
 
-    ``parameters`` properties are implemented internally as a ``ChainMap``
+    ``parameters``properties are implemented internally as a``ChainMap``
     object. See `Collections.ChainMap`_ documentation if you are eager to know.
 
 .. _Collections.ChainMap: https://docs.python.org/3/library/collections.html#collections.ChainMap
@@ -645,11 +645,11 @@ using certain ``aetest`` optional features, such as :ref:`aetest_steps`.
     :header: Name, Type, Description
     :widths: 15, 15, 70
 
-    ``testscript``, internal,  proxy to the ``TestScript`` object
+    ``testscript``, internal,  proxy to the``TestScript`` object
     ``section``, internal, "proxy to the current test section object.
     Eg: ``TestSection``"
-    ``reporter``, internal, "proxy to :ref:``
-    ``steps``, feature, "proxy to ``Steps`` object for :ref:`aetest_steps`
+    ``reporter``, internal, "proxy to :ref:`aetest_reporter` object."
+    ``steps``, feature, "proxy to``Steps`` object for :ref:`aetest_steps`
     feature."
 
 .. code-block:: text

@@ -59,8 +59,8 @@ Feature List
             [Clang 6.0 (clang-600.0.57)]
 
             >>> from pyats.topology.loader import load
-            >>> testbed = load('testbed.yaml')
-            -------------------------------------------------------------------------------
+>>> testbed = load('testbed.yaml')
+-------------------------------------------------------------------------------
             In [1]: type(testbed)
             Out[1]: genie.libs.conf.testbed.Testbed
 
@@ -73,7 +73,7 @@ Feature List
       - :ref:`Docs <connection_manager>`
       - | Connection aliases now depend on plugin used. The 'default' alias
         | points to 'cli' by default. This can be changed via
-        | `device.default_connection_alias`
+        | ``device.default_connection_alias``
 
         +--------------------------------------------+
         | *Default Connection Alias*                 |

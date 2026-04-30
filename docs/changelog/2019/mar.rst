@@ -75,13 +75,13 @@ Changes
 Release Format
     - changed to calendar year based versioning scheme
 
-    - Format: ``YY.N(.M)``, where ``YY`` is the release year, ``N`` is the
+    - Format: ``YY.N(.M)``, where``YY``is the release year,``N`` is the
       this year's minor release level, and ``M`` is the optional patchlevel.
 
       .. code-block:: text
 
-          Example Versions
-          ----------------
+Example Versions
+--------------------------
                19.0       - this release
                19.0.0     - exactly the same as 19.0
                19.0.1     - first patch/bug fix for this release
@@ -90,8 +90,8 @@ Python 3.7 Support
     - v19.0 now supports Python 3.7 release, and continues to seamlessly support
       older Python releases (Python 3.4/3.5/3.6)
 
-    - ``pyats.async`` module had to be renamed to ``pyats.async_``,
-      following PEP guidelines: in Python 3.7, ``async`` and ``await`` are now
+    - ``pyats.async``module had to be renamed to`` pyats.async_``,
+      following PEP guidelines: in Python 3.7, ``async``and``await`` are now
       reserved keywords (https://docs.python.org/3/whatsnew/3.7.html)
 
       .. code-block:: python
@@ -132,7 +132,7 @@ Command Line
       interactive shell.
 
 ConnectionManager
-    - introduced new ``instantiate()`` and ``instantiate_pool()`` api that
+    - introduced new ``instantiate()``and``instantiate_pool()`` api that
       allows the user to manipulate connection objects before establishing
       connection
 

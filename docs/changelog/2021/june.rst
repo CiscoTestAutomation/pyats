@@ -1,8 +1,8 @@
 June 2021
-========
+=========
 
 June 29, 2021
-------------
+-------------
 
 .. csv-table:: New Module Versions
     :header: "Modules", "Version"
@@ -40,7 +40,7 @@ Feature List
 ^^^^^^^^^^^^
 
 --------------------------------------------------------------------------------
-                                      Fix
+Fix
 --------------------------------------------------------------------------------
 
 * fileutils
@@ -56,7 +56,7 @@ Feature List
 
 * pyats.filetransferutils
     * Updated FileUtilsBase.from_device method
-        * Added `protocol` parameter for protocol sub-plugins
+        * Added ``protocol`` parameter for protocol sub-plugins
 
 * reporter
     * Modified Explorer
@@ -91,7 +91,7 @@ Feature List
     * Updated to use genie.testbed.load instead of genie.conf.utils.converter
 
 --------------------------------------------------------------------------------
-                                      New
+New
 --------------------------------------------------------------------------------
 
 * topology

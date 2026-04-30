@@ -32,14 +32,14 @@ July 29 - Pyats v25.7
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * cisco-pkg
     * Loading clean_config during _get_bringup_config
 
 * pyats.cisco
-    * Updated default email server to be `outbound.cisco.com` due to deprecation of `mail.cisco.com`.
+    * Updated default email server to be ``outbound.cisco.com``due to deprecation of``mail.cisco.com``.
 
 * pyats.clean
     * Modified clean loader to load JIT config when using templates
@@ -60,7 +60,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * pyats

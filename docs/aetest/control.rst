@@ -128,7 +128,7 @@ There are two methods of providing ``aetest`` with this requirement:
     - by setting :ref:`aetest_runtime` variable, ``runtime.uids`` dynamically
       during execution.
 
-``uids`` accepts a python ``callable`` (eg, a function). The list of currently
+``uids``accepts a python``callable`` (eg, a function). The list of currently
 running section uids are provided as inputs to this ``callable``, and if the
 function evaluates to ``True``, the section is run, otherwise, the section is
 not run and ignored completely so that it's not displayed in the report.
@@ -156,7 +156,7 @@ not run and ignored completely so that it's not displayed in the report.
     run('example_script.py', uids = run_only_testcase_A)
 
 
-The ``callable`` provided to ``uids`` feature is evaluated against the list of
+The ``callable``provided to``uids`` feature is evaluated against the list of
 current run ids, using varargs (eg, ``*uids``). This feature combined with
 :ref:`logic_tests` objects can provide quite a bit of control over which
 testcases to run and which not to.
@@ -259,9 +259,9 @@ methods to control which testcase groups are run:
 
     - by setting :ref:`aetest_runtime` variable, ``runtime.groups`` dynamically.
 
-Like :ref:`aetest_uids` feature, ``groups`` also accepts a python ``callable``
+Like :ref:`aetest_uids` feature, ``groups``also accepts a python``callable``
 (eg, a function). Each testcase's groups values are provided as inputs to this
-``callable``, and if the return value is ``True``, the testcase is run.
+``callable``, and if the return value is``True``, the testcase is run.
 Otherwise, the testcase is not run and ignored completely so that it's not
 displayed in the report.
 
@@ -354,7 +354,7 @@ aborted automatically by jumping forward to ``CommonCleanup`` section using
 :ref:`aetest_goto`.
 
 To mark testcases as *requisite* or *must pass*, set its attribute ``must_pass``
-to ``True``. By default, no testcase is "requisite", eg, ``must_pass = False``.
+to ``True``. By default, no testcase is "requisite", eg,``must_pass = False``.
 
 .. code-block:: python
 
@@ -463,7 +463,7 @@ repeated.
 .. note::
 
     testcase randomization only affects the order of ``Testcases``.
-    ``CommonSetup`` and ``CommonCleanup`` continue to run before and after
+    ``CommonSetup``and``CommonCleanup`` continue to run before and after
     all testcases, respectively.
 
 .. tip::
@@ -566,7 +566,7 @@ to jump to. Upon activation:
           skipped over intentionally.
 
        b. if the section that initiated the jump has a result other than
-          ``Passed``, any by-passed section receives result ``Blocked``: eg,
+          ``Passed``, any by-passed section receives result``Blocked``: eg,
           they were blocked due to "x" reasons.
 
     3. after the **targets** list is exhausted, execution continues as
@@ -586,7 +586,7 @@ to jump to. Upon activation:
     ``cleanup``, "jumps to the testcase cleanup section, by-passing all other
     test sections"
     ``next_tc``, "jumps to the next testcase in line"
-    ``common_cleanup``, "jumps to the script's ``CommonCleanup`` section."
+    ``common_cleanup``, "jumps to the script's``CommonCleanup`` section."
     ``exit``, "terminates the testscript immediately without going further."
 
 If a goto target is invalid or does not exist, the test engine gives the
@@ -640,7 +640,7 @@ more testcases, and goto ``next_tc`` is called, no error is given and
 
 Essentially, **goto** is an optional step after providing a test section with an
 appropriate result. For example, users may leverage this feature to skip to the
-testcase's ``cleanup`` section after a dramatic failure in a ``test`` section,
+testcase's ``cleanup``section after a dramatic failure in a``test`` section,
 or skip all testcases directly and go to ``common_cleanup`` instead. It allows
 controlled skip-aheads during execution in favor of reducing script execution
 time, avoiding expected errors/failures, etc.
@@ -689,7 +689,7 @@ Custom Discovery and Order
 --------------------------
 
 Normally, testcases are discovered by the default discovery class,
-``ScriptDiscovery`` which is located under ``discovery`` module of ``aetest``
+``ScriptDiscovery``which is located under``discovery``module of``aetest``
 package. This class implements the default behavior of testcase discovery and
 ordering discussed throughout this user guide. For example, ``common_setup`` has
 to be run first, and then other testcases. Finally ``common_cleanup`` runs as
@@ -711,8 +711,8 @@ Users may overload discovery behavior at the following levels:
 
 .. note::
 
-    **ScriptDiscovery** finds ``testcases`` within a ``testscript``.
-    **TestcaseDiscovery** finds ``testsections`` within a ``testcase``
+    **ScriptDiscovery** finds ``testcases``within a``testscript``.
+    **TestcaseDiscovery** finds ``testsections``within a``testcase``
     **CommonDiscovery** finds ``subsections`` within a common section
 
 Rules:
@@ -787,8 +787,8 @@ Rules:
     class my_testcase3(aetest.Testcase):
         pass
 
-In the example above, ``my_testcase1`` uses ``MyTestcaseDiscovery1`` class,
-``my_testcase2`` uses ``MyTestcaseDiscovery2`` and ``my_testcase3`` uses
+In the example above, ``my_testcase1``uses``MyTestcaseDiscovery1`` class,
+``my_testcase2``uses``MyTestcaseDiscovery2``and``my_testcase3`` uses
 ``MyDefaultDiscovery`` class
 
 - **pyats.aetest.discovery.CommonDiscovery** is the default discovery class for
@@ -835,8 +835,8 @@ In the example above, ``my_testcase1`` uses ``MyTestcaseDiscovery1`` class,
     class common_cleanup(aetest.CommonCleanup):
         discoverer = MyCommonDiscovery1
 
-In the example above, ``common_cleanup`` uses ``MyCommonDiscovery1`` class,
-and ``common_setup`` uses ``MyDefaultDiscovery`` class
+In the example above, ``common_cleanup``uses``MyCommonDiscovery1`` class,
+and ``common_setup``uses``MyDefaultDiscovery`` class
 
 How do discovery classes work?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -853,7 +853,7 @@ Rules:
       current target
     - ``order()`` method re-orders all sections according to rules of ordering
       and execution.
-    - ``discover()`` always calls ``order()`` before it returns value
+    - ``discover()``always calls``order()`` before it returns value
     - Finally, the result comes from the order is passed to the execution engine
     - Custom script discovery classes must be inherited from **ScriptDiscovery**
     - Custom testcase discovery classes must be inherited from
@@ -862,7 +862,7 @@ Rules:
       **CommonDiscovery**
     - Custom methods must follow the same structure with the default discovery
       methods
-    - ``__init__`` method has to accept a parameter called ``target`` for
+    - ``__init__``method has to accept a parameter called``target`` for
       all classes, containing the object to be discovered
     - ``__iter__`` method instantiates all child sections defined in the current
       target and makes discovery class instance `iterable`_.
@@ -972,7 +972,7 @@ There are 3 levels of custom ordering just like in the custom discovery,
 3. Common Level
 
 In order to use **Script level ordering** a custom discovery class has to be
-provided to the ``runtime.discoverer.script`` of ``aetest``. For more
+provided to the ``runtime.discoverer.script``of``aetest``. For more
 information on how to provide a custom ScriptDiscovery class to the
 ``runtime.discoverer.script`` please refer :ref:`aetest_custom_discovery`
 
@@ -996,7 +996,7 @@ Rules:
 
     - The rules that applies to the ``discover`` method also applies for
       ``order`` method as well.
-    - ``discoverer`` attribute can be used in order to define ``testcase``
+    - ``discoverer``attribute can be used in order to define``testcase``
       specific discovery classes for testsections and subsections.
     - For more information about how to provide discovery classes, please
       check :ref:`aetest_custom_discovery`
@@ -1120,8 +1120,8 @@ classes and how they work**
 
 
 In this example, ``CustomScriptDiscovery`` class was passed as the default
-discovery class to the ``runtime.discoverer.script``. It only has ``discover``
-method and this method returns only ``common_setup`` and ``tc_one``. Therefore,
+discovery class to the ``runtime.discoverer.script``. It only has``discover``
+method and this method returns only ``common_setup``and``tc_one``. Therefore,
 only these 2 testcases runs.
 
 ``CustomTestDiscovery_1`` class was also provided as default testcase discovery
@@ -1131,12 +1131,12 @@ doesn't return any test section.
 
 ``CustomCommonDiscovery_1`` class was also provided as default common discovery
 class so all the common sections within this script is going to use this class
-unless there is ``discoverer`` parameter is provided like in ``common_setup``.
-The output of ``order`` and ``discover`` calls from this class will return empty
+unless there is ``discoverer``parameter is provided like in``common_setup``.
+The output of ``order``and``discover`` calls from this class will return empty
 list. So, none of the testcases, should run any testsection except
 ``common_setup``
 
-``discoverer`` was provided within the ``common_setup`` section so, this
+``discoverer``was provided within the``common_setup`` section so, this
 parameter will be applied over ``runtime.discoverer.commmon`` for this section.
 ``CustomCommonDiscovery_2`` class was used and it returns only
 ``sample_subsection_1``.

@@ -2,7 +2,7 @@ Implementation
 ==============
 
 
-As previously established, ``log`` itself does not configure ``logging``. It
+As previously established, ``log``itself does not configure``logging``. It
 only offers the formatters & handlers necessary to adhere to CiscoLog standard.
 
 Handlers
@@ -113,7 +113,7 @@ Automatically uses TaskLogFormatter_ as its formatter.
 
 ``TaskLogHandler`` file/folder handling behavior is described by the following:
 
-* if no logfile is provided (eg, ``''`` or ``None``), log stream is set to
+* if no logfile is provided (eg, ``''``or``None``), log stream is set to
   ``/dev/null`` in order to keep stream functionality consistent.
 
 * if full logfile path is provided, the current log directory is set to the
@@ -125,7 +125,7 @@ Automatically uses TaskLogFormatter_ as its formatter.
 * if absolute file path is not provided when calling ``changeFile`` method, the
   current known log directory is used.
 
-* if ``enableForked()`` is called, ``TasklogHandler`` becomes process aware:
+* if ``enableForked()`` is called,``TasklogHandler`` becomes process aware:
   when python ``multiprocessing`` is called to fork a new child processes, the
   child process's TaskLog is automatically redirected to a new file, and
   the parent TaskLog contains a message/link to the new child log.
@@ -243,9 +243,9 @@ CiscoLogRecord
 --------------
 
 Extends basic ``logging.LogRecord`` class and adds support for more default
-values such as ``seqnum``, ``hostname``, and ``tags``, and is backwards
+values such as ``seqnum``,``hostname``, and``tags``, and is backwards
 compatible.
 
-When either ``TaskLogFormatter`` or ``ScreenFormatter`` is enabled on a handler,
+When either ``TaskLogFormatter``or``ScreenFormatter`` is enabled on a handler,
 this class replaces the default ``logging.LogRecord`` factory class through
 ``logging.setLogRecordFactory`` api call.

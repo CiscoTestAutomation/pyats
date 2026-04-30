@@ -168,7 +168,7 @@ Here's an example on a linux plugin:
 Linux Plugin
 ------------
 This plugin provides file-based operations on a Linux client (including Mac),
-and is the default plugin returned by a call to ``FileUtils()`` when ``os``
+and is the default plugin returned by a call to ``FileUtils()``when``os``
 is not specified.
 
 The server portion of any of this plugin's URL inputs may be specified as a
@@ -319,7 +319,7 @@ Supported protocols
 
 This section describes the supported protocols and the operations they offer.
 
-An operation (such as ``copyfile``) against a protocol (such as ``ftp``)
+An operation (such as ``copyfile``) against a protocol (such as``ftp``)
 requires a protocol-named credential (such as ``ftp``) to be declared at the
 server or testbed level.  If not declared, then the ``default`` credential is
 used.
@@ -429,7 +429,7 @@ close
 
 Close all sessions on a ``FileUtils`` instance.
 
-Some protocol implementations (such as ``scp`` and ``sftp``) keep their
+Some protocol implementations (such as ``scp``and``sftp``) keep their
 sessions open until they are explicitly closed.
 
 

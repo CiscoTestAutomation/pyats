@@ -33,7 +33,7 @@ The following describes each section and their loop capability and behaviors:
     are run only once per testscript execution, and are not loopable.
 
     ``subsection``
-        Subsections within ``CommonSetup`` and ``CommonCleanup`` are loopable.
+        Subsections within ``CommonSetup``and``CommonCleanup`` are loopable.
         When a ``subsection`` is marked for looping, each of its iterations is 
         reported as a new subsection.
 
@@ -52,14 +52,14 @@ The following describes each section and their loop capability and behaviors:
     ``test``
         Test sections within ``Testcase`` are loopable individually. Each
         iteration has its own unique id, and is reported as a new test 
-        section. When a looping ``test`` section's parent ``Testcase`` is also 
+        section. When a looping ``test``section's parent``Testcase`` is also 
         looped, the resulting loops are multiplicative. Eg: if a testcase is 
-        looped ``2x``, and contains a test that is also looped ``2x``, that 
+        looped ``2x``, and contains a test that is also looped``2x``, that 
         test would loop ``2x`` per testcase loop iteration.
 
 .. hint::
 
-    in other words, ``subsection``, ``Testcase`` and ``test`` sections are the
+    in other words, ``subsection``,``Testcase``and``test`` sections are the
     only loopable sections.
 
 
@@ -142,7 +142,7 @@ iteration uids using ``uids`` argument. This controls the number of iterations
 this section is looped: each unique item in the ``uids`` list generates to
 a new section with that uid.
 
-When ``@loop`` is used on a ``@subsection`` or ``@test``, the section method
+When ``@loop``is used on a``@subsection``or``@test``, the section method
 is effectively decorated twice, and even though the order does not matter, it 
 make more sense to use ``@loop`` as the outermost decorator, signifying that
 this method is first marked as a section, then this section is looped.
@@ -153,7 +153,7 @@ this method is first marked as a section, then this section is looped.
 
 In addition, in an effort to make the script more aesthetically pleasing, 
 ``aetest`` also features a shortcut to avoid the double decorators: 
-``@subsection.loop`` and ``@test.loop``.
+``@subsection.loop``and``@test.loop``.
 
 .. code-block:: python
     
@@ -180,9 +180,9 @@ In addition, in an effort to make the script more aesthetically pleasing,
 
 .. note::
 
-    ``@subsection.loop`` and ``@test.loop`` are convenience features. They are
+    ``@subsection.loop``and``@test.loop`` are convenience features. They are
     not a python decorator compression technique. ``.loop`` is an attribute to 
-    ``subsection``/``test`` that are implemented in ``aetest``. It is 
+    ``subsection``/``test``that are implemented in``aetest``. It is 
     effectively a new decorator that shoots two birds with one stone.
 
 .. tip::
@@ -254,7 +254,7 @@ section's local parameters on the fly, per iteration. It is an extension of the
 dynamic parameter concept, where section parameters are being generated and fed
 to each section during runtime. 
 
-The use of loop parameters also makes ``uids`` argument optional: if ``uids``
+The use of loop parameters also makes ``uids``argument optional: if``uids``
 are not provided, the infrastructure generates unique section uids by combining
 the original section name with each of its current loop parameters as postfix 
 in square backets. Otherwise, the provided ``uids`` are used as section uids.
@@ -262,7 +262,7 @@ in square backets. Otherwise, the provided ``uids`` are used as section uids.
 There are two methods of providing loop parameters to the ``@loop`` decorator:
 
     - by providing a list of parameters, and a list of parameter values for
-      each iteration (eg, using ``args`` and ``argvs``)
+      each iteration (eg, using ``args``and``argvs``)
 
     - by providing each parameter as a keyword argument, and a list of its
       corresponding argument values. (eg, ``a=[1, 2, 3], b=[4, 5, 6]``)
@@ -327,12 +327,12 @@ of iterations:
     - if ``uids`` are not provided, the number of iterations is equal to the 
       number of loop parameter values. Eg, if ``@loop(a=[1,2,3])``, then there 
       would be 3 loop instances, each taking on one distinct value: ``a=1``, 
-      ``a=2``, ``a=3``.
+      ``a=2``,``a=3``.
 
       - if there are multiple parameters and the number of their values do not
         agree, or if the number of parameter values is less than the number of 
-        provided ``uids``, a ``filler`` is used to fill empty spots. 
-        ``filler`` defaults to ``None``, and only 1 filler can be provided.
+        provided ``uids``, a``filler`` is used to fill empty spots. 
+        ``filler``defaults to``None``, and only 1 filler can be provided.
 
 .. code-block:: python
 
@@ -571,10 +571,10 @@ The ``aetest`` looping behavior & how its arguments are processed is actually
 highly customizable. This was not highlighted in previous sections for the sake
 of serializing the training & simplifying the learning curve.
 
-In reality, consider ``@loop`` decorator and ``loop.mark()`` function as only
+In reality, consider ``@loop``decorator and``loop.mark()`` function as only
 markers: they only mark the given section for looping. The details (parameters)
 of each iterations is actually generated from **loop generators**, where all 
-arguments to ``@loop`` and ``loop.mark()`` propagates to. Eg:
+arguments to ``@loop``and``loop.mark()`` propagates to. Eg:
 
 .. code-block:: python
 
@@ -611,7 +611,7 @@ arguments to ``@loop`` and ``loop.mark()`` propagates to. Eg:
 
 
 Behind the scenes, **loop generators** are the actual classes that does the
-heavy lifting: creating each iteration based on ``@loop`` and ``loop.mark()``
+heavy lifting: creating each iteration based on ``@loop``and``loop.mark()``
 decorator arguments. Loop generators are `iterable`_. Each of its returned
 member is an instance of  ``Iteration`` class, containing the uid & parameters 
 information unique to this loop, and used by the infrastructure to create the 
@@ -629,7 +629,7 @@ next section instance.
 In other words, **loop generator** is the object that ultimately controls how
 loops are generated, and what parameters each iteration is associated with. The
 looping behavior and arguments described in topics above are actually that of 
-``DefaultLooper``, the default **loop generator** provided by ``aetest`` loop
+``DefaultLooper``, the default **loop generator** provided by``aetest`` loop
 infrastructure. Its features are sufficient for most use cases. However, if you
 wish to customize loop behavior, it is possible to extend and/or override it.
 

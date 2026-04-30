@@ -48,7 +48,7 @@ Feature List
 
     * - Programmatic Testbed Validation
       - :ref:`Docs <testbed-index>`
-      - | The same functionality from the command `pyats validate testbed`
+      - | The same functionality from the command ``pyats validate testbed``
         | can be accessed from an importable function within Python.
         .. code-block:: python
 
@@ -72,7 +72,7 @@ Feature List
       - :ref:`Docs <aetest_processors>`
       - | Processor reporting can now be defined within the
         | :ref:`pyats.conf <pyats_configuration>` file. This is replacing the
-        | `aereport.processors` option. Processors that have reporting enabled
+        | ``aereport.processors`` option. Processors that have reporting enabled
         | will appear with other Test Sections and Steps in the Log Viewer.
         .. code-block:: text
 

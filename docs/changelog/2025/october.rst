@@ -1,8 +1,8 @@
 October 2025
-==========
+============
 
 October 28 - Pyats v25.10
-------------------------
+-------------------------
 
 
 
@@ -32,12 +32,12 @@ October 28 - Pyats v25.10
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * yaml.markup
     * Added support for multiple callables in a single line
-    * Added support for callable with attribute, e.g. `%CALLABLE{datetime.datetime.now().year}`
+    * Added support for callable with attribute, e.g. ``%CALLABLE{datetime.datetime.now().year}``
 
 * kleenex-pkg
     * Moved the logic of merging jit clean to _update_device_cleaning_info_using_template

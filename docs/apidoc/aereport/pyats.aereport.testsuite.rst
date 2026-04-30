@@ -11,6 +11,7 @@ Submodules
 
 
 .. automodule:: pyats.aereport.testsuite.clean
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
@@ -32,4 +33,3 @@ Submodules
    :members:
    :undoc-members:
    :show-inheritance:
-

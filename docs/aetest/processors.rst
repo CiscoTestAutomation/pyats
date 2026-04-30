@@ -74,11 +74,12 @@ same way that test sections do. Parameters from parent objects, or a
 :ref:`datafile <aetest_datafile>` (eg. the testbed) can be passed to a processor
 by simply declaring an argument of the same name. Some default parameters
 available for all processors are:
-    - `section` for the Testcase or Test Section the processor is being applied
-      to
-    - `processor` for the running processor itself, which has a `properties`
-      attribute, as well as result APIs (eg. `processor.failed()`
-    - `steps` for declaring :ref:`steps <aetest_steps>` within the processor
+
+- ``section`` for the Testcase or Test Section the processor is being applied
+  to
+- ``processor``for the running processor itself, which has a``properties``
+  attribute, as well as result APIs (eg. ``processor.failed()``)
+- ``steps`` for declaring :ref:`steps <aetest_steps>` within the processor
 
 Exception processors also have default parameters of `exc_type`, `exc_value`,
 and `exc_traceback` for the exception that occurs in the parent section.
@@ -189,8 +190,8 @@ executing object, reference its :ref:`test_parameters` and act accordingly.
 Refer to :ref:`object_model` for section object details.
 
 Pre/post/exception processors can be applied independently towards both test
-containers (``CommonSetup``, ``Testcase``, ``CommonCleanup``) and test sections
-(``subsections``, ``setup``, ``test``, ``cleanup``). Each section may receive
+containers (``CommonSetup``,``Testcase``,``CommonCleanup``) and test sections
+(``subsections``,``setup``,``test``,``cleanup``). Each section may receive
 an arbitrary number of processor functions, run in the order of appearance.
 
 .. note::
@@ -304,7 +305,7 @@ section as failed with a **post-processor** even if it already passed.
 There are some other ways to impact the section result with processors.
 **Pre-processors** that return ``False``, will cause the section to be
 ``Skipped``, **pre-processors** that have an assertion failure will be
-``Blocked``and **Exception-processors** that return ``True`` will suppress the
+``Blocked``and **Exception-processors** that return``True`` will suppress the
 exception and prevent an ``Errored`` result.
 
 
@@ -445,7 +446,7 @@ testcases, setup/cleanup/tests), or on Exception_ occurance.
 Global processors are no different than the ones affixed to each section using
 the ``@processors`` decorator, except that they always run automatically. To
 use global processors in your testscript, define a script-level dictionary named
-``global_processors`` with ``pre``, ``post`` and ``exception`` as the keys, and
+``global_processors``with``pre``,``post``and``exception`` as the keys, and
 the values being a list of processor functions.
 
 .. code-block:: text
@@ -580,7 +581,7 @@ defined.
           pass
 
 - while executing **pre-processor** functions or context-processor's
-  ``__enter__()`` api, if any ``AssertionError`` is caught, or if the function
+  ``__enter__()``api, if any``AssertionError`` is caught, or if the function
   returns ``False``, all remainining **pre-processor** and context-processors
   will be skipped, and the test section is skipped over with a
   result of ``Skipped``. All **post-processors** are also skipped. Otherwise,
@@ -610,7 +611,7 @@ defined.
 
 - if any ``Exceptions`` are caught while executing processor functions, all
   remaining processors functions are skipped over, and the test section
-  receives a result of ``Errored``. If that ``Exception`` occured within a
+  receives a result of ``Errored``. If that``Exception`` occured within a
   **pre-processor**, the test section is skipped with a result of
   ``Errored``.
 
