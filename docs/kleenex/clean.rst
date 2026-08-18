@@ -156,6 +156,55 @@ The way a cleaner implementation indicates failure is by raising an exception
 inside its ``clean`` API.
 
 
+.. _kleenex_clean_recovery_retries:
+
+Recovery and Complete Clean Retries
+-----------------------------------
+
+When configured device recovery restores a device after a Clean stage fails or
+errors, Kleenex terminates the current device Clean attempt and starts a fresh
+attempt at the first configured stage. This behavior applies to recovery from
+any stage, including ``Connect``. Only the recovered device is retried; devices
+that completed successfully in the same parallel group are not cleaned again.
+
+A complete retry is requested only when the cleaner explicitly reports that
+recovery succeeded. A normal Clean failure, a reachable device for which
+recovery is unnecessary, or failed recovery does not trigger a retry.
+
+The retry budget is the number of additional attempts allowed after the
+initial attempt. It defaults to one and can be configured for standalone Clean
+with :ref:`the --clean-retries option <kleenex_clean_retries_option>`. For
+example, a value of ``2`` permits at most three attempts in total. The budget
+prevents a device that repeatedly requires recovery from extending Clean
+indefinitely. When the budget is exhausted, the final failed attempt determines
+the Clean result.
+
+Result Reporting
+^^^^^^^^^^^^^^^^
+
+Recovery success does not replace the result of the stage that caused
+recovery. The report keeps the original failed or errored stage, reports the
+recovery processor separately as passed, and blocks the remaining stages in
+that attempt.
+
+When another attempt is available, the failed attempt is retained in
+``results.json`` as an ignored, superseded device section and is excluded from
+the final result rollup. Retry sections use report identifiers such as
+``device_name [Retry 1]`` and separate log files such as
+``Kleenex.device_name.retry1.log``.
+
+If a retry and all remaining stages pass, the retry device and final Clean
+result are ``PASSX``. If a retry fails without another successful recovery, or
+successful recovery occurs after the configured retry budget is exhausted, the
+final attempt remains rollup-eligible and Clean fails. With
+``--clean-retries 0``, no retry is scheduled and the original failed attempt
+remains the final result even if recovery succeeds.
+
+Structured attempt, trigger, recovered-stage, and status information is stored
+under ``extra.clean_retry`` on each applicable device section in
+``results.json``.
+
+
 Clean Steps
 -----------
 
