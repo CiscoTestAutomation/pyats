@@ -167,6 +167,12 @@ attempt at the first configured stage. This behavior applies to recovery from
 any stage, including ``Connect``. Only the recovered device is retried; devices
 that completed successfully in the same parallel group are not cleaned again.
 
+For ``Connect`` specifically, this replaces the earlier behavior that changed
+a recovered Connect failure to ``PASSX`` and continued the same attempt. The
+failed Connect stage now keeps its original result, and successful recovery
+requests a fresh attempt, subject to the retry budget. One retry is allowed by
+default.
+
 A complete retry is requested only when the cleaner explicitly reports that
 recovery succeeded. A normal Clean failure, a reachable device for which
 recovery is unnecessary, or failed recovery does not trigger a retry.
