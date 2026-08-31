@@ -185,6 +185,21 @@ data and replaces all markup languages with referenced data.
 Any syntax outside of the above is neither recognized nor processed.
 
 
+Callable Argument Selection and Errors
+--------------------------------------
+
+Callable arguments are first interpreted as Python positional and keyword
+arguments. For compatibility with older YAML files, the loader also considers
+legacy comma-separated arguments and the complete raw argument string when the
+callable signature does not accept the first interpretation. The raw form
+supports single-argument helpers whose input contains commas or equals signs.
+
+The compatible argument form is selected before the callable is invoked. The
+callable runs only once. If its implementation raises an exception, that
+exception is preserved as the cause of the YAML markup error; it is not treated
+as an argument-parsing failure or retried with another argument form.
+
+
 Testbed YAML Examples
 ---------------------
 
