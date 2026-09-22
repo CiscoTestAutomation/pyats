@@ -56,12 +56,12 @@ timestamp. When the max queue is reached, the earliest historical entry is
 deleted to save from ever-growing memory usage.
 
 Each historical event is saved as a ``HistoryEntry`` object. Each of these
-object has ``timestamp`` and ``api`` attribute:
+object has ``timestamp``and``api`` attribute:
 * ``timestamp`` being the time when the API was called
 * ``api`` being the Tcl command itself.
 
 The default max limit for the queue is *9999*. This can be altered if user 
-manually replace the ``history`` attribute of the an ``Interpreter`` instance
+manually replace the ``history``attribute of the an``Interpreter`` instance
 with a new one with bigger queue:
 
 .. code-block:: python

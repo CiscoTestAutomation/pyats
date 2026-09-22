@@ -43,9 +43,9 @@ rules & guidelines:
 
   - start with the basic building blocks: ``send``/``receive``
 
-  - then build the next level: ``expect``, ``dialogs``
+  - then build the next level: ``expect``,``dialogs``
 
-  - then wrap up with top-levels: ``execute``, ``configure``, etc.
+  - then wrap up with top-levels: ``execute``,``configure``, etc.
 
 In essence, a connection class models the various ways of communicating with a
 target device using object methods (also known as **services**). These methods

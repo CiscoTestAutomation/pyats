@@ -43,7 +43,7 @@ Result Objects
 
     ``pass`` is a reserved keyword in python, so we opted to standardize on
     capitalized past tense verbs to indicate results instead. Eg,
-    ``pass -> Passed``, ``fail -> Failed``, etc.
+    ``pass -> Passed``,``fail -> Failed``, etc.
 
 
 Import & Usage

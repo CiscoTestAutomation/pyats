@@ -89,7 +89,7 @@ Changes
 - Fixed a bug in ``async.Pcall`` where excessive polling caused 100% cpu usage
 - Fixed a bug where ``id->uid`` warning was being displayed regardless of
   input argument when ``aetest.loop.mark`` was being used
-- Changed install script's ``--upgrade`` argument to ``--reinstall`` to avoid
+- Changed install script's ``--upgrade``argument to``--reinstall`` to avoid
   confusion with ``pip install --upgrade``.
 
 
@@ -111,7 +111,7 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-- Fixed a bug that made ``iargs``, ``ikwargs`` and ``varkwargs`` Pcall 
+- Fixed a bug that made ``iargs``,``ikwargs``and``varkwargs`` Pcall 
   arguments to fail when an iterable or generator is provided.
 
 
@@ -205,7 +205,7 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-- Fixed a typo in AEtest ``ids`` -> ``uids`` backwards compatibility code.
+- Fixed a typo in AEtest ``ids``->``uids`` backwards compatibility code.
 - Fixed an issue where a removed unittest file was lingering in the final built
   AEtest package
 - Fixed a bug where Easypy unittests were referring a wrong directory when 
@@ -263,7 +263,7 @@ The following code usages are deprecating and will be removed by next release.
 Backwards compatibility is currently provided - a warning will be generated each
 time the legacy method is used. Please make the blanket change soon.
 
-- AEtest's ``Testcase.id`` field is renamed to ``Testcase.uid`` (unique id).
+- AEtest's ``Testcase.id``field is renamed to``Testcase.uid`` (unique id).
   This is done in order to avoid collision with python's
   `built-in function`_ ``id()``.
 
@@ -280,17 +280,17 @@ time the legacy method is used. Please make the blanket change soon.
           # new style
           uid = 'alt_id_of_testcase'
 
-  As a result, all AEtest options, eg: ``-ids=``, ``@loop(ids=[])`` have been
-  renamed with a ``u`` prefix, eg, ``-uids=``, ``@loop(uids=[])``.
+  As a result, all AEtest options, eg: ``-ids=``,``@loop(ids=[])`` have been
+  renamed with a ``u``prefix, eg,``-uids=``,``@loop(uids=[])``.
 
   To make a blanket change, search your source code with the following regular
   expression and add a ``u`` in front as a prefix.
 
   .. code-block:: text
 
-        \.id| id | ID |'id'|`id`|`ids`|'ids'| id ?=|\(ids ?=|=ids|=id
+        \.id| id | ID |'id'|``id``|``ids``|'ids'| id ?=|\(ids ?=|=ids|=id
 
-- ``Device.config()`` method is now renamed to ``Device.configure()`` for
+- ``Device.config()``method is now renamed to``Device.configure()`` for
   consistency with ``Device.execute()``.
 
   Hint: search your code with the following regex to do a blank replace
@@ -299,7 +299,7 @@ time the legacy method is used. Please make the blanket change soon.
 
       \.config(
 
-- ``ats.atslog`` module renamed to ``ats.log``. This was changed in ``v2.0.0``,
+- ``ats.atslog``module renamed to``ats.log``. This was changed in``v2.0.0``,
   and was slated for removal this release, but we have extended it to the next
   release.
 
@@ -359,7 +359,7 @@ upcoming features.
 
 Async
   - Added new :ref:`async_lockable` base class and
-    `locked<ats.async.synchronize.locked>` decorator for auto-locking and
+    ``locked<ats.async.synchronize.locked>`` decorator for auto-locking and
     unlocking of method calls and designing class objects sharable between
     multiprocesses.
 
@@ -367,11 +367,11 @@ AEReport
   - Description field is now supported for common subsections.
 
 AEtest
-  - now supports testcase/section metadata such as ``name``, ``diags``,
-    ``hwversion``,  ``swversion``, and changing section ID during runtime
-    within the code. See :ref:`aetest_aereport_reporter` for details.
+  - now supports testcase/section metadata such as ``name``,``diags``,
+    ``hwversion``,``swversion``, and changing section ID during runtime
+    within the code. See :ref:`aetest_reporter` for details.
 
-  - ``Testcase.id`` is now renamed to ``Testcase.uid`` to avoid clashing with
+  - ``Testcase.id``is now renamed to``Testcase.uid`` to avoid clashing with
     python ``id()`` function
 
   - Step results are now shown in the Easypy diagnostic report
@@ -379,7 +379,7 @@ AEtest
   - warning/error/critical log messages are now automatically added to Easypy
     diagnostic report
 
-  - (internal) reporter classes now have ``start_step`` and ``stop_step``
+  - (internal) reporter classes now have ``start_step``and``stop_step``
     reporting apis.
 
 Bringup
@@ -432,14 +432,14 @@ Connections
   - ``ConnectionManager.destroy_connection()`` has been renamed to
     ``destroy`` for simplicity and consistency.
 
-  - ``BaseConnection.config()`` is now renamed to ``configure()`` for
+  - ``BaseConnection.config()``is now renamed to``configure()`` for
     consistency. As a result, all connection implementations shall now implement
     ``configure()`` instead. Backward compatibility will be kept, but a warning
     will be displayed if ``config()`` is used.
 
   - changed the default connection path behavior: if the user defines a
     ``defaults/via`` key under the device connections dictionary (from YAML), it
-    will be used as the default ``via`` path in ``device.connect()``.
+    will be used as the default ``via``path in`` device.connect()``.
 
   - added a mechanism for user to change the default connection class (instead
     of always defaulting to Csccon)
@@ -456,12 +456,12 @@ Easypy
 
   - Plugin exception handling has been refactored.
 
-    - If an easypy plugin fails at ``pre_job`` or ``post_job`` stages,
+    - If an easypy plugin fails at ``pre_job``or``post_job`` stages,
       an email is sent whose title contains the name of the failing plugin,
       and a TRADe link is made available to allow the user to inspect the
       failure.
 
-    - If an easypy plugin fails at ``pre_task`` or ``post_task`` stages,
+    - If an easypy plugin fails at ``pre_task``or``post_task`` stages,
       the task is immediately terminated and the name of the failing
       plugin is added to the exception text.
 
@@ -469,7 +469,7 @@ Easypy
     actual devices (``-testbed_file``)
     and actual/logical devices (``-logical_testbed_file``).
 
-  - Introduced new parameters ``-clean_devices`` and ``-clean_scope`` as
+  - Introduced new parameters ``-clean_devices``and``-clean_scope`` as
     part of the new Kleenex model.
 
   - (internal) aereport start/stop testscript is moved from plugin to runner
@@ -483,7 +483,7 @@ Kleenex
     The user may choose to ignore these warnings if they are bringing up
     a dynamic topology of virtual devices.
 
-  - Moved all content from ``ats.bringup`` into ``ats.kleenex``.
+  - Moved all content from ``ats.bringup``into``ats.kleenex``.
     ``ats.bringup`` package is scheduled for deprecation and attempts to
     include it now cause warnings.
 
@@ -491,7 +491,7 @@ Kleenex
 
     - The ``bringup`` decoupled tool has been scheduled to be deprecated.
 
-    - The ``dyntopo`` cisco_shared package offers an ``xrutbringup``
+    - The ``dyntopo``cisco_shared package offers an``xrutbringup``
       decoupled tool that provides equivalent functionality.
 
     - The ``-orchestrator`` parameter no longer shows up in the decoupled
@@ -512,7 +512,7 @@ Kleenex
   - Bringup reserves the right to create its own topology name.
     Now when the user specifies a value under ``topology/name`` in their
     logical testbed file, this value is moved under ``topology/alias``.
-    If the user specifies both ``topology/name`` and ``topology/alias``
+    If the user specifies both ``topology/name``and``topology/alias``
     a warning is generated that states ``topology/name`` is ignored.
 
   - Deprecated ``is_logical`` device key in the logical testbed file.
@@ -565,16 +565,16 @@ Tgn
 Topology
   - Now file-like objects may be loaded.
 
-  - Added new `squeeze<ats.topology.testbed.Testbed.squeeze>` method to allow
+  - Added new ``squeeze<ats.topology.testbed.Testbed.squeeze>`` method to allow
     users to crop a testbed to a wanted subset of itself.
 
   - The key ``iou`` is scheduled for removal in the next release.
 
-  - Removed ``logical`` and ``multinode_requested`` from the testbed YAML
+  - Removed ``logical``and``multinode_requested`` from the testbed YAML
     schema, since these keys are only used for logical testbed YAML now.
 
   - Removed ``tcl_clean`` keys from from the testbed YAML schema. Please read
-    :ref:`kleenex_index` and :ref:`topology_kleenex_integration` on how the new
+    :ref:`kleenex_index` on how the new
     model clean integration model works.
 
   - updated schema to accomodated latest connection manager integration model.

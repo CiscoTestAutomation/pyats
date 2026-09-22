@@ -28,7 +28,7 @@ relationship:
 
 - all connections are created & managed by a device's ``ConnectionManager``.
 
-  - each ``topology.Device`` instance receives its own ``ConnectionManager``.
+  - each ``topology.Device``instance receives its own``ConnectionManager``.
 
 - each connection is modelled as an instance of a connection class.
 
@@ -77,7 +77,7 @@ the device it serves, storing internally a *weakref* of its parent device.
     ``disconnect_all()``, "api to disconnect all existing connections"
     ``destroy_all()``, "api to destroy/delete all connections"
 
-With the exception of ``disconnect_all()`` and ``destroy_all``, all apis accepts
+With the exception of ``disconnect_all()``and``destroy_all``, all apis accepts
 the ``alias`` argument, specifying the connection instance to operate on. If not
 provided, it defaults to ``default``.
 
@@ -125,15 +125,15 @@ translated to a corresponding call to the ``ConnectionManager`` instance.
     :header: "Device Method", "ConnectionManager Mapping"
     :widths: 30, 100
 
-    ``Device.instantiate()``, ``Device.connectionmgr.instantiate()``
-    ``Device.connect()``, ``Device.connectionmgr.connect()``
-    ``Device.disconnect()``, ``Device.connectionmgr.disconnect()``
-    ``Device.destroy()``, ``Device.connectionmgr.destroy()``
-    ``Device.is_connected()``, ``Device.connectionmgr.is_connected()``
-    ``Device.disconnect_all()``, ``Device.connectionmgr.disconnect_all()``
-    ``Device.destroy_all()``, ``Device.connectionmgr.destroy_all()``
-    ``Device.<service>()``, ``Device.connectionmgr.connections['default'].<service>()``
-    ``Device.<alias>.<service>()``, ``Device.connectionmgr.connections[<alias>].<service>()``
+    ``Device.instantiate()``,``Device.connectionmgr.instantiate()``
+    ``Device.connect()``,``Device.connectionmgr.connect()``
+    ``Device.disconnect()``,``Device.connectionmgr.disconnect()``
+    ``Device.destroy()``,``Device.connectionmgr.destroy()``
+    ``Device.is_connected()``,``Device.connectionmgr.is_connected()``
+    ``Device.disconnect_all()``,``Device.connectionmgr.disconnect_all()``
+    ``Device.destroy_all()``,``Device.connectionmgr.destroy_all()``
+    ``Device.<service>()``,``Device.connectionmgr.connections['default'].<service>()``
+    ``Device.<alias>.<service>()``,``Device.connectionmgr.connections[<alias>].<service>()``
 
 .. code-block:: python
 
@@ -241,7 +241,7 @@ based on input parameters and internal defaults. Behaviors are as follows:
     :widths: 30, 100
 
     ``cls``, ":ref:`connection_class` to use to create this connection or pool worker"
-    ``alias``, "alias/name of this connection, unique. Defaults to ``default``"
+    ``alias``, "alias/name of this connection, unique. Defaults to``default``"
     ``pool_size``, "number of connection instances to be started in pool"
     ``pool_timeout``, "max time to wait for an available worker from the pool,
     defaults to ``0`` (forever)"
@@ -387,13 +387,13 @@ Method: disconnect()
 
 ``ConnectionManager.disconnect()`` method disconnects a given connection from
 its host device by first looking up the connection object using the provided
-``alias``, then calling that object's ``.disconnect()`` api.
+``alias``, then calling that object's``.disconnect()`` api.
 
 .. csv-table:: ConnectionManager.disconnect() Arguments
     :header: "Name", "Description"
     :widths: 30, 100
 
-    ``alias``, "alias/name of connection to disconnect. Defaults to ``default``"
+    ``alias``, "alias/name of connection to disconnect. Defaults to``default``"
 
 .. code-block:: python
 
@@ -437,7 +437,7 @@ its host device, and also destroys/deletes the connection object. Behavior:
     :header: "Name", "Description"
     :widths: 30, 100
 
-    ``alias``, "alias/name of connection to destroy. Defaults to ``default``"
+    ``alias``, "alias/name of connection to destroy. Defaults to``default``"
 
 .. code-block:: python
 
@@ -466,7 +466,7 @@ its host device, and also destroys/deletes the connection object. Behavior:
 Method: is_connected()
 ----------------------
 
-``ConnectionManager.is_connected()`` method returns ``True``/``False`` depending
+``ConnectionManager.is_connected()``method returns``True``/``False`` depending
 on whether a connection object (referred to by its alias) is in a connected
 state or not. Behavior:
 
@@ -480,7 +480,7 @@ state or not. Behavior:
     :header: "Name", "Description"
     :widths: 30, 100
 
-    ``alias``, "alias/name of connection to lookup. Defaults to ``default``"
+    ``alias``, "alias/name of connection to lookup. Defaults to``default``"
 
 .. code-block:: python
 

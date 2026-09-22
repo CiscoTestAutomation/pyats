@@ -41,7 +41,7 @@ limitations).
 Creation
 ^^^^^^^^
 
-Create an ``AttrDict`` the same way as creating your typical ``dict`` objects.
+Create an ``AttrDict``the same way as creating your typical``dict`` objects.
 
 .. code-block:: python
 
@@ -65,7 +65,7 @@ Create an ``AttrDict`` the same way as creating your typical ``dict`` objects.
 Access
 ^^^^^^
 
-Keys in an ``AttrDict`` can be accessed via the traditional ``dict[ ]`` method, 
+Keys in an ``AttrDict``can be accessed via the traditional`` dict[ ]`` method, 
 or using the keys as attributes.
 
 
@@ -111,7 +111,7 @@ of limitations
 - in order to access a value as an attribute, its key must of type ``str`` (in 
   standard python ``dict``, keys can be any hashable objects)
 
-- keys with characters such as ``-``, ``.``, ``\`` etc, cannot be accessed as 
+- keys with characters such as ``-``,``.``,``\`` etc, cannot be accessed as 
   attributes. This is due to the limitation of python identifiers.
 
     .. code-block:: text
@@ -182,7 +182,7 @@ without user intervention (eg, ``.`` operator).
 Features & Limitations
 ^^^^^^^^^^^^^^^^^^^^^^
 
-- ``NestedAttrDict`` inherits the same limitations as ``AttrDict`` where the
+- ``NestedAttrDict``inherits the same limitations as``AttrDict`` where the
   key names, if accessed as attributes, can only be strings without special
   characters
 

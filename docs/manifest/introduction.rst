@@ -36,7 +36,7 @@ and runtime specific settings.
 
     The associated script file that the manifest refers to is inferred based on the
     manifest filename with the extension `.py`. E.g. the script filename for a manifest
-    with filename of ``job.tem`` is ``job.py`` in the same directory as the manifest file.
+    with filename of ``job.tem``is``job.py`` in the same directory as the manifest file.
 
 
 

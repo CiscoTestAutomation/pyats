@@ -14,7 +14,7 @@ test project.
 Installation
 ------------
 
-pyATS currently supports Python ``v3.7.x``, ``v3.8.x``, ``v3.9.x`` and ``v3.10.x``, and is
+pyATS currently supports Python ``v3.7.x``,``v3.8.x``,``v3.9.x``and``v3.10.x``, and is
 tested to work on the following platforms:
 
     - Linux (tested with CentOS, RHEL, Ubuntu, Alpine)
@@ -383,7 +383,7 @@ accepts a ``--testbed-file`` argument, which automatically loads and parses the
 provided testbed file into ``testbed`` parameter, and provide it to the
 testscript. When launched, each testscript called by ``run()`` api inside the
 job runs as a child process, and the contents inside its
-``if __name__ == '__main__'`` block is ignored. Add the ``--html-logs`` argument
+``if __name__ == '__main__'``block is ignored. Add the``--html-logs`` argument
 to enable generation of HTML log files - they are easier to read.
 
 .. code-block:: bash

@@ -43,10 +43,10 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * ats.kleenex
-    * Allow users to override device `type` and `alias` with values from logical testbed
+    * Allow users to override device ``type``and``alias`` with values from logical testbed
 
 

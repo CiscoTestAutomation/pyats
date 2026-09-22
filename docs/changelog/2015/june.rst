@@ -32,7 +32,7 @@ Bug Fixes
 
 - ``tcl.Interpreter.Q`` magic Q function received some minor tune-ups.
 
-- ``tcl.Interprter`` class now displays errors & ``AUTOTEST`` requirements a bit
+- ``tcl.Interprter``class now displays errors &``AUTOTEST`` requirements a bit
   more clearer.
 
 - ``tgn`` module received minor tune-ups w.r.t. how Q function is called.
@@ -92,13 +92,13 @@ Tgn
 - added custom argument ``raise_ = False`` to all hltapi calls for disabling 
   raising exception when the keyed-list return ``status`` is 0.
 
-  .. code-block:: python
+  .. code-block:: console
 
       # provide raise_ = False argument to make sure no exceptions are raised
       ixia.traffic_stats(port_handle='1/1/3', raise_ = False)
 
 - added support for Ixia and Pagent ``connect()`` api to also accept a Topology
-  ``Device`` object. ``connect()`` will automatically pull required information
+  ``Device``object.`` connect()`` will automatically pull required information
   from the ``Device`` object in order to connect.
 
   .. code-block:: yaml
@@ -157,7 +157,7 @@ Tcl
       tcl.q.set('klist', cast_ = False)
       # '{a 1} {b 2} {c 3}'
 
-- Added Tcl ``::errorInfo`` stacktrace to ``TclError`` exceptions. This will
+- Added Tcl ``::errorInfo``stacktrace to``TclError`` exceptions. This will
   provide a bit more debug information for Q and ``eval`` functionalities.
 
 
@@ -265,7 +265,7 @@ Installation
   from ``pip``.
   
   - however, as a direct, positive impact, python-2 packages will no longer
-    have ``-py2`` trailing postfix from here-onwards. ``pip`` will automatically
+    have ``-py2``trailing postfix from here-onwards.``pip`` will automatically
     install the correct version.
 
     .. code-block:: bash
@@ -366,14 +366,14 @@ AEtest
 Easypy
 ^^^^^^
 
-- ``env.txt`` now also contains tcl ``teacup`` package information
+- ``env.txt``now also contains tcl``teacup`` package information
 - ``run()`` api now returns the overall result of script run.
 
 Results
 ^^^^^^^
 
-- result objects now support boolean testing. ``Passed`` and ``Passx`` tests
-  ``true``. All else tests ``False``.
+- result objects now support boolean testing. ``Passed``and``Passx`` tests
+  ``true``. All else tests``False``.
 
   .. code-block:: python
 
@@ -393,7 +393,7 @@ Misc
 
 - Examples & templates are now PyPI packages instead of straight-up copies. They
   are installed using ``pip``, carries a version, but is still installed under
-  the root instance folder as ``examples/`` and ``templates/``.
+  the root instance folder as ``examples/``and``templates/``.
 
   .. code-block:: bash
 
@@ -531,7 +531,7 @@ Easypy Changes
  
 - Improved error & exception handling.
 
-- Directory ``atseasy`` is renamed to ``users``. ``atseasy/etc`` and
+- Directory ``atseasy``is renamed to``users``.``atseasy/etc`` and
   ``atseasy/job`` are no-longer created. Existing logs will be moved over to
   this new directory structure, and ``atseasy`` will be left behind as a symlink
   until EARMs is about to cope with the new folders.
@@ -549,35 +549,35 @@ Easypy Changes
   
   - All short form arguments are removed. (eg, ``-tb``)
 
-  - ``-debug`` has been removed and replaced by ``-loglevel``
+  - ``-debug``has been removed and replaced by``-loglevel``
 
   - Many arguments have been renamed for consistency
 
     .. csv-table:: EasyPy Arguments Mappings
         :header: "Old arguments name", "New arguments name"
 
-        ``-a`` ``-noarchive``, ``-no_archive``
-        ``-archive_dir`` , ``-archive_dir``
+        ``-a````-noarchive``,``-no_archive``
+        ``-archive_dir``,``-archive_dir``
         ``-control_file``, *removed*
         *N/A*, ``-clean_file``
         ``-d``, *removed*. Use ``-loglevel`` instead
-        ``-dns_name`` , ``-tims_dns``
-        ``-folder`` , ``-tims_folder``
-        ``-h`` ``-help`` , ``-help``
-        ``-i`` ``-image``, ``-image``
-        ``-import_options`` , ``-tims_options``
+        ``-dns_name``,``-tims_dns``
+        ``-folder``,``-tims_folder``
+        ``-h````-help``,``-help``
+        ``-i````-image``,``-image``
+        ``-import_options``,``-tims_options``
         ``-ios_commands_file`` , *removed*
-        ``-mailto`` , ``-mailto``
-        ``-no_log_copy``, ``-no_log_copy``
-        ``-nomail`` , ``-no_mail``
-        ``-p`` , ``-tims_post``
-        ``-r`` ``-release``, ``-release``
-        ``-runinfo_dir`` , ``-runinfo_dir``
-        ``-submitter``, ``-submitter``
-        ``-tf``, ``-testbed_file``
-        ``-t`` ``-testbed``, *removed.* Use ``-testbed_file`` instead
-        ``-xunit_dir`` , ``-xunit_dir``
-        ``-xunit`` , ``-xunit``
+        ``-mailto``,``-mailto``
+        ``-no_log_copy``,``-no_log_copy``
+        ``-nomail``,``-no_mail``
+        ``-p``,``-tims_post``
+        ``-r````-release``,``-release``
+        ``-runinfo_dir``,``-runinfo_dir``
+        ``-submitter``,``-submitter``
+        ``-tf``,``-testbed_file``
+        ``-t````-testbed``, *removed.* Use ``-testbed_file`` instead
+        ``-xunit_dir``,``-xunit_dir``
+        ``-xunit``,``-xunit``
         *N/A*, ``-loglevel``
         *N/A* , ``-tims_custom_attrs``
 
@@ -598,19 +598,19 @@ documented functions/class headers and 100+ pages of user guides.
   - all short form cli arguments are removed. (eg, ``-tb``) and standardized 
     to long arguments
   
-  - ``-q/-quiet``, ``-v/-verbose`` have been removed and replaced by 
+  - ``-q/-quiet``,``-v/-verbose`` have been removed and replaced by 
     ``-loglevel``.
   
   - ``-dependent_subsections`` has been removed. All subsections are now
     independent. Use :ref:`aetest_goto` if necessary.
 
-  - ``-exclude_common_results`` has been removed. ``CommonSetup`` and
+  - ``-exclude_common_results``has been removed.``CommonSetup`` and
     ``CommonCleanup`` now counts as 1 each in the numbers of sections ran. Refer
     to: :ref:`aetest_section_results`.
 
-  - ``-run_ids``, ``-skip_ids`` have been removed and consolidated into ``-ids``
+  - ``-run_ids``,``-skip_ids``have been removed and consolidated into``-ids``
 
-  - ``-execution_groups`` has been renamed to ``-groups`` and is now a much
+  - ``-execution_groups``has been renamed to``-groups`` and is now a much
     more capable feature.
 
 - data-driven testing support using :ref:`test_parameters`. This is a completely
@@ -646,16 +646,16 @@ documented functions/class headers and 100+ pages of user guides.
 
 - redesigned test script :ref:`aetest_control`.
     
-  - consolidated ``-run_ids``, ``-skip_ids`` into ``-ids``, supporting callables
+  - consolidated ``-run_ids``,``-skip_ids``into``-ids``, supporting callables
     and leveraging :ref:`logic_tests`.
 
-  - redesigned ``-execution_groups`` to ``-groups``, supporting callables and
+  - redesigned ``-execution_groups``to``-groups``, supporting callables and
     leveraging :ref:`logic_tests`.
 
   - revamped & tidy'ed up :ref:`aetest_goto` logic. Goto signals for 
     ``Subtest`` features have been removed.
   
-  - added new ``skip``, ``skipIf``, ``skipUnless`` decorators. See
+  - added new ``skip``,``skipIf``,``skipUnless`` decorators. See
     :ref:`aetest_skip_conditions`.
 
 - simplified :ref:`aetest_steps` support.
@@ -667,7 +667,7 @@ documented functions/class headers and 100+ pages of user guides.
 
   - new ``Step``/``Steps`` classe & documentation.
 
-  - ``step.start()`` argument ``continueOnFail`` is now renamed to 
+  - ``step.start()``argument``continueOnFail`` is now renamed to 
     ``continue_``.
 
 - phasing out (obsoleting) ``Subtest`` altogether. Subtests adds more headaches 
@@ -703,7 +703,7 @@ Connections enhancements
 
   - ``-disable_prompt_check("exec/config")``
 
-- connection classes ``.is_connected()`` function is now ``.connected`` 
+- connection classes ``.is_connected()``function is now``.connected`` 
   property.
 
 Misc Changes
@@ -711,7 +711,7 @@ Misc Changes
 
 - Install script updates:
 
-  - changed all arguments to ``--`` style. All ``-`` short forms have
+  - changed all arguments to ``--``style. All``-`` short forms have
     been removed.
 
   - added checks for install directory being valid and writable
@@ -745,10 +745,10 @@ Misc Changes
 
   - supports ``sum()`` calls for easier rollups, along with reverse add support.
 
-  - anything rolled up with ``Aborted`` now results in ``Aborted``.
+  - anything rolled up with ``Aborted``now results in``Aborted``.
 
-- new ``datastructures.logic`` module, handling boolean logic such as ``And``, 
-  ``Or``, ``Not``.
+- new ``datastructures.logic``module, handling boolean logic such as``And``, 
+  ``Or``,``Not``.
 
 
 

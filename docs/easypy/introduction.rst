@@ -29,7 +29,7 @@ Easypy module ``easypy`` is installed by default as part of pyATS installation.
 The package is also featured in the PyPI server, and can be installed 
 separately.
 
-Note that ``easypy`` module is part of the ``pyats`` namespace, and therefore,
+Note that ``easypy``module is part of the``pyats`` namespace, and therefore,
 users should always refer to the full namespace when installing & using:
 
 .. code-block:: bash

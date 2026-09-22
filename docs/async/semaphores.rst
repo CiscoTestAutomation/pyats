@@ -85,7 +85,7 @@ In addition to the decorator, this class also comes with two public methods:
     ``blocking``: controls whether to block until the lock is acquired, 
     defaulting to ``True``. 
     
-    ``timeout``: controls the amount of time to wait for if ``blocking=True``, 
+    ``timeout``: controls the amount of time to wait for if``blocking=True``, 
     defaulting to ``None`` (eg, indefinitly)
     
     Returns ``True``/``False`` based on whether lock was acquired or not. 

@@ -18,7 +18,7 @@ actual device it represent. With the help of ``ConnectionManager`` class,
 ``Device`` objects are effectively transformed into a compound object that both
 handles the above, as well as the actual connections (Eg. telnet/ssh).
 
-Each ``Device`` object is instantiated with a ``connectionmgr`` attribute that
+Each ``Device``object is instantiated with a``connectionmgr`` attribute that
 contains an instance of ``ConnectionManager``, and contains all of the current
 active connections to the managed device.
 
@@ -98,7 +98,7 @@ to Connections Library documentation.
 Connect To All Devices
 ----------------------
 
-``Testbed`` object also provides a convenience function, ``Testbed.connect()``,
+``Testbed``object also provides a convenience function,`` Testbed.connect()``,
 allowing you to establish asynchronous connection to multiple testbed devices
 at the same time.
 
@@ -145,7 +145,7 @@ the above connection manager concept.
 Disconnect From All Devices
 ---------------------------
 
-``Testbed`` object provides a convenience function, ``Testbed.disconnect()``,
+``Testbed``object provides a convenience function,`` Testbed.disconnect()``,
 allowing you to make asynchronous disconnection from multiple testbed devices
 at the same time.
 
@@ -190,9 +190,9 @@ will be used to connect to device again.
 Destroy connections to all device
 ---------------------------------
 
-``Testbed`` object provides ``Testbed.destroy()`` function, allowing you
+``Testbed``object provides`` Testbed.destroy()`` function, allowing you
 to destroy connections asynchronously to multiple testbed devices. Unlike
-``.disconnect()``, if ``.destroy()`` is used, then all connection objects
+``.disconnect()``, if``.destroy()`` is used, then all connection objects
 will be completely removed.
 
 .. code-block:: python
@@ -235,13 +235,13 @@ Querying Topology
 
 The basic concept is simple:
 
-    - ``Testbed`` contains one or more ``Device``
+    - ``Testbed``contains one or more``Device``
 
-    - ``Device`` contains zero or more ``Interface``
+    - ``Device``contains zero or more``Interface``
 
-    - ``Interface`` may be connected to a ``Link``
+    - ``Interface``may be connected to a``Link``
 
-    - ``Link`` connects one or more ``Interface`` together.
+    - ``Link``connects one or more``Interface`` together.
 
 It may be useful to refer to :ref:`topology_concept` page for detailed object
 attributes and how everything is tailored together.
@@ -334,7 +334,7 @@ Device & Interface Aliases
 --------------------------
 
 Every topology object is a subclass of ``TopologyObject`` base class: each one
-comes with its own ``name`` (mandatory) and ``alias`` (optional, defaults to
+comes with its own ``name``(mandatory) and``alias`` (optional, defaults to
 ``name``).
 
 .. code-block:: python
@@ -445,8 +445,8 @@ and run on any similarly configured testbeds with the same topology.
 
 .. note::
 
-    ``Link`` and ``Testbed`` also have aliases, but since they are not stored as
-    ``MutableMappings`` like ``Testbed.devices`` and ``Device.interfaces``, they
+    ``Link``and``Testbed`` also have aliases, but since they are not stored as
+    ``MutableMappings``like``Testbed.devices``and``Device.interfaces``, they
     need to be accessed directly and tested for their alias instead. Example,
     ``if intf.link.alias == 'linkAlias'``.
 
@@ -573,17 +573,17 @@ References and Weak References
 ``topology`` module is designed to avoid circular object references (eg, devices
 referring to parent testbed and testbed containing devices).
 
-    - ``Testbed`` contains ``Device``
+    - ``Testbed``contains``Device``
 
     - ``Device`` refer to parent testbed as a weak reference.
 
-    - ``Device`` contain ``Interface``
+    - ``Device``contain``Interface``
 
     - ``Interface`` refer to parent device as a weak reference
 
-    - ``Interface`` contains ``Link``
+    - ``Interface``contains``Link``
 
-    - ``Link`` refer to their connected ``Interface`` as weak references
+    - ``Link``refer to their connected``Interface`` as weak references
 
 .. code-block:: python
 

@@ -27,7 +27,7 @@ using :ref:`result_objects`. The following summarizes this behavior:
 * all script section have a ``result`` attribute, storing its current
   result using the corresponding result object (see :ref:`object_model`).
 
-* ``TestContainer`` section's ``result`` attribute represents the combined
+* ``TestContainer``section's``result`` attribute represents the combined
   roll-up of all of its child section results. Eg, common setup's ``result``
   attribute stores the current combined rolled-up result of all of its
   subsections that ran so far.
@@ -307,7 +307,7 @@ email that input is required. This email has a link to a webpage hosted by
     "``section``", "``ref`` (required)", "Reference to section or step that
     called interaction. This provides the name name of the test to the user, as
     well as the APIs to return a test result."
-    "``host``", "``str``", "The host address to bind to. ``localhost`` will only
+    "``host``", "``str``", "The host address to bind to.``localhost`` will only
     allow processes from the same host to connect to the server."
     "``port``", "``int``", "The port for the webpage to be hosted at. Default is
     0 for a kernel provisioned port."
@@ -318,7 +318,7 @@ email that input is required. This email has a link to a webpage hosted by
     hour."
     "``timeout_result``", "``str``", "Name of the result given to the test when
     it times out. Default is ``'BLOCKED'``."
-    "``no_email``", "``bool``", "When set to ``True``, blocks an email from
+    "``no_email``", "``bool``", "When set to``True``, blocks an email from
     being sent to notify a user for interaction."
     "``from_address``", "``str``", "The email address that the notification will
     be sent from. Defaults to the user login."
@@ -344,16 +344,16 @@ email that input is required. This email has a link to a webpage hosted by
 Result Counting
 ---------------
 
-In ``aetest``, only ``TestContainer`` class' results counts in the *summary
+In ``aetest``, only``TestContainer`` class' results counts in the *summary
 result numbers*. Even though child sections within ``TestContainer`` classes
 have their own results, they are considered to be a part of its parent
 container, and their results is thus not counted for in the summary.
 
 Accounted For
-    ``CommonSetup``, ``Testcase`` and ``CommonCleanup``.
+    ``CommonSetup``,``Testcase``and``CommonCleanup``.
 
 Not Accounted For
-    ``Subsection``, ``SetupSection``, ``TestSection`` and ``CleanupSections``.
+    ``Subsection``,``SetupSection``,``TestSection``and``CleanupSections``.
 
 
 .. csv-table:: Result Counting Examples
@@ -361,9 +361,9 @@ Not Accounted For
     :widths: 80, 20
 
     "``CommonSetup`` with 50 subsections", 1
-    "``Testcase`` with ``setup``, 20x ``test`` and ``cleanup``", 1
-    "2x ``Testcase``, ``CommonCleanup``", 3
-    "``CommonSetup``, 20x ``Testcase``, ``CommonCleanup``", 22
+    "``Testcase``with``setup``, 20x``test``and``cleanup``", 1
+    "2x ``Testcase``,``CommonCleanup``", 3
+    "``CommonSetup``, 20x``Testcase``,``CommonCleanup``", 22
 
 .. code-block:: python
 
@@ -431,8 +431,8 @@ return immediately because they are internally implemented to raise
 ``AEtestInternalSignals`` exceptions, and are handled by the execution engine to
 assign a corresponding result to the current test section.
 
-``AEtestInternalSignals`` subclasses from ``BaseException`` class intentionally
-in order to avoid any blanket catching of ``Exception`` in ``try ... except``
+``AEtestInternalSignals``subclasses from``BaseException`` class intentionally
+in order to avoid any blanket catching of ``Exception``in``try ... except``
 clause. They are called **signals** because they are used for signalling
 purposes, to instruct the infrastructure to assign a result and carry on.
 
@@ -440,13 +440,13 @@ purposes, to instruct the infrastructure to assign a result and carry on.
 .. csv-table:: Internal Signal Mappings
     :header: Result API, Exception Signal, Result Object
 
-    "``TestItem.passed(reason, goto)``", ``AEtestPassedSignal``, ``Passed``
-    "``TestItem.failed(reason, goto)``", ``AEtestFailedSignal``, ``Failed``
-    "``TestItem.errored(reason, goto)``", ``AEtestErroredSignal``, ``Errored``
-    "``TestItem.skipped(reason, goto)``", ``AEtestSkippedSignal``, ``Skipped``
-    "``TestItem.blocked(reason, goto)``", ``AEtestBlockedSignal``, ``Blocked``
-    "``TestItem.aborted(reason, goto)``", ``AEtestAbortedSignal``, ``Aborted``
-    "``TestItem.passx(reason, goto)``", ``AEtestPassxSignal``, ``Passx``
+    "``TestItem.passed(reason, goto)``",``AEtestPassedSignal``,``Passed``
+    "``TestItem.failed(reason, goto)``",``AEtestFailedSignal``,``Failed``
+    "``TestItem.errored(reason, goto)``",``AEtestErroredSignal``,``Errored``
+    "``TestItem.skipped(reason, goto)``",``AEtestSkippedSignal``,``Skipped``
+    "``TestItem.blocked(reason, goto)``",``AEtestBlockedSignal``,``Blocked``
+    "``TestItem.aborted(reason, goto)``",``AEtestAbortedSignal``,``Aborted``
+    "``TestItem.passx(reason, goto)``",``AEtestPassxSignal``,``Passx``
 
 In essence, within anywhere in the testscript and/or libraries, if these
 exceptions are raised (as they are still exceptions in nature), ``aetest``

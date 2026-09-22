@@ -29,7 +29,7 @@ Changes
 
 - added demo scripts to ``examples``, including v2.1.0 demo scripts.
 
-- ``max_failures`` argument in ``aetest`` is now "exclusive" as opposed to 
+- ``max_failures``argument in``aetest`` is now "exclusive" as opposed to 
   "inclusive" after much controversy. Eg, if ``-max_failure 5``, then as soon
   as the 5th testcase fails, the script will abort. 
 
@@ -59,8 +59,8 @@ Upgrade Instructions
 Bug Fixes
 """""""""
 
-- reverted ``ats.easypy`` behavior where if ``-testbed_file`` is not provided, 
-  ``testbed`` parameter in testscript is ``None``.
+- reverted ``ats.easypy``behavior where if``-testbed_file `` is not provided, 
+  ``testbed``parameter in testscript is``None``.
 
 - fixed a merge error in ``ats.connections`` causing crashes in python-2
 
@@ -212,7 +212,7 @@ Easypy Changes
     YAML file defined via environment variable ``EASYPY_PLUGIN_CONFIG``
 
   - support for running plugins at various fixed stages during execution:
-    ``pre_job``, ``post_job``, ``pre_task`` and ``post_task``.
+    ``pre_job``,``post_job``,``pre_task``and``post_task``.
 
   - support for plugin argument parsers, and combining currently active plugin's
     parsers into the master help output displayed using ``easypy -h``.
@@ -253,7 +253,7 @@ AEtest Changes
 - ``self.script_args`` is now completely removed. Use :ref:`test_parameters`
   instead (as discussed in v2.0.0 release note).
 
-- calling ``self.<resultapi>()`` with ``goto=[]`` within steps should now work
+- calling ``self.<resultapi>()``with``goto=[]`` within steps should now work
   as intended.
 
 New Modules
@@ -287,14 +287,14 @@ Multiprocessing Tuneups
 - ``atslog.TaskLogHandler`` now supports automatic on-fork creation of new log
   files. 
 
-  - enable/disable using ``enableForked()`` and ``disableForked()`` methods.
+  - enable/disable using ``enableForked()``and``disableForked()`` methods.
 
   - by default, each Easypy task's TaskLog will has this feature enabled.
 
 - ``aereport.AEClient`` now supports automatic re-connect to the reporting 
   server post-fork.
 
-  - enable/disable using ``enable_forked()`` and ``enable_forked()`` methods.
+  - enable/disable using ``enable_forked()``and``enable_forked()`` methods.
 
   - by default, Easypy and AEtest's report client instances have this feature 
     enabled.
@@ -315,7 +315,7 @@ Misc Changes
     ``setuptools``, v18.3.1, 
     ``setproctitle``, v1.1.9, "used by AEreport and Easypy"
 
-- fixed an issue with ``examples`` and ``templates`` packages being built to
+- fixed an issue with ``examples``and``templates`` packages being built to
   platform/arch specific wheels.
 
 - other minor stuff we don't remember :-(

@@ -37,11 +37,11 @@ Mar 25, 2018 - pyATS v4.1.0
 
     *What happened to v4.0.0?*
 
-In case you are wondering - we didn't intentionally skip over `v4.0.0`: that 
+In case you are wondering - we didn't intentionally skip over ``v4.0.0``: that 
 number was used when pyATS was initially released to 
 DevNet [https://developer.cisco.com/site/pyats/] at the end of 2017. 
 
-`v4.1.0` is a new milestone in pyATS release. We've re-aligned internal Cisco
+``v4.1.0`` is a new milestone in pyATS release. We've re-aligned internal Cisco
 pyATS with the external DevNet version with the help of some new tech. As a
 result, the two releases now share the same development branch, features, and
 code-base. 
@@ -50,7 +50,7 @@ Any internal Cisco-only behavior is plugged back via a new package:
 ``ats.cisco``, which is only available when pyATS is installed through the
 internal Cisco PyPI server.
 
-In addition, pyATS now fully supports Python ``3.5+`` and ``3.6+``, and can now
+In addition, pyATS now fully supports Python ``3.5+``and``3.6+``, and can now
 install and run on Mac OSX platforms.
 
 
@@ -72,7 +72,7 @@ install and run on Mac OSX platforms.
     ``ats.results``, v4.1.0, 
     ``ats.tcl``, v4.1.0, 
     ``ats.templates``, v4.1.0, 
-    ``ats.tims``, "N/A", "package removed - content moved to ``ats.cisco``"
+    ``ats.tims``, "N/A", "package removed - content moved to``ats.cisco``"
     ``ats.topology``, v4.1.0, 
     ``ats.utils``, v4.1.0, 
 
@@ -139,7 +139,7 @@ Connections
     - connection manager now defaults to Unicon **[DevNet Only]**
 
 Cisco
-    - this is a new package introduced in `v4.1.0` internal to Cisco. When 
+    - this is a new package introduced in ``v4.1.0`` internal to Cisco. When 
       installed, this package updates your pyATS's instance behavior to be tuned
       for internal Cisco usage. This package is not released to DevNet. 
       **[Cisco Only]**
@@ -161,7 +161,7 @@ AEReport
       - added Step XREF information (source file/line)
 
     - AEreport now includes a ``success_rate`` value in both the
-      ``ResultsDetail.xml`` under each section, and in ``ResultsSummary.xml``.
+      ``ResultsDetail.xml``under each section, and in``ResultsSummary.xml``.
       This now standardizes how success rates % is calculated.
 
     - fixed a bug with AEreport not generating log file position for steps
@@ -190,7 +190,7 @@ Kleenex
 
 Topology:
     - Fixed bug in topology.squeeze that was causing erratic results when
-      extend_devices_from_links was specified as `False`.
+      extend_devices_from_links was specified as ``False``.
 
 Results:
     - removed Null result (this was an implementation detail)
@@ -201,7 +201,7 @@ Utils
     - Added ``%ENV{environment_variable_name}`` construct to testbed YAML markup
       processor to allow actual environmental value to be substituted.
 
-    - Added ``%CALLABLE{a.b.c}`` and ``%CALLABLE{a.b.c(x,y,z)}`` construct to
+    - Added ``%CALLABLE{a.b.c}``and``%CALLABLE{a.b.c(x,y,z)}`` construct to
       testbed YAML markup processor to allow actual result of callable to be
       substituted.
 
@@ -214,11 +214,11 @@ Utils
     - Added ``%EXTEND_LIST{listname}`` markup constructor to enable YAML-based
       datafiles to extend list types.
 
-    - Moved ``mpip`` managed pip utility into a cisco-shared ``mpip`` package.
+    - Moved ``mpip``managed pip utility into a cisco-shared``mpip`` package.
 
     - ``Find`` api can return multi line requirements and merge them together.
 
-    - Added ``NotExists`` to build ``Find`` requirements.
+    - Added ``NotExists``to build``Find`` requirements.
 
     - Added a new pluggable framework to support multiprotocol file operations
       such as copying files to/from a remote server.  Other value-added 

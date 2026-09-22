@@ -45,6 +45,7 @@ Submodules
 
 
 .. automodule:: pyats.easypy.main
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
@@ -60,4 +61,3 @@ Submodules
    :members:
    :undoc-members:
    :show-inheritance:
-

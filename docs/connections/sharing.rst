@@ -62,31 +62,37 @@ when called simultaneously.
         def __init__(self, *args, **kwargs):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def connect(self):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def send(self, text):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def receive(self):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def execute(self, command):
             # ...
             # same code as before
+            pass
 
         @BaseConnection.locked
         def configure(self, *args, **kwargs):
             # ...
             # same code as before
+            pass
 
 As we now applied locking & unlocking to all **actions**, whenever a process
 or threads makes a call to the decorated api, the object is locked, and all
@@ -168,7 +174,7 @@ following sets of rules governs this behavior:
     :align: center
 
 In effect, pools look & behave like any other :ref:`connection_class`: each 
-carries its own unique ``alias``, has a path ``via``, and is of a certain type 
+carries its own unique ``alias``, has a path``via``, and is of a certain type 
 of connection implementation ``target``. The key difference is that it manages
 multiple connections of that type (governed by ``pool_size``), and is started
 using ``ConnectionManager.connect(pool_size=N)`` API.

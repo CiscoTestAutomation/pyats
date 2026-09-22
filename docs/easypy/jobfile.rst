@@ -29,11 +29,11 @@ Jobfiles are required to satisfy the following criterion:
     - each job file must have a ``main()`` function defined. This is the main
       entry point of a job file run.
 
-    - the ``main()`` function accepts an argument called ``runtime``. When
+    - the ``main()``function accepts an argument called``runtime``. When
       defined, the engine automatically passes the current :ref:`easypy_runtime`
       object in.
 
-    - inside the ``main()`` function, use ``easypy.run()`` or ``easypy.Task()``
+    - inside the ``main()``function, use``easypy.run()``or``easypy.Task()``
       to define and run individual testscripts as :ref:`easypy_tasks`.
 
     - the name of the job file, minus the ``.py`` extension, becomes this job's
@@ -155,7 +155,7 @@ python processes.
 
 .. tip::
 
-    when a task is running, its Linux process name shows up as ``easypy task:
+    when a task is running, its Linux process name shows up as `` easypy task:
     <taskid> - <testscript>``
 
 
@@ -193,7 +193,7 @@ handles ``Task`` class overheads, and always performs the following:
     :header: "Argument", "Description"
 
     ``testscript``, "testscript to be run in this task"
-    ``taskid``, "unique task id (defaults to ``Task-#`` where # is an
+    ``taskid``, "unique task id (defaults to``Task-#`` where # is an
     incrementing number)"
     ``max_runtime``, "maximum tax runtime in seconds before termination"
     ``runtime``, "easypy runtime object"
@@ -231,7 +231,7 @@ handles ``Task`` class overheads, and always performs the following:
 
 .. warning::
 
-    all forward slash ``/`` found in the ``taskid`` are replaced with an
+    all forward slash ``/``found in the``taskid`` are replaced with an
     underscore ``_``.
 
 
@@ -249,7 +249,7 @@ processes. The ``gTask`` class object is used for Genie Tasks.
     :header: "Argument", "Description"
 
     ``testscript``, "testscript to be run in this task"
-    ``taskid``, "unique task id (defaults to ``Task-#`` where # is an incrementing number)"
+    ``taskid``, "unique task id (defaults to``Task-#`` where # is an incrementing number)"
     ``runtime``, "easypy runtime object"
     ``clean_files``, "List of clean files, specific to this task (optional)"
     ``logical_testbed_file``, "Path to logical testbed file, specific to this task (optional)"
@@ -257,11 +257,11 @@ processes. The ``gTask`` class object is used for Genie Tasks.
 
 For Genie tasks, the `gTask` class can be used. No testscript should be specified for Genie tasks.
 
-The ``clean_files`` and ``logical_testbed_File`` arguments are optional arguments
+The ``clean_files``and``logical_testbed_File`` arguments are optional arguments
 that can be passed if the task uses task specific clean. By default, the job level
 clean arguments are used.
 
-Like its parent ``Process`` class, instantiating a ``Task`` object does not
+Like its parent ``Process``class, instantiating a``Task`` object does not
 create the actual child process: the class constructor only sets internal states
 and pipes, preparing for a process fork. The task is started only when its
 ``start()`` method is called to start the child process's activity.
@@ -384,7 +384,7 @@ Example for Genie tasks with gTask. The ``gTask`` class is imported from the `ge
 
 Easypy expects all tasks to be finished/terminated when ``main()`` scope is
 exited (eg, the jobfile finished execution). Therefore, all tasks created and
-started using ``Task`` class should always be waited for using ``wait()``, and
+started using ``Task``class should always be waited for using`` wait()``, and
 properly handled/terminated by the user.
 
 If  ``wait()`` is not called and/or there are tasks left dangling after exiting
@@ -393,7 +393,7 @@ user in the report email as an exception/error.
 
 ``Task`` objects have the following methods & properties:
 
-``taskid``, ``name``
+``taskid``,``name``
     the task's unique task id (also the same as its process name)
 
 ``kwargs``
@@ -413,12 +413,12 @@ user in the report email as an exception/error.
     can only be called once per task.
 
 ``join([timeout])``
-    if the optional argument ``timeout`` is ``None`` (the default), this method
+    if the optional argument ``timeout``is``None`` (the default), this method
     blocks until the task terminates. If ``timeout`` is a positive number, it
     blocks at most ``timeout`` seconds.
 
 ``wait([max_runtime])``
-    if the optional argument ``max_runtime`` is ``None`` (the default), this
+    if the optional argument ``max_runtime``is``None`` (the default), this
     method blocks until the task terminates. If ``max_runtime`` is a positive
     number, it blocks at most ``max_runtime`` seconds. If the task has not
     finished/terminated by ``max_runtime``, it is automatically terminated,

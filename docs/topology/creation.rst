@@ -79,7 +79,7 @@ unanimous for all.
 
     when ``topology.loader`` loads a testbed file, if the testbed name is not
     specified within ``testbed:`` section, the loader substitutes the file name
-    as the testbed name, with prefix/post-fix such as ``CONFIG.`` and ``.yaml``
+    as the testbed name, with prefix/post-fix such as ``CONFIG.``and``.yaml``
     trimmed.
 
 .. tip::
@@ -167,7 +167,7 @@ you that it can be done, though a bit tedious.
 
 Note also that the above approach chose to create all objects first, and then
 connecting them together after. You can also choose to do it dynamically, for
-example, creating ``Device`` objects and using its ``interfaces`` argument to
+example, creating ``Device``objects and using its``interfaces`` argument to
 pass in its interface objects from the start. As well, all object properties,
 such as ``Testbed.tacacs``, can be updated/changed after object is created.
 

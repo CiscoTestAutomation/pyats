@@ -15,6 +15,7 @@ loading it with new images.
     usages
     inputs
     clean
+    generated_testbed
 
 .. sectionauthor:: Myles Dear <mdear@cisco.com>,
                    Siming Yuan <siyuan@cisco.com>

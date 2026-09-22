@@ -49,7 +49,7 @@ that are inserted into it.
 ``insert(key, value, position)``
     insert a new key/value pair into the datastructure just before ``position``.
 
-When using ``OrderableDict``, the ``position`` argument refers to the 
+When using ``OrderableDict``, the``position`` argument refers to the 
 corresponding index value of the list of all currently ordered keys. That is,
 if you create a list from the ordered keys of the current datastrucuture, each
 key's ``position`` is exactly its list index value.
@@ -57,7 +57,7 @@ key's ``position`` is exactly its list index value.
 Known Limitations
 -----------------
 
-The implementation of ``OrderableDict`` is not as efficient as ``dict`` and
+The implementation of ``OrderableDict``is not as efficient as``dict`` and
 ``OrderedDict``. A separate list is used internally to store the current 
 order of keys, and thus can lead to a larger memory footprint. This problem may
 be further exacerbated if the keys are very large.

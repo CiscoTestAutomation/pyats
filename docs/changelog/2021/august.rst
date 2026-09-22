@@ -1,8 +1,8 @@
 August 2021
-========
+===========
 
 August 31, 2021
-------------
+---------------
 
 .. csv-table:: New Module Versions
     :header: "Modules", "Version"
@@ -40,7 +40,7 @@ Feature List
 ^^^^^^^^^^^^
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * cisco
@@ -80,15 +80,15 @@ Feature List
 
 * pyats
     * Added support for alternate debuggers
-        * Allows a debugger to be chosen with `--pdb <debugger>`
-        * Using `--pdb` without a `<debugger>` will still default to `pdb`
+        * Allows a debugger to be chosen with ``--pdb <debugger>``
+        * Using ``--pdb``without a``<debugger>``will still default to``pdb``
         * Examples
             * pyats run job job.py --pdb pudb
             * pyats run job job.py --pdb web_pdb
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * cisco

@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * pyats.easypy
@@ -51,11 +51,11 @@ Changelogs
         * A new plugin that provides a way to display tips and tricks to users
 
 * pyats.topology
-    * Updated Device class `repr`, added alias value
+    * Updated Device class ``repr``, added alias value
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * easypy

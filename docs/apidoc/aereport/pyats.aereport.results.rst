@@ -17,13 +17,14 @@ Submodules
 
 
 .. automodule:: pyats.aereport.results.rollupresult
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
 
 
 .. automodule:: pyats.aereport.results.summary
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
-

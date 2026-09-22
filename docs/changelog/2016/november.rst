@@ -4,7 +4,7 @@ November 2016
 November 28, 2016 - pyATS v3.2.0
 --------------------------------
 
-`v3.2.0` introduces some exciting new features:
+``v3.2.0`` introduces some exciting new features:
 
     - Moonshine is now supported by the XR-UT orchestrator
     - Sunstone is now supported by the LaaS orchestrator

@@ -173,13 +173,13 @@ Changes
 - now guesses the closest option when user provides a bad choice with
   ``pyats`` CLI command.
 
-- ``testbed.connect()`` now supports passing additional ``kwargs`` to each
+- ``testbed.connect()``now supports passing additional``kwargs`` to each
   connection it establishes.
 
-- `pyats version` command now updated to `pyats version check`.
+- ``pyats version``command now updated to``pyats version check``.
 
-- added `pyats version update` command to allow seamless update of pyATS
-  versions from one release to another without using `pip`
+- added ``pyats version update`` command to allow seamless update of pyATS
+  versions from one release to another without using ``pip``
 
 - added quiet mode for scp and sftp in FileUtils to suppress printing and logging copy progress
 

@@ -14,7 +14,7 @@ Nov 11, 2015
 Changes
 """""""
 
-- Examples should reflect using ``-testbed_file`` rather than ``-tf``.
+- Examples should reflect using ``-testbed_file``rather than``-tf``.
 
 
 Upgrade Instructions
@@ -48,7 +48,7 @@ Changes
 - Added support for invoking IOSv and NXOSv (Titanium) on a LaaS backend server.
 - Added support for invoking multiple parallel LaaS topologies via the
   :ref:`async_index`.
-- Changed `is_logical` testbed configuration key to `logical`, but the old form
+- Changed ``is_logical``testbed configuration key to``logical``, but the old form
   is still supported.
 - Added working examples of using bringup to launch and test a
   topology on a LaaS backend.

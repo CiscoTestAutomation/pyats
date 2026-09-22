@@ -1,13 +1,13 @@
 Custom Data Structures
 ======================
 
-``tcl`` module offers two custom datastructures: ``Array`` and ``KeyedList``. 
+``tcl``module offers two custom datastructures:``Array``and``KeyedList``. 
 As you may have guessed, they are the Python counterparts of Tcl's array and
 keyed list data structures. This is needed in order to fully map Tcl variables
 into Python objects, maintaining a Pythonic programming experience.
 
 .. note::
-    ``Array`` and ``KeyedList`` implementations are simply to enable users to
+    ``Array``and``KeyedList`` implementations are simply to enable users to
     deal with Tcl outputs (eg, parser returns). They should not be used 
     in Python code, since there are... better datastructure native to Python.
 
@@ -39,7 +39,7 @@ type variable to a single Python object whilst feature the same look-and-feel.
     # notice how we have an Array variable
     assert type(array) is Array
 
-Python ``Array`` class implementation extends the base ``dict``. The resulting
+Python ``Array``class implementation extends the base``dict``. The resulting
 object features the same concept as Tcl - but think Pythonic. There's no
 ``array names`` API, but rather:
 
@@ -162,7 +162,7 @@ is used then the content should be another keyed-list - e.g. nested dictionary.
 
 Therefore, notice above how when a key's associated value is also a keyed list, 
 then you can access it directly using ``.`` separator, instead of having to 
-chain ``[ ]`` index operator. Our implementation of ``KeyedList`` class takes 
+chain ``[ ]``index operator. Our implementation of``KeyedList`` class takes 
 care of the nested nature of keyed-lists for the user.
 
 You can also create ``KeyedLists`` on the fly:
@@ -205,7 +205,7 @@ You can also create ``KeyedLists`` on the fly:
     Just because you're familiar with it doesn't mean you should use it. 
     Bringing Tcl concepts into Python is not recommended.
 
-Similarly to ``Array`` class, to save back to Tcl, call the ``tclstr()``
+Similarly to ``Array``class, to save back to Tcl, call the`` tclstr()``
 function.
 
 .. code-block:: python

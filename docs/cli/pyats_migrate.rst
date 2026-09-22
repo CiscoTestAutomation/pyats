@@ -15,12 +15,12 @@ environment.
 
 
 pyats migrate abstract
----------------------
+----------------------
 
 The mechanism for `Genie Abstract`_ and the organization of `Unicon Supported Platforms`_
 are being updated for better consistency and utility. This subcommand will
 examine your environment and inform you of any potential changes that may be
-required. The usage of ``os``, ``model``, ``platform`` will be strictly defined within
+required. The usage of ``os``,``model``,``platform`` will be strictly defined within
 Unicon in the `PID tokens`_ file and may require updates to testbeds and scripts to correctly reflect
 these definitions.
 

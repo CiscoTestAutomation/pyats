@@ -9,11 +9,11 @@ format. This results file contains all the details about execution
 
 The *results.json* report contains hierarchical information about the pyATS job
 executed. The top level is the ``TestSuite`` which contains information about
-the job as a whole. Under the ``TestSuite`` are all of the ``Task``'s that were
+the job as a whole. Under the ``TestSuite``are all of the``Task``'s that were
 executed as a part of the job. Each ``Task`` then has the various sections of
-testing underneath for ``CommonSetup``, ``CommonCleanup``, and ``Testcase``'s.
-These then have child sections which can be ``TestSection``, ``SetupSection``,
-``CleanupSection``, and ``Subsection``. The children of these would be ``Step``,
+testing underneath for ``CommonSetup``,``CommonCleanup``, and``Testcase``'s.
+These then have child sections which can be ``TestSection``,``SetupSection``,
+``CleanupSection``, and``Subsection``. The children of these would be``Step``,
 which can be nested with their own children ``Step``'s.
 
 Each level of the report contains different information relevent to that
@@ -94,9 +94,9 @@ Report structure
     |               |                 |   have Steps, etc.)                      |
     +---------------+-----------------+------------------------------------------+
 
-Everything under ``TestScript`` is considered a ``Section`` as the information
+Everything under ``TestScript``is considered a``Section`` as the information
 gathered is largely the same. The minimal uniqe data (such as ``index`` for
-``Step``) is kept under extra. The ``type`` denotes what the type each
+``Step``) is kept under extra. The``type`` denotes what the type each
 ``Section`` is.
 A sample *results.yaml* file looks like this:
 

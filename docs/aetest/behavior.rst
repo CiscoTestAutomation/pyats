@@ -24,7 +24,7 @@ described in :ref:`running_aetest_script`.
 runtime
 -------
 
-``aetest.runtime`` object provides users access to runtime and ``aetest`` input
+``aetest.runtime``object provides users access to runtime and``aetest`` input
 argument information that are normally not accessible via script test objects. 
 To access, import ``runtime`` as a module, and simply query runtime information
 via object attributes.
@@ -67,8 +67,8 @@ In time, we'll expand this access list as needed.
 self
 ----
 
-Within container classes such as ``CommonSetup``, ``Testcase`` and 
-``CommonCleanup``, ``self`` refers to the instance of that class, and remains
+Within container classes such as ``CommonSetup``,``Testcase`` and 
+``CommonCleanup``,``self`` refers to the instance of that class, and remains
 consistent throughout the execution of that container. 
 
 .. code-block:: python
@@ -104,7 +104,7 @@ consistent throughout the execution of that container.
     # passed
 
 As demonstrated in the above example, ``self.value``, initially created within
-the ``setup`` section, was carried throughout the testcase, and each ``test``
+the ``setup``section, was carried throughout the testcase, and each``test``
 was able to add to it and check that the expected values are consistent.
 
 .. important::
@@ -121,7 +121,7 @@ section's values and result.
 .. note::
     
     this behavior is drastically different vs. python ``unittest`` and
-    ``pytest``, where each test method (starting with ``test_``) has its own
+    ``pytest``, where each test method (starting with``test_``) has its own
     class instance, and is independent of all other test methods.
 
 .. note::
@@ -166,7 +166,7 @@ following provides a graphical view.
 This relationship can be observed and accessed during runtime via the object
 ``parent`` attribute:
 
-    - in ``CommonSetup``, ``Testcase`` and ``CommonCleanup``, ``self.parent``
+    - in ``CommonSetup``,``Testcase``and``CommonCleanup``,``self.parent``
       refers to the ``TestScript`` instance.
 
     - in each test method (subsection/setup/tests/cleanup), its parent is 
@@ -174,12 +174,12 @@ This relationship can be observed and accessed during runtime via the object
       a trivial Python behavior.
 
     - subsection/setup/test/cleanup section's internal corresponding 
-      ``Subsection``, ``SetupSection``, ``TestSection`` and ``CleanupSection``
+      ``Subsection``,``SetupSection``,``TestSection``and``CleanupSection``
       class objects also has ``parent`` attribute, pointing to their 
       container. This is an FYI - these objects are normally not referenced by
       the user.
 
-    - ``TestScript`` instance's ``parent`` is ``None``, because it is the root
+    - ``TestScript``instance's``parent``is``None``, because it is the root
       of all other objects.
 
 .. code-block:: python
@@ -216,7 +216,7 @@ In order to avoid circular references, ``parent`` is internally implemented as
 
 .. note::
 
-    ``parent`` defaults to ``None`` when ``aetest`` objects are instantiated
+    ``parent``defaults to``None``when``aetest`` objects are instantiated
     outside of the runtime environment. For example, during
     :ref:`testbench` scenarios. 
 
@@ -243,7 +243,7 @@ Within each ``TestContainer``, the following rules applies to child sections
 
     - ``setup`` section always runs first (if applicable)
 
-    - ``subsection`` and ``test`` order is slightly more complicated:
+    - ``subsection``and``test`` order is slightly more complicated:
 
       - section methods defined in parent classes (through inheritance) are
         run first (parents first)

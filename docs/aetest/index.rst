@@ -1,5 +1,5 @@
 
-.. highlightlang:: python
+.. highlight:: python
 
 .. _aetest_index:
 
@@ -20,6 +20,7 @@ blocks.
     behavior
     parameters
     loop
+    retry
     results
     steps
     run

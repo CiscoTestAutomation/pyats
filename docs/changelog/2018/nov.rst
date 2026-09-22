@@ -25,5 +25,5 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-    - `Operator` for the `Find` apis are now copyable.
+    - ``Operator``for the``Find`` apis are now copyable.
     - removed httplib2 dependency and now uses requests instead

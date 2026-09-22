@@ -24,7 +24,7 @@ Upgrade Instructions
 Changes
 ^^^^^^^
 
-- Fixed a `pyats logs view` live viewing bug, circumventing https://github.com/cython/cython/issues/2273
+- Fixed a ``pyats logs view`` live viewing bug, circumventing https://github.com/cython/cython/issues/2273
 
 - Fixed issue with multiprocessing on Mac, circumventing https://bugs.python.org/issue33725s
 
@@ -91,7 +91,7 @@ Reporter
 
  - Kleenex no longer generates cleanresults files during clean
 
- - Kleenex will now report a device as `Failed` as long as a test section inside
+ - Kleenex will now report a device as ``Failed`` as long as a test section inside
    clean reports a failure.
 
 Liveview
@@ -106,7 +106,7 @@ Liveview
  - Support viewing genie clean result, display processors and plugins as well
 
 pyATS Contribution Package
- - New package `pyats.contrib` which is a collection of open-source extensions
+ - New package ``pyats.contrib`` which is a collection of open-source extensions
    for the pyATS framework
 
- - Installs as a part of `pip install pyats[full]`
+ - Installs as a part of ``pip install pyats[full]``

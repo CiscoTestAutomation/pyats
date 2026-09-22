@@ -44,11 +44,11 @@ Common Options
 Optional arguments built into the core ``pyats`` command, that can be added to
 any level/subcommands.
 
-``-h``, ``--help``
+``-h``,``--help``
     display help for the given command and/or subcommand
 
-``-v``, ``--verbose``
+``-v``,``--verbose``
     increase the verbosity of display output
 
-``-q``, ``--quiet``
+``-q``,``--quiet``
     decrease the verbosity of displayed output

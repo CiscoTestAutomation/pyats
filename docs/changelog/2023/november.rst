@@ -1,8 +1,8 @@
 November 2023
-==========
+=============
 
 November 27 - Pyats v23.11
-------------------------
+--------------------------
 
 
 
@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * bringup.bases
@@ -60,7 +60,7 @@ Changelogs
 
 
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * clean
@@ -73,7 +73,7 @@ Changelogs
         * Bringup contains the scripts to bringup logical devices
         * Clean contains the scripts common to bringup and kleenex
         * Kleenex contains the scripts to execute clean
-    * Fixed issue with kleenex loader where the `--clean-image-json` argument wouldn't allow for device aliases to be passed
+    * Fixed issue with kleenex loader where the ``--clean-image-json`` argument wouldn't allow for device aliases to be passed
     * Added unittests to verify changes
 
 * easypy
@@ -84,7 +84,7 @@ Changelogs
     * Updated schema to support services for testbed servers.
 
 * manifest
-    * Fixed issue with `parse_cli_args` where the `meta` argument would get nested in lists if it was specified more than two times
+    * Fixed issue with ``parse_cli_args``where the``meta`` argument would get nested in lists if it was specified more than two times
 
 * pyats.connections.bases
     * Add CLI arguments to service wrapper

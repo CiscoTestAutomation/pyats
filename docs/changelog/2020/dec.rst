@@ -48,7 +48,7 @@ Feature List
 
     * - Embedded pyATS File Transfer Server
       - :ref:`Docs <pyats_file_transfer_server>`
-      - | A plugin in `genie.libs.filetransferutils` which starts a local file
+      - | A plugin in ``genie.libs.filetransferutils`` which starts a local file
         | transfer server if defined in the testbed YAML file.
         .. code-block:: text
 
@@ -75,8 +75,8 @@ Log
     to avoid incompatibility
 
 Kleenex
-  - Added BringupWorkerException catch to `BringUp`'s `__exit__` method
-  - Added general Exception catch to `BringUp`'s `__exit__` method that will log
+  - Added BringupWorkerException catch to ``BringUp``'s``__exit__`` method
+  - Added general Exception catch to ``BringUp``'s``__exit__`` method that will log
     details then re-raise the exception
 
 Reporter
@@ -84,7 +84,7 @@ Reporter
   - More robust unix file socket creation in tmp directory
 
 Easypy
-  - pass `runinfo_dir` as parameter for script execution
+  - pass ``runinfo_dir`` as parameter for script execution
 
 Connections
   - Updated connection manager instantiate function in order to convert

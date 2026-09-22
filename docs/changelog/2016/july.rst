@@ -6,14 +6,14 @@ July 26, 2016 - pyATS v3.1.0
 
     *Newer is usually better!*
 
-Building on the new foundations set forth by ``v3.0.0``, ``v3.1.0`` introduces 
+Building on the new foundations set forth by ``v3.0.0``,``v3.1.0`` introduces 
 an arsenal of exciting new, mostly backward compatible features:
 
     - Support for 64-bit Python
     - Customizable Easypy HTML reports
     - Support for Easypy :ref:`easypy_rerun`
     - Step-debug feature revamp
-    - Introduction of a new ``mpip`` tool for managed ``pip`` upgrade/downgrade
+    - Introduction of a new ``mpip``tool for managed``pip`` upgrade/downgrade
     - Removed hard-coded virtual environment dependency
     - Generic :ref:`generic_find` object
     - AEtest custom script discovery & section ordering
@@ -90,7 +90,7 @@ Changes
 ^^^^^^^
    
 AEreport
-  - Modified `generate_xunit` to reflect similar test cases count between xUnit
+  - Modified ``generate_xunit`` to reflect similar test cases count between xUnit
     and pyATS result count.
 
   - Now supports step objects.
@@ -115,10 +115,10 @@ AEtest
   - Pause on phrase enhancement - touching the pause file shuts down the timer, 
     allowing users to debug at their leisure.
     
-  - Affix functionality for ``skip``, ``skipIf``, ``skipUnless`` decorators
+  - Affix functionality for ``skip``,``skipIf``,``skipUnless`` decorators
 
   - Skipped testcases are no longer reported when skipped due to usage of
-    ``uids`` and ``groups`` feature.
+    ``uids``and``groups`` feature.
   
   - Long names in testcases and steps, are truncated to 80 characters in the
     reports.
@@ -127,7 +127,7 @@ AEtest
     refer only to local parameter
 
 Easypy
-  - Refactored Email generation to use the new `EmailMsg` utils module with 
+  - Refactored Email generation to use the new ``EmailMsg`` utils module with 
     support for HTML report notifications.
 
     - attachments are now accepted using MIMEMultipart formats in both HTML and 
@@ -178,7 +178,7 @@ Installation
     package.  No longer automatically installing dyntopo, tclclean, hltapi
     packages.
 
-  - updated to latest ``pip`` and ``setuptools``
+  - updated to latest ``pip``and``setuptools``
 
   - install script now installs ``Csccon`` in addition to all pyATS core
     packages. No other cisco-shared packages are installed by default.
@@ -220,7 +220,7 @@ Utils
     arbitrary objects through a given set of requirements.
 
 Miscellaneous
-    - Removed ``sys.environ['VIRTUAL_ENV']`` dependency. Now uses ``sys.prefix``
+    - Removed ``sys.environ['VIRTUAL_ENV']``dependency. Now uses``sys.prefix``
       instead
 
     - AEtest, Kleenex, Topology, Utils: added ``extends`` capability to testbed

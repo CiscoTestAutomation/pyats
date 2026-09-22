@@ -37,7 +37,7 @@ Legacy Import Helper
 
 Enables you to continue using legacy import paths without having to modify much
 of your script. This functionality is akin to Python's native
-``from __future__ import X`` where ``X`` is a new, future feature. Where as in
+``from __future__ import X``where``X`` is a new, future feature. Where as in
 Python the above import gives you a glimpse into the future, and leverage
 future, upcoming features, this ``LegacyImporter`` enables you to dwell in the
 past, and enables your older scripts to continue to function.
@@ -99,7 +99,7 @@ Limitations
   modules.
 
 - Only works with **packaged** python code. Eg, any package that is installed
-  using ``pip install`` command, that is built using a ``setup.py`` file using
+  using ``pip install``command, that is built using a``setup.py`` file using
   Setuptools.
 
 Developer Guide
@@ -178,8 +178,8 @@ your translation mapping dictionary. Here's the built-in behaviour:
     .. note::
 
         the translation also auto-applies to a package's child modules. Eg,
-        if ``x.y`` module is renamed to ``x.z``, then your imports such as
-        ``x.y.a`` will auto map to ``x.z.a``
+        if ``x.y``module is renamed to``x.z``, then your imports such as
+        ``x.y.a``will auto map to``x.z.a``
 
 In addition, if you are making "complex" transformations, you can provide
 functions that does the mappings:
@@ -193,12 +193,12 @@ functions that does the mappings:
 
     # define a function that translates legacy names to new names
     def to_new(name):
-        if name == 'my_package' or if name.startswith('my_package.'):
+        if name == 'my_package' or name.startswith('my_package.'):
             return name.replace('my_package', 'your_package', 1)
 
     # define the reverse function that translates a new name to a legacy one
     def to_old(name):
-        if name == 'your_package' or if name.startswith('your_package.'):
+        if name == 'your_package' or name.startswith('your_package.'):
             return name.replace('your_package', 'my_package', 1)
 
     # in your module's __init__, instead of defining a dictionary,

@@ -1,7 +1,7 @@
 Configuration Container
 =======================
 
-The ``Configuration`` container is a special type of ``NestedAttrDict`` intended
+The ``Configuration``container is a special type of``NestedAttrDict`` intended
 to store Python module and feature configurations. 
 
 Avoid confusing Python configuration with router configuration. Python
@@ -47,7 +47,7 @@ Behavior
   children ``Configuration`` nodes will be copied. (Eg - it's a pseudo deep
   copy, but will only deep copy its own object type)
 
-- ``Configuration.load_cfgs(*files)`` accepts ``N`` INI style files. Internally
+- ``Configuration.load_cfgs(*files)``accepts``N`` INI style files. Internally
   it uses ``configparser.ConfigParser.read(*files)`` api, and inherits all of 
   its behavior. Returns the list of files that was loaded successfully.
 
@@ -58,7 +58,7 @@ Behavior
   - basic data types will be typecasted into Python objects
     (bool/int/float/None)
 
-- ``Configuration.load_yamls(*files)`` accepts ``N`` yaml files. Internally
+- ``Configuration.load_yamls(*files)``accepts``N`` yaml files. Internally
   performs a YAML load on each file, and saves the configuration data.
   The files are read from left to right, hence if any data block is repeated in
   the files, the right most file's data takes precedence. Returns the list of

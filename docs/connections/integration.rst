@@ -202,11 +202,11 @@ with its own unique alias for identification purposes:
 
 .. warning::
 
-    alias names may not contain characters such as ``-``, ``.``, ``\`` etc. It 
+    alias names may not contain characters such as ``-``,``.``,``\`` etc. It 
     may only contain valid python attribute identifiers: ``[a-z], [A-Z], [0-9], 
     _``.
 
-When ``device.connect()`` is called without the ``alias`` argument (eg, 
+When ``device.connect()``is called without the``alias`` argument (eg, 
 :ref:`connection_single_instance`), a default alias is used:
 
 .. code-block:: python

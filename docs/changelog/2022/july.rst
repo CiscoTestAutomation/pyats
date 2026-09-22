@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.topology
@@ -52,10 +52,10 @@ Changelogs
 * pyats.easypy
     * Modified MailBot:
         * Enabled {runtime} formatting for custom subjects on CLI
-        * Added `email.subject` configuration option
+        * Added ``email.subject`` configuration option
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * ats.devat

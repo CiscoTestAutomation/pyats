@@ -43,7 +43,7 @@ Upgrade Instructions
 Changelogs
 ^^^^^^^^^^
 --------------------------------------------------------------------------------
-                                      Fix                                       
+Fix
 --------------------------------------------------------------------------------
 
 * pyats.easypy
@@ -57,11 +57,11 @@ Changelogs
 
 * pyats.topology
     * Avoid processing markup for secret string and credential objects
-    * Fix the testbed.raw_config for markup resolution when using `extends` in yaml file
+    * Fix the testbed.raw_config for markup resolution when using ``extends`` in yaml file
 
 
 --------------------------------------------------------------------------------
-                                      New                                       
+New
 --------------------------------------------------------------------------------
 
 * pyats/cisco/commands

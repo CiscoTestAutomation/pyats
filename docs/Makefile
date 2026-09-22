@@ -32,8 +32,8 @@ HOSTNAME	  = localhost
 VERSION	      = v`python -c "from pyats import info; print(info.__version__)"`
 
 # Dependencies for building documentation
-DEPENDENCIES = robotframework "Sphinx==3.5.4" sphinxcontrib-napoleon \
-			   sphinxcontrib-mockautodoc sphinx-rtd-theme \
+DEPENDENCIES = robotframework Sphinx==7.4.7 sphinxcontrib-napoleon \
+			   sphinxcontrib-mockautodoc sphinx-rtd-theme==3.1.0 \
 			   #sphinxcontrib_robotframework
 
 # User-friendly check for sphinx-build

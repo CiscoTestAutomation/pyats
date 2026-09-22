@@ -37,7 +37,7 @@ November 20, 2014
 
 * skip logging environment variables with non-supported encoding
 
-* Remove DEBUG msg for ``easypy`` and ``aetest`` logs, unless -D is passed as 
+* Remove DEBUG msg for ``easypy``and``aetest`` logs, unless -D is passed as 
   an argument.
 
 * Fixed issue with importing csccon
@@ -140,16 +140,16 @@ infrastructure whilst maintaining all the perks Python has to offer.
 Differences vs. Beta
 ^^^^^^^^^^^^^^^^^^^^
 
-* YAML schema: ``mgmt`` and ``consoles`` consolidated into ``connections``.
+* YAML schema: ``mgmt``and``consoles``consolidated into``connections``.
 
-* YAML schema: ``tbname`` to just ``name``
+* YAML schema: ``tbname``to just``name``
 
 * Tcl module: global interpreter changed: ``ats.tcl`` module itself is now the
   global interpreter. 
 
-* Job files: ``ats_run`` renamed to just ``run``
+* Job files: ``ats_run``renamed to just``run``
 
-* Job files: removed ``script_args`` argument to ``run``. Now all additional
+* Job files: removed ``script_args``argument to``run``. Now all additional
   arguments will be passed through as script arguments
 
 * AETest: removed ``SCRIPT_ARGS``, and changed the mechanism for script

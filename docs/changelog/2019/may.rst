@@ -52,7 +52,7 @@ Changes
 
 - ``Unicon`` is now a standard requirement for connections module
 
-- Now defaults to ``~/.pyats/archive`` and ``~/.pyats/runinfo`` folder for 
+- Now defaults to ``~/.pyats/archive``and``~/.pyats/runinfo`` folder for 
   standard log/archive output (unless Cisco internal ``cisco`` module is 
   installed, where it reverts back to current behavior)
 
@@ -75,5 +75,5 @@ Changes
   ``127.0.0.1`` serving localhost instead.
 
 - Kleenex loader no longer raises an exception if no images are present
-  but -invoke_clean has not been specified in `pyats run job`.
+  but -invoke_clean has not been specified in ``pyats run job``.
 

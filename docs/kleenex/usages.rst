@@ -98,6 +98,7 @@ File Structure
     |-- Kleenex_2019Mar04_10:41:19.026530     -> kleenex logging directory
     .   |-- Kleenex.log                       -> Top level clean log
     .   |-- Kleenex.device_1.log              -> Device-specific clean log
+    .   |-- Kleenex.device_1.retry1.log       -> Device-specific retry log
     .   |-- Kleenex.device_2.log              -> Device-specific clean log
     .   |-- Kleenex.device_3.log              -> Device-specific clean log
         |-- env.txt                           -> environment debug information
@@ -114,6 +115,10 @@ Kleenex.log
 
 Kleenex.<device_name>.log
     Clean log: one per device that is cleaned.
+
+Kleenex.<device_name>.retry<N>.log
+    Clean log for retry ``N`` of a device. This file is created only when a
+    complete device Clean is retried after successful recovery.
 
 testbed.static.yaml
     Contents of the ``--testbed-file``, if specified by the user.
@@ -179,6 +184,7 @@ some exceptions.
     ``--testbed-file``, "testbed YAML file to load."
     ``--clean-file``, "YAML file(s) containing clean configuration details"
     ``--clean-devices``, "list of devices to clean"
+    ``--clean-retries``, "maximum number of complete device Clean retries after successful recovery; defaults to 1"
     ``--clean-device_image``, "space separated images per device with format device:/path/to/image.bin"
     ``--clean-os-image``, "space separated images per OS with format os:/path/to/image.bin"
     ``--clean-group-image``, "space separated images per group with format group:/path/to/image.bin"
@@ -255,6 +261,33 @@ some exceptions.
                                        --clean-file /path/to/my/clean.yaml\
                                        --clean-devices "[[device_a, device_b, device_c], [device_d, device_e]]"\
                                        --invoke-clean
+
+.. _kleenex_clean_retries_option:
+
+``--clean-retries``
+    specifies the maximum number of fresh, complete device Clean attempts that
+    may be scheduled after successful device recovery. The initial attempt is
+    not counted. For example, ``--clean-retries 2`` allows the initial attempt
+    plus at most two retries.
+
+    The value must be a non-negative integer and defaults to ``1``. Set it to
+    ``0`` to disable retry scheduling. Recovery may still succeed when retries
+    are disabled, but the original failed Clean remains the final result.
+
+    A retry starts at the first configured Clean stage and is scheduled only
+    for the recovered device. Ordinary Clean failures and failed recovery do
+    not trigger a retry. See :ref:`kleenex_clean_recovery_retries` for the full
+    behavior and result-reporting contract.
+
+    .. code-block:: bash
+
+        bash$ pyats clean --testbed-file /path/to/my/testbed.yaml\
+                          --clean-file /path/to/my/clean.yaml\
+                          --clean-retries 2
+
+    The legacy ``kleenex`` command accepts the equivalent
+    ``-clean_retries COUNT`` option. Programmatic integrations can pass the
+    same policy as ``KleenexMain(clean_retries=COUNT)``.
 
 ``--clean-device-image``
     specifies images to be used for clean per device. See

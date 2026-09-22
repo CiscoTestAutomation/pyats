@@ -114,7 +114,7 @@ Import, inspect & run
     each test script is imported into Python using the standard ``import``
     mechanism, and then inspected for test sections. Discovered test sections
     (classes) are instantiated and run. This mechanism is inline with how
-    ``pytest`` & ``unittest`` loads and discovers testcases.
+    ``pytest``&``unittest`` loads and discovers testcases.
 
     Therefore, consider Classes and Functions within a test script as only
     *boundaries* or *blocks* that define testcases, and tests. Eg. user has no
@@ -128,7 +128,7 @@ AEtest module ``aetest`` is installed by default as part of pyATS installation.
 The package is also featured in the PyPI server, and can be installed
 separately.
 
-Note that ``aetest`` module is part of the ``pyats`` namespace, and therefore,
+Note that ``aetest``module is part of the``pyats`` namespace, and therefore,
 users should always refer to the full namespace when installing & using:
 
 .. code-block:: bash

@@ -108,3 +108,7 @@ Manifest Schema
                           # volume mounts are used with container execution using xpresso
                    - "/path"
                    - "/another/path"
+
+            tags:
+            -  # string with tag keyword
+            (optional)

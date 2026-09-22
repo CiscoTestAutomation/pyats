@@ -38,7 +38,7 @@ is a human-readable data serialization format that is designed to be both
 human readable and machine readable.
 
 YAML is indentation & white space sensitive. Its syntax maps directly to most
-common datastructures in Python, such ``dict``, ``list``, ``str`` etc.
+common datastructures in Python, such ``dict``,``list``,``str`` etc.
 
 .. code-block:: yaml
 

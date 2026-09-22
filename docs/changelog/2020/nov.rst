@@ -22,4 +22,4 @@ Upgrade Instructions
     bash$ pip install --upgrade ats.reporter
 
 Changes
-  - adding `totaltasks` value to testsuite in results file
+  - adding ``totaltasks`` value to testsuite in results file

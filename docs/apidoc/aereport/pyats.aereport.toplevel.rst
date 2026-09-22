@@ -17,6 +17,7 @@ Submodules
 
 
 .. automodule:: pyats.aereport.toplevel.aereportelement
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
@@ -29,7 +30,7 @@ Submodules
 
 
 .. automodule:: pyats.aereport.toplevel.simplelist
+   :no-index:
    :members:
    :undoc-members:
    :show-inheritance:
-

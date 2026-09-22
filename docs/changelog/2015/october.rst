@@ -109,7 +109,7 @@ Changes
 - No user-facing APIs were changed.
 - Many Unit Tests created.
 - Now automatically inferring default type if not provided by user.
-- Now allowing the parameter `xrvr_nic_type` to be specified via clean file.
+- Now allowing the parameter ``xrvr_nic_type`` to be specified via clean file.
 - Refactoring was done in the following areas:
 
   - Exception handling during testbed teardown,
