@@ -25,6 +25,8 @@ Reference
     # ------------
     #   %{<path>.<path>.<...>}
     #   %{<path>.<path>.<...>.keys()}
+    #   %{<path>.<path>.<...>, null_on_fail=True}
+    #   %{<path>.<path>.<...>, empty_on_fail=True}
     #   %INTF{logical_interface_name}
     #   %ENV{environment_variable_name}
     #   %CALLABLE{path_to_callable}
@@ -44,6 +46,8 @@ Reference
     #   - use . to separate reference path
     #   - use 'self' as first word to reference current device
     #   - use '.keys()' to get the key values for a path
+    #   - use null_on_fail=True or empty_on_fail=True to select a fallback
+    #     when a reference path does not exist
     #   - The %INTF{ } form causes the logical interface name to be
     #     replaced with the actual interface name from the
     #     device's topology block.
@@ -67,6 +71,29 @@ Reference
     #   - The %EXTEND_LIST{ } form can be used for keys to extend a list
     #     from another YAML file. The same syntax can also be used to create
     #     a value by extending one or more list references.
+
+Missing References
+------------------
+
+References raise a markup error when the requested path does not exist. Use
+``null_on_fail=True`` to resolve a missing reference to ``None``, or
+``empty_on_fail=True`` to resolve it to an empty string. The fallback options
+are mutually exclusive and apply to references such as ``%{self.x.y}`` as well
+as ordinary document paths.
+
+.. code-block:: yaml
+
+    devices:
+      router:
+        recovery:
+          image: "%{self.device_recovery.tftp_boot.image, empty_on_fail=True}"
+        optional_value: "%{optional.data, null_on_fail=True}"
+
+When the markup occupies the entire YAML value, the fallback retains its type:
+``null_on_fail`` produces YAML ``null`` (Python ``None``), while
+``empty_on_fail`` produces an empty string. For an inline reference,
+``empty_on_fail`` removes the missing reference text; ``null_on_fail`` inserts
+the text ``None``.
 
 
 Markup Examples
