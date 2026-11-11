@@ -25,6 +25,8 @@ Reference
     # ------------
     #   %{<path>.<path>.<...>}
     #   %{<path>.<path>.<...>.keys()}
+    #   %{<path>.<path>.<...>, null_on_fail=True}
+    #   %{<path>.<path>.<...>, empty_on_fail=True}
     #   %INTF{logical_interface_name}
     #   %ENV{environment_variable_name}
     #   %CALLABLE{path_to_callable}
@@ -44,6 +46,8 @@ Reference
     #   - use . to separate reference path
     #   - use 'self' as first word to reference current device
     #   - use '.keys()' to get the key values for a path
+    #   - add null_on_fail=True or empty_on_fail=True to choose a fallback
+    #     when a reference path is missing; these options are mutually exclusive
     #   - The %INTF{ } form causes the logical interface name to be
     #     replaced with the actual interface name from the
     #     device's topology block.
@@ -153,6 +157,39 @@ Markup Examples
 
     # A default value can be a list
     %CLI{another_flag, default=[1,2]}
+
+Missing Reference Paths
+------------------------
+
+By default, a reference to a missing path raises a YAML markup error. Use
+``null_on_fail=True`` to resolve a missing whole-field reference to ``None``,
+or ``empty_on_fail=True`` to resolve it to an empty string. These options only
+apply when the path is missing; references to existing values are unchanged.
+The options are mutually exclusive.
+
+.. code-block:: yaml
+
+    devices:
+        router:
+            optional_image: "%{self.device_recovery.tftp_boot.image, null_on_fail=True}"
+            optional_description: "%{settings.description, empty_on_fail=True}"
+
+When a reference is embedded in other text, its result is substituted as
+text. For example, a missing reference with ``null_on_fail=True`` inside
+``"image: %{path, null_on_fail=True}"`` produces the text ``"image: None"``.
+
+Clean Template References
+-------------------------
+
+Device-scoped ``%{self...}`` references in Clean templates are resolved after
+the rendered template is merged into the device's clean data. This allows a
+template to refer to device data supplied elsewhere, such as the recovery
+image:
+
+.. code-block:: yaml
+
+    rommon_boot:
+        image: "%{self.device_recovery.tftp_boot.image, null_on_fail=True}"
 
 .. note::
 
