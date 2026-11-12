@@ -96,6 +96,78 @@ decorator, signifying that this method is first marked as a section, then this
 section is retryable.
 
 
+.. _aetest_loop_retry_scope:
+
+Retry Scope with Loops
+---------------------
+
+Decorator placement determines which loop invocations a retry replays.
+A retry outside a loop evaluates the combined result of the complete child
+plan before deciding whether to replay it. Placing retry inside a loop gives
+each outer iteration its own retry boundary.
+
+.. code-block:: python
+
+    from pyats import aetest
+
+    class CheckDevices(aetest.Testcase):
+        @aetest.retry(retries=2, retry_wait=0)
+        @aetest.loop(devices=['r1', 'r2'])
+        @aetest.loop(pids=['p1', 'p2'])
+        @aetest.test
+        def check(self, devices, pids):
+            pass
+
+One attempt runs ``r1/p1``, ``r1/p2``, ``r2/p1``, and ``r2/p2``. An eligible
+failure replays all four invocations, including those that passed. The next
+attempt starts only after the complete previous attempt has finished.
+``retries=2`` allows one initial attempt and up to two retries.
+
+Move retry inside the device loop to replay only the current device's PID
+loop:
+
+.. code-block:: python
+
+    @aetest.loop(devices=['r1', 'r2'])
+    @aetest.retry(retries=2, retry_wait=0)
+    @aetest.loop(pids=['p1', 'p2'])
+    @aetest.test
+    def check(self, devices, pids):
+        pass
+
+Here, ``r1/p1`` and ``r1/p2`` complete and retry together if needed before the
+plan advances to ``r2``. Placing retry below both loop decorators retries only
+the current device/PID invocation.
+
+Retrying a looped testcase replays its setup, test sections, and cleanup for
+each testcase invocation in the retry boundary. Subsections support the same
+loop/retry composition. Loops remain sequential and normal AEtest processors,
+UID filters, and control-flow signals still apply.
+
+Results and Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The existing retry eligibility, wait interval, and CLI configuration apply.
+By default, failed results are eligible; include ``'errored'`` in
+``section_results`` to retry errored attempts. Retry-only targets retain their
+existing behavior.
+
+Each attempt's invocations appear separately in the report. UIDs gain a
+`` [Retry 1]`` suffix on the first retry. When a target has multiple nested
+retry boundaries, the suffix includes the boundary's outer-to-inner position,
+for example `` [Retry 1.1]`` for the first retry of the outer boundary and
+`` [Retry 2.1]`` for the first retry of the inner boundary.
+
+Intermediate attempts remain visible while their results are excluded from
+final parent rollup. The completed retry boundary contributes its final result.
+A successful retry after a failed or errored attempt uses ``PASSX``; exhausted
+retries retain the final attempt's result. The ``retry`` and ``retry_count``
+parameters describe the innermost active retry boundary.
+
+See :ref:`aetest_hierarchical_looping` for parameter precedence, input replay,
+and nested UID formatting.
+
+
 Function Arguments
 ------------------
 
