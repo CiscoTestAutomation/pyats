@@ -193,6 +193,93 @@ In addition, in an effort to make the script more aesthetically pleasing,
     accessing parameters & etc, refer to :ref:`dynamic_looping`.
 
 
+.. _aetest_hierarchical_looping:
+
+Hierarchical Loops
+------------------
+
+Stack ``@aetest.loop`` decorators to run a loop within another loop. The outer
+loop advances after the inner loop finishes. Execution remains sequential.
+Each decorator introduces a dimension; values within a single decorator retain
+their existing positional pairing and filler behavior.
+
+.. code-block:: python
+
+    from pyats import aetest
+
+    class CheckDevices(aetest.Testcase):
+        @aetest.loop(devices=['r1', 'r2'])
+        @aetest.loop(pids=['p1', 'p2'])
+        @aetest.test
+        def check(self, devices, pids):
+            print(devices, pids)
+
+This produces the Cartesian product in this order:
+
+.. code-block:: text
+
+    r1 p1
+    r1 p2
+    r2 p1
+    r2 p2
+
+Each invocation receives parameters from all loops on its path. If two loops
+provide the same parameter name, the inner loop's value takes precedence.
+The same composition works on testcases and subsections. The existing
+restrictions on looping common setup/cleanup and individual testcase
+setup/cleanup sections still apply.
+
+A subclass inherits its base class's loop when it has no loop declaration of its
+own. Declaring a loop on the subclass replaces those inherited defaults. Stack
+multiple decorators directly on that subclass to define its nested dimensions.
+
+Invocation UIDs
+~~~~~~~~~~~~~~~
+
+Each generated invocation remains a normal AEtest result item. A single loop
+retains its existing UID. Nested loops join their iteration UIDs into a path,
+for example ``check[devices=r1]/check[pids=p1]``. Repeated inner UIDs remain
+unique under different outer iterations. UID filters receive the full nested
+path as the generated section's UID.
+
+Within a nested UID component, ``%`` is encoded as ``%25`` and ``/`` as ``%2F``
+to keep path boundaries unambiguous. This encoding applies only to nested
+paths; explicitly supplied single-loop UIDs remain unchanged.
+
+Dynamic Loops and Iterables
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``aetest.loop.mark()`` wraps an existing static loop, allowing a setup section
+to add an outer dimension at runtime. Each marking call adds a dimension, so
+mark a target once for each intended loop level.
+
+Loop input is consumed lazily. Raw one-shot iterator arguments are buffered as
+needed. Each evaluation has its own cursor over that captured sequence, including
+when the same decorated target runs again. Captured objects retain their identity;
+they are not copied. The buffer lives as long as the decorated plan and grows with
+the consumed prefix. An unbounded source therefore needs unbounded storage if all
+its earlier values must remain replayable.
+
+Use a callable factory when each loop entry should generate fresh values or
+repeat side effects, particularly for sources backed by files or other external
+resources:
+
+.. code-block:: python
+
+    @aetest.loop(devices=lambda: iter(['r1', 'r2']))
+    @aetest.loop(pids=lambda: iter(['p1', 'p2']))
+    @aetest.test
+    def check(self, devices, pids):
+        pass
+
+Custom ``generator=`` implementations keep the existing
+``Iteration(uid, parameters)`` protocol. Their parameter values follow the same
+inner-over-outer precedence. Composed loops require each iteration's
+``parameters`` to be a mapping.
+
+See :ref:`aetest_loop_retry_scope` for combining loops with retries.
+
+
 Loop Parameters
 ---------------
 

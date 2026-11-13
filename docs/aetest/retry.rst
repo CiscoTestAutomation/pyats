@@ -96,6 +96,78 @@ decorator, signifying that this method is first marked as a section, then this
 section is retryable.
 
 
+.. _aetest_loop_retry_scope:
+
+Retry Scope with Loops
+---------------------
+
+Decorator placement determines which loop invocations a retry replays.
+A retry outside a loop evaluates the combined result of the complete child
+plan before deciding whether to replay it. Placing retry inside a loop gives
+each outer iteration its own retry boundary.
+
+.. code-block:: python
+
+    from pyats import aetest
+
+    class CheckDevices(aetest.Testcase):
+        @aetest.retry(retries=2, retry_wait=0)
+        @aetest.loop(devices=['r1', 'r2'])
+        @aetest.loop(pids=['p1', 'p2'])
+        @aetest.test
+        def check(self, devices, pids):
+            pass
+
+One attempt runs ``r1/p1``, ``r1/p2``, ``r2/p1``, and ``r2/p2``. An eligible
+failure replays all four invocations, including those that passed. The next
+attempt starts only after the complete previous attempt has finished.
+``retries=2`` allows one initial attempt and up to two retries.
+
+Move retry inside the device loop to replay only the current device's PID
+loop:
+
+.. code-block:: python
+
+    @aetest.loop(devices=['r1', 'r2'])
+    @aetest.retry(retries=2, retry_wait=0)
+    @aetest.loop(pids=['p1', 'p2'])
+    @aetest.test
+    def check(self, devices, pids):
+        pass
+
+Here, ``r1/p1`` and ``r1/p2`` complete and retry together if needed before the
+plan advances to ``r2``. Placing retry below both loop decorators retries only
+the current device/PID invocation.
+
+Retrying a looped testcase replays its setup, test sections, and cleanup for
+each testcase invocation in the retry boundary. Subsections support the same
+loop/retry composition. Loops remain sequential and normal AEtest processors,
+UID filters, and control-flow signals still apply.
+
+Results and Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The existing retry eligibility, wait interval, and CLI configuration apply.
+By default, failed results are eligible; include ``'errored'`` in
+``section_results`` to retry errored attempts. Retry-only targets retain their
+existing behavior.
+
+Each attempt's invocations appear separately in the report. UIDs gain a
+`` [Retry 1]`` suffix on the first retry. When a target has multiple nested
+retry boundaries, the suffix includes the boundary's outer-to-inner position,
+for example `` [Retry 1.1]`` for the first retry of the outer boundary and
+`` [Retry 2.1]`` for the first retry of the inner boundary.
+
+Intermediate attempts remain visible while their results are excluded from
+final parent rollup. The completed retry boundary contributes its final result.
+A successful retry after a failed or errored attempt uses ``PASSX``; exhausted
+retries retain the final attempt's result. The ``retry`` and ``retry_count``
+parameters describe the innermost active retry boundary.
+
+See :ref:`aetest_hierarchical_looping` for parameter precedence, input replay,
+and nested UID formatting.
+
+
 Function Arguments
 ------------------
 
@@ -305,3 +377,72 @@ testcase retry enabled.
         |-- connect_testcase                                                  FAILED
         |   `-- STEP 1: Failure case                                          FAILED
         `-- testcase_cleanup                                                  PASSED
+
+CLI Retry With Loops
+--------------------
+
+When CLI retry selects a looped target without a retry decorator, it wraps that
+target's complete loop plan. Explicit retry decorators retain their declared
+boundaries; CLI settings override the policy at those boundaries.
+
+Selectors match exact names or UIDs. Qualified selectors such as
+``Case.check`` take precedence over a bare ``check`` selector. A target absent
+from a nonempty selector map is excluded. Per-target ``retries=0`` disables
+replay, and ``retry_wait=0`` is preserved.
+
+Loop and Retry Review Job
+-------------------------
+
+Download the :download:`review job <examples/hierarchical_looping/loop_retry_matrix_job.py>`,
+:download:`placement testscript <examples/hierarchical_looping/loop_retry_matrix.py>`,
+:download:`eligibility testscript <examples/hierarchical_looping/eligibility_matrix.py>`
+and :download:`CLI testscript <examples/hierarchical_looping/cli_retry_matrix.py>` and
+:download:`independent auditor <examples/hierarchical_looping/audit_review_archive.py>`
+into the same directory, then run:
+
+.. code-block:: console
+
+    pyats run job loop_retry_matrix_job.py --no-mail
+
+The job exercises every subset of retry boundaries around zero through three
+loop dimensions: 30 plans for each of testcase, test-section and subsection
+targets. Six tasks cover passing runs, a single failure, inner retry exhaustion
+followed by outer recovery, complete exhaustion, an eligible error and skipped
+invocations. These tasks cover 540 placement scenarios.
+
+An eligibility task adds all seven AEtest results under both default and explicit
+result policies for each target kind (42 scenarios). Five CLI tasks add positive
+and negative selection, qualified selectors, zero and two-retry overrides, and
+section-type filtering (105 scenarios). They use looped targets without a retry
+decorator. The job calls the real Easypy RetryPlugin with each JSON CLI input so
+all five policies can be reviewed in one archive. In total, the job covers 687
+bounded scenarios without a testbed.
+
+Scenario names encode depth and retry boundaries. For example, ``D2_R101``
+uses two loop dimensions with retry outside both loops and at the leaf, while
+``D2_R010`` retries only the inner loop for each outer iteration.
+
+Each task logs trace records with parameters, invocation UIDs and retry counts.
+Its final ``zz_audit`` subsection checks replay counts, ordering where applicable,
+and UID uniqueness. The archive includes all five source files,
+``matrix_manifest.json`` with exact source revisions and CLI policies, six
+``matrix_<profile>.json`` files, ``eligibility.json`` and five ``cli_<profile>.json``
+files.
+
+The deliberately failed, errored, blocked and aborted scenarios affect the
+overall job result. All twelve ``zz_audit`` subsections should pass; these audits
+distinguish expected demonstration outcomes from a replay mismatch.
+
+This is a finite review matrix. Independent evaluations, raw iterator replay,
+custom generators, processors, UID filtering and flow controls are also covered
+by the implementation's regression tests. Arbitrary user generators, external
+resource behavior and infinite combinations cannot be exhaustively enumerated.
+
+Validate a completed archive's traces, reported results, ignored attempts and
+summaries with the independent auditor (standard library only):
+
+.. code-block:: console
+
+    python3 audit_review_archive.py /path/to/archive.zip --output audit.json
+
+The auditor should exit successfully with an empty ``failures`` array.
