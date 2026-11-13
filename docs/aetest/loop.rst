@@ -229,6 +229,10 @@ The same composition works on testcases and subsections. The existing
 restrictions on looping common setup/cleanup and individual testcase
 setup/cleanup sections still apply.
 
+A subclass inherits its base class's loop when it has no loop declaration of its
+own. Declaring a loop on the subclass replaces those inherited defaults. Stack
+multiple decorators directly on that subclass to define its nested dimensions.
+
 Invocation UIDs
 ~~~~~~~~~~~~~~~
 

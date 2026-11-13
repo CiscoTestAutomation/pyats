@@ -377,3 +377,34 @@ testcase retry enabled.
         |-- connect_testcase                                                  FAILED
         |   `-- STEP 1: Failure case                                          FAILED
         `-- testcase_cleanup                                                  PASSED
+
+Loop and Retry Review Job
+-------------------------
+
+Download the :download:`review job <examples/hierarchical_looping/loop_retry_matrix_job.py>`
+and its :download:`testscript <examples/hierarchical_looping/loop_retry_matrix.py>`
+into the same directory, then run:
+
+.. code-block:: console
+
+    pyats run job loop_retry_matrix_job.py --no-mail
+
+The job exercises every retry placement at the boundaries around zero, one,
+and two loop dimensions: 14 plans for each of the testcase, test-section, and
+subsection targets. Six tasks cover passing runs, a single failure, inner retry
+exhaustion followed by outer recovery, complete exhaustion, an eligible error,
+and skipped invocations. This gives 252 scenarios and 1,212 probe invocations.
+No testbed is required.
+
+Scenario names encode depth and retry boundaries. For example, ``D2_R101``
+uses two loop dimensions with retry outside both loops and at the leaf, while
+``D2_R010`` retries only the inner loop for each outer iteration.
+
+Each task logs ``MATRIX TRACE`` records with its plan, parameters, invocation UID,
+and retry count. Its final ``zz_audit`` subsection checks replay counts and UID
+uniqueness for all 42 scenarios. The archive includes the job, testscript,
+``matrix_manifest.json``, and one ``matrix_<profile>.json`` trace per task.
+
+The deliberately failed and errored scenarios make the overall job result
+failed. All six ``zz_audit`` subsections should pass; these audits distinguish
+expected demonstration outcomes from a replay mismatch.
