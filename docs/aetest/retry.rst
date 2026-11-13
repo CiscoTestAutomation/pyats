@@ -378,33 +378,71 @@ testcase retry enabled.
         |   `-- STEP 1: Failure case                                          FAILED
         `-- testcase_cleanup                                                  PASSED
 
+CLI Retry With Loops
+--------------------
+
+When CLI retry selects a looped target without a retry decorator, it wraps that
+target's complete loop plan. Explicit retry decorators retain their declared
+boundaries; CLI settings override the policy at those boundaries.
+
+Selectors match exact names or UIDs. Qualified selectors such as
+``Case.check`` take precedence over a bare ``check`` selector. A target absent
+from a nonempty selector map is excluded. Per-target ``retries=0`` disables
+replay, and ``retry_wait=0`` is preserved.
+
 Loop and Retry Review Job
 -------------------------
 
-Download the :download:`review job <examples/hierarchical_looping/loop_retry_matrix_job.py>`
-and its :download:`testscript <examples/hierarchical_looping/loop_retry_matrix.py>`
+Download the :download:`review job <examples/hierarchical_looping/loop_retry_matrix_job.py>`,
+:download:`placement testscript <examples/hierarchical_looping/loop_retry_matrix.py>`,
+:download:`eligibility testscript <examples/hierarchical_looping/eligibility_matrix.py>`
+and :download:`CLI testscript <examples/hierarchical_looping/cli_retry_matrix.py>` and
+:download:`independent auditor <examples/hierarchical_looping/audit_review_archive.py>`
 into the same directory, then run:
 
 .. code-block:: console
 
     pyats run job loop_retry_matrix_job.py --no-mail
 
-The job exercises every retry placement at the boundaries around zero, one,
-and two loop dimensions: 14 plans for each of the testcase, test-section, and
-subsection targets. Six tasks cover passing runs, a single failure, inner retry
-exhaustion followed by outer recovery, complete exhaustion, an eligible error,
-and skipped invocations. This gives 252 scenarios and 1,212 probe invocations.
-No testbed is required.
+The job exercises every subset of retry boundaries around zero through three
+loop dimensions: 30 plans for each of testcase, test-section and subsection
+targets. Six tasks cover passing runs, a single failure, inner retry exhaustion
+followed by outer recovery, complete exhaustion, an eligible error and skipped
+invocations. These tasks cover 540 placement scenarios.
+
+An eligibility task adds all seven AEtest results under both default and explicit
+result policies for each target kind (42 scenarios). Five CLI tasks add positive
+and negative selection, qualified selectors, zero and two-retry overrides, and
+section-type filtering (105 scenarios). They use looped targets without a retry
+decorator. The job calls the real Easypy RetryPlugin with each JSON CLI input so
+all five policies can be reviewed in one archive. In total, the job covers 687
+bounded scenarios without a testbed.
 
 Scenario names encode depth and retry boundaries. For example, ``D2_R101``
 uses two loop dimensions with retry outside both loops and at the leaf, while
 ``D2_R010`` retries only the inner loop for each outer iteration.
 
-Each task logs ``MATRIX TRACE`` records with its plan, parameters, invocation UID,
-and retry count. Its final ``zz_audit`` subsection checks replay counts and UID
-uniqueness for all 42 scenarios. The archive includes the job, testscript,
-``matrix_manifest.json``, and one ``matrix_<profile>.json`` trace per task.
+Each task logs trace records with parameters, invocation UIDs and retry counts.
+Its final ``zz_audit`` subsection checks replay counts, ordering where applicable,
+and UID uniqueness. The archive includes all five source files,
+``matrix_manifest.json`` with exact source revisions and CLI policies, six
+``matrix_<profile>.json`` files, ``eligibility.json`` and five ``cli_<profile>.json``
+files.
 
-The deliberately failed and errored scenarios make the overall job result
-failed. All six ``zz_audit`` subsections should pass; these audits distinguish
-expected demonstration outcomes from a replay mismatch.
+The deliberately failed, errored, blocked and aborted scenarios affect the
+overall job result. All twelve ``zz_audit`` subsections should pass; these audits
+distinguish expected demonstration outcomes from a replay mismatch.
+
+This is a finite review matrix. Independent evaluations, raw iterator replay,
+custom generators, processors, UID filtering and flow controls are also covered
+by the implementation's regression tests. Arbitrary user generators, external
+resource behavior and infinite combinations cannot be exhaustively enumerated.
+
+Validate a completed archive's traces, reported results, ignored attempts and
+summaries with the independent auditor (standard library only):
+
+.. code-block:: console
+
+    python3 audit_review_archive.py /path/to/archive.zip --output audit.json
+
+The auditor should exit successfully with an empty ``failures`` array.

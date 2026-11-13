@@ -253,11 +253,16 @@ Dynamic Loops and Iterables
 to add an outer dimension at runtime. Each marking call adds a dimension, so
 mark a target once for each intended loop level.
 
-Loop input is consumed lazily. For composed loops, one-shot iterator arguments
-are buffered as needed within an execution so inner loops and retry attempts
-can replay their values. These buffers belong to that execution. When the same
-decorated target will run again, supply a re-iterable collection or a callable
-that creates a fresh iterator:
+Loop input is consumed lazily. Raw one-shot iterator arguments are buffered as
+needed. Each evaluation has its own cursor over that captured sequence, including
+when the same decorated target runs again. Captured objects retain their identity;
+they are not copied. The buffer lives as long as the decorated plan and grows with
+the consumed prefix. An unbounded source therefore needs unbounded storage if all
+its earlier values must remain replayable.
+
+Use a callable factory when each loop entry should generate fresh values or
+repeat side effects, particularly for sources backed by files or other external
+resources:
 
 .. code-block:: python
 

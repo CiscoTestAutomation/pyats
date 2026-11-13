@@ -1,7 +1,7 @@
-"""Review every retry placement around zero, one and two loop dimensions.
+"""Review every retry placement around zero through three loop dimensions.
 
 Intentional failures demonstrate retry recovery and exhaustion. Each task ends
-with an audit of all 42 scenario traces, and writes a JSON artifact alongside
+with an audit of all 90 scenario traces, and writes a JSON artifact alongside
 its logs. No testbed or device connections are used.
 """
 import itertools
@@ -14,14 +14,14 @@ from pyats.aetest.base import Source
 
 logger = logging.getLogger(__name__)
 parameters = {'observations': []}
-DIMENSIONS = ({'outer': ['r1', 'r2']}, {'inner': ['p1', 'p2']})
+DIMENSIONS = ({'outer': ['r1', 'r2']}, {'inner': ['p1', 'p2']}, {'leaf': ['s1', 's2']})
 PROFILES = ('passed', 'fail_once', 'recover_outer', 'exhausted', 'errored_once', 'skipped')
 TARGETS = ('testcase', 'test', 'subsection')
 
 
 def specifications():
     for target in TARGETS:
-        for depth in range(3):
+        for depth in range(len(DIMENSIONS) + 1):
             for active in itertools.product((False, True), repeat=depth + 1):
                 bits = ''.join(str(int(value)) for value in active)
                 name = '{}_D{}_R{}'.format(target, depth, bits)
@@ -57,11 +57,12 @@ def expected_calls(spec, profile):
 
 
 def make_probe(spec, marker):
-    def probe(self, section, observations, profile, outer=None, inner=None, retry_count=0):
+    def probe(self, section, observations, profile, outer=None, inner=None, leaf=None, retry_count=0):
         previous = [event for event in observations if event['scenario'] == spec['name']]
         ordinal = len(previous) + 1
-        first_leaf = outer in (None, 'r1') and inner in (None, 'p1')
-        leaf_ordinal = 1 + sum(event['outer'] == outer and event['inner'] == inner for event in previous)
+        first_leaf = outer in (None, 'r1') and inner in (None, 'p1') and leaf in (None, 's1')
+        leaf_ordinal = 1 + sum(event['outer'] == outer and event['inner'] == inner and event['leaf'] == leaf
+                               for event in previous)
         outcome = 'passed'
         if profile == 'skipped':
             outcome = 'skipped'
@@ -72,7 +73,7 @@ def make_probe(spec, marker):
         elif profile == 'errored_once' and ordinal == 1:
             outcome = 'errored'
         invocation = self if spec['target'] == 'testcase' else section
-        event = dict(spec, scenario=spec['name'], profile=profile, ordinal=ordinal, outer=outer, inner=inner,
+        event = dict(spec, scenario=spec['name'], profile=profile, ordinal=ordinal, outer=outer, inner=inner, leaf=leaf,
                      retry_count=retry_count or 0,
                      uid=str(invocation.uid), uid_path=list(invocation.uid.list), outcome=outcome)
         observations.append(event)
@@ -86,14 +87,14 @@ def make_probe(spec, marker):
 def make_case(spec):
     class MatrixCase(aetest.Testcase):
         @aetest.setup
-        def setup(self, outer=None, inner=None, retry_count=0):
-            logger.info('MATRIX SETUP scenario=%s uid=%s outer=%s inner=%s retry_count=%s',
-                        spec['name'], self.uid, outer, inner, retry_count)
+        def setup(self, outer=None, inner=None, leaf=None, retry_count=0):
+            logger.info('MATRIX SETUP scenario=%s uid=%s outer=%s inner=%s leaf=%s retry_count=%s',
+                        spec['name'], self.uid, outer, inner, leaf, retry_count)
 
         @aetest.cleanup
-        def cleanup(self, outer=None, inner=None, retry_count=0):
-            logger.info('MATRIX CLEANUP scenario=%s uid=%s outer=%s inner=%s retry_count=%s',
-                        spec['name'], self.uid, outer, inner, retry_count)
+        def cleanup(self, outer=None, inner=None, leaf=None, retry_count=0):
+            logger.info('MATRIX CLEANUP scenario=%s uid=%s outer=%s inner=%s leaf=%s retry_count=%s',
+                        spec['name'], self.uid, outer, inner, leaf, retry_count)
 
     MatrixCase.__name__ = spec['name']
     MatrixCase.check = make_probe(spec, aetest.test)
@@ -131,7 +132,7 @@ class SubsectionCases(aetest.CommonCleanup):
             logger.info('MATRIX ARTIFACT %s', path)
         if errors:
             self.failed('Trace audit mismatches: {}'.format(errors))
-        self.passed('All 42 scenario traces match the expected replay counts and have unique UIDs.')
+        self.passed('All 90 scenario traces match the expected replay counts and have unique UIDs.')
 
 
 for _spec in specifications():
