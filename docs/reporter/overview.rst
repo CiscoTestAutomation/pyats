@@ -353,6 +353,30 @@ the aggregated results.
 Reporter uses contexual reporters that share the hierarchy
 of the testable sections instead of a single global reporter.
 
+IPC timeout and retry settings
+------------------------------
+
+Reporter IPC uses these environment variables to tune timeout and retry
+behavior between the Reporter Server and its clients:
+
+.. csv-table::
+    :header: "Environment Variable", "Default", "Description"
+
+    ``PYATS_REPORTER_TIMEOUT``, ``5``, "Positive integer number of seconds the Reporter Server waits for message handling to complete."
+    ``PYATS_REPORTER_MAX_RETRIES``, ``3``, "Positive integer number of attempts for Reporter client and server IPC operations that raise ``TimeoutError``."
+
+Set these variables before starting pyATS or Easypy:
+
+.. code-block:: bash
+
+    PYATS_REPORTER_TIMEOUT=120 PYATS_REPORTER_MAX_RETRIES=5 pyats run job job.py
+
+If a variable is unset, empty, zero, negative, or not an integer, Reporter uses
+the default value and logs a warning. These settings apply only to Reporter IPC;
+they do not change testscript execution timeouts, device connection timeouts, or
+service command timeouts. The resolved values are logged when the Reporter
+Server starts.
+
 Git info
 --------
 
