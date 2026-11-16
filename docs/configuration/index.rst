@@ -46,6 +46,18 @@ Each INI file content is standardized to use:
 - ``=`` as key/value delimiter
 - ``#`` for comments.
 
+INI values also support environment variable expansion via standard shell-style
+references such as ``$VAR`` and ``${VAR}``.
+
+.. code-block:: ini
+
+    [easypy]
+    runinfo.directory = $HOME/work/pyats/runinfo
+    runinfo.archive = $ARCHIVE_ROOT/pyats
+
+If an environment variable referenced in ``pyats.conf`` is not set, pyATS logs
+a warning and substitutes an empty string.
+
 .. note::
 
     do not use quotes around strings in INI files - see
