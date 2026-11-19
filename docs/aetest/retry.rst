@@ -147,7 +147,7 @@ UID filters, and control-flow signals still apply.
 Results and Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The existing retry eligibility, wait interval, and CLI configuration apply.
+The existing retry eligibility, wait interval, and runtime configuration apply.
 By default, failed results are eligible; include ``'errored'`` in
 ``section_results`` to retry errored attempts. Retry-only targets retain their
 existing behavior.
@@ -378,12 +378,15 @@ testcase retry enabled.
         |   `-- STEP 1: Failure case                                          FAILED
         `-- testcase_cleanup                                                  PASSED
 
-CLI Retry With Loops
---------------------
+Retry Configuration with Loops
+-----------------------------
 
-When CLI retry selects a looped target without a retry decorator, it wraps that
-target's complete loop plan. Explicit retry decorators retain their declared
-boundaries; CLI settings override the policy at those boundaries.
+AEtest retry can be configured through decorators or runtime settings, including
+the ``--retry`` command-line argument. These inputs configure the same retry
+mechanism. When runtime settings select a looped target without a retry
+decorator, the retry wraps that target's complete loop plan. Explicit retry
+decorators retain their declared boundaries; runtime settings override the
+policy at those boundaries.
 
 Selectors match exact names or UIDs. Qualified selectors such as
 ``Case.check`` take precedence over a bare ``check`` selector. A target absent
